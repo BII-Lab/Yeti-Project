@@ -40,7 +40,7 @@ then gen_root/sh Script has realized automatic download root.zone.gz? root.zone.
 
 
 2、create files
-[root@root1-3 app_data]# more /root/scripts/app_data/*
+[root@root1-3 root]# more /root/scripts/app_data/*
 ::::::::::::::
 /root/scripts/app_data/arpa.zone
 ::::::::::::::
@@ -67,7 +67,13 @@ bii-2.dnsv6lab.net.     IN      AAAA 240C:F:1:122::6
 
 arpa.       3600000 IN      NS       bii-2.dnsv6lab.net.
 arpa.       3600000 IN      NS       bii-2.dnsv6lab.net.
-
+::::::::::::::
+/root/scripts/app_data/wwwdownload.txt
+::::::::::::::
+http://www.internic.net/domain/arpa.zone.gz 
+http://www.internic.net/domain/arpa.zone.gz.md5 
+http://www.internic.net/domain/root.zone.gz 
+http://www.internic.net/domain/root.zone.gz.md5
 
 
 3、Generate root, ARPA ZSK and KSK
