@@ -1,14 +1,12 @@
 # Welcom to the Macaque Project
 ------
 
-"One World, One Internet, One Namespace" is the essence for the success of today's Internet. 
-However, as the top level of the unique identifier system, the DNS root system, which has 
-been operational for 25+ years, is a pivot to make the current Internet useful. So it is
-considered somewhat ossified for stability reasons. It is hard to test and implement new 
-ideas evolving to a more advanced level to counter the challenges like IPv6-only operation,
-DNSSEC key rollover, scaling issues, etc. Because changes to the current production system
-are not risk-free, and a large-scaled Testbed is necessary, on which fully tests and studies
-on the impact can be carried out. It is possible to pre-evaluate such a change in a laboratory
-test, however, the coverage is very limited. In order to make the test more practical, it is 
-also necessary to involve users’ environment which is highly diversified, to study the effect
-of the change in question. 
+"One World, One Internet, One Namespace" is the essence for the success of today's Internet. The top level of the unique identifier system, the DNS root system, has been operational for 25+ years. It is a pivot to make the current Internet useful. So it is considered somewhat ossified for stability reasons. It is hard to test and implement new ideas evolving to a more advanced level to counter challenges like IPv6-only operation, DNSSEC key/algorithm rollover, scaling issues, etc. Because changes to the current production system are not risk-free, and a large-scale testbed is necessary, on which extensive tests and studies of the impact can be carried out. It is possible to pre-evaluate such changes in a laboratory test, however, the coverage is limited. In order to make the test more practical, it is also necessary to involve users’ environment which is highly diversified, to study the effect of the changes in question. 
+ 
+As a result the proposal of Macaque Project is formed which is aiming to build such a live environment. The basic idea is to build a paralleled experimental live root system to provide useful technical output with the existing production systems. Possible research agenda will be explored on this testbed covering several aspects but not limited to: IPv6-only operation, DNSSEC key rollover, Renumbering issue, the scalability issues, multiple zone file signers and Multiple zone file signers. In addition measurement study will be done to issue out useful analysis as output of Macaque Project.
+
+Participants will be invited into Macaque Project which is hopefully helpful for their own interests. We would like to invite some interested parties in this community, like the research labs of universities and institutes. We also hope Macaque Project can gain the support from vendors, for example, the DNS software implementers, Developers of CPE devices & IoT devices, Middlebox developers who can test their product and connect their own testbed into Macaque testbed. It is expected that the activity of Macaque Project could have good input to the DNS related industry, which will finally make them ready for advanced DNS and Root services.  
+
+This document focuses on the description of Macaque, participants and roles, and motivations. There are descriptions for each research topic which will help the audiences to know what the project will do. Every player and role of Macaque Project is defined in this proposal which will introduce who will participate and what their function is. Moreover, development plan for Macaque Project is proposed as an action plan related with “how & when to do” especially before its announcement. 
+
+NOTE THAT THIS PROJECT NEVER INTENT TO REPLACE CURRENT OPERATIONAL ROOT DNS SYSTEM.　REGULAR DNS SERVICES MUST NOT DEPEND ON THE TESTBED.
