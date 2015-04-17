@@ -1,4 +1,4 @@
-.        86400   IN      SOA ns1.dns-lab.net. dns-lab.net.      2015041501 1800 900 604800 86400
+.        86400   IN      SOA ns1.dns-lab.net. dns-lab.net.      2015041601 1800 900 604800 86400
 ;
 .	518400 	IN	NS	ns1.dns-lab.net.	
 ns1.dns-lab.net. 3600000	IN	AAAA 240C:F:1:122::3
@@ -1596,12 +1596,6 @@ l6.nstld.com.		172800	IN	A	192.41.162.35
 m6.nstld.com.		172800	IN	A	192.55.83.35
 ns1.orangecaraibe.com.	172800	IN	A	193.251.160.222
 ns1.pair.com.		172800	IN	A	209.68.1.11
-kynse01.perimeterusa.com.	172800	IN	A	216.54.168.26
-kynse02.perimeterusa.com.	172800	IN	A	216.54.168.27
-kynse03.perimeterusa.com.	172800	IN	A	216.54.168.28
-kynsw01.perimeterusa.com.	172800	IN	A	165.212.160.15
-kynsw02.perimeterusa.com.	172800	IN	A	165.212.160.16
-kynsw03.perimeterusa.com.	172800	IN	A	165.212.160.17
 rain.psg.com.		172800	IN	A	147.28.0.34
 rip.psg.com.		172800	IN	A	147.28.0.39
 rip.psg.com.		172800	IN	AAAA	2001:418:1:0:0:0:0:39
@@ -3084,6 +3078,7 @@ ns1.gtt.co.gy.		172800	IN	A	190.80.0.41
 ns2.gtt.co.gy.		172800	IN	A	190.80.0.42
 hamburg.		172800	IN	NS	a.dns.nic.hamburg.
 hamburg.		172800	IN	NS	m.dns.nic.hamburg.
+hamburg.		172800	IN	NS	n.dns.nic.hamburg.
 HAMBURG.		86400	IN	DS	26479 8 1 1C9F5D68C413E8A9A2C8E1C1637B8A4DA2CA6827
 HAMBURG.		86400	IN	DS	26479 8 2 4A48334EF87D7FC156E886E5A2B2682FCF0679ED6FCAB59C85DEB0FC52468CB2
 HAMBURG.		86400	IN	DS	53866 8 1 D26808AE1E19086BCF5FC88D59066C3AD22F2E56
@@ -3092,6 +3087,8 @@ a.dns.nic.hamburg.	172800	IN	A	194.0.25.21
 a.dns.nic.hamburg.	172800	IN	AAAA	2001:678:20:0:0:0:0:21
 m.dns.nic.hamburg.	172800	IN	A	194.0.26.10
 m.dns.nic.hamburg.	172800	IN	AAAA	2001:67c:10e0:0:0:0:0:10
+n.dns.nic.hamburg.	172800	IN	A	194.0.24.10
+n.dns.nic.hamburg.	172800	IN	AAAA	2001:678:24:0:0:0:0:10
 hangout.		172800	IN	NS	ns-tld1.charlestonroadregistry.com.
 hangout.		172800	IN	NS	ns-tld2.charlestonroadregistry.com.
 hangout.		172800	IN	NS	ns-tld3.charlestonroadregistry.com.
@@ -3672,6 +3669,11 @@ ns5.dns.nic.jetzt.	172800	IN	A	156.154.157.86
 ns5.dns.nic.jetzt.	172800	IN	AAAA	2610:a1:1075:0:0:0:0:56
 ns6.dns.nic.jetzt.	172800	IN	A	156.154.158.86
 ns6.dns.nic.jetzt.	172800	IN	AAAA	2610:a1:1076:0:0:0:0:56
+jewelry.		172800	IN	NS	demand.beta.aridns.net.au.
+jewelry.		172800	IN	NS	demand.alpha.aridns.net.au.
+jewelry.		172800	IN	NS	demand.delta.aridns.net.au.
+jewelry.		172800	IN	NS	demand.gamma.aridns.net.au.
+JEWELRY.		86400	IN	DS	22702 8 2 32F4A46DCE202EFA56CFF400AA28E091E275F156EAB174EC946326A5F39B4B51
 jm.			172800	IN	NS	jm.cctld.authdns.ripe.net.
 jm.			172800	IN	NS	ns.jm.
 jm.			172800	IN	NS	ns.utechjamaica.edu.jm.
@@ -3893,12 +3895,12 @@ kw.			172800	IN	NS	sns-pb.isc.org.
 dns1.kw.		172800	IN	A	161.252.48.140
 dns2.kw.		172800	IN	A	161.252.48.150
 dns3.kw.		172800	IN	A	161.252.48.145
-ky.			172800	IN	NS	kynse01.perimeterusa.com.
-ky.			172800	IN	NS	kynse02.perimeterusa.com.
-ky.			172800	IN	NS	kynse03.perimeterusa.com.
-ky.			172800	IN	NS	kynsw01.perimeterusa.com.
-ky.			172800	IN	NS	kynsw02.perimeterusa.com.
-ky.			172800	IN	NS	kynsw03.perimeterusa.com.
+ky.			172800	IN	NS	a.ky.dyntld.net.
+ky.			172800	IN	NS	a.ns.uniregistry.net.
+ky.			172800	IN	NS	b.ky.dyntld.net.
+ky.			172800	IN	NS	c.ky.dyntld.net.
+KY.			86400	IN	DS	27566 5 1 4010BC344088A61A41A2654EB5197C2B62EA6F47
+KY.			86400	IN	DS	27566 5 2 7E3C406A1FF89436FCC8899A0A86F8798D3EAAB33018502F58F8328125B371F1
 kyoto.			172800	IN	NS	a.gmoregistry.net.
 kyoto.			172800	IN	NS	b.gmoregistry.net.
 kyoto.			172800	IN	NS	c.gmoregistry.net.
@@ -4944,6 +4946,12 @@ ki1.dyntld.net.		172800	IN	A	208.78.70.87
 ki1.dyntld.net.		172800	IN	AAAA	2001:500:90:0:0:0:0:87
 ki3.dyntld.net.		172800	IN	A	208.78.71.87
 ki3.dyntld.net.		172800	IN	AAAA	2001:500:94:0:0:0:0:87
+a.ky.dyntld.net.	172800	IN	A	199.19.1.19
+a.ky.dyntld.net.	172800	IN	AAAA	2a02:e180:0:0:0:0:0:19
+b.ky.dyntld.net.	172800	IN	A	199.19.7.19
+b.ky.dyntld.net.	172800	IN	AAAA	2a02:e180:1:0:0:0:0:19
+c.ky.dyntld.net.	172800	IN	A	185.38.98.19
+c.ky.dyntld.net.	172800	IN	AAAA	2a02:e180:2:0:0:0:0:19
 mg1.dyntld.net.		172800	IN	A	208.78.70.96
 mg2.dyntld.net.		172800	IN	A	204.13.250.96
 mg3.dyntld.net.		172800	IN	A	208.78.71.96
@@ -6333,6 +6341,7 @@ rehab.			172800	IN	NS	demand.gamma.aridns.net.au.
 REHAB.			86400	IN	DS	7924 8 2 5AD45D965FB77D74701D399D5462993E50E0611809603B7469CD5A94CC99E01B
 reise.			172800	IN	NS	a.dns.nic.reise.
 reise.			172800	IN	NS	m.dns.nic.reise.
+reise.			172800	IN	NS	n.dns.nic.reise.
 REISE.			86400	IN	DS	45280 8 1 622554586857A9A37A179C8BE19F6E46D51EF31E
 REISE.			86400	IN	DS	45280 8 2 D9254EBD139F78804DCFB9A352C7199D8E96D4A5074017302034545E4CA16B02
 REISE.			86400	IN	DS	62014 8 1 51C1596E977EC71522E395B24F84B5DB6654F5B9
@@ -6341,6 +6350,8 @@ a.dns.nic.reise.	172800	IN	A	194.0.25.18
 a.dns.nic.reise.	172800	IN	AAAA	2001:678:20:0:0:0:0:18
 m.dns.nic.reise.	172800	IN	A	194.0.26.7
 m.dns.nic.reise.	172800	IN	AAAA	2001:67c:10e0:0:0:0:0:7
+n.dns.nic.reise.	172800	IN	A	194.0.24.7
+n.dns.nic.reise.	172800	IN	AAAA	2001:678:24:0:0:0:0:7
 reisen.			172800	IN	NS	demand.beta.aridns.net.au.
 reisen.			172800	IN	NS	demand.alpha.aridns.net.au.
 reisen.			172800	IN	NS	demand.delta.aridns.net.au.
@@ -6802,6 +6813,11 @@ shoes.			172800	IN	NS	demand.alpha.aridns.net.au.
 shoes.			172800	IN	NS	demand.delta.aridns.net.au.
 shoes.			172800	IN	NS	demand.gamma.aridns.net.au.
 SHOES.			86400	IN	DS	48574 8 2 FFCCEBC433B0B008AB8D3113A3B009D9F399CA666883CCA43D43699C60AA7E61
+show.			172800	IN	NS	demand.beta.aridns.net.au.
+show.			172800	IN	NS	demand.alpha.aridns.net.au.
+show.			172800	IN	NS	demand.delta.aridns.net.au.
+show.			172800	IN	NS	demand.gamma.aridns.net.au.
+SHOW.			86400	IN	DS	17527 8 2 F78585E76C448FA4FCA02EB9D8C4A9F4B5ABFE11A8429D6A40C1CF3E8CA9C2D1
 shriram.		172800	IN	NS	a0.nic.shriram.
 shriram.		172800	IN	NS	a2.nic.shriram.
 shriram.		172800	IN	NS	b0.nic.shriram.
@@ -6939,6 +6955,20 @@ solutions.		172800	IN	NS	demand.alpha.aridns.net.au.
 solutions.		172800	IN	NS	demand.delta.aridns.net.au.
 solutions.		172800	IN	NS	demand.gamma.aridns.net.au.
 SOLUTIONS.		86400	IN	DS	57742 8 2 6536350D40C0AA3DBF8A29604A2291F89966BFC74C363E99D75733885B8AAA49
+sony.			172800	IN	NS	a.nic.sony.
+sony.			172800	IN	NS	b.nic.sony.
+sony.			172800	IN	NS	c.nic.sony.
+sony.			172800	IN	NS	d.nic.sony.
+SONY.			86400	IN	DS	11302 8 1 58CC6A1BCD8AE96E0786C6CBBB10CD0E63DD8979
+SONY.			86400	IN	DS	11302 8 2 E6DFD940A7EA6E310DFD4C609A5BFD6AAF1FD7F230694A7776F4B9C2472D12FC
+a.nic.sony.		172800	IN	A	37.209.192.9
+a.nic.sony.		172800	IN	AAAA	2001:dcd:1:0:0:0:0:9
+b.nic.sony.		172800	IN	A	37.209.194.9
+b.nic.sony.		172800	IN	AAAA	2001:dcd:2:0:0:0:0:9
+c.nic.sony.		172800	IN	A	37.209.196.9
+c.nic.sony.		172800	IN	AAAA	2001:dcd:3:0:0:0:0:9
+d.nic.sony.		172800	IN	A	37.209.198.9
+d.nic.sony.		172800	IN	AAAA	2001:dcd:4:0:0:0:0:9
 soy.			172800	IN	NS	ns-tld1.charlestonroadregistry.com.
 soy.			172800	IN	NS	ns-tld2.charlestonroadregistry.com.
 soy.			172800	IN	NS	ns-tld3.charlestonroadregistry.com.
@@ -7165,6 +7195,11 @@ td.			172800	IN	NS	ns1.nic.td.
 td.			172800	IN	NS	ns-td.nic.fr.
 td.			172800	IN	NS	ns-td.afrinic.net.
 ns1.nic.td.		172800	IN	A	41.74.44.43
+team.			172800	IN	NS	demand.beta.aridns.net.au.
+team.			172800	IN	NS	demand.alpha.aridns.net.au.
+team.			172800	IN	NS	demand.delta.aridns.net.au.
+team.			172800	IN	NS	demand.gamma.aridns.net.au.
+TEAM.			86400	IN	DS	9136 8 2 EF2B38F39A5D0A05F11C9CAF4BCB8BD9196C777C9BE2F810425072A26E21D9AD
 tech.			172800	IN	NS	a.nic.tech.
 tech.			172800	IN	NS	b.nic.tech.
 tech.			172800	IN	NS	c.nic.tech.
@@ -7279,6 +7314,7 @@ tires.			172800	IN	NS	demand.gamma.aridns.net.au.
 TIRES.			86400	IN	DS	32752 8 2 1965ACF46A560663EFEAD1BFCD5275280AD4AAEEF71847E7B939457D79F222B2
 tirol.			172800	IN	NS	a.dns.nic.tirol.
 tirol.			172800	IN	NS	m.dns.nic.tirol.
+tirol.			172800	IN	NS	n.dns.nic.tirol.
 TIROL.			86400	IN	DS	33037 8 1 7979CB9D20D985A0F58221983270CD1E11476C54
 TIROL.			86400	IN	DS	33037 8 2 D32782F6AAB1A16F3842FB31C7877EF7ACBE713DDA74ABD1DCAABB9368E451D4
 TIROL.			86400	IN	DS	37546 8 1 A356AAEA2E5CCFC3401436ACF39A44259D5F6629
@@ -7287,6 +7323,8 @@ a.dns.nic.tirol.	172800	IN	A	194.0.25.20
 a.dns.nic.tirol.	172800	IN	AAAA	2001:678:20:0:0:0:0:20
 m.dns.nic.tirol.	172800	IN	A	194.0.26.9
 m.dns.nic.tirol.	172800	IN	AAAA	2001:67c:10e0:0:0:0:0:9
+n.dns.nic.tirol.	172800	IN	A	194.0.24.9
+n.dns.nic.tirol.	172800	IN	AAAA	2001:678:24:0:0:0:0:9
 tj.			172800	IN	NS	tj.cctld.authdns.ripe.net.
 tj.			172800	IN	NS	ns1.nic.tj.
 tj.			172800	IN	NS	ns2.tojikiston.com.
@@ -7712,6 +7750,7 @@ ventures.		172800	IN	NS	demand.gamma.aridns.net.au.
 VENTURES.		86400	IN	DS	12352 8 2 91175878089CE3054D9CA53EA05D2B71D06813D35F25871FB566374C66C213A2
 versicherung.		172800	IN	NS	a.dns.nic.versicherung.
 versicherung.		172800	IN	NS	m.dns.nic.versicherung.
+versicherung.		172800	IN	NS	n.dns.nic.versicherung.
 VERSICHERUNG.		86400	IN	DS	25180 8 1 B8472813EE9DECD1C21E7FD088FA00B69F78227D
 VERSICHERUNG.		86400	IN	DS	25180 8 2 991DA886CBC5DA51F9136265E30C731206AF9AEB5DB5DD309744821EE8E38ECA
 VERSICHERUNG.		86400	IN	DS	59426 8 1 3A7E0FF95B77EA99CB3266CCD0E0DC9B743AFA33
@@ -7720,6 +7759,8 @@ a.dns.nic.versicherung.	172800	IN	A	194.0.25.13
 a.dns.nic.versicherung.	172800	IN	AAAA	2001:678:20:0:0:0:0:13
 m.dns.nic.versicherung.	172800	IN	A	194.0.26.2
 m.dns.nic.versicherung.	172800	IN	AAAA	2001:67c:10e0:0:0:0:0:2
+n.dns.nic.versicherung.	172800	IN	A	194.0.24.2
+n.dns.nic.versicherung.	172800	IN	AAAA	2001:678:24:0:0:0:0:2
 vet.			172800	IN	NS	demand.beta.aridns.net.au.
 vet.			172800	IN	NS	demand.alpha.aridns.net.au.
 vet.			172800	IN	NS	demand.delta.aridns.net.au.
@@ -8071,6 +8112,14 @@ wtf.			172800	IN	NS	demand.alpha.aridns.net.au.
 wtf.			172800	IN	NS	demand.delta.aridns.net.au.
 wtf.			172800	IN	NS	demand.gamma.aridns.net.au.
 WTF.			86400	IN	DS	5332 8 2 25B1EBB6C6E99F3ACDC0D30D8BC7A33CE0F25E225554DDC7A7EC730CAFC8E2FF
+xerox.			172800	IN	NS	a5.nstld.com.
+xerox.			172800	IN	NS	c5.nstld.com.
+xerox.			172800	IN	NS	d5.nstld.com.
+xerox.			172800	IN	NS	f5.nstld.com.
+xerox.			172800	IN	NS	g5.nstld.com.
+xerox.			172800	IN	NS	h5.nstld.com.
+xerox.			172800	IN	NS	l5.nstld.com.
+XEROX.			86400	IN	DS	25335 8 2 24B736E0C1840F7DE3DCDB25C8C9B22600A7A0A9C00F3126C58292C724B1CCB3
 xin.			172800	IN	NS	a0.nic.xin.
 xin.			172800	IN	NS	a2.nic.xin.
 xin.			172800	IN	NS	b0.nic.xin.
