@@ -592,6 +592,7 @@ b.ns.nic.beer.		172800	IN	A	72.42.114.14
 b.ns.nic.beer.		172800	IN	AAAA	2620:171:d02:dc:0:0:0:14
 berlin.			172800	IN	NS	a.dns.nic.berlin.
 berlin.			172800	IN	NS	m.dns.nic.berlin.
+berlin.			172800	IN	NS	n.dns.nic.berlin.
 BERLIN.			86400	IN	DS	10394 8 1 41B409894CD48EBBD0877427D5320C92ED2879DD
 BERLIN.			86400	IN	DS	10394 8 2 B0D792359CB13AB1093CFA9D3754EC6933CAE2B2335A257017BDF63BCB682564
 BERLIN.			86400	IN	DS	15259 8 1 77F489BD4EA570DF28EA5AE752798AACC900C547
@@ -600,6 +601,8 @@ a.dns.nic.berlin.	172800	IN	A	194.0.25.16
 a.dns.nic.berlin.	172800	IN	AAAA	2001:678:20:0:0:0:0:16
 m.dns.nic.berlin.	172800	IN	A	194.0.26.5
 m.dns.nic.berlin.	172800	IN	AAAA	2001:67c:10e0:0:0:0:0:5
+n.dns.nic.berlin.	172800	IN	A	194.0.24.5
+n.dns.nic.berlin.	172800	IN	AAAA	2001:678:24:0:0:0:0:5
 best.			172800	IN	NS	ns1.dns.nic.best.
 best.			172800	IN	NS	ns2.dns.nic.best.
 best.			172800	IN	NS	ns3.dns.nic.best.
@@ -7959,6 +7962,14 @@ a.ns.nic.wedding.	172800	IN	A	72.0.50.25
 a.ns.nic.wedding.	172800	IN	AAAA	2620:171:a02:ad:0:0:0:25
 b.ns.nic.wedding.	172800	IN	A	72.42.114.25
 b.ns.nic.wedding.	172800	IN	AAAA	2620:171:d02:dc:0:0:0:25
+weir.			172800	IN	NS	a5.nstld.com.
+weir.			172800	IN	NS	c5.nstld.com.
+weir.			172800	IN	NS	d5.nstld.com.
+weir.			172800	IN	NS	f5.nstld.com.
+weir.			172800	IN	NS	g5.nstld.com.
+weir.			172800	IN	NS	h5.nstld.com.
+weir.			172800	IN	NS	l5.nstld.com.
+WEIR.			86400	IN	DS	43134 8 2 1F9E4441191642A39A48CEC8DEDBDA9120D85D460CBAF2BF037F3AE3A8E8C7EE
 wf.			172800	IN	NS	d.ext.nic.fr.
 wf.			172800	IN	NS	d.nic.fr.
 wf.			172800	IN	NS	e.ext.nic.fr.
@@ -7988,6 +7999,7 @@ ns6.dns.nic.whoswho.	172800	IN	A	156.154.158.180
 ns6.dns.nic.whoswho.	172800	IN	AAAA	2610:a1:1076:0:0:0:0:b4
 wien.			172800	IN	NS	a.dns.nic.wien.
 wien.			172800	IN	NS	m.dns.nic.wien.
+wien.			172800	IN	NS	n.dns.nic.wien.
 WIEN.			86400	IN	DS	14212 8 1 C13133146394C4D51F5821A57DF7714C7758B354
 WIEN.			86400	IN	DS	14212 8 2 0C2459E744411A5077304E63B4E20E4E877B34F6E1FC3110FEA8133DD894BFBB
 WIEN.			86400	IN	DS	23090 8 1 955DD806C0A98C7D91296E8C75A1EC636B1A3DD7
@@ -7996,6 +8008,8 @@ a.dns.nic.wien.		172800	IN	A	194.0.25.15
 a.dns.nic.wien.		172800	IN	AAAA	2001:678:20:0:0:0:0:15
 m.dns.nic.wien.		172800	IN	A	194.0.26.4
 m.dns.nic.wien.		172800	IN	AAAA	2001:67c:10e0:0:0:0:0:4
+n.dns.nic.wien.		172800	IN	A	194.0.24.4
+n.dns.nic.wien.		172800	IN	AAAA	2001:678:24:0:0:0:0:4
 wiki.			172800	IN	NS	a.nic.wiki.
 wiki.			172800	IN	NS	b.nic.wiki.
 wiki.			172800	IN	NS	c.nic.wiki.
