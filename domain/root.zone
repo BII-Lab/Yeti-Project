@@ -1,4 +1,4 @@
-.        86400   IN      SOA ns1.dns-lab.net. dns-lab.net.      2015042005 1800 900 604800 86400
+.        86400   IN      SOA ns1.dns-lab.net. dns-lab.net.      2015042001 1800 900 604800 86400
 ;
 .	518400 	IN	NS	ns1.dns-lab.net.	
 ns1.dns-lab.net. 3600000	IN	AAAA 240C:F:1:122::3
@@ -3727,7 +3727,6 @@ kaufen.			172800	IN	NS	demand.alpha.aridns.net.au.
 kaufen.			172800	IN	NS	demand.delta.aridns.net.au.
 kaufen.			172800	IN	NS	demand.gamma.aridns.net.au.
 KAUFEN.			86400	IN	DS	23962 8 2 EF294C18A9BB33EE9D090585EF1C0F1575AA3F7A59CB07DBDDDE9CEC4D67BD93
-kddi.			172800	IN	NS	a.gmoregistry.net.
 kddi.			172800	IN	NS	b.gmoregistry.net.
 kddi.			172800	IN	NS	c.gmoregistry.net.
 kddi.			172800	IN	NS	d.gmoregistry.net.
@@ -4128,9 +4127,6 @@ a.ns.nic.london.	172800	IN	A	72.0.50.11
 a.ns.nic.london.	172800	IN	AAAA	2620:171:a02:ad:0:0:0:11
 b.ns.nic.london.	172800	IN	A	72.42.114.11
 b.ns.nic.london.	172800	IN	AAAA	2620:171:d02:dc:0:0:0:11
-lotte.			172800	IN	NS	a.gmoregistry.net.
-lotte.			172800	IN	NS	b.gmoregistry.net.
-lotte.			172800	IN	NS	c.gmoregistry.net.
 lotte.			172800	IN	NS	d.gmoregistry.net.
 lotte.			172800	IN	NS	e.gmoregistry.net.
 lotte.			172800	IN	NS	g.gmoregistry.net.
@@ -4993,8 +4989,6 @@ d.xn--node.globalanycastcloud.freenom.net.	172800	IN	A	185.21.171.36
 d.xn--node.globalanycastcloud.freenom.net.	172800	IN	AAAA	2a04:1b00:b:0:0:0:0:4
 tld.gdns.net.		172800	IN	A	68.178.129.149
 ns2.gip.net.		172800	IN	A	204.59.1.222
-a.gmoregistry.net.	172800	IN	A	72.52.71.9
-a.gmoregistry.net.	172800	IN	AAAA	2001:470:1a:0:0:0:0:9
 b.gmoregistry.net.	172800	IN	A	38.103.2.9
 c.gmoregistry.net.	172800	IN	A	63.243.194.9
 c.gmoregistry.net.	172800	IN	AAAA	2001:5a0:10:0:0:0:0:9
@@ -5739,7 +5733,6 @@ ns5.dns.nic.osaka.	172800	IN	A	156.154.157.130
 ns5.dns.nic.osaka.	172800	IN	AAAA	2610:a1:1075:0:0:0:0:82
 ns6.dns.nic.osaka.	172800	IN	A	156.154.158.130
 ns6.dns.nic.osaka.	172800	IN	AAAA	2610:a1:1076:0:0:0:0:82
-otsuka.			172800	IN	NS	a.gmoregistry.net.
 otsuka.			172800	IN	NS	b.gmoregistry.net.
 otsuka.			172800	IN	NS	c.gmoregistry.net.
 otsuka.			172800	IN	NS	d.gmoregistry.net.
