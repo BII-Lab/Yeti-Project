@@ -1,1 +1,0 @@
-BII DNS Testbed Specifications
