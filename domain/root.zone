@@ -1,4 +1,4 @@
-.        86400   IN      SOA ns1.dns-lab.net. dns-lab.net.      2015042301 1800 900 604800 86400
+.        86400   IN      SOA ns1.dns-lab.net. dns-lab.net.      2015042401 1800 900 604800 86400
 ;
 .	518400 	IN	NS	ns1.dns-lab.net.	
 ns1.dns-lab.net. 3600000	IN	AAAA 240C:F:1:122::3
@@ -8,6 +8,14 @@ ns2.dns-lab.net. 3600000	IN	AAAA 240C:F:1:122::6
 
 arpa.       518400  IN      NS       ns2.dns-lab.net.
 arpa.       518400  IN      NS       ns2.dns-lab.net.
+abb.			172800	IN	NS	a5.nstld.com.
+abb.			172800	IN	NS	c5.nstld.com.
+abb.			172800	IN	NS	d5.nstld.com.
+abb.			172800	IN	NS	f5.nstld.com.
+abb.			172800	IN	NS	g5.nstld.com.
+abb.			172800	IN	NS	h5.nstld.com.
+abb.			172800	IN	NS	l5.nstld.com.
+ABB.			86400	IN	DS	62559 8 2 2DD7BF24AC488D85BC3F9D3F817D37DE9F608E79403FA29E26A55679254F6F28
 abbott.			172800	IN	NS	a0.nic.abbott.
 abbott.			172800	IN	NS	a2.nic.abbott.
 abbott.			172800	IN	NS	b0.nic.abbott.
