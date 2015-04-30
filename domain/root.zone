@@ -1,4 +1,4 @@
-.        86400   IN      SOA ns1.dns-lab.net. dns-lab.net.      2015042801 1800 900 604800 86400
+.        86400   IN      SOA ns1.dns-lab.net. dns-lab.net.      2015042901 1800 900 604800 86400
 ;
 .	518400 	IN	NS	ns1.dns-lab.net.	
 ns1.dns-lab.net. 3600000	IN	AAAA 240C:F:1:122::3
@@ -873,6 +873,14 @@ e.dns.br.		172800	IN	AAAA	2001:12f8:1:0:0:0:0:10
 f.dns.br.		172800	IN	A	200.219.159.10
 ns.dns.br.		172800	IN	A	200.160.0.5
 ns.dns.br.		172800	IN	AAAA	2001:12ff:0:a20:0:0:0:5
+broker.			172800	IN	NS	a5.nstld.com.
+broker.			172800	IN	NS	c5.nstld.com.
+broker.			172800	IN	NS	d5.nstld.com.
+broker.			172800	IN	NS	f5.nstld.com.
+broker.			172800	IN	NS	g5.nstld.com.
+broker.			172800	IN	NS	h5.nstld.com.
+broker.			172800	IN	NS	l5.nstld.com.
+BROKER.			86400	IN	DS	51186 8 2 92E8FC9C9D8ED10ADECE8555208CE796ACDB24EE8D4A4C192FFC9342902C4602
 brussels.		172800	IN	NS	a.nic.brussels.
 brussels.		172800	IN	NS	b.nic.brussels.
 brussels.		172800	IN	NS	c.ns.dns.be.
@@ -2095,6 +2103,11 @@ docs.			172800	IN	NS	ns-tld3.charlestonroadregistry.com.
 docs.			172800	IN	NS	ns-tld4.charlestonroadregistry.com.
 docs.			172800	IN	NS	ns-tld5.charlestonroadregistry.com.
 DOCS.			86400	IN	DS	8686 8 2 7788795B2E3EAF5016E43F533BE68D01A71EE3986DF4EF077077585E5912B465
+dog.			172800	IN	NS	demand.beta.aridns.net.au.
+dog.			172800	IN	NS	demand.alpha.aridns.net.au.
+dog.			172800	IN	NS	demand.delta.aridns.net.au.
+dog.			172800	IN	NS	demand.gamma.aridns.net.au.
+DOG.			86400	IN	DS	39406 8 2 C9209B70625346520C1A32B642D2A111615E68DE0EB88837DEF3A40E9A4858C3
 doha.			172800	IN	NS	a.nic.doha.
 doha.			172800	IN	NS	b.nic.doha.
 doha.			172800	IN	NS	c.nic.doha.
@@ -7082,6 +7095,11 @@ sv.			172800	IN	NS	cir.red.sv.
 sv.			172800	IN	NS	dns.nic.cr.
 sv.			172800	IN	NS	auth02.ns.uu.net.
 cir.red.sv.		172800	IN	A	168.243.254.1
+swiss.			172800	IN	NS	anycast9.irondns.net.
+swiss.			172800	IN	NS	anycast10.irondns.net.
+swiss.			172800	IN	NS	anycast23.irondns.net.
+swiss.			172800	IN	NS	anycast24.irondns.net.
+SWISS.			86400	IN	DS	16056 10 2 B974351F3624A85D4304C09A005203D8CBD8FF0D790095413B19C31538F1AE31
 sx.			172800	IN	NS	a.ns.sx.
 sx.			172800	IN	NS	b.ns.sx.
 sx.			172800	IN	NS	c.ns.sx.
