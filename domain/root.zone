@@ -1,4 +1,4 @@
-.        86400   IN      SOA ns1.dns-lab.net. dns-lab.net.      2015042901 1800 900 604800 86400
+.        86400   IN      SOA ns1.dns-lab.net. dns-lab.net.      2015043001 1800 900 604800 86400
 ;
 .	518400 	IN	NS	ns1.dns-lab.net.	
 ns1.dns-lab.net. 3600000	IN	AAAA 240C:F:1:122::3
@@ -351,6 +351,7 @@ d.ns.at.		172800	IN	AAAA	2a02:568:20:1:0:0:0:d
 j.ns.at.		172800	IN	A	194.146.106.50
 j.ns.at.		172800	IN	AAAA	2001:67c:1010:12:0:0:0:53
 n.ns.at.		172800	IN	A	81.91.173.130
+n.ns.at.		172800	IN	AAAA	2a02:568:281:0:0:0:0:130
 r.ns.at.		172800	IN	A	194.0.25.10
 r.ns.at.		172800	IN	AAAA	2001:678:20:0:0:0:0:10
 u.ns.at.		172800	IN	A	195.66.241.82
@@ -3175,6 +3176,7 @@ b.hkirc.net.hk.		172800	IN	AAAA	2001:dca:1000:0:0:0:cb77:5713
 c.hkirc.net.hk.		172800	IN	A	203.119.2.218
 c.hkirc.net.hk.		172800	IN	AAAA	2001:dca:4000:0:0:0:cb77:2da
 d.hkirc.net.hk.		172800	IN	A	203.119.87.218
+d.hkirc.net.hk.		172800	IN	AAAA	2001:dca:2000:0:0:0:cb77:57da
 u.hkirc.net.hk.		172800	IN	A	210.201.138.58
 u.hkirc.net.hk.		172800	IN	AAAA	2404:0:10a0:0:0:0:0:58
 v.hkirc.net.hk.		172800	IN	A	204.61.216.46
@@ -3224,6 +3226,20 @@ b0.nic.homes.		172800	IN	A	65.22.101.33
 b0.nic.homes.		172800	IN	AAAA	2a01:8840:63:0:0:0:0:33
 c0.nic.homes.		172800	IN	A	65.22.102.33
 c0.nic.homes.		172800	IN	AAAA	2a01:8840:64:0:0:0:0:33
+honda.			172800	IN	NS	a.nic.honda.
+honda.			172800	IN	NS	b.nic.honda.
+honda.			172800	IN	NS	c.nic.honda.
+honda.			172800	IN	NS	d.nic.honda.
+HONDA.			86400	IN	DS	54322 8 1 EF1872960CB7725DD677D434B82D3A82A407F622
+HONDA.			86400	IN	DS	54322 8 2 FB52A85A0B8BCE306AA8380A4B3F0FDB4C3E1E3310C5E6C79E88123A1A260020
+a.nic.honda.		172800	IN	A	37.209.192.9
+a.nic.honda.		172800	IN	AAAA	2001:dcd:1:0:0:0:0:9
+b.nic.honda.		172800	IN	A	37.209.194.9
+b.nic.honda.		172800	IN	AAAA	2001:dcd:2:0:0:0:0:9
+c.nic.honda.		172800	IN	A	37.209.196.9
+c.nic.honda.		172800	IN	AAAA	2001:dcd:3:0:0:0:0:9
+d.nic.honda.		172800	IN	A	37.209.198.9
+d.nic.honda.		172800	IN	AAAA	2001:dcd:4:0:0:0:0:9
 horse.			172800	IN	NS	a.ns.nic.horse.
 horse.			172800	IN	NS	b.ns.nic.horse.
 HORSE.			86400	IN	DS	36637 8 2 665BE35CF145D55C223033FBF7B126B7E9E5D7D8A4C3A3F7CA2EA5609442FE05
@@ -3736,8 +3752,6 @@ kaufen.			172800	IN	NS	demand.alpha.aridns.net.au.
 kaufen.			172800	IN	NS	demand.delta.aridns.net.au.
 kaufen.			172800	IN	NS	demand.gamma.aridns.net.au.
 KAUFEN.			86400	IN	DS	23962 8 2 EF294C18A9BB33EE9D090585EF1C0F1575AA3F7A59CB07DBDDDE9CEC4D67BD93
-kddi.			172800	IN	NS	b.gmoregistry.net.
-kddi.			172800	IN	NS	c.gmoregistry.net.
 kddi.			172800	IN	NS	d.gmoregistry.net.
 kddi.			172800	IN	NS	e.gmoregistry.net.
 kddi.			172800	IN	NS	g.gmoregistry.net.
@@ -6360,6 +6374,20 @@ ren.			172800	IN	NS	g.zdnscloud.com.
 ren.			172800	IN	NS	i.zdnscloud.com.
 ren.			172800	IN	NS	j.zdnscloud.com.
 REN.			86400	IN	DS	37192 8 2 B5358217959349BD6AA687EC21A6DDDE54C4912FE719D235D4E00F17D308C681
+rent.			172800	IN	NS	a.nic.rent.
+rent.			172800	IN	NS	b.nic.rent.
+rent.			172800	IN	NS	c.nic.rent.
+rent.			172800	IN	NS	d.nic.rent.
+RENT.			86400	IN	DS	56632 8 1 5A37261D09F9158D95C49030C66337F40E66B6A1
+RENT.			86400	IN	DS	56632 8 2 D49A86CDF8411AB763FC46430370A6432392B06E1A6C7F6ABABAD8E1E85B558B
+a.nic.rent.		172800	IN	A	194.169.218.63
+a.nic.rent.		172800	IN	AAAA	2001:67c:13cc:0:0:0:1:63
+b.nic.rent.		172800	IN	A	185.24.64.63
+b.nic.rent.		172800	IN	AAAA	2a04:2b00:13cc:0:0:0:1:63
+c.nic.rent.		172800	IN	A	194.0.2.2
+c.nic.rent.		172800	IN	AAAA	2001:678:5:0:0:0:0:2
+d.nic.rent.		172800	IN	A	194.0.1.45
+d.nic.rent.		172800	IN	AAAA	2001:678:4:0:0:0:0:2d
 rentals.		172800	IN	NS	demand.beta.aridns.net.au.
 rentals.		172800	IN	NS	demand.alpha.aridns.net.au.
 rentals.		172800	IN	NS	demand.delta.aridns.net.au.
@@ -7852,6 +7880,7 @@ c0.nic.vote.		172800	IN	A	65.22.170.9
 c0.nic.vote.		172800	IN	AAAA	2a01:8840:a4:0:0:0:0:9
 voting.			172800	IN	NS	a.dns.nic.voting.
 voting.			172800	IN	NS	m.dns.nic.voting.
+voting.			172800	IN	NS	n.dns.nic.voting.
 VOTING.			86400	IN	DS	20851 8 1 D11FCEA2CD0A249908552DC274B7E5385596AEC9
 VOTING.			86400	IN	DS	20851 8 2 CF3979C7E9FEAC1519E3661F76D5ED7A43DC7D8DC14DBECF0A2DC757F38061CE
 VOTING.			86400	IN	DS	22301 8 1 916F42C6CE97C6CFF9D0545167E2203A179667C2
@@ -7860,6 +7889,8 @@ a.dns.nic.voting.	172800	IN	A	194.0.25.17
 a.dns.nic.voting.	172800	IN	AAAA	2001:678:20:0:0:0:0:17
 m.dns.nic.voting.	172800	IN	A	194.0.26.6
 m.dns.nic.voting.	172800	IN	AAAA	2001:67c:10e0:0:0:0:0:6
+n.dns.nic.voting.	172800	IN	A	194.0.24.6
+n.dns.nic.voting.	172800	IN	AAAA	2001:678:24:0:0:0:0:6
 voto.			172800	IN	NS	a0.nic.voto.
 voto.			172800	IN	NS	a2.nic.voto.
 voto.			172800	IN	NS	b0.nic.voto.
