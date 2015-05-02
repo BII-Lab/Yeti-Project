@@ -1,4 +1,4 @@
-.        86400   IN      SOA ns1.dns-lab.net. dns-lab.net.      2015043001 1800 900 604800 86400
+.        86400   IN      SOA ns1.dns-lab.net. dns-lab.net.      2015050101 1800 900 604800 86400
 ;
 .	518400 	IN	NS	ns1.dns-lab.net.	
 ns1.dns-lab.net. 3600000	IN	AAAA 240C:F:1:122::3
@@ -874,6 +874,20 @@ e.dns.br.		172800	IN	AAAA	2001:12f8:1:0:0:0:0:10
 f.dns.br.		172800	IN	A	200.219.159.10
 ns.dns.br.		172800	IN	A	200.160.0.5
 ns.dns.br.		172800	IN	AAAA	2001:12ff:0:a20:0:0:0:5
+bridgestone.		172800	IN	NS	a.nic.bridgestone.
+bridgestone.		172800	IN	NS	b.nic.bridgestone.
+bridgestone.		172800	IN	NS	c.nic.bridgestone.
+bridgestone.		172800	IN	NS	d.nic.bridgestone.
+BRIDGESTONE.		86400	IN	DS	34330 8 1 845F307246B144DF1B358F35545787F319E919BC
+BRIDGESTONE.		86400	IN	DS	34330 8 2 AA7066E93DDA746EFCAA36F81B388EE6F5F3B22282ED5E141BF9D16FA749E339
+a.nic.bridgestone.	172800	IN	A	37.209.192.9
+a.nic.bridgestone.	172800	IN	AAAA	2001:dcd:1:0:0:0:0:9
+b.nic.bridgestone.	172800	IN	A	37.209.194.9
+b.nic.bridgestone.	172800	IN	AAAA	2001:dcd:2:0:0:0:0:9
+c.nic.bridgestone.	172800	IN	A	37.209.196.9
+c.nic.bridgestone.	172800	IN	AAAA	2001:dcd:3:0:0:0:0:9
+d.nic.bridgestone.	172800	IN	A	37.209.198.9
+d.nic.bridgestone.	172800	IN	AAAA	2001:dcd:4:0:0:0:0:9
 broker.			172800	IN	NS	a5.nstld.com.
 broker.			172800	IN	NS	c5.nstld.com.
 broker.			172800	IN	NS	d5.nstld.com.
@@ -3146,6 +3160,15 @@ hiphop.			172800	IN	NS	tld.isc-sns.net.
 hiphop.			172800	IN	NS	tld.isc-sns.info.
 HIPHOP.			86400	IN	DS	18467 5 1 111D660D1DE235CC5F06759EE5683223CF0B410C
 HIPHOP.			86400	IN	DS	18467 5 2 8F9E5682083362D4B911589FD9352315A6B09EBB0D15B38598435BAA26F3161E
+hitachi.		172800	IN	NS	a.gmoregistry.net.
+hitachi.		172800	IN	NS	b.gmoregistry.net.
+hitachi.		172800	IN	NS	c.gmoregistry.net.
+hitachi.		172800	IN	NS	d.gmoregistry.net.
+hitachi.		172800	IN	NS	e.gmoregistry.net.
+hitachi.		172800	IN	NS	g.gmoregistry.net.
+hitachi.		172800	IN	NS	h.gmoregistry.net.
+hitachi.		172800	IN	NS	i.gmoregistry.net.
+HITACHI.		86400	IN	DS	29924 8 2 104B7C3C295322BE94B001D3C937C487F0F8B142DB36994706FC59199137A85B
 hiv.			172800	IN	NS	a0.nic.hiv.
 hiv.			172800	IN	NS	a2.nic.hiv.
 hiv.			172800	IN	NS	b0.nic.hiv.
@@ -5006,6 +5029,8 @@ d.xn--node.globalanycastcloud.freenom.net.	172800	IN	A	185.21.171.36
 d.xn--node.globalanycastcloud.freenom.net.	172800	IN	AAAA	2a04:1b00:b:0:0:0:0:4
 tld.gdns.net.		172800	IN	A	68.178.129.149
 ns2.gip.net.		172800	IN	A	204.59.1.222
+a.gmoregistry.net.	172800	IN	A	72.52.71.9
+a.gmoregistry.net.	172800	IN	AAAA	2001:470:1a:0:0:0:0:9
 b.gmoregistry.net.	172800	IN	A	38.103.2.9
 c.gmoregistry.net.	172800	IN	A	63.243.194.9
 c.gmoregistry.net.	172800	IN	AAAA	2001:5a0:10:0:0:0:0:9
@@ -6766,6 +6791,14 @@ seat.			172800	IN	NS	anycast10.irondns.net.
 seat.			172800	IN	NS	anycast23.irondns.net.
 seat.			172800	IN	NS	anycast24.irondns.net.
 SEAT.			86400	IN	DS	40138 10 2 8531B10A28C981D28F0F412DBE6A7985EFFE40BF0EFC8F2F80D45F85770C1A8A
+sener.			172800	IN	NS	a5.nstld.com.
+sener.			172800	IN	NS	c5.nstld.com.
+sener.			172800	IN	NS	d5.nstld.com.
+sener.			172800	IN	NS	f5.nstld.com.
+sener.			172800	IN	NS	g5.nstld.com.
+sener.			172800	IN	NS	h5.nstld.com.
+sener.			172800	IN	NS	l5.nstld.com.
+SENER.			86400	IN	DS	40020 8 2 F580B1E1F989E14EB37DA8CD7201254150E4C28F95CA0D1DB7822A78C93EAF17
 services.		172800	IN	NS	demand.beta.aridns.net.au.
 services.		172800	IN	NS	demand.alpha.aridns.net.au.
 services.		172800	IN	NS	demand.delta.aridns.net.au.
@@ -7437,6 +7470,20 @@ top.			172800	IN	NS	g.zdnscloud.com.
 top.			172800	IN	NS	i.zdnscloud.com.
 top.			172800	IN	NS	j.zdnscloud.com.
 TOP.			86400	IN	DS	21986 8 2 545BCCC79833FF19134CF0F84102D6FCEB6518745B6333FB584FC3C87F61248B
+toray.			172800	IN	NS	a.nic.toray.
+toray.			172800	IN	NS	b.nic.toray.
+toray.			172800	IN	NS	c.nic.toray.
+toray.			172800	IN	NS	d.nic.toray.
+TORAY.			86400	IN	DS	38386 8 1 C7E162E0157A23F8709C4B9F51735992C3BCB5EE
+TORAY.			86400	IN	DS	38386 8 2 AD0FDF88F29F77706A206A680BC00EBDE68216045EF13C086E130B32FD2D4DFA
+a.nic.toray.		172800	IN	A	37.209.192.9
+a.nic.toray.		172800	IN	AAAA	2001:dcd:1:0:0:0:0:9
+b.nic.toray.		172800	IN	A	37.209.194.9
+b.nic.toray.		172800	IN	AAAA	2001:dcd:2:0:0:0:0:9
+c.nic.toray.		172800	IN	A	37.209.196.9
+c.nic.toray.		172800	IN	AAAA	2001:dcd:3:0:0:0:0:9
+d.nic.toray.		172800	IN	A	37.209.198.9
+d.nic.toray.		172800	IN	AAAA	2001:dcd:4:0:0:0:0:9
 toshiba.		172800	IN	NS	d.gmoregistry.net.
 toshiba.		172800	IN	NS	e.gmoregistry.net.
 toshiba.		172800	IN	NS	g.gmoregistry.net.
@@ -7563,6 +7610,7 @@ tw.			172800	IN	NS	e.dns.tw.
 tw.			172800	IN	NS	f.dns.tw.
 tw.			172800	IN	NS	g.dns.tw.
 tw.			172800	IN	NS	h.dns.tw.
+tw.			172800	IN	NS	i.dns.tw.
 tw.			172800	IN	NS	ns.twnic.net.
 tw.			172800	IN	NS	sec4.apnic.net.
 TW.			86400	IN	DS	19780 8 2 FB47A76AA51546976D0DFAED95529D072B607B276CAC090DEDF42629FD271B40
@@ -7581,6 +7629,8 @@ g.dns.tw.		172800	IN	A	220.229.225.195
 g.dns.tw.		172800	IN	AAAA	2001:cd8:400:0:0:0:0:195
 h.dns.tw.		172800	IN	A	203.119.3.1
 h.dns.tw.		172800	IN	AAAA	2405:7e00:1001:0:0:0:0:111
+i.dns.tw.		172800	IN	A	194.0.11.105
+i.dns.tw.		172800	IN	AAAA	2001:678:e:105:0:0:0:53
 tz.			172800	IN	NS	d.ext.nic.cz.
 tz.			172800	IN	NS	ns.anycast.co.tz.
 tz.			172800	IN	NS	ns2.tznic.or.tz.
@@ -8932,8 +8982,6 @@ ns1.yemen.net.ye.	172800	IN	A	65.162.184.33
 ns2.yemen.net.ye.	172800	IN	A	65.162.184.34
 sah1.ye.		172800	IN	A	195.94.0.34
 sah2.ye.		172800	IN	A	195.94.0.35
-yodobashi.		172800	IN	NS	b.gmoregistry.net.
-yodobashi.		172800	IN	NS	c.gmoregistry.net.
 yodobashi.		172800	IN	NS	d.gmoregistry.net.
 yodobashi.		172800	IN	NS	e.gmoregistry.net.
 yodobashi.		172800	IN	NS	g.gmoregistry.net.
