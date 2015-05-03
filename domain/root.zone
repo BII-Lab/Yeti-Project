@@ -1,4 +1,4 @@
-.        86400   IN      SOA ns1.dns-lab.net. dns-lab.net.      2015050101 1800 900 604800 86400
+.        86400   IN      SOA ns1.dns-lab.net. dns-lab.net.      2015050201 1800 900 604800 86400
 ;
 .	518400 	IN	NS	ns1.dns-lab.net.	
 ns1.dns-lab.net. 3600000	IN	AAAA 240C:F:1:122::3
@@ -192,6 +192,26 @@ ai.			172800	IN	NS	ns2.offshore.ai.
 ai.			172800	IN	NS	whois.ai.
 ns2.offshore.ai.	172800	IN	A	108.166.113.245
 whois.ai.		172800	IN	A	209.59.119.1
+aig.			172800	IN	NS	ns1.dns.nic.aig.
+aig.			172800	IN	NS	ns2.dns.nic.aig.
+aig.			172800	IN	NS	ns3.dns.nic.aig.
+aig.			172800	IN	NS	ns4.dns.nic.aig.
+aig.			172800	IN	NS	ns5.dns.nic.aig.
+aig.			172800	IN	NS	ns6.dns.nic.aig.
+AIG.			86400	IN	DS	14476 8 1 383B575F5826D868D5C3CC26F1DF46B8A7B909CB
+AIG.			86400	IN	DS	14476 8 2 4DAEB0242834CECB1C5C0A06FAF104943D2F5737992E74E6B00928488217CA51
+ns1.dns.nic.aig.	172800	IN	A	156.154.144.6
+ns1.dns.nic.aig.	172800	IN	AAAA	2610:a1:1071:0:0:0:0:6
+ns2.dns.nic.aig.	172800	IN	A	156.154.145.6
+ns2.dns.nic.aig.	172800	IN	AAAA	2610:a1:1072:0:0:0:0:6
+ns3.dns.nic.aig.	172800	IN	A	156.154.159.6
+ns3.dns.nic.aig.	172800	IN	AAAA	2610:a1:1073:0:0:0:0:6
+ns4.dns.nic.aig.	172800	IN	A	156.154.156.6
+ns4.dns.nic.aig.	172800	IN	AAAA	2610:a1:1074:0:0:0:0:6
+ns5.dns.nic.aig.	172800	IN	A	156.154.157.6
+ns5.dns.nic.aig.	172800	IN	AAAA	2610:a1:1075:0:0:0:0:6
+ns6.dns.nic.aig.	172800	IN	A	156.154.158.6
+ns6.dns.nic.aig.	172800	IN	AAAA	2610:a1:1076:0:0:0:0:6
 airforce.		172800	IN	NS	demand.beta.aridns.net.au.
 airforce.		172800	IN	NS	demand.alpha.aridns.net.au.
 airforce.		172800	IN	NS	demand.delta.aridns.net.au.
@@ -416,6 +436,12 @@ audio.			172800	IN	NS	tld.isc-sns.net.
 audio.			172800	IN	NS	tld.isc-sns.info.
 AUDIO.			86400	IN	DS	14626 5 1 CE8E169AE8CAC1749DBD193E9B7C618AE1BE0787
 AUDIO.			86400	IN	DS	14626 5 2 473B7EBBDF1A8C8E09D34B7DD71BA8F405AA9238D0236C3E2B5413BD1ECDAA36
+auto.			172800	IN	NS	a.ns.uniregistry.net.
+auto.			172800	IN	NS	tld.isc-sns.com.
+auto.			172800	IN	NS	tld.isc-sns.net.
+auto.			172800	IN	NS	tld.isc-sns.info.
+AUTO.			86400	IN	DS	64844 5 1 AC3C5E71CC4826ABD69124F6486D1E4D3844BD40
+AUTO.			86400	IN	DS	64844 5 2 D8EF1F66F30CDB6A3CD311F9E8DFE1F1FA4B10D98992D07E8DA618E5774B7BFD
 autos.			172800	IN	NS	a0.nic.autos.
 autos.			172800	IN	NS	a2.nic.autos.
 autos.			172800	IN	NS	b0.nic.autos.
@@ -1134,6 +1160,12 @@ careers.		172800	IN	NS	demand.alpha.aridns.net.au.
 careers.		172800	IN	NS	demand.delta.aridns.net.au.
 careers.		172800	IN	NS	demand.gamma.aridns.net.au.
 CAREERS.		86400	IN	DS	23944 8 2 7EE0E65346C011F8EECC3A94C8668EA463CCA44CB8159F0E30D436FE920F0DA7
+cars.			172800	IN	NS	a.ns.uniregistry.net.
+cars.			172800	IN	NS	tld.isc-sns.com.
+cars.			172800	IN	NS	tld.isc-sns.net.
+cars.			172800	IN	NS	tld.isc-sns.info.
+CARS.			86400	IN	DS	33842 5 1 2EC42D8F246D7B2690E6ABD65C56E3D6C3A863A1
+CARS.			86400	IN	DS	33842 5 2 2CD1CFB06C838FECE514D8008EF5F3FC1D34E7DF15D2E736107483C6779B7E7F
 cartier.		172800	IN	NS	ns1.dns.nic.cartier.
 cartier.		172800	IN	NS	ns2.dns.nic.cartier.
 cartier.		172800	IN	NS	ns3.dns.nic.cartier.
@@ -1275,6 +1307,14 @@ c.ns.cf.		172800	IN	A	185.21.170.17
 c.ns.cf.		172800	IN	AAAA	2a04:1b00:6:0:0:0:0:1
 d.ns.cf.		172800	IN	A	185.21.171.17
 d.ns.cf.		172800	IN	AAAA	2a04:1b00:7:0:0:0:0:1
+cfa.			172800	IN	NS	a5.nstld.com.
+cfa.			172800	IN	NS	c5.nstld.com.
+cfa.			172800	IN	NS	d5.nstld.com.
+cfa.			172800	IN	NS	f5.nstld.com.
+cfa.			172800	IN	NS	g5.nstld.com.
+cfa.			172800	IN	NS	h5.nstld.com.
+cfa.			172800	IN	NS	l5.nstld.com.
+CFA.			86400	IN	DS	53505 8 2 AFC328685D96EA41036F4563042DB2D7485C8AD9C790BD22111ABD414BCAFD17
 cfd.			172800	IN	NS	a5.nstld.com.
 cfd.			172800	IN	NS	c5.nstld.com.
 cfd.			172800	IN	NS	d5.nstld.com.
@@ -3346,6 +3386,20 @@ c.nic.ibm.		172800	IN	A	37.209.196.9
 c.nic.ibm.		172800	IN	AAAA	2001:dcd:3:0:0:0:0:9
 d.nic.ibm.		172800	IN	A	37.209.198.9
 d.nic.ibm.		172800	IN	AAAA	2001:dcd:4:0:0:0:0:9
+icu.			172800	IN	NS	a.nic.icu.
+icu.			172800	IN	NS	b.nic.icu.
+icu.			172800	IN	NS	c.nic.icu.
+icu.			172800	IN	NS	d.nic.icu.
+ICU.			86400	IN	DS	62704 8 1 D834EE1ED0374E28C49BE9C12FE1B93AE0FE9CCB
+ICU.			86400	IN	DS	62704 8 2 8C0442A126BA382CA5B05AE5B44744CDC5AB2845C83918E147083434F65790AA
+a.nic.icu.		172800	IN	A	37.209.192.10
+a.nic.icu.		172800	IN	AAAA	2001:dcd:1:0:0:0:0:10
+b.nic.icu.		172800	IN	A	37.209.194.10
+b.nic.icu.		172800	IN	AAAA	2001:dcd:2:0:0:0:0:10
+c.nic.icu.		172800	IN	A	37.209.196.10
+c.nic.icu.		172800	IN	AAAA	2001:dcd:3:0:0:0:0:10
+d.nic.icu.		172800	IN	A	37.209.198.10
+d.nic.icu.		172800	IN	AAAA	2001:dcd:4:0:0:0:0:10
 id.			172800	IN	NS	a.dns.id.
 id.			172800	IN	NS	b.dns.id.
 id.			172800	IN	NS	c.dns.id.
@@ -4073,6 +4127,14 @@ e.nic.li.		172800	IN	AAAA	2001:678:3:0:0:0:0:1
 f.nic.li.		172800	IN	A	194.146.106.14
 f.nic.li.		172800	IN	AAAA	2001:67c:1010:3:0:0:0:53
 h.nic.li.		172800	IN	A	194.42.48.120
+liaison.		172800	IN	NS	a5.nstld.com.
+liaison.		172800	IN	NS	c5.nstld.com.
+liaison.		172800	IN	NS	d5.nstld.com.
+liaison.		172800	IN	NS	f5.nstld.com.
+liaison.		172800	IN	NS	g5.nstld.com.
+liaison.		172800	IN	NS	h5.nstld.com.
+liaison.		172800	IN	NS	l5.nstld.com.
+LIAISON.		86400	IN	DS	6096 8 2 9ED72FB3336F4AF86A62F628A8DA7C54D751CF7944ED13C0331C2E39ADBA1AC7
 lidl.			172800	IN	NS	a.ns.nic.lidl.
 lidl.			172800	IN	NS	c.ns.nic.lidl.
 lidl.			172800	IN	NS	x.ns.nic.lidl.
@@ -4164,6 +4226,12 @@ loans.			172800	IN	NS	demand.alpha.aridns.net.au.
 loans.			172800	IN	NS	demand.delta.aridns.net.au.
 loans.			172800	IN	NS	demand.gamma.aridns.net.au.
 LOANS.			86400	IN	DS	40024 8 2 10D8AA919125905FFAAA2A8E6994E7C25D0B08CF2FDC959D160C648A501A286E
+lol.			172800	IN	NS	a.ns.uniregistry.net.
+lol.			172800	IN	NS	tld.isc-sns.com.
+lol.			172800	IN	NS	tld.isc-sns.net.
+lol.			172800	IN	NS	tld.isc-sns.info.
+LOL.			86400	IN	DS	15269 5 1 D1BDD192113BF00ACCF0BE669E116FCE6E652037
+LOL.			86400	IN	DS	15269 5 2 C6F7D3E0E35D528E855BF823BEC4040542235C247D5568A4CAFEFA051342810D
 london.			172800	IN	NS	a.ns.nic.london.
 london.			172800	IN	NS	b.ns.nic.london.
 LONDON.			86400	IN	DS	27077 8 2 2756E9F7A79F2C26BA652C0C9BE19056AB89A0C7CFE90468713FDE7182DD393B
@@ -4799,6 +4867,14 @@ na.			172800	IN	NS	merlin.net.na.
 na.			172800	IN	NS	sns-pb.isc.org.
 NA.			86400	IN	DS	24484 5 1 EFC19D4685751FF8E11F96142A083DCB9C708912
 merlin.net.na.		172800	IN	A	204.152.184.96
+nadex.			172800	IN	NS	a5.nstld.com.
+nadex.			172800	IN	NS	c5.nstld.com.
+nadex.			172800	IN	NS	d5.nstld.com.
+nadex.			172800	IN	NS	f5.nstld.com.
+nadex.			172800	IN	NS	g5.nstld.com.
+nadex.			172800	IN	NS	h5.nstld.com.
+nadex.			172800	IN	NS	l5.nstld.com.
+NADEX.			86400	IN	DS	26799 8 2 01C584FED98F0761D4613FF4E0E254E2E9E33E2B9CFA58F5C493FEC5EF3C3BE0
 nagoya.			172800	IN	NS	d.gmoregistry.net.
 nagoya.			172800	IN	NS	e.gmoregistry.net.
 nagoya.			172800	IN	NS	g.gmoregistry.net.
