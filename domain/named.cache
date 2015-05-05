@@ -1,5 +1,9 @@
-.       3600000 IN      NS      ns1.dns-lab.net.
-ns1.dns-lab.net.  3600000   IN      AAAA 240C:F:1:22::3
+$TTL 3600000
+.       		NS	ns1.dns-lab.net.
+ns1.dns-lab.net.	AAAA	240C:F:1:22::3
 ;
-.       3600000 IN      NS      ns2.dns-lab.net.
-ns2.dns-lab.net.  3600000  IN      AAAA 240C:F:1:22::6
+.			NS	ns2.dns-lab.net.
+ns2.dns-lab.net.	AAAA	240C:F:1:22::6
+;
+.			NS	yeti-ns.tisf.net.
+yeti-ns.tisf.net.	AAAA	2001:559:8000::6
