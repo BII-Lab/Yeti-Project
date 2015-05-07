@@ -15,7 +15,7 @@ fi
 # create arpa.zone root.zone module
 gen_root_arpa_file() {
 
-        ns_file=$script_path/app_data/ns.sh
+#        ns_file=$script_path/app_data/ns.sh
         rootzone_file=$script_path/app_data/root.zone
         arpazone_file=$script_path/app_data/arpa.zone
         if [ -s $ns_file  ];then
@@ -23,21 +23,21 @@ gen_root_arpa_file() {
         else
                 echo "$ns_file is not load"
         fi
-
-        echo ".        $soa_ttl   IN   SOA   $soa   $admin_mail      $serial    $refresh   $retry    $expire       $negative" > $rootzone_file
+        echo '$TTL 86400' > $rootzone_file
+        echo ".        $soa_ttl   IN   SOA   $soa   $admin_mail      $serial    $refresh   $retry    $expire       $negative" >> $rootzone_file
         echo "arpa.    $soa_ttl   IN   SOA   $soa   $admin_mail      $serial    $refresh   $retry    $expire       $negative" > $arpazone_file
 
-        ns_num=`grep "root_NS*" $ns_file |wc -l`
+        ns_num=`grep "ns_servers" $ns_file |wc -l`
 
         for i in `seq 1 $ns_num`;do
 
-        ns_name=`grep "root_NS" $ns_file  |sed -n "$i"p |awk -F"=" '{print $2}'`
-        ns_addr=`grep "addr"  $ns_file  |sed -n "$i"p |awk -F "=" '{print $2}'`
+        ns_name=`grep "ns_servers"  $ns_file  |sed -n "$i"p |awk -F "=" '{print $2}'| awk '{print $1}'`
+        ns_addr=`grep "ns_servers"  $ns_file  |sed -n "$i"p |awk -F "=" '{print $2}'| awk '{print $2}'`
 
         echo ".            ${ns_ttl}                   IN         NS         $ns_name"    >>$rootzone_file
         echo "arpa.        ${root_arpa_ns_ttl}         IN         NS         $ns_name"    >>$arpazone_file
         echo "arpa.        ${root_arpa_ns_ttl}         IN         NS         $ns_name"    >>$rootzone_file
-        echo "$ns_name        $a_aaaa_ttl                 IN         AAAA       $ns_addr"    >>$rootzone_file
+        echo "$ns_name        $aaaa_ttl                 IN         AAAA       $ns_addr"    >>$rootzone_file
 
         done
 
@@ -48,14 +48,14 @@ start_time=`date +%Y%m%d%H%M%S`
 # download root, arpa files
 zone_download () {
         rm -f $origin_data/root.zone
-        dig @b.root-servers.net . axfr   >  $origin_data/root.zone
+        dig @f.root-servers.net . axfr   >  $origin_data/root.zone
         if [ $? -ne 0 ]; then
                 rm -f $origin_data/root.zone
 
-                dig @b.root-servers.net . axfr   >  $origin_data/root.zone > /dev/null 2>&1
+                dig @f.root-servers.net . axfr   >  $origin_data/root.zone > /dev/null 2>&1
                 if [ $? -ne 0 ]; then
                         rm -f $origin_data/root.zone
-                        dig @b.root-servers.net . axfr > $origin_data/root.zone
+                        dig @f.root-servers.net . axfr > $origin_data/root.zone
 
                         if [ $? -ne 0 ];then
                                 logger -p "local0.error"  "The PM download  root zonefile  failed"
@@ -67,13 +67,13 @@ zone_download () {
                 fi
         fi
 
-        dig @b.root-servers.net arpa. axfr > $origin_data/arpa.zone
+        dig @f.root-servers.net arpa. axfr > $origin_data/arpa.zone
         if [ $? -ne 0 ]; then
                 rm -f $origin_data/arpa.zone
-                dig @b.root-servers.net arpa. axfr > $origin_data/arpa.zone
+                dig @f.root-servers.net arpa. axfr > $origin_data/arpa.zone
                 if [ $? -ne 0 ]; then
                         rm -f $origin_data/arpa.zone
-                        dig @b.root-servers.net arpa. axfr > $origin_data/arpa.zone
+                        dig @f.root-servers.net arpa. axfr > $origin_data/arpa.zone
 
                         if [ $? -ne 0 ];then
                                 logger -p "local0.error"  "The PM download  zonefile  failed"

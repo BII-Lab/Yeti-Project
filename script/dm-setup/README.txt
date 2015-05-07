@@ -4,12 +4,7 @@
 2. update root NS record
     edit app_data/ns.sh
     configure root zone params
-    add NS record:
-       root_NS_num=x.xx.xx
-       NSnum_addr=2401::8
-    eg:
-      root_NS_2=bii.dns-lab.net.
-      NS2_addr=2401::8
+    configure  root  nameservers
 
 3.Modify the configuration files of the script parameters and variables
   #vi setting.sh
