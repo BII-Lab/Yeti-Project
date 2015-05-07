@@ -1,4 +1,4 @@
-soa=ns1.dns-lab.net.
+soa=bii.dns-lab.net.
 admin_mail=yeti.biigroup.cn.
 soa_ttl=86400 
 serial=2015050401
@@ -8,8 +8,7 @@ expire=604800
 negative=86400
 ns_ttl=518400
 root_arpa_ns_ttl=172800
-a_aaaa_ttl=518400
-root_NS_1=ns1.dns-lab.net.
-root_NS_3=yeti-ns.tisf.net.
-NS1_addr=240c:f:1:22::3
-NS3_addr=2001:559:8000::6
+aaaa_ttl=518400
+ns_servers_1=bii.dns-lab.net.   240c:f:1:22::6
+ns_servers_2=yeti-ns.tisf.net.  2001:559:8000::6
+

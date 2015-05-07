@@ -15,7 +15,7 @@ fi
 # create arpa.zone root.zone module
 gen_root_arpa_file() {
 
-        ns_file=$script_path/app_data/ns.sh
+#        ns_file=$script_path/app_data/ns.sh
         rootzone_file=$script_path/app_data/root.zone
         arpazone_file=$script_path/app_data/arpa.zone
         if [ -s $ns_file  ];then
@@ -23,21 +23,21 @@ gen_root_arpa_file() {
         else
                 echo "$ns_file is not load"
         fi
-
-        echo ".        $soa_ttl   IN   SOA   $soa   $admin_mail      $serial    $refresh   $retry    $expire       $negative" > $rootzone_file
+        echo '$TTL 86400' > $rootzone_file
+        echo ".        $soa_ttl   IN   SOA   $soa   $admin_mail      $serial    $refresh   $retry    $expire       $negative" >> $rootzone_file
         echo "arpa.    $soa_ttl   IN   SOA   $soa   $admin_mail      $serial    $refresh   $retry    $expire       $negative" > $arpazone_file
 
-        ns_num=`grep "root_NS*" $ns_file |wc -l`
+        ns_num=`grep "ns_servers" $ns_file |wc -l`
 
         for i in `seq 1 $ns_num`;do
 
-        ns_name=`grep "root_NS" $ns_file  |sed -n "$i"p |awk -F"=" '{print $2}'`
-        ns_addr=`grep "addr"  $ns_file  |sed -n "$i"p |awk -F "=" '{print $2}'`
+        ns_name=`grep "ns_servers"  $ns_file  |sed -n "$i"p |awk -F "=" '{print $2}'| awk '{print $1}'`
+        ns_addr=`grep "ns_servers"  $ns_file  |sed -n "$i"p |awk -F "=" '{print $2}'| awk '{print $2}'`
 
         echo ".            ${ns_ttl}                   IN         NS         $ns_name"    >>$rootzone_file
         echo "arpa.        ${root_arpa_ns_ttl}         IN         NS         $ns_name"    >>$arpazone_file
         echo "arpa.        ${root_arpa_ns_ttl}         IN         NS         $ns_name"    >>$rootzone_file
-        echo "$ns_name        $a_aaaa_ttl                 IN         AAAA       $ns_addr"    >>$rootzone_file
+        echo "$ns_name        $aaaa_ttl                 IN         AAAA       $ns_addr"    >>$rootzone_file
 
         done
 
@@ -48,37 +48,35 @@ start_time=`date +%Y%m%d%H%M%S`
 # download root, arpa files
 zone_download () {
         rm -f $origin_data/root.zone
-        dig @b.root-servers.net . axfr   >  $origin_data/root.zone
+        dig @f.root-servers.net . axfr   >  $origin_data/root.zone
         if [ $? -ne 0 ]; then
                 rm -f $origin_data/root.zone
 
-                dig @b.root-servers.net . axfr   >  $origin_data/root.zone > /dev/null 2>&1
+                dig @f.root-servers.net . axfr   >  $origin_data/root.zone > /dev/null 2>&1
                 if [ $? -ne 0 ]; then
                         rm -f $origin_data/root.zone
-                        dig @b.root-servers.net . axfr > $origin_data/root.zone
+                        dig @f.root-servers.net . axfr > $origin_data/root.zone
 
                         if [ $? -ne 0 ];then
-                                logger -p "local0.error"  "The PM download  root zonefile  failed"
                                 echo "The PM download root zonefile  failed"  >> $logfile
-                                echo "Error Error Error" |mail -s "The PM download root  zonefile  failed "  ggpang@biigroup.cn
+                                echo "Error Error Error" |mail -s "The PM download root  zonefile  failed " ${ADMIN_MAIL} 
                                 exit 1
 
                         fi
                 fi
         fi
 
-        dig @b.root-servers.net arpa. axfr > $origin_data/arpa.zone
+        dig @f.root-servers.net arpa. axfr > $origin_data/arpa.zone
         if [ $? -ne 0 ]; then
                 rm -f $origin_data/arpa.zone
-                dig @b.root-servers.net arpa. axfr > $origin_data/arpa.zone
+                dig @f.root-servers.net arpa. axfr > $origin_data/arpa.zone
                 if [ $? -ne 0 ]; then
                         rm -f $origin_data/arpa.zone
-                        dig @b.root-servers.net arpa. axfr > $origin_data/arpa.zone
+                        dig @f.root-servers.net arpa. axfr > $origin_data/arpa.zone
 
                         if [ $? -ne 0 ];then
-                                logger -p "local0.error"  "The PM download  zonefile  failed"
                                 echo "The PM download  zonefile  failed"  >> $logfile
-                                echo "Error Error Error" |mail -s "The PM download  zonefile  failed "  ggpang@biigroup.cn
+                                echo "Error Error Error" |mail -s "The PM download  zonefile  failed " ${ADMIN_MAIL} 
                                 exit 2
                         fi
                 fi
@@ -89,7 +87,7 @@ zone_download () {
 
 # update root zone
 gen_root_zone () {
-        root_soa_serial_tmp=`head -n 1 $app_data/root.zone |awk '{print $7}'`
+        root_soa_serial_tmp=`sed -n 2p $app_data/root.zone |awk '{print $7}'`
         root_origin_soa_serial=`sed -n 5p $origin_data/root.zone |awk '{print $7}'`
 
         # zone apex
@@ -108,7 +106,7 @@ gen_root_zone () {
 
 # update arpa zone
 gen_arpa_zone() {
-        arpa_soa_serial_tmp=`head -n 1 $app_data/arpa.zone |awk '{print $7}'`
+        arpa_soa_serial_tmp=`sed -n 1p $app_data/arpa.zone |awk '{print $7}'`
         arpa_origin_soa_serial=`sed -n 5p $origin_data/arpa.zone |awk '{print $7}'`
 
         # zone apex
@@ -132,7 +130,6 @@ sign_arpa_zone () {
                  sed '/^;/d'  $zonedir/arpa.zone.signed > ${ROOT_ZONE_PATH}/arpa.zone.signed
                   /bin/cp -f $zonedir/arpa.zone ${ROOT_ZONE_PATH}
           else
-                 logger -p "local0.error" "arpa zone signed failed" 
                  echo "arpa zone signed failed" >> $logfile
                  echo "Error Error Error" | mail -s "arpa zone signed failed" ${ADMIN_MAIL}
                 exit 1
@@ -142,8 +139,7 @@ sign_arpa_zone () {
 
 #insert arpa_ds into root.zone
 insert_arpa_ds() {
-                 
-                 cat ${script_path}/dsset-arpa.  >> $zonedir/root.zone
+	cat ${script_path}/dsset-arpa.  >> $zonedir/root.zone
 }
 
 # sign root zone
@@ -153,7 +149,6 @@ sign_root_zone() {
                 sed '/^;/d'  $zonedir/root.zone.signed >  ${ROOT_ZONE_PATH}/root.zone.signed
                 /bin/cp -f $zonedir/root.zone ${ROOT_ZONE_PATH}
         else 
-                logger -p "local0.error" "root zone signed failed " 
                 echo "root zone signed fail !!!" >> $logfile
                 echo "Error Error Error" | mail -s "root zone signed fail"  ${ADMIN_MAIL}
                 exit 1

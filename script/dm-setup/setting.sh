@@ -28,3 +28,5 @@ app_data=$script_path/app_data
 
 zone_data=$script_path/zone_data
 [ ! -d ${zone_data} ] &&  mkdir $zone_data
+ns_file=$script_path/app_data/ns.sh
+[ ! -s $ns_file ] &&  echo "please create ns.sh of root ns servers message"
