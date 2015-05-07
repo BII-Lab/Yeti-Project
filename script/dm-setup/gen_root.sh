@@ -21,7 +21,7 @@ case $1 in
     root_current_soa_serial=`sed -n 2p $zone_data/root.zone |awk '{print $7}'`
     root_origin_soa_serial=`sed -n 5p  $origin_data/root.zone|awk '{print $7}'`
 
-    arpa_current_soa_serial=`sed -n 2p $zone_data/arpa.zone |awk '{print $7}'`
+    arpa_current_soa_serial=`sed -n 1p $zone_data/arpa.zone |awk '{print $7}'`
     arpa_origin_soa_serial=`sed -n 5p $origin_data/arpa.zone |awk '{print $7}'`
      
     if [ $arpa_origin_soa_serial -gt ${arpa_current_soa_serial:=0} ]; then
@@ -52,7 +52,7 @@ case $1 in
     root_current_soa_serial=`sed -n 2p $zone_data/root.zone |awk '{print $7}'`
     root_origin_soa_serial=`sed -n 5p  $origin_data/root.zone|awk '{print $7}'`
 
-    arpa_current_soa_serial=`sed -n 2p $zone_data/arpa.zone |awk '{print $7}'`
+    arpa_current_soa_serial=`sed -n 1p $zone_data/arpa.zone |awk '{print $7}'`
     arpa_origin_soa_serial=`sed -n 5p $origin_data/arpa.zone |awk '{print $7}'`
     gen_root_zone
     gen_arpa_zone 

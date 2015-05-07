@@ -6,18 +6,18 @@ script_path=`dirname $0`
 if [ -s ${script_path}/setting.sh ]; then
 	. ${script_path}/setting.sh
 else
-	echo "Error: can not load settings" | logger 
+	echo "Error: can not load settings"  
 	exit 1
 fi
              
 # update the serial number of  the root zone and arpa zone
 update_soa_serial () {
-	serial=`head -n 1 $zone_data/root.zone|awk '{print $7}'`
+	serial=`sed -n 2p $zone_data/root.zone|awk '{print $7}'`
 	serial_update=`echo "${serial} + 1" |bc `
 
 	sed -i "s/${searial}/${serial_update}/g" $zone_data/root.zone
 
-	arpa_serial=`head -n 1 $zone_data/arpa.zone |awk '{print $7}'`
+	arpa_serial=`sed -n 1p  $zone_data/arpa.zone |awk '{print $7}'`
 	arpa_serial_update=`echo "${arpa_serial} + 1" |bc `
          
 	sed -i "s/${arpa_serial}/${arpa_serial_update}/g"  $zone_data/arpa.zone
@@ -47,7 +47,8 @@ update_data()  {
 	cd 
 }
 
-sleep 26 
+
+sleep 26
 update_soa_serial
 sign_zone
 reload_bind
