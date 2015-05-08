@@ -8,7 +8,7 @@ logfile=${script_path}/gen_root.log
 if [ -s ${script_path}/setting.sh ]; then
         . ${script_path}/setting.sh
 else
-        echo "Error: can not load gen root functions" | logger 
+        echo "Error: can not load gen root functions" 
         exit 1
 fi
 
@@ -31,8 +31,8 @@ gen_root_arpa_file() {
 
         for i in `seq 1 $ns_num`;do
 
-        ns_name=`grep "ns_servers"  $ns_file  |sed -n "$i"p |awk -F "=" '{print $2}'| awk '{print $1}'`
-        ns_addr=`grep "ns_servers"  $ns_file  |sed -n "$i"p |awk -F "=" '{print $2}'| awk '{print $2}'`
+        ns_name=`grep "ns_servers"  $ns_file  |$sed -n "$i"p |awk -F "=" '{print $2}'| awk '{print $1}'`
+        ns_addr=`grep "ns_servers"  $ns_file  |$sed -n "$i"p |awk -F "=" '{print $2}'| awk '{print $2}'`
 
         echo ".            ${ns_ttl}                   IN         NS         $ns_name"    >>$rootzone_file
         echo "arpa.        ${root_arpa_ns_ttl}         IN         NS         $ns_name"    >>$arpazone_file
@@ -87,12 +87,12 @@ zone_download () {
 
 # update root zone
 gen_root_zone () {
-        root_soa_serial_tmp=`sed -n 2p $app_data/root.zone |awk '{print $7}'`
-        root_origin_soa_serial=`sed -n 5p $origin_data/root.zone |awk '{print $7}'`
+        root_soa_serial_tmp=`$sed -n 2p $app_data/root.zone |awk '{print $7}'`
+        root_origin_soa_serial=`$sed -n 5p $origin_data/root.zone |awk '{print $7}'`
 
         # zone apex
         cp $app_data/root.zone $zone_data/root.zone
-        sed -i "s/${root_soa_serial_tmp}/${root_origin_soa_serial}/g" $zone_data/root.zone
+        $sed -i "s/${root_soa_serial_tmp}/${root_origin_soa_serial}/g" $zone_data/root.zone
 
         # zone cut
         egrep -v "NSEC|RRSIG|DNSKEY|SOA|^arpa.|;" $origin_data/root.zone    > $tmp_data/root.zone.no.dnssec
@@ -106,11 +106,11 @@ gen_root_zone () {
 
 # update arpa zone
 gen_arpa_zone() {
-        arpa_soa_serial_tmp=`sed -n 1p $app_data/arpa.zone |awk '{print $7}'`
-        arpa_origin_soa_serial=`sed -n 5p $origin_data/arpa.zone |awk '{print $7}'`
+        arpa_soa_serial_tmp=`$sed -n 1p $app_data/arpa.zone |awk '{print $7}'`
+        arpa_origin_soa_serial=`$sed -n 5p $origin_data/arpa.zone |awk '{print $7}'`
 
         # zone apex
-        sed -i "s/${arpa_soa_serial_tmp}/${arpa_origin_soa_serial}/g"  $app_data/arpa.zone
+        $sed -i "s/${arpa_soa_serial_tmp}/${arpa_origin_soa_serial}/g"  $app_data/arpa.zone
         cp $app_data/arpa.zone  $zone_data/arpa.zone
 
         # zone cut
@@ -124,10 +124,10 @@ gen_arpa_zone() {
 
 sign_arpa_zone () {
 
-         /usr/local/sbin/dnssec-signzone  -K  $arpakeydir  -o arpa. -O full  -S -x  $zonedir/arpa.zone
+         $dnssecsignzone -K  $arpakeydir  -o arpa. -O full  -S -x  $zonedir/arpa.zone
           if [ $? -eq 0 ] 
              then
-                 sed '/^;/d'  $zonedir/arpa.zone.signed > ${ROOT_ZONE_PATH}/arpa.zone.signed
+                 $sed '/^;/d'  $zonedir/arpa.zone.signed > ${ROOT_ZONE_PATH}/arpa.zone.signed
                   /bin/cp -f $zonedir/arpa.zone ${ROOT_ZONE_PATH}
           else
                  echo "arpa zone signed failed" >> $logfile
@@ -144,9 +144,9 @@ insert_arpa_ds() {
 
 # sign root zone
 sign_root_zone() {
-        /usr/local/sbin/dnssec-signzone  -K $rootkeydir  -o . -O full -S -x $zonedir/root.zone
+        $dnssecsignzone  -K $rootkeydir  -o . -O full -S -x $zonedir/root.zone
         if [ $? -eq 0 ]; then 
-                sed '/^;/d'  $zonedir/root.zone.signed >  ${ROOT_ZONE_PATH}/root.zone.signed
+                $sed '/^;/d'  $zonedir/root.zone.signed >  ${ROOT_ZONE_PATH}/root.zone.signed
                 /bin/cp -f $zonedir/root.zone ${ROOT_ZONE_PATH}
         else 
                 echo "root zone signed fail !!!" >> $logfile
@@ -161,7 +161,6 @@ reload_bind() {
         if [  $? -eq  0 ]; then
                 echo "PM named reload successful" >> $logfile
         else
-                logger -p "local0.error" "PM named reload  failed " 
                 echo "Error Error Error " |mail -s "PM named reload failed " ${ADMIN_MAIL}
                 exit 1
         fi
