@@ -36,22 +36,27 @@ case $os in
   Linux*)
        sed="/bin/sed"
        dnssecsignzone="/usr/local/sbin/dnssec-signzone"
+       rndc="/usr/local/sbin/rndc"
 	;;
   NetBSD?6*)
        sed="/usr/pkg/bin/gsed"
        dnssecsignzone="/usr/pkg/sbin/dnssec-signzone"
+       rndc="/usr/pkg/sbin/rndc"
        ;;
   NetBSD?7*)
        sed="/usr/bin/gsed"
        dnssecsignzone="/usr/pkg/sbin/dnssec-signzone"
+       rndc="/usr/pkg/sbin/rndc"
        ;;
   FreeBSD*)
        sed ="/usr/bin/sed"
        dnssecsignzone="/usr/local/sbin/dnssec-signzone"
+       rndc="/usr/local/sbin/rndc"
        ;;
   *)
        sed="/bin/sed"
        dnssecsignzone="/usr/local/sbin/dnssec-signzone"
+       rndc="/usr/local/sbin/rndc"
        ;;
 esac
 
@@ -62,5 +67,10 @@ fi
 
 if [ ! -f $dnssecsignzone ]; then
        echo "$dnssecsignzone not exists"
+       exit
+fi
+
+if [ ! -f $rndc ]; then
+       echo "$rndc not exists"
        exit
 fi
