@@ -31,14 +31,18 @@ ns_file=$script_path/app_data/ns.sh
 [ ! -s $ns_file ] &&  echo "please create ns.sh of root ns servers message"
 
 #check os
-os=`uname`
+os=`uname -v`
 case $os in
   Linux*)
        sed="/bin/sed"
        dnssecsignzone="/usr/local/sbin/dnssec-signzone"
 	;;
-  NetBSD*)
+  NetBSD?6*)
        sed="/usr/pkg/bin/gsed"
+       dnssecsignzone="/usr/pkg/sbin/dnssec-signzone"
+       ;;
+  NetBSD?7*)
+       sed="/usr/bin/gsed"
        dnssecsignzone="/usr/pkg/sbin/dnssec-signzone"
        ;;
   FreeBSD*)
