@@ -1,16 +1,20 @@
+
+0. system and bind9
+     Linux,NetBSD
+     bind-9.10.2
 1.add the execute permissions
     chmod +x  *.sh
 
-2. update root NS record
+2. root and arpa zone config
     edit app_data/ns.sh
     configure root zone params
     configure  root  nameservers
 
-3.Modify the configuration files of the script parameters and variables
+3. script params settings
   #vi setting.sh
 
 
-4.get ZSK/KSK from bii and save to dir keys , and run the following script(Generate a new zone, zone resign the zone, named loading process)
+4.get ZSK/KSK from bii and save to dir keys , and run the following script(Generate a new zone, resign the zone, reload bind9)
 
    #sh /path/to/gen_root.sh autoupdate
 
@@ -24,6 +28,3 @@
   eg:
   #echo "01  02 *  *  *  root sh /path/to/update_soa_resign_zone.sh >/dev/null 2>&1" >> /etc/crontab
 
-TODO
-1. ns.sh 
-     rename options 
