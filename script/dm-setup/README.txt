@@ -1,29 +1,38 @@
-1.add the execute permissions
-    chmod +x  *.sh
+Guide to set up Distribution Master(DM) 
 
-2. update root NS record
-    edit app_data/ns.sh
+Operation System：Linux/NetBSD
+
+1. Set up ntp time synchronization, configure firewall(bind9/email) 
+2. Set up sendmail/postfix service for email alarm 
+3. Set up bind-9.10.2 wich ECC support 
+4. Configure named.conf and enable rndc control tool 
+5. download setup script 
+   git clone  https://github.com/BII-Lab/Yeti-Project.git 
+   cd Yeti_project/script/dm-setup
+6、modify configure file app_data/ns.sh and setting.sh
     configure root zone params
     configure  root  nameservers
 
-3.Modify the configuration files of the script parameters and variables
-  #vi setting.sh
+7. get root and arpa’s KSK/ZSK from BII
+Notice: 
+1) The algorithm to generate ZSK KSK：RSASHA256 
+2) Length of ZSK：1024, TTL: 2 weeks 
+3) Length of KSK：2048, TTL: 3months 
+
+8. sign root zone and reload bind9
+# sh /path/to/gen_root.sh autoupdate 
+
+*Notice： 
+1) Way to roll the key: manual + scripts 
+2) Require administrator add update_soa_resign_zone.sh to task plan at least two days before. 
+
+9. Add plans in crontab 
+(1)run resigning script everyday 
+sh /path/to/gen_root.sh autoupdate ---- Update root.zone, arpa.zone; sign root.zone and arpa.zone; reload named
+
+(2)add time task key rollover 
+sh /path/to/update_soa_resign_zone.sh ----- update soa && resigning; run two days before ZSK/KSK inactive 
 
 
-4.get ZSK/KSK from bii and save to dir keys , and run the following script(Generate a new zone, zone resign the zone, named loading process)
-
-   #sh /path/to/gen_root.sh autoupdate
-
-5.Add plans to task for the daily update regularly
- 
-  eg:
-   #echo "10  13  *  *  *   root sh /path/to/gen_root.sh  autoupdate >/dev/null 2>&1" >> /etc/crontab
-
-
-6.According to the time the key parameters,Setup script execution time.
-  eg:
-  #echo "01  02 *  *  *  root sh /path/to/update_soa_resign_zone.sh >/dev/null 2>&1" >> /etc/crontab
-
-TODO
-1. ns.sh 
-     rename options 
+Commands be involved in shell scripts 
+    named,rndc,dnssec-keygen, dnssec-signzone, awk,bc, git, mail, logger, ntp 

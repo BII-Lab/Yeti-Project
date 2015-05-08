@@ -7,7 +7,7 @@ script_path=`dirname $0`
 if [ -s ${script_path}/gen_root_functions.sh ]; then
         . ${script_path}/gen_root_functions.sh
 else
-        echo "Error: can not load gen root functions" | logger 
+        echo "Error: can not load gen root functions"  
         exit 1
 fi
 
@@ -18,13 +18,13 @@ case $1 in
     gen_root_arpa_file
     zone_download
 
-    root_current_soa_serial=`sed -n 2p $zone_data/root.zone |awk '{print $7}'`
-    root_origin_soa_serial=`sed -n 5p  $origin_data/root.zone|awk '{print $7}'`
+    root_current_soa_serial=`$sed -n 2p $zone_data/root.zone |awk '{print $7}'`
+    root_origin_soa_serial=`$sed -n 5p  $origin_data/root.zone|awk '{print $7}'`
 
-    arpa_current_soa_serial=`sed -n 1p $zone_data/arpa.zone |awk '{print $7}'`
-    arpa_origin_soa_serial=`sed -n 5p $origin_data/arpa.zone |awk '{print $7}'`
+    arpa_current_soa_serial=`$sed -n 1p $zone_data/arpa.zone |awk '{print $7}'`
+    arpa_origin_soa_serial=`$sed -n 5p $origin_data/arpa.zone |awk '{print $7}'`
      
-    if [ $arpa_origin_soa_serial -gt ${arpa_current_soa_serial:=0} ]; then
+    if [ $arpa_origin_soa_serial -ge ${arpa_current_soa_serial:=0} ]; then
         gen_arpa_zone
         sign_arpa_zone
         reload_bind
@@ -33,7 +33,7 @@ case $1 in
         
     fi
 
-    if [ ${root_origin_soa_serial} -gt  ${root_current_soa_serial:=0}  ]; then
+    if [ ${root_origin_soa_serial} -ge  ${root_current_soa_serial:=0}  ]; then
       gen_root_zone
       
       insert_arpa_ds
@@ -49,11 +49,11 @@ case $1 in
     gen_root_arpa_file
     zone_download
 
-    root_current_soa_serial=`sed -n 2p $zone_data/root.zone |awk '{print $7}'`
-    root_origin_soa_serial=`sed -n 5p  $origin_data/root.zone|awk '{print $7}'`
+    root_current_soa_serial=`$sed -n 2p $zone_data/root.zone |awk '{print $7}'`
+    root_origin_soa_serial=`$sed -n 5p  $origin_data/root.zone|awk '{print $7}'`
 
-    arpa_current_soa_serial=`sed -n 1p $zone_data/arpa.zone |awk '{print $7}'`
-    arpa_origin_soa_serial=`sed -n 5p $origin_data/arpa.zone |awk '{print $7}'`
+    arpa_current_soa_serial=`$sed -n 1p $zone_data/arpa.zone |awk '{print $7}'`
+    arpa_origin_soa_serial=`$sed -n 5p $origin_data/arpa.zone |awk '{print $7}'`
     gen_root_zone
     gen_arpa_zone 
     sign_arpa_zone
