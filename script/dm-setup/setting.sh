@@ -32,19 +32,24 @@ ns_file=$script_path/app_data/ns.sh
 
 #check os
 os=`uname`
-if [ $os = "Linux" ]; then
+case $os in
+  Linux*)
        sed="/bin/sed"
        dnssecsignzone="/usr/local/sbin/dnssec-signzone"
-elif [ $os = "NetBSD" ]; then
+	;;
+  NetBSD*)
        sed="/usr/pkg/bin/gsed"
        dnssecsignzone="/usr/pkg/sbin/dnssec-signzone"
-elif [ $os = "FreeBSD" ];then
+       ;;
+  FreeBSD*)
        sed ="/usr/bin/sed"
-      dnssecsignzone="/usr/local/sbin/dnssec-signzone"
-else
+       dnssecsignzone="/usr/local/sbin/dnssec-signzone"
+       ;;
+  *)
        sed="/bin/sed"
        dnssecsignzone="/usr/local/sbin/dnssec-signzone"
-fi
+       ;;
+esac
 
 if [ ! -f $sed ]; then
        echo "$sed not exists"
