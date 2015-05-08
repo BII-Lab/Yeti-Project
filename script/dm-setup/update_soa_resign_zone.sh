@@ -25,8 +25,8 @@ update_soa_serial () {
 
 # sign  root/arpa zone
 sign_zone() {
-	/usr/local/sbin/dnssec-signzone -K $rootkeydir -o . -O full -S -x $zone_data/root.zone
-	/usr/local/sbin/dnssec-signzone -K $arpakeydir -o arpa. -O full -S -x $zone_data/arpa.zone
+	$dnssecsignzone -P -K $rootkeydir -o . -O full -S -x $zone_data/root.zone
+	$dnssecsignzone -P -K $arpakeydir -o arpa. -O full -S -x $zone_data/arpa.zone
 }
 
 # reload  bind
@@ -37,7 +37,7 @@ reload_bind() {
 	cp -f $zone_data/root.zone   ${ROOT_ZONE_PATH}
 	cp -f $zone_data/arpa.zone   ${ROOT_ZONE_PATH}
 
-	/usr/local/sbin/rndc   reload
+	$rndc reload
 }
 
 # sync zone to github 
