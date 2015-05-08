@@ -124,7 +124,7 @@ gen_arpa_zone() {
 
 sign_arpa_zone () {
 
-         $dnssecsignzone -K  $arpakeydir  -o arpa. -O full  -S -x  $zonedir/arpa.zone
+         $dnssecsignzone -P -K $arpakeydir -o arpa. -O full -S -x $zonedir/arpa.zone
           if [ $? -eq 0 ] 
              then
                  $sed '/^;/d'  $zonedir/arpa.zone.signed > ${ROOT_ZONE_PATH}/arpa.zone.signed
@@ -144,7 +144,7 @@ insert_arpa_ds() {
 
 # sign root zone
 sign_root_zone() {
-        $dnssecsignzone  -K $rootkeydir  -o . -O full -S -x $zonedir/root.zone
+        $dnssecsignzone -P -K $rootkeydir -o . -O full -S -x $zonedir/root.zone
         if [ $? -eq 0 ]; then 
                 $sed '/^;/d'  $zonedir/root.zone.signed >  ${ROOT_ZONE_PATH}/root.zone.signed
                 /bin/cp -f $zonedir/root.zone ${ROOT_ZONE_PATH}
@@ -157,7 +157,7 @@ sign_root_zone() {
 
 # reload  bind
 reload_bind() {
-        /usr/local/sbin/rndc   reload
+        $rndc reload
         if [  $? -eq  0 ]; then
                 echo "PM named reload successful" >> $logfile
         else
