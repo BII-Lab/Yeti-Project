@@ -6,6 +6,9 @@ bii.dns-lab.net.        518400                 IN         AAAA       240c:f:1:22
 .            518400                   IN         NS         yeti-ns.tisf.net.
 arpa.        172800         IN         NS         yeti-ns.tisf.net.
 yeti-ns.tisf.net.        518400                 IN         AAAA       2001:559:8000::6
+.            518400                   IN         NS         yeti-ns.wide.ad.jp.
+arpa.        172800         IN         NS         yeti-ns.wide.ad.jp.
+yeti-ns.wide.ad.jp.        518400                 IN         AAAA       2001:200:1d9::35
 
 abb.			86400	IN	DS	62559 8 2 2DD7BF24AC488D85BC3F9D3F817D37DE9F608E79403FA29E26A55679 254F6F28
 abb.			172800	IN	NS	a5.nstld.com.
