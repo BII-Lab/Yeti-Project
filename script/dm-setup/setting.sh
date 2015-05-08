@@ -31,35 +31,24 @@ ns_file=$script_path/app_data/ns.sh
 [ ! -s $ns_file ] &&  echo "please create ns.sh of root ns servers message"
 
 #check os
-
 os=`uname`
-
 if [ $os = "Linux" ]; then
        sed="/bin/sed"
+       dnssecsignzone="/usr/local/sbin/dnssec-signzone"
 elif [ $os = "NetBSD" ]; then
        sed="/usr/pkg/bin/gsed"
+       dnssecsignzone="/usr/pkg/sbin/dnssec-signzone"
 elif [ $os = "FreeBSD" ];then
        sed ="/usr/bin/sed"
+      dnssecsignzone="/usr/local/sbin/dnssec-signzone"
 else
        sed="/bin/sed"
-  
+       dnssecsignzone="/usr/local/sbin/dnssec-signzone"
 fi
 
 if [ ! -f $sed ]; then
        echo "$sed not exists"
        exit
-fi
-
-if [ $os = "Linux" ]; then
-       dnssecsignzone="/usr/local/sbin/dnssec-signzone"
-elif [ $os = "NetBSD" ]; then
-       dnssecsignzone="/usr/pkg/sbin/dnssec-signzone"
-elif [ $os = "FreeBSD" ];then
-      dnssecsignzone="/usr/local/sbin/dnssec-signzone"
-       
-else
-     echo "$dnssecsignzone not exists"  
-     exit 
 fi
 
 if [ ! -f $dnssecsignzone ]; then
