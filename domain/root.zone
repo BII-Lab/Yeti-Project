@@ -1,5 +1,5 @@
 $TTL 86400
-.        86400   IN   SOA   bii.dns-lab.net.   yeti.biigroup.cn.      2015050801    1800   900    604800       86400
+.        86400   IN   SOA   bii.dns-lab.net.   yeti.biigroup.cn.      2015050900    1800   900    604800       86400
 .            518400                   IN         NS         bii.dns-lab.net.
 arpa.        172800         IN         NS         bii.dns-lab.net.
 bii.dns-lab.net.        518400                 IN         AAAA       240c:f:1:22::6
@@ -54,6 +54,14 @@ academy.		172800	IN	NS	demand.alpha.aridns.net.au.
 academy.		172800	IN	NS	demand.delta.aridns.net.au.
 academy.		172800	IN	NS	demand.gamma.aridns.net.au.
 academy.		86400	IN	DS	47032 8 2 E2A2DAE3CC55E8CE27E9AEA6217BDA4A835BF2270C40749AD278E9A9 B4ABA132
+accenture.		172800	IN	NS	a5.nstld.com.
+accenture.		172800	IN	NS	c5.nstld.com.
+accenture.		172800	IN	NS	d5.nstld.com.
+accenture.		172800	IN	NS	f5.nstld.com.
+accenture.		172800	IN	NS	g5.nstld.com.
+accenture.		172800	IN	NS	h5.nstld.com.
+accenture.		172800	IN	NS	l5.nstld.com.
+accenture.		86400	IN	DS	35388 8 2 0C1DDB821C823AFEC10942D3DCD16D6306221E4EE7F2F524E5D9BAD4 8BAFD8FC
 accountant.		172800	IN	NS	ns1.dns.nic.accountant.
 accountant.		172800	IN	NS	ns2.dns.nic.accountant.
 accountant.		172800	IN	NS	ns3.dns.nic.accountant.
@@ -4917,6 +4925,20 @@ ne.			172800	IN	NS	ns.intnet.ne.
 ne.			172800	IN	NS	bow.rain.fr.
 ne.			172800	IN	NS	ns-ne.afrinic.net.
 ns.intnet.ne.		172800	IN	A	41.138.54.10
+nec.			172800	IN	NS	a.nic.nec.
+nec.			172800	IN	NS	b.nic.nec.
+nec.			172800	IN	NS	c.nic.nec.
+nec.			172800	IN	NS	d.nic.nec.
+nec.			86400	IN	DS	24850 8 1 9A340956BB32D0763E6D9380AE44B76A29764F18
+nec.			86400	IN	DS	24850 8 2 14716631FD057B86231EEC06EB9DA605DB660798B317BE5FA99D2B5D 9EC062DD
+a.nic.nec.		172800	IN	A	37.209.192.9
+a.nic.nec.		172800	IN	AAAA	2001:dcd:1::9
+b.nic.nec.		172800	IN	A	37.209.194.9
+b.nic.nec.		172800	IN	AAAA	2001:dcd:2::9
+c.nic.nec.		172800	IN	A	37.209.196.9
+c.nic.nec.		172800	IN	AAAA	2001:dcd:3::9
+d.nic.nec.		172800	IN	A	37.209.198.9
+d.nic.nec.		172800	IN	AAAA	2001:dcd:4::9
 net.			172800	IN	NS	a.gtld-servers.net.
 net.			172800	IN	NS	b.gtld-servers.net.
 net.			172800	IN	NS	c.gtld-servers.net.
@@ -5974,6 +5996,20 @@ ns5.dns.nic.pharmacy.	172800	IN	A	156.154.157.135
 ns5.dns.nic.pharmacy.	172800	IN	AAAA	2610:a1:1075::87
 ns6.dns.nic.pharmacy.	172800	IN	A	156.154.158.135
 ns6.dns.nic.pharmacy.	172800	IN	AAAA	2610:a1:1076::87
+philips.		172800	IN	NS	a.nic.philips.
+philips.		172800	IN	NS	b.nic.philips.
+philips.		172800	IN	NS	c.nic.philips.
+philips.		172800	IN	NS	d.nic.philips.
+philips.		86400	IN	DS	2122 8 1 5AC98B4216097345B1099FE44CCCAFE0870BA76D
+philips.		86400	IN	DS	2122 8 2 C32D278DD51818BEEEDD03F6A86562A76C5DC1653A1183CC1529D2D5 B3E9E403
+a.nic.philips.		172800	IN	A	37.209.192.9
+a.nic.philips.		172800	IN	AAAA	2001:dcd:1::9
+b.nic.philips.		172800	IN	A	37.209.194.9
+b.nic.philips.		172800	IN	AAAA	2001:dcd:2::9
+c.nic.philips.		172800	IN	A	37.209.196.9
+c.nic.philips.		172800	IN	AAAA	2001:dcd:3::9
+d.nic.philips.		172800	IN	A	37.209.198.9
+d.nic.philips.		172800	IN	AAAA	2001:dcd:4::9
 photo.			172800	IN	NS	a.ns.uniregistry.net.
 photo.			172800	IN	NS	tld.isc-sns.com.
 photo.			172800	IN	NS	tld.isc-sns.net.
@@ -8612,6 +8648,11 @@ xn--fiqz9s.		172800	IN	NS	j.dns.cn.
 xn--fiqz9s.		172800	IN	NS	k.dns.cn.
 xn--fiqz9s.		172800	IN	NS	l.dns.cn.
 xn--fiqz9s.		86400	IN	DS	20470 8 2 E7D1F644ABBA5506CD1D92A8D54FD99CC3987714EA7CF1E72256CDFE 5C89DAB4
+xn--fjq720a.		172800	IN	NS	demand.beta.aridns.net.au.
+xn--fjq720a.		172800	IN	NS	demand.alpha.aridns.net.au.
+xn--fjq720a.		172800	IN	NS	demand.delta.aridns.net.au.
+xn--fjq720a.		172800	IN	NS	demand.gamma.aridns.net.au.
+xn--fjq720a.		86400	IN	DS	32587 8 2 6D0F7F159CE82BF3F28A110A37FF569CC825D965A84202B4AD8E85B2 539386D5
 xn--flw351e.		172800	IN	NS	ns-tld1.charlestonroadregistry.com.
 xn--flw351e.		172800	IN	NS	ns-tld2.charlestonroadregistry.com.
 xn--flw351e.		172800	IN	NS	ns-tld3.charlestonroadregistry.com.
