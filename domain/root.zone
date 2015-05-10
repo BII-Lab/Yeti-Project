@@ -1,5 +1,5 @@
 $TTL 86400
-.        86400   IN   SOA   bii.dns-lab.net.   yeti.biigroup.cn.      2015050901    1800   900    604800       86400
+.        86400   IN   SOA   bii.dns-lab.net.   yeti.biigroup.cn.      2015051000    1800   900    604800       86400
 .            518400                   IN         NS         bii.dns-lab.net.
 arpa.        172800         IN         NS         bii.dns-lab.net.
 bii.dns-lab.net.        518400                 IN         AAAA       240c:f:1:22::6
@@ -4036,7 +4036,6 @@ land.			172800	IN	NS	demand.beta.aridns.net.au.
 land.			172800	IN	NS	demand.alpha.aridns.net.au.
 land.			172800	IN	NS	demand.delta.aridns.net.au.
 land.			172800	IN	NS	demand.gamma.aridns.net.au.
-lat.			86400	IN	DS	55504 5 2 501BD16A737398517FB0C07CC87395E47056B1DEC9A0E9147446B6F6 6EE31287
 lat.			86400	IN	DS	55507 8 2 DE52C59AD72053A7AF00B1DD3F145FB775990E4C1919757475F802AF A9BAF0DF
 lat.			172800	IN	NS	c.mx-ns.mx.
 lat.			172800	IN	NS	m.mx-ns.mx.
