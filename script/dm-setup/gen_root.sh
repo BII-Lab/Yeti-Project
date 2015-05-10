@@ -14,7 +14,7 @@ fi
 # main flow
 case $1 in
   autoupdate)
-    echo "$start_time" >> $logfile
+    echo "start $start_time" >> $logfile
     gen_root_arpa_file
     zone_download
 
@@ -50,9 +50,15 @@ case $1 in
     fi
 
     reload_bind
+    sleep 2
+
+    end_time=`date +%Y%m%d%H%M%S`
+    root_soa=`$dig @::1 . soa +short | awk '{print $3}'`
+    arpa_soa=`$dig @::1 arpa soa +short | awk '{print $3}'`
+    echo "end $end_time root $root_soa apra $arpa_soa" >> $logfile
     ;;
+
   manualupdate)
-   
     gen_root_arpa_file
     zone_download
 
