@@ -27,17 +27,17 @@ gen_root_arpa_file() {
         echo ".        $soa_ttl   IN   SOA   $soa   $admin_mail      $serial    $refresh   $retry    $expire       $negative" >> $rootzone_file
         echo "arpa.    $soa_ttl   IN   SOA   $soa   $admin_mail      $serial    $refresh   $retry    $expire       $negative" > $arpazone_file
 
-        ns_num=`grep "ns_servers" $ns_file |wc -l`
+        ns_num=`grep "^ns_servers" $ns_file | wc -l`
 
         for i in `seq 1 $ns_num`;do
+          ns="\$ns_servers_$i"
+	  ns_name=`eval echo $ns | awk '{print $1}'`
+	  ns_addr=`eval echo $ns | awk '{print $2}'`
 
-        ns_name=`grep "ns_servers"  $ns_file  |$sed -n "$i"p |awk -F "=" '{print $2}'| awk '{print $1}'`
-        ns_addr=`grep "ns_servers"  $ns_file  |$sed -n "$i"p |awk -F "=" '{print $2}'| awk '{print $2}'`
-
-        echo ".            ${ns_ttl}                   IN         NS         $ns_name"    >>$rootzone_file
-        echo "arpa.        ${root_arpa_ns_ttl}         IN         NS         $ns_name"    >>$arpazone_file
-        echo "arpa.        ${root_arpa_ns_ttl}         IN         NS         $ns_name"    >>$rootzone_file
-        echo "$ns_name        $aaaa_ttl                 IN         AAAA       $ns_addr"    >>$rootzone_file
+          echo ".            ${ns_ttl}                   IN         NS         $ns_name"    >>$rootzone_file
+          echo "arpa.        ${root_arpa_ns_ttl}         IN         NS         $ns_name"    >>$arpazone_file
+          echo "arpa.        ${root_arpa_ns_ttl}         IN         NS         $ns_name"    >>$rootzone_file
+          echo "$ns_name        $aaaa_ttl                 IN         AAAA       $ns_addr"    >>$rootzone_file
 
         done
 
@@ -48,14 +48,14 @@ start_time=`date +%Y%m%d%H%M%S`
 # download root, arpa files
 zone_download () {
         rm -f $origin_data/root.zone
-        dig @f.root-servers.net . axfr   >  $origin_data/root.zone
+        $dig @f.root-servers.net . axfr   >  $origin_data/root.zone
         if [ $? -ne 0 ]; then
                 rm -f $origin_data/root.zone
 
-                dig @f.root-servers.net . axfr   >  $origin_data/root.zone > /dev/null 2>&1
+                $dig @f.root-servers.net . axfr   >  $origin_data/root.zone > /dev/null 2>&1
                 if [ $? -ne 0 ]; then
                         rm -f $origin_data/root.zone
-                        dig @f.root-servers.net . axfr > $origin_data/root.zone
+                        $dig @f.root-servers.net . axfr > $origin_data/root.zone
 
                         if [ $? -ne 0 ];then
                                 echo "The PM download root zonefile  failed"  >> $logfile
@@ -66,13 +66,13 @@ zone_download () {
                 fi
         fi
 
-        dig @f.root-servers.net arpa. axfr > $origin_data/arpa.zone
+        $dig @f.root-servers.net arpa. axfr > $origin_data/arpa.zone
         if [ $? -ne 0 ]; then
                 rm -f $origin_data/arpa.zone
-                dig @f.root-servers.net arpa. axfr > $origin_data/arpa.zone
+                $dig @f.root-servers.net arpa. axfr > $origin_data/arpa.zone
                 if [ $? -ne 0 ]; then
                         rm -f $origin_data/arpa.zone
-                        dig @f.root-servers.net arpa. axfr > $origin_data/arpa.zone
+                        $dig @f.root-servers.net arpa. axfr > $origin_data/arpa.zone
 
                         if [ $? -ne 0 ];then
                                 echo "The PM download  zonefile  failed"  >> $logfile
@@ -124,7 +124,7 @@ gen_arpa_zone() {
 
 sign_arpa_zone () {
 
-         $dnssecsignzone -P -K $arpakeydir -o arpa. -O full -S -x $zonedir/arpa.zone
+         $dnssecsignzone -K $arpakeydir -o arpa. -O full -S -x $zonedir/arpa.zone
           if [ $? -eq 0 ] 
              then
                  $sed '/^;/d'  $zonedir/arpa.zone.signed > ${ROOT_ZONE_PATH}/arpa.zone.signed
@@ -144,7 +144,7 @@ insert_arpa_ds() {
 
 # sign root zone
 sign_root_zone() {
-        $dnssecsignzone -P -K $rootkeydir -o . -O full -S -x $zonedir/root.zone
+        $dnssecsignzone -K $rootkeydir -o . -O full -S -x $zonedir/root.zone
         if [ $? -eq 0 ]; then 
                 $sed '/^;/d'  $zonedir/root.zone.signed >  ${ROOT_ZONE_PATH}/root.zone.signed
                 /bin/cp -f $zonedir/root.zone ${ROOT_ZONE_PATH}
@@ -164,7 +164,6 @@ reload_bind() {
                 echo "Error Error Error " |mail -s "PM named reload failed " ${ADMIN_MAIL}
                 exit 1
         fi
-         
 }
 
 # sync zone file to github
