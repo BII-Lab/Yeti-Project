@@ -33,6 +33,9 @@ DO_TCP="yes"
 # Want IP fragments?
 DO_FRAGS="yes"
 
+# Exclude patterns
+NO_PAT=""
+
 # ** Interval **
 # This value defines the amount of seconds each pcap file will contain.
 # We suggest 10-minutes files (600 seconds), but you can change it if
@@ -189,6 +192,13 @@ if [ "${DO_FRAGS}" = "yes" ]; then
     set -- "$@" -f
 else
     echo "Not capturing IP fragments"
+fi
+
+# Exclude Patterns
+if [ ! -z ${NO_PAT} ]; then
+    for PAT in ${NO_PAT}; do
+        set -- "$@" -X "${PAT}"
+    done
 fi
 
 CMD="${DNSCAP} $@"
