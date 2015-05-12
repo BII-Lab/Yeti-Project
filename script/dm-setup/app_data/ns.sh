@@ -12,3 +12,4 @@ aaaa_ttl=518400
 ns_servers_1="bii.dns-lab.net.     240c:f:1:22::6"
 ns_servers_2="yeti-ns.tisf.net.    2001:559:8000::6"
 ns_servers_3="yeti-ns.wide.ad.jp.  2001:200:1d9::35"
+ns_servers_4="yeti-ns.as59715.net. 2a02:cdc5:9715:0:185:5:203:53"
