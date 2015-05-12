@@ -45,6 +45,63 @@ gen_root_arpa_file() {
 
 start_time=`date +%Y%m%d%H%M%S`
 
+# check to see newer zone is available to fetch
+root_soa_check () {
+	local root_serial
+	root_serial=`$dig @$target . soa +short 2>/dev/null | awk '{print $3}'`
+	if [ $? -ne 0 ]; then
+		echo "Fails to check serial of root with $target"  >> $logfile
+		echo "Fails to check serial of root with $target" \
+			| mail -s "Yeti DM error" ${ADMIN_MAIL} 
+		return -1
+	fi
+	if [ -f $serialdir/root ]; then
+		if [ $root_serial -gt `cat $serialdir/root` ]; then
+			return 1        # new zone is available
+		fi
+	else
+		return 1        # force to load
+	fi
+	return 0
+}
+
+arpa_soa_check () {
+	local arpa_serial
+	arpa_serial=`$dig @$target . soa +short 2>/dev/null | awk '{print $3}'`
+	if [ $? -ne 0 ]; then
+		echo "Fails to check serial of arpa with $target"  >> $logfile
+		echo "Fails to check serial of arpa with $target" \
+			| mail -s "Yeti DM error" ${ADMIN_MAIL} 
+		return -1
+	fi
+	if [ -f $serialdir/arpa ]; then
+		if [ $root_serial -gt `cat $serialdir/arpa` ]; then
+			return 1        # new zone is available
+		fi
+	else
+		return 1        # force to load
+	fi
+	return 0
+}
+
+zone_download0 () {
+	root_soa_check
+	if [ $? -eq 1 ]; then
+		$dig @$target . axfr +vc > $origin_data/root.zone
+	elif [ $? -eq -1 ]; then
+		return -1
+	fi
+	new_root_serial=`grep -m 1 SOA $origin_data/root.zone | awk '{print $7}'`
+
+	arpa_soa_check
+	if [ $? -eq 1 ]; then
+		$dig @$target arpa axfr +vc > $origin_data/arpa.zone
+	elif [ $? -eq -1 ]; then
+		return -1
+	fi
+	new_arpa_serial=`grep -m 1 SOA $origin_data/root.zone | awk '{print $7}'`
+}
+
 # download root, arpa files
 zone_download () {
         rm -f $origin_data/root.zone
@@ -73,8 +130,7 @@ zone_download () {
                 if [ $? -ne 0 ]; then
                         rm -f $origin_data/arpa.zone
                         $dig @f.root-servers.net arpa. axfr > $origin_data/arpa.zone
-
-                        if [ $? -ne 0 ];then
+                        if [ $? -ne 0 ]; then
                                 echo "The PM download  zonefile  failed"  >> $logfile
                                 echo "Error Error Error" |mail -s "The PM download  zonefile  failed " ${ADMIN_MAIL} 
                                 exit 2
