@@ -37,12 +37,10 @@ case $1 in
         sign_arpa_zone
     else
         echo "arpa zone file was not update !!!!"  >> $logfile
-        
     fi
 
     if [ $root_origin_soa_serial -ge $root_current_soa_serial ]; then
       gen_root_zone
-      
       insert_arpa_ds
       sign_root_zone
     else
@@ -72,7 +70,6 @@ case $1 in
     sign_arpa_zone
     insert_arpa_ds
     sign_root_zone
-
     reload_bind
     ;;
   *)
