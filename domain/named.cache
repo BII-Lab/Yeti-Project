@@ -1,12 +1,9 @@
-$TTL 3600000
-.       		NS	bii.dns-lab.net.
-bii.dns-lab.net.	AAAA	240C:F:1:22::6
-;
-.			NS	yeti-ns.tisf.net.
-yeti-ns.tisf.net.	AAAA	2001:559:8000::6
-;
-.			NS	yeti-ns.wide.ad.jp.
-yeti-ns.wide.ad.jp.	AAAA	2001:200:1d9::35
-;
-.			NS	yeti-ns.as59715.net.
-yeti-ns.as59715.net.	AAAA	2a02:cdc5:9715:0:185:5:203:53
+
+.            3600000         IN          NS         bii.dns-lab.net.
+bii.dns-lab.net.     3600000         IN          AAAA       240c:f:1:22::6
+.            3600000         IN          NS         yeti-ns.tisf.net.
+yeti-ns.tisf.net.     3600000         IN          AAAA       2001:559:8000::6
+.            3600000         IN          NS         yeti-ns.wide.ad.jp.
+yeti-ns.wide.ad.jp.     3600000         IN          AAAA       2001:200:1d9::35
+.            3600000         IN          NS         yeti-ns.as59715.net.
+yeti-ns.as59715.net.     3600000         IN          AAAA       2a02:cdc5:9715:0:185:5:203:53
