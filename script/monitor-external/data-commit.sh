@@ -14,6 +14,8 @@ elif [ $system = "OpenBSD" ]; then
             MY_MD5=`/bin/md5 "${SAVEDIR}/${DATANAME}" | awk '{print $NF}'`
 elif [ $system = "FreeBSD" ]; then
             MY_MD5=`/sbin/md5 -q "${SAVEDIR}/${DATANAME}"`
+elif [ $system = "NetD" ]; then
+            MY_MD5=`/usr/bin/md5 -q "${SAVEDIR}/${DATANAME}" | awk '{print $4}'`
 fi
 
 output=$(
