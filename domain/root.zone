@@ -1,5 +1,5 @@
 $TTL 86400
-.			86400	IN	SOA	bii.dns-lab.net.  yeti.biigroup.cn.  2015051900  1800  900  604800  86400
+.			86400	IN	SOA	bii.dns-lab.net.  yeti.biigroup.cn.  2015051901  1800  900  604800  86400
 .			518400	IN	NS	bii.dns-lab.net.
 arpa.			172800	IN	NS	bii.dns-lab.net.
 bii.dns-lab.net.	518400	IN	AAAA	240c:f:1:22::6
@@ -1958,6 +1958,15 @@ cymru.			172800	IN	NS	ns4.nic.uk.
 cymru.			172800	IN	NS	ns5.nic.uk.
 cymru.			172800	IN	NS	ns6.nic.uk.
 cymru.			172800	IN	NS	ns7.nic.uk.
+cymru.			172800	IN	NS	dnsa.nic.cymru.
+cymru.			172800	IN	NS	dnsb.nic.cymru.
+cymru.			172800	IN	NS	dnsc.nic.cymru.
+cymru.			172800	IN	NS	dnsd.nic.cymru.
+dnsa.nic.cymru.		172800	IN	AAAA	2001:502:ad09::3
+dnsa.nic.cymru.		172800	IN	A	156.154.100.3
+dnsb.nic.cymru.		172800	IN	A	156.154.101.3
+dnsc.nic.cymru.		172800	IN	A	156.154.102.3
+dnsd.nic.cymru.		172800	IN	A	156.154.103.3
 cyou.			86400	IN	DS	42985 7 1 F1BE1321796AFB34B2BEC02ED9412966291B2C21
 cyou.			86400	IN	DS	42985 7 2 6C0507565B162FF6A377B4E7E5E33A126987DE3C7FDBC1644E247FB6 0E1094E3
 cyou.			172800	IN	NS	a0.nic.cyou.
