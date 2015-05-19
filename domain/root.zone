@@ -1,5 +1,5 @@
 $TTL 86400
-.			86400	IN	SOA	bii.dns-lab.net.  yeti.biigroup.cn.  2015051801  1800  900  604800  86400
+.			86400	IN	SOA	bii.dns-lab.net.  yeti.biigroup.cn.  2015051900  1800  900  604800  86400
 .			518400	IN	NS	bii.dns-lab.net.
 arpa.			172800	IN	NS	bii.dns-lab.net.
 bii.dns-lab.net.	518400	IN	AAAA	240c:f:1:22::6
@@ -8201,7 +8201,16 @@ wales.			172800	IN	NS	ns4.nic.uk.
 wales.			172800	IN	NS	ns5.nic.uk.
 wales.			172800	IN	NS	ns6.nic.uk.
 wales.			172800	IN	NS	ns7.nic.uk.
+wales.			172800	IN	NS	dnsa.nic.wales.
+wales.			172800	IN	NS	dnsb.nic.wales.
+wales.			172800	IN	NS	dnsc.nic.wales.
+wales.			172800	IN	NS	dnsd.nic.wales.
 wales.			86400	IN	DS	35036 8 2 909E201E00E796722F76AEBB50ED2B242D7FE5A454E7C93067D9ACAE 8F988058
+dnsa.nic.wales.		172800	IN	A	156.154.100.3
+dnsa.nic.wales.		172800	IN	AAAA	2001:502:ad09::3
+dnsb.nic.wales.		172800	IN	A	156.154.101.3
+dnsc.nic.wales.		172800	IN	A	156.154.102.3
+dnsd.nic.wales.		172800	IN	A	156.154.103.3
 wang.			172800	IN	NS	a.zdnscloud.com.
 wang.			172800	IN	NS	b.zdnscloud.com.
 wang.			172800	IN	NS	c.zdnscloud.com.
