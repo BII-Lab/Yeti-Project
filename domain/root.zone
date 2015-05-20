@@ -1,5 +1,5 @@
 $TTL 86400
-.			86400	IN	SOA	bii.dns-lab.net.  yeti.biigroup.cn.  2015052000  1800  900  604800  86400
+.			86400	IN	SOA	bii.dns-lab.net.  yeti.biigroup.cn.  2015052001  1800  900  604800  86400
 .			518400	IN	NS	bii.dns-lab.net.
 arpa.			172800	IN	NS	bii.dns-lab.net.
 bii.dns-lab.net.	518400	IN	AAAA	240c:f:1:22::6
@@ -894,6 +894,7 @@ boutique.		172800	IN	NS	demand.alpha.aridns.net.au.
 boutique.		172800	IN	NS	demand.delta.aridns.net.au.
 boutique.		172800	IN	NS	demand.gamma.aridns.net.au.
 br.			86400	IN	DS	41674 5 1 EAA0978F38879DB70A53F9FF1ACF21D046A98B5C
+br.			86400	IN	DS	45673 5 2 14369AD309CC59FD59C1A422BA93B71F2C522BF3672C2E067B2C53F5 3AE522DF
 br.			172800	IN	NS	a.dns.br.
 br.			172800	IN	NS	b.dns.br.
 br.			172800	IN	NS	c.dns.br.
@@ -4622,6 +4623,20 @@ memorial.		172800	IN	NS	demand.beta.aridns.net.au.
 memorial.		172800	IN	NS	demand.alpha.aridns.net.au.
 memorial.		172800	IN	NS	demand.delta.aridns.net.au.
 memorial.		172800	IN	NS	demand.gamma.aridns.net.au.
+men.			86400	IN	DS	31777 8 1 A6665FAF359C93F4E03334195CB679B422CDB975
+men.			86400	IN	DS	31777 8 2 AACC8C03C369479DA4905E75EEF8C55A2B48277BD38132A83E967B35 E9556A19
+men.			172800	IN	NS	a.nic.men.
+men.			172800	IN	NS	b.nic.men.
+men.			172800	IN	NS	c.nic.men.
+men.			172800	IN	NS	d.nic.men.
+a.nic.men.		172800	IN	AAAA	2001:dcd:1::10
+a.nic.men.		172800	IN	A	37.209.192.10
+b.nic.men.		172800	IN	AAAA	2001:dcd:2::10
+b.nic.men.		172800	IN	A	37.209.194.10
+c.nic.men.		172800	IN	AAAA	2001:dcd:3::10
+c.nic.men.		172800	IN	A	37.209.196.10
+d.nic.men.		172800	IN	AAAA	2001:dcd:4::10
+d.nic.men.		172800	IN	A	37.209.198.10
 menu.			86400	IN	DS	51916 8 2 AA3C98EE447CFA3BBF57D8A2899626324DE2097353FB5DBF031519A4 FE6964E6
 menu.			172800	IN	NS	a.nic.menu.
 menu.			172800	IN	NS	b.nic.menu.
@@ -7197,17 +7212,15 @@ sn.			172800	IN	NS	ns3.nic.fr.
 sn.			172800	IN	NS	censvrns0001.ird.fr.
 ns1.sonatel.sn.		172800	IN	A	213.154.64.11
 ns.ucad.sn.		172800	IN	A	196.1.95.1
-so.			172800	IN	NS	a.nic.so.
-so.			172800	IN	NS	b.nic.so.
-so.			172800	IN	NS	c.nic.so.
+so.			172800	IN	NS	d.nic.so.
+so.			172800	IN	NS	e.nic.so.
 so.			172800	IN	NS	g.gmoregistry.net.
 so.			172800	IN	NS	h.gmoregistry.net.
 so.			172800	IN	NS	i.gmoregistry.net.
-a.nic.so.		172800	IN	AAAA	2001:470:1a::4
-a.nic.so.		172800	IN	A	72.52.71.4
-b.nic.so.		172800	IN	A	38.103.2.4
-c.nic.so.		172800	IN	AAAA	2001:5a0:10::4
-c.nic.so.		172800	IN	A	63.243.194.4
+d.nic.so.		172800	IN	AAAA	2001:43f8:120::54
+d.nic.so.		172800	IN	A	196.216.168.54
+e.nic.so.		172800	IN	AAAA	2001:500:14:6101:ad::1
+e.nic.so.		172800	IN	A	204.61.216.101
 soccer.			86400	IN	DS	64417 8 2 5E2DAE8CA98865C695978B4819481FD16ACC7549DB0DF53A8B9F92AF 941635DD
 soccer.			172800	IN	NS	demand.beta.aridns.net.au.
 soccer.			172800	IN	NS	demand.alpha.aridns.net.au.
