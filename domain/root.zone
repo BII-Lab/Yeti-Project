@@ -1,5 +1,5 @@
 $TTL 86400
-.			86400	IN	SOA	bii.dns-lab.net.  yeti.biigroup.cn.  2015052101  1800  900  604800  86400
+.			86400	IN	SOA	bii.dns-lab.net.  yeti.biigroup.cn.  2015052200  1800  900  604800  86400
 .			518400	IN	NS	bii.dns-lab.net.
 arpa.			172800	IN	NS	bii.dns-lab.net.
 bii.dns-lab.net.	518400	IN	AAAA	240c:f:1:22::6
@@ -5590,7 +5590,7 @@ c0.nic.ngo.		172800	IN	AAAA	2001:500:b::1
 c0.nic.ngo.		172800	IN	A	199.19.53.1
 d0.nic.ngo.		172800	IN	AAAA	2001:500:f::1
 d0.nic.ngo.		172800	IN	A	199.19.57.1
-nhk.			86400	IN	DS	35402 8 2 C0261B0CF96BD395017E977E3355467146E28B7A3E3F1C19CDE25231 A57F8CE8
+nhk.			86400	IN	DS	62020 8 2 767F3E81FF839B6A8F1CFA9580994A5AD62AE3A12E1D06ED88E816B5 DFCFA2B7
 nhk.			172800	IN	NS	d.gmoregistry.net.
 nhk.			172800	IN	NS	e.gmoregistry.net.
 nhk.			172800	IN	NS	g.gmoregistry.net.
