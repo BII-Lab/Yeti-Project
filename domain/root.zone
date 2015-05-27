@@ -1,5 +1,5 @@
 $TTL 86400
-.			86400	IN	SOA	bii.dns-lab.net.  yeti.biigroup.cn.  2015052700  1800  900  604800  86400
+.			86400	IN	SOA	bii.dns-lab.net.  yeti.biigroup.cn.  2015052701  1800  900  604800  86400
 .			518400	IN	NS	bii.dns-lab.net.
 arpa.			172800	IN	NS	bii.dns-lab.net.
 bii.dns-lab.net.	518400	IN	AAAA	240c:f:1:22::6
@@ -601,6 +601,14 @@ bbc.			172800	IN	NS	ns4.nic.uk.
 bbc.			172800	IN	NS	ns5.nic.uk.
 bbc.			172800	IN	NS	ns6.nic.uk.
 bbc.			172800	IN	NS	ns7.nic.uk.
+bbva.			86400	IN	DS	32169 8 2 25546D1F276A9E71422C3F7835750C7693A070F75D96B455DD28D7F4 EDD01D57
+bbva.			172800	IN	NS	a5.nstld.com.
+bbva.			172800	IN	NS	c5.nstld.com.
+bbva.			172800	IN	NS	d5.nstld.com.
+bbva.			172800	IN	NS	f5.nstld.com.
+bbva.			172800	IN	NS	g5.nstld.com.
+bbva.			172800	IN	NS	h5.nstld.com.
+bbva.			172800	IN	NS	l5.nstld.com.
 bd.			172800	IN	NS	dns.bd.
 bd.			172800	IN	NS	surma.btcl.net.bd.
 bd.			172800	IN	NS	jamuna.btcl.net.bd.
@@ -6861,6 +6869,34 @@ sale.			172800	IN	NS	demand.gamma.aridns.net.au.
 samsung.		86400	IN	DS	58716 7 2 920D4C0F50D51CD1DAA98D1C5E3DCB7A23A13EF345563E859E09B131 DD99ADA4
 samsung.		172800	IN	NS	e.dns.kr.
 samsung.		172800	IN	NS	g.dns.kr.
+sandvik.		86400	IN	DS	34009 8 1 43A1102469C3C1FCC1A301593B64D08C86648228
+sandvik.		86400	IN	DS	34009 8 2 9ECE96A3C472C02BA61B471950A7DFC719C877DCDFB099F275451915 23B7D4EB
+sandvik.		172800	IN	NS	a.nic.sandvik.
+sandvik.		172800	IN	NS	b.nic.sandvik.
+sandvik.		172800	IN	NS	c.nic.sandvik.
+sandvik.		172800	IN	NS	d.nic.sandvik.
+a.nic.sandvik.		172800	IN	AAAA	2001:dcd:1::9
+a.nic.sandvik.		172800	IN	A	37.209.192.9
+b.nic.sandvik.		172800	IN	AAAA	2001:dcd:2::9
+b.nic.sandvik.		172800	IN	A	37.209.194.9
+c.nic.sandvik.		172800	IN	AAAA	2001:dcd:3::9
+c.nic.sandvik.		172800	IN	A	37.209.196.9
+d.nic.sandvik.		172800	IN	AAAA	2001:dcd:4::9
+d.nic.sandvik.		172800	IN	A	37.209.198.9
+sandvikcoromant.	86400	IN	DS	47980 8 1 52E81066452E959475145A8E7B202844DB45235D
+sandvikcoromant.	86400	IN	DS	47980 8 2 6B3E139D1DBC749B347525D924DE7A717DF17DC8C27935C63EBA45CB 01A35E3F
+sandvikcoromant.	172800	IN	NS	a.nic.sandvikcoromant.
+sandvikcoromant.	172800	IN	NS	b.nic.sandvikcoromant.
+sandvikcoromant.	172800	IN	NS	c.nic.sandvikcoromant.
+sandvikcoromant.	172800	IN	NS	d.nic.sandvikcoromant.
+a.nic.sandvikcoromant.	172800	IN	AAAA	2001:dcd:1::9
+a.nic.sandvikcoromant.	172800	IN	A	37.209.192.9
+b.nic.sandvikcoromant.	172800	IN	AAAA	2001:dcd:2::9
+b.nic.sandvikcoromant.	172800	IN	A	37.209.194.9
+c.nic.sandvikcoromant.	172800	IN	AAAA	2001:dcd:3::9
+c.nic.sandvikcoromant.	172800	IN	A	37.209.196.9
+d.nic.sandvikcoromant.	172800	IN	AAAA	2001:dcd:4::9
+d.nic.sandvikcoromant.	172800	IN	A	37.209.198.9
 sap.			86400	IN	DS	58162 10 2 C54138AF7A4E7BEDE0D15FFD010BA47792DED7D0729728C814821BD4 C06495B6
 sap.			172800	IN	NS	anycast9.irondns.net.
 sap.			172800	IN	NS	anycast10.irondns.net.
@@ -8271,6 +8307,20 @@ dnsa.nic.wales.		172800	IN	A	156.154.100.3
 dnsb.nic.wales.		172800	IN	A	156.154.101.3
 dnsc.nic.wales.		172800	IN	A	156.154.102.3
 dnsd.nic.wales.		172800	IN	A	156.154.103.3
+walter.			86400	IN	DS	26671 8 1 8BFF18695F7C13F998B9AF35157552AFBDC1DAC1
+walter.			86400	IN	DS	26671 8 2 1AEB3B7AE4799D9FEC2A0FF5D3CEB82330DF64CE58F8F0F10ACBBA13 780F0D9F
+walter.			172800	IN	NS	a.nic.walter.
+walter.			172800	IN	NS	b.nic.walter.
+walter.			172800	IN	NS	c.nic.walter.
+walter.			172800	IN	NS	d.nic.walter.
+a.nic.walter.		172800	IN	AAAA	2001:dcd:1::9
+a.nic.walter.		172800	IN	A	37.209.192.9
+b.nic.walter.		172800	IN	AAAA	2001:dcd:2::9
+b.nic.walter.		172800	IN	A	37.209.194.9
+c.nic.walter.		172800	IN	AAAA	2001:dcd:3::9
+c.nic.walter.		172800	IN	A	37.209.196.9
+d.nic.walter.		172800	IN	AAAA	2001:dcd:4::9
+d.nic.walter.		172800	IN	A	37.209.198.9
 wang.			86400	IN	DS	26809 8 2 A7FDCE2D689D6C3CDC4275348667E0FE258136B879787E69C89A1C12 5CF23F67
 wang.			172800	IN	NS	a.zdnscloud.com.
 wang.			172800	IN	NS	b.zdnscloud.com.
