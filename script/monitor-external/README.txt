@@ -8,10 +8,10 @@
 #
 
 1. capture-dnscap.sh
-     capture DNS packet with dnscap
+     capture DNS packet with dnscap <https://github.com/verisign/dnscap>
 
 2. data-commit.sh
-    submit DNS packet via rsync+ssh
+    submit DNS packet via ssh
     
     notice: use ssh PubkeyAuthentication, so user should provide ssh public key
 
