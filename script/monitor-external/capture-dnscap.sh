@@ -3,6 +3,7 @@
 # Capture packets on time-limited files
 
 # binaries needed, change accordingly
+# dnscap is at https://github.com/verisign/dnscap
 DNSCAP="/usr/local/bin/dnscap"
 IFCONFIG="/sbin/ifconfig"
 NTPDATE="/usr/sbin/ntpdate"
@@ -97,12 +98,16 @@ if [ ! -z "${KICK_CMD}" ]; then
 fi
 
 # Validate the programs I'm expecting to use
-for prog in ${DNSCAP} ${IFCONFIG} ${NTPDATE}; do
+for prog in ${DNSCAP} ${IFCONFIG} ${NTPDATE} bc; do
 if [ ! -x ${prog} ] ; then
     echo "${prog} is not executable, aborting!"
     exit 1
 fi
 done
+
+if [ ! -d ${SAVEDIR} ]; then
+    mkdir -p ${SAVEDIR} 
+fi
 
 # Check if this script is running as root
 if test -z "$UID" ; then
