@@ -1,5 +1,5 @@
 $TTL 86400
-.			86400	IN	SOA	bii.dns-lab.net.  yeti.biigroup.cn.  2015052801  1800  900  604800  86400
+.			86400	IN	SOA	bii.dns-lab.net.  yeti.biigroup.cn.  2015052900  1800  900  604800  86400
 .			518400	IN	NS	bii.dns-lab.net.
 arpa.			172800	IN	NS	bii.dns-lab.net.
 bii.dns-lab.net.	518400	IN	AAAA	240c:f:1:22::6
@@ -5014,8 +5014,8 @@ dzowo.uem.mz.		172800	IN	A	196.3.96.66
 oceano.uem.mz.		172800	IN	A	196.3.96.69
 zebra.uem.mz.		172800	IN	A	196.3.96.67
 na.			86400	IN	DS	24484 5 1 EFC19D4685751FF8E11F96142A083DCB9C708912
-na.			172800	IN	NS	na1.dyntld.net.
-na.			172800	IN	NS	na2.dyntld.net.
+na.			172800	IN	NS	a.na.dyntld.net.
+na.			172800	IN	NS	b.na.dyntld.net.
 na.			172800	IN	NS	ns5.nominum.com.
 na.			172800	IN	NS	ns6.nominum.eu.
 na.			172800	IN	NS	anyc2.irondns.net.
@@ -5236,8 +5236,10 @@ a.ms.dyntld.net.	172800	IN	AAAA	2001:500:92::23
 a.ms.dyntld.net.	172800	IN	A	199.19.5.23
 b.ms.dyntld.net.	172800	IN	AAAA	2001:500:96::23
 b.ms.dyntld.net.	172800	IN	A	199.19.6.23
-na1.dyntld.net.		172800	IN	A	208.78.70.90
-na2.dyntld.net.		172800	IN	A	204.13.250.90
+a.na.dyntld.net.	172800	IN	AAAA	2a02:e180:5::1
+a.na.dyntld.net.	172800	IN	A	108.59.162.1
+b.na.dyntld.net.	172800	IN	AAAA	2a02:e180:6::1
+b.na.dyntld.net.	172800	IN	A	108.59.163.1
 a.nf.dyntld.net.	172800	IN	AAAA	2001:500:92::10
 a.nf.dyntld.net.	172800	IN	A	199.19.5.10
 b.nf.dyntld.net.	172800	IN	AAAA	2001:500:96::10
@@ -9232,6 +9234,8 @@ xn--vuq861b.		172800	IN	NS	tb.ngtld.cn.
 xn--vuq861b.		172800	IN	NS	tc.ngtld.cn.
 xn--vuq861b.		172800	IN	NS	td.ngtld.cn.
 xn--vuq861b.		172800	IN	NS	te.ngtld.cn.
+xn--wgbh1c.		86400	IN	DS	19912 8 1 7EF77FE3D057844259326CDA4F822D5287FA7769
+xn--wgbh1c.		86400	IN	DS	19912 8 2 7C0BF621527B8D576F7AB479BFCCDD37464008DB6EBE2128E802B0E1 7317F5FE
 xn--wgbh1c.		172800	IN	NS	ns1.dotmasr.eg.
 xn--wgbh1c.		172800	IN	NS	ns2.dotmasr.eg.
 xn--wgbh1c.		172800	IN	NS	ns3.dotmasr.eg.
