@@ -1,5 +1,5 @@
 $TTL 86400
-.			86400	IN	SOA	bii.dns-lab.net.  yeti.biigroup.cn.  2015052901  1800  900  604800  86400
+.			86400	IN	SOA	bii.dns-lab.net.  yeti.biigroup.cn.  2015053000  1800  900  604800  86400
 .			518400	IN	NS	bii.dns-lab.net.
 arpa.			172800	IN	NS	bii.dns-lab.net.
 bii.dns-lab.net.	518400	IN	AAAA	240c:f:1:22::6
@@ -7249,6 +7249,11 @@ b.tld.sk.		172800	IN	AAAA	2001:678:90::1
 b.tld.sk.		172800	IN	A	84.245.96.1
 c.tld.sk.		172800	IN	AAAA	2a02:770:100:100::101
 c.tld.sk.		172800	IN	A	217.75.72.157
+ski.			86400	IN	DS	43969 8 2 690219A74D4B7C86E197C051A3A7F564C55DC4DBA40C679B14CDD9AC 8B1EC8BC
+ski.			172800	IN	NS	ns1a.ksregistry.net.
+ski.			172800	IN	NS	ns1b.ksregistry.net.
+ski.			172800	IN	NS	ns2a.ksregistry.com.
+ski.			172800	IN	NS	ns2b.ksregistry.com.
 sky.			86400	IN	DS	10101 8 2 F09AFB6032AD0269337A282D137041E961E6284BD581EA5CF27C300D AB97B629
 sky.			172800	IN	NS	a5.nstld.com.
 sky.			172800	IN	NS	c5.nstld.com.
@@ -8930,6 +8935,16 @@ b0.nic.xn--i1b6b1a6a2e.	172800	IN	AAAA	2a01:8840:b3::1
 b0.nic.xn--i1b6b1a6a2e.	172800	IN	A	65.22.185.1
 c0.nic.xn--i1b6b1a6a2e.	172800	IN	AAAA	2a01:8840:b4::1
 c0.nic.xn--i1b6b1a6a2e.	172800	IN	A	65.22.186.1
+xn--imr513n.		86400	IN	DS	27937 8 2 240CBC462A918CB0CB2FC685FB39AF0F5E2F448E59898DD03E189590 E3CDE091
+xn--imr513n.		172800	IN	NS	a.zdnscloud.com.
+xn--imr513n.		172800	IN	NS	b.zdnscloud.com.
+xn--imr513n.		172800	IN	NS	c.zdnscloud.com.
+xn--imr513n.		172800	IN	NS	d.zdnscloud.com.
+xn--imr513n.		172800	IN	NS	e.zdnscloud.com.
+xn--imr513n.		172800	IN	NS	f.zdnscloud.com.
+xn--imr513n.		172800	IN	NS	g.zdnscloud.com.
+xn--imr513n.		172800	IN	NS	i.zdnscloud.com.
+xn--imr513n.		172800	IN	NS	j.zdnscloud.com.
 xn--io0a7i.		86400	IN	DS	47359 8 2 426DB7D3FB8E6058BE42D379ECD7742B2EFAB5DD0A7A95494D351860 4B715B1E
 xn--io0a7i.		172800	IN	NS	a.ngtld.cn.
 xn--io0a7i.		172800	IN	NS	b.ngtld.cn.
