@@ -24,8 +24,8 @@ Please contact <discuss@lists.yeti-dns.org> if you wish to ask question and rece
 
 Below are details about the different ways of joining the effort.
 
- Joining Yeti as a Yeti Root Server Operator
--------------------------------------------
+1. Joining Yeti as a Yeti Root Server Operator
+
 To run a Yeti root server, you need a server with good IPv6 Internet access, a dedicated domain of the root server which is configured as a slave to the Yeti distribution masters (DM). There are a few steps to Join Yeti as a Yeti root server operator.
 
 Step 1: Application 
@@ -51,8 +51,8 @@ https://github.com/BII-Lab/Yeti-Project/blob/master/script/monitor-external/READ
 
 This script submits DNS packet via rsync+ssh. Note that it uses ssh Pubkey Authentication, so user should provide ssh public key via mail to the coordinators; 
 
-Joining Yeti as a Resolver Operator
------------------------------------
+2. Joining Yeti as a Resolver Operator
+
 We encourage people running resolvers to join the project. These should be used for real-world queries, but for informed users in non-critical environments.
 
 To join the Yeti project as a resolver operator, you need to have a working DNS resolver with IPv6 support. You need to update your "hints" file to use the Yeti root servers instead of the IANA root
@@ -62,7 +62,7 @@ https://raw.githubusercontent.com/BII-Lab/Yeti-Project/master/domain/named.cache
 in the purpose of some experiment, we need information and feedback from client side, so we encourage resolver operator to register it mail address for technical assistance, Yeti  testbed changes or experiments coordination. if you setup your recursive server linked with Yeti root server, please contact coordinators@lists.yeti-dns.org .
 
 3. Joining Yeti as a Researcher
-----------------------------
+
 Researchers are encouraged to join the Yeti discussion list:
 
 http://lists.yeti-dns.org/mailman/listinfo/discuss 
