@@ -96,4 +96,4 @@ A: Well, this is a good question. Before we announce the project, three Initiato
 
 Q: Is there Data usage policy in Yeti project?
 
-A: Please turn to the data sharing document of Yeti DNS project. Basically, the data is for scientific use which means the data with personal information or with privacy concern is not expected to join Yeti experiment. on another hand, every participant who want to get access to the data should make a public statement of using Yeti data to protect privacy, and do not publish the raw data.
+A: Please turn to the data sharing document of Yeti DNS project. Basically, the Yeti project is not for production network and the yeti data is for scientific usage which means the data with personal information or with privacy concern is not expected to join Yeti experiment. on another hand, every participant who want to get access to the data should make a public statement of using Yeti data to protect privacy, and do not publish the raw data.
