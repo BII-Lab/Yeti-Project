@@ -29,11 +29,13 @@ Below are details about the different ways of joining the effort.
 To run a Yeti root server, you need a server with good IPv6 Internet access, a dedicated domain of the root server which is configured as a slave to the Yeti distribution masters (DM). There are a few steps to Join Yeti as a Yeti root server operator.
 
 Step 1: Application 
+
 Please send a mail to coordinators@lists.yeti-dns.org with your basic contact information, short introduction or a short declaration to join Yeti Project as a volunteer authority server. Most importantly send a domain name and IPv6 address of the new root server which is to be added into the apex NS  RRset of our root zone. 
 
 Note that even though we publish strictly iana information for TLD data and metadata, it's necessary for us to replace the apex NS RRset.  Once we verify that your server is operational we will add it to the apex NS RRset, and we will add you and your designated colleagues to the operators@ mailing list.
 
 Step 2: Root server setup
+
 Configure the root server as a slave to the Yeti DM. you can add the following script to the configuration file of your root server. 
 
 masters yeti-dm 
@@ -50,6 +52,7 @@ masters yeti-dm
 Afterward, please send a mail to coordinators ML to notify it is done.
 
 Step 3:Monitoring system setup
+
 For the purpose of experiment and measurement study,we require each root server operator to capture DNS packet on DNS servers and save as pcap file, then send to our storage server. Regarding the data sharing issue, please turn to the data sharing document of YETI Project.
 
 Please read the following link how to setup and join the YETI monitoring system
@@ -61,8 +64,8 @@ This script submits DNS packet via rsync+ssh. Note that it uses ssh Pubkey Authe
 
 We encourage people running resolvers to join the project. These should be used for real-world queries, but for informed users in non-critical environments.
 
-To join the Yeti project as a resolver operator, you need to have a working DNS resolver with IPv6 support. You need to update your "hints" file to use the Yeti root servers instead of the IANA root
-servers. The current "hints" file can be found here: 
+To join the Yeti project as a resolver operator, you need to have a working DNS resolver with IPv6 support. You need to update your "hints" file to use the Yeti root servers instead of the IANA root servers. The current "hints" file can be found here: 
+
 https://raw.githubusercontent.com/BII-Lab/Yeti-Project/master/domain/named.cache  
 
 in the purpose of some experiment, we need information and feedback from client side, so we encourage resolver operator to register it mail address for technical assistance, Yeti  testbed changes or experiments coordination. if you setup your recursive server linked with Yeti root server, please contact coordinators@lists.yeti-dns.org .
@@ -93,4 +96,4 @@ A: Well, this is a good question. Before we announce the project, three Initiato
 
 Q: Is there Data usage policy in Yeti project?
 
-A: Please turn to the data sharing document of Yeti DNS project. Basically, the data is for scientific use which means the data with personal information or with privacy concern is not expected to join Yeti experiment. on another hand, every participant who want to get access to the data should make a public statement of using Yeti data to protect privacy, and do not publish the raw data.
+A: Please turn to the data sharing document of Yeti DNS project. Basically, the Yeti project is not for production network and the yeti data is for scientific usage which means the data with personal information or with privacy concern is not expected to join Yeti experiment. on another hand, every participant who want to get access to the data should make a public statement of using Yeti data to protect privacy, and do not publish the raw data.
