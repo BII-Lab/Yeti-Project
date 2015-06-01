@@ -44,7 +44,7 @@ masters yeti-dm {
 Afterward, please send a mail to coordinators ML to notify it is done.
 
 Step 3:Monitoring system setup
-For the purpose of experiment and measurement study,we require each root server operator to capture DNS packet on DNS servers and save as pcap file, then send to our storage server. <<Regarding the data sharing issue, please turn to the data sharing document of YETI Project>>
+For the purpose of experiment and measurement study,we require each root server operator to capture DNS packet on DNS servers and save as pcap file, then send to our storage server. <Regarding the data sharing issue, please turn to the data sharing document of YETI Project>
 
 Please read the following link how to setup and join the YETI monitoring system
 https://github.com/BII-Lab/Yeti-Project/blob/master/script/monitor-external/README.txt 
