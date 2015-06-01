@@ -80,13 +80,17 @@ Confidential inquiries can be sent to <coordinators@lists.yeti-dns.org>.
 FQA :
 
 Q：The requirement for  the machine (apparently, a VPS could be enough?)
+
 A: A VPS is OK. The experiments we expected so far (described in the webpage) are not strongly related to computing and mem capacity of server , but networking connectivity matters.
  
 Q: How about its connectivity?
+
 A: IPv6 networking environment is important to our experiment especially IPv6 DNS MTU problem study. We need native, non-tunneled IPv6 connectivity, either as a customer of a national or international backbone network, or as a multi-homed network who peers aggressively.
  
 Q: Human resources commitment for root server operator. 
+
 A: Well, this is a good question. Before we announce the project, three Initiators (WIDE, TISF and BII) had a basic consensus on the commitment to this scientific project. Because It is not for production network, so we do not expect any urgent configuration changes. however the server cannot be fully on auto-pilot, due to experiments that will affect the distribution master servers and may require changes to the authority servers. therefore, we expect authority operators to offer 24-hour response time to questions and outage notifications, and 72-hour response time for planned configuration changes. We are no-profit, no exchange of money, only for public and technical interest. So we would like to invite qualified contributors who are willing to share the same interest and commitment with us.
 
 Q: Is there Data usage policy in Yeti project?
+
 A: Please turn to the data sharing document of Yeti DNS project. Basically, the data is for scientific use which means the data with personal information or with privacy concern is not expected to join Yeti experiment. on another hand, every participant who want to get access to the data should make a public statement of using Yeti data to protect privacy, and do not publish the raw data.
