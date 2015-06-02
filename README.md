@@ -54,15 +54,21 @@ masters yeti-dm
 NSD:
 
 zone:
+
      name: "."
+     
      request-xfr: 240c:f:1:22::6 NOKEY
+     
      request-xfr: 2001:559:8000::6 NOKEY
+     
      request-xfr: 2001:200:1d9::35 NOKEY
+     
      allow-notify: 240c:f:1:22::6 NOKEY
+     
      allow-notify: 2001:559:8000::6 NOKEY
+     
      allow-notify: 2001:200:1d9::35 NOKEY
-
-
+     
 Afterward, please send a mail to coordinators ML to notify it is done.
 
 Step 3:Monitoring system setup
@@ -72,7 +78,7 @@ For the purpose of experiment and measurement study,we require each root server 
 Please read the following link how to setup and join the YETI monitoring system
 https://github.com/BII-Lab/Yeti-Project/blob/master/script/monitor-external/README.txt 
 
-This script submits DNS packet via ssh. Note that it uses ssh Pubkey Authentication, so user should provide ssh public key [TODO: which type? DSA only? RSA? I love elliptic curves, may I use them?] via mail to the coordinators; 
+This script submits DNS packet via ssh. Note that it uses ssh Pubkey Authentication, so user should provide ssh public key [note that currently DSA and RSA are OK, ECC will be support later] via mail to the coordinators; 
 
 2.Joining Yeti as a Resolver Operator
 
@@ -84,7 +90,7 @@ https://raw.githubusercontent.com/BII-Lab/Yeti-Project/master/domain/named.cache
 
 And the DNSSEC key is:
 
-https://github.com/BII-Lab/Yeti-Project/blob/master/domain/KSK.pub
+https://raw.githubusercontent.com/BII-Lab/Yeti-Project/master/domain/KSK.pub 
 
 In the purpose of some experiment, we need information and feedback from client side, so we encourage resolver operator to register it mail address for technical assistance, Yeti  testbed changes or experiments coordination. if you setup your recursive server linked with Yeti root server, please contact coordinators@lists.yeti-dns.org .
 
@@ -93,7 +99,9 @@ Configuration of the resolver:
 Unbound:
 
 server:
+
   root-hints: "yeti-hints"
+  
   trust-anchor-file: yeti-key.key
 
 3.Joining Yeti as a Researcher
@@ -108,7 +116,7 @@ Confidential inquiries can be sent to <coordinators@lists.yeti-dns.org>.
 
 FQA :
 
-Q：The requirement for  the machine (apparently, a VPS could be enough?)
+Q：The requirement for the machine (apparently, a VPS could be enough?)
 
 A: A VPS is OK. The experiments we expected so far (described in the webpage) are not strongly related to computing and mem capacity of server , but networking connectivity matters.
  
