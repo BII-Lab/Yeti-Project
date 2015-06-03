@@ -39,7 +39,7 @@ Below are details about the different ways of joining the effort.
     BIND:
 
     	masters yeti-dm {
-    		240c:f:1:22::7;			# bii
+    		240c:f:1:22::6;			# bii
     		2001:200:1d9::53;		# wide
     		2001:559:8000::6;		# tisf
     	};
