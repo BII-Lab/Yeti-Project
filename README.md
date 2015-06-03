@@ -1,5 +1,4 @@
 # Welcome to the Yeti Project
-------
 
 "One World, One Internet, One Namespace" is the essence for the success of today's Internet. The top level of the unique identifier system, the DNS root system, has been operational for 25+ years. It is a pivot to make the current Internet useful. So it is considered somewhat ossified for stability reasons. It is hard to test and implement new ideas evolving to a more advanced level to counter challenges like IPv6-only operation, DNSSEC key/algorithm rollover, scaling issues, etc. Because changes to the current production system are not risk-free, and a large-scale testbed is necessary, on which extensive tests and studies of the impact can be carried out. It is possible to pre-evaluate such changes in a laboratory test, however, the coverage is limited. In order to make the test more practical, it is also necessary to involve users’ environment which is highly diversified, to study the effect of the changes in question. 
  
@@ -18,7 +17,6 @@ Participants will be invited into Yeti Project which is hopefully helpful for th
 *NOTE THAT THIS PROJECT NEVER INTENT TO REPLACE CURRENT OPERATIONAL ROOT DNS SYSTEM.　REGULAR DNS SERVICES MUST NOT DEPEND ON THE TESTBED.*
 
 # How to Join Yeti
-------
 
 Please contact <discuss@lists.yeti-dns.org> if you wish to ask question and receive latest update in the Yeti project.
 
@@ -43,7 +41,7 @@ Below are details about the different ways of joining the effort.
     	masters yeti-dm {
     		240c:f:1:22::7;			# bii
     		2001:200:1d9::53;		# wide
-    		2001:559:8000::7;		# tisf
+    		2001:559:8000::6;		# tisf
     	};
 
     NSD:
@@ -100,7 +98,6 @@ Below are details about the different ways of joining the effort.
     Confidential inquiries can be sent to <coordinators@lists.yeti-dns.org>.
 
 #FAQ
-------
 
 Q：The requirement for the machine (apparently, a VPS could be enough?)
 
