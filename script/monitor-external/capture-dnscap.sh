@@ -2,6 +2,8 @@
 
 # Capture packets on time-limited files
 
+# For discussion of the choice of dnscap, see the file doc/Capture.md
+
 # binaries needed, change accordingly
 # dnscap is at https://github.com/verisign/dnscap
 DNSCAP="/usr/local/bin/dnscap"
