@@ -7,6 +7,8 @@ Today this is done using
 [dnscap](https://www.dns-oarc.net/tools/dnscap), which is a
 DNS-specific tool to produce pcap files.
 
+The script for this is `script/monitor-external/capture-dnscap.sh`.
+
 # Packets vs. Messages
 
 While usually a DNS message fits into a single UDP packet, it is not
