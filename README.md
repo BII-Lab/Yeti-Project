@@ -59,7 +59,7 @@ Below are details about the different ways of joining the effort.
 
     **Step 3: Monitoring system setup**
 
-    For the purpose of experiment and measurement study,we require each root server operator to capture DNS packet on DNS servers and save as pcap file, then send to our storage server. Regarding the data sharing issue, please turn to the data sharing document of YETI Project [TODO not yet written].
+    For the purpose of experiment and measurement study,we require each root server operator to capture DNS packet on DNS servers and save as pcap file, then send to our storage server. Regarding the data sharing issue, please turn to the [data sharing document](DataSharingDeclaration.md) of YETI Project.
 
     Please read the following link how to setup and join the YETI monitoring system: https://github.com/BII-Lab/Yeti-Project/blob/master/script/monitor-external/README.txt 
 
@@ -113,4 +113,4 @@ A: Well, this is a good question. Before we announce the project, three Initiato
 
 Q: Is there Data usage policy in Yeti project?
 
-A: Please turn to the data sharing document of Yeti DNS project [TODO: not yet written]. Basically, the Yeti project is not for production network and the Yeti data is for scientific usage which means the data with personal information or with privacy concern is not expected to join Yeti experiment. on another hand, every participant who want to get access to the data should make a public statement of using Yeti data to protect privacy, and do not publish the raw data.
+A: Please turn to the [data sharing document](DataSharingDeclaration.md) of Yeti DNS project. Basically, the Yeti project is not for production network and the Yeti data is for scientific usage which means the data with personal information or with privacy concern is not expected to join Yeti experiment. on another hand, every participant who want to get access to the data should make a public statement of using Yeti data to protect privacy, and do not publish the raw data.
