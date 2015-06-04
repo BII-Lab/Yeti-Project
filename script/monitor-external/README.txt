@@ -21,7 +21,7 @@ user：yeti
 
 3. settings.sh
    config option for dnscap
-   such as capture interval, ethernet interface, tcp support, frament and so on
+   such as capture interval, ethernet interface, tcp support, fragment and so on
 
 4. run
     sh capture-dnscap.sh
