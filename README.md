@@ -87,6 +87,20 @@ Below are details about the different ways of joining the effort.
     		root-hints: "yeti-hints"
     		trust-anchor-file: yeti-key.key
 
+    BIND:
+
+        zone "." {
+           type hint;
+           file "/etc/bind/yeti-hints";
+        };
+
+        trusted-keys {
+             "."             257 3 8 "AwEAAchb6LrHCdz9Yo55u1id/b+X1FqVDF66xNrhbgnV+vtpiq7pDsT8 KgzSijNuGs4GLGsMh\
+VE/9H0wOtmVRUQqQ50PHZsiqg8gqB6i5zLortjp aCLZS7Oke1xP+6LzVRgT4c8NXlRBg3m/gDjzijBD0BMACjVGZNv0gReA g2OCr\
+9dBrweE6DnM6twG7D2NyuGjpWzKeJfNd3Hek39V9NGHuABGkmYG 16XCao37IWcP/s/57HuBom5U3SNfuzfVDppokatuL6dXp9ktuu\
+VXsESc /rUERU/GPleuNfRuPHFr3URmrRud4DYbRWNVIsxqkSLrCldDjP1Hicf3 S8NgVHJTSRE=";
+};
+
 3. Joining Yeti as a Researcher
 
     Researchers are encouraged to join the Yeti discussion list:
