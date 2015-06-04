@@ -1,7 +1,7 @@
 #!/bin/bash
  
 SAVEDIR=$1
-REMOTE=yeti@data.dnsv6lab.net
+REMOTE=yeti@data.root-yeti.net
 DATANAME=`ls -lh $SAVEDIR | tail -n 3 |awk '{print $NF}' |sed -n 1p` 
 
 SSH_BIN=/usr/bin/ssh
