@@ -39,7 +39,7 @@ IFACES="em1"
 SAVEDIR=/root/data-monitor/data
 
 # Settings that you shouldn't change
-# 5 minuts
-INTERVAL="300"
+# 10 minutes
+INTERVAL="600"
 KICK_CMD="sh  data-commit.sh $SAVEDIR"
 
