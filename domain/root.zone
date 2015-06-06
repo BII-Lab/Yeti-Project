@@ -1,5 +1,5 @@
 $TTL 86400
-.			86400	IN	SOA	bii.dns-lab.net.  yeti.biigroup.cn.  2015060501  1800  900  604800  86400
+.			86400	IN	SOA	bii.dns-lab.net.  yeti.biigroup.cn.  2015060600  1800  900  604800  86400
 .			518400	IN	NS	bii.dns-lab.net.
 arpa.			172800	IN	NS	bii.dns-lab.net.
 bii.dns-lab.net.	518400	IN	AAAA	240c:f:1:22::6
@@ -516,6 +516,14 @@ ns6.dns.nic.axa.	172800	IN	A	156.154.158.20
 az.			172800	IN	NS	az.hostmaster.ua.
 az.			172800	IN	NS	ns.demos.su.
 az.			172800	IN	NS	rip.psg.com.
+azure.			86400	IN	DS	25698 8 2 2C2D532D450F86FBC9238816088ED98AE6C8A5F665706DD634BA4E63 A8D8837F
+azure.			172800	IN	NS	a5.nstld.com.
+azure.			172800	IN	NS	c5.nstld.com.
+azure.			172800	IN	NS	d5.nstld.com.
+azure.			172800	IN	NS	f5.nstld.com.
+azure.			172800	IN	NS	g5.nstld.com.
+azure.			172800	IN	NS	h5.nstld.com.
+azure.			172800	IN	NS	l5.nstld.com.
 ba.			172800	IN	NS	ba.cctld.authdns.ripe.net.
 ba.			172800	IN	NS	ns.ba.
 ba.			172800	IN	NS	sava.utic.net.ba.
