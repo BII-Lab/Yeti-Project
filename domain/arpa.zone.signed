@@ -1,17 +1,17 @@
 arpa.					      86400 IN SOA	bii.dns-lab.net. yeti.biigroup.cn. 2015060501 1800 900 604800 86400
-arpa.					      86400 IN RRSIG	SOA 8 1 86400 20150706060002 20150606060002 61239 arpa. TXMmjYTCbiK2JgHgbzPSZ+hg5SZ4ZFRTa6P/BONE2wm33I/aq1tqFLjo hYKkBIXO6fEXBr5KK3w1pcws6egl0cqKhu1Pek+VX9PTvOtpIO7I+/Wj yA/SEh/lfwB1JQndIN9b/2KkAIrriVBxTTZ7ib2Hp1yDiaX3HF0Csn/a MSU=
+arpa.					      86400 IN RRSIG	SOA 8 1 86400 20150706070002 20150606070002 61239 arpa. 8RBZaYSpKf2YQi/Qv/YnyyoP1St0e60RWVAT9X2o+tm6PnBq+S3dIOXW L9A9Joi0+egHgl3Ld0ePKFx1SuY6k6QzOYxkiGZokqfMfMkTF7smkBGH Fte0gtD/b6UmkXSsdNcZGnAS6XHBTxXUQeiaEwMeYF32e/VDw8EyQ0ms Y8o=
 arpa.					      172800 IN	NS	bii.dns-lab.net.
 arpa.					      172800 IN	NS	dahu1.yeti.eu.org.
 arpa.					      172800 IN	NS	yeti-ns.tisf.net.
 arpa.					      172800 IN	NS	yeti-ns.wide.ad.jp.
 arpa.					      172800 IN	NS	yeti-ns.as59715.net.
-arpa.					      172800 IN	RRSIG	NS 8 1 172800 20150706060002 20150606060002 61239 arpa. 667dk6NgUfbEeceIkyxn+XgD4euSTws88RdkTfNaiCLgPUmtBozRkdzG oT6z7YTtnw5TPQcUH8kDkQZMpjtIiCplFpj+Z6BDbHkTOcpNMU/qz7jg sJndJ60PTlHhJxNaVlB03ciLyZAsR7fb+hKCUsuZc6oHKsKNF6puSZwo QBk=
+arpa.					      172800 IN	RRSIG	NS 8 1 172800 20150706070002 20150606070002 61239 arpa. SJpwaHSGNTuEECFz6YHpqjbuG7K7hWCbLv/dtCpUIWno3rkPeDugjktO vaZk3qNwN79tfHRZsPwO4/9TWvIe3drgHCfhn5yHhH3MLj6CzCLnyJuY tywPN79cQoYs80e9XXEr599CLHyeKSzD7cm5XbIxHYX3E6ZnDZ3gWXOq QGk=
 arpa.					      86400 IN NSEC	as112.arpa. NS SOA RRSIG NSEC DNSKEY
-arpa.					      86400 IN RRSIG	NSEC 8 1 86400 20150706060002 20150606060002 61239 arpa. yzUy9hv4DmIS2fSB2nVwQO/si0C8t273huaDhXj1mRnhmyiZ1jc2hqXL 7CxiikZAqrjWvueJ/k5QEMLul2M6dZ4LhvDb+z7+Fa+3ZtgR+Lor5wk1 /U41YVIjry5l/W4JyYvoIjRgrZGURIvqRMG/VMJmQM2kWN9cFTJm4FEl C8I=
+arpa.					      86400 IN RRSIG	NSEC 8 1 86400 20150706070002 20150606070002 61239 arpa. 7njoTYHBmQ0MUTnA7fdIu7r9BVm89du3cH9AcTWqim0KfCUxIngsKJLT BNLlQb3AonU6NsmQLv6MtE9B1tMg0sGokP5ZGTUbCYMSnbCOI89FCEHg YM/WkJ2/UQLH04axs7aiZ5mu/zyE8ckZFosY8EqLZwvT+xn+Jr1yRlsw Kw4=
 arpa.					      86400 IN DNSKEY	256 3 8 AwEAAc5WzsKkohxbScFAA9NkpsHvbOYWSBZ18f/Ot0eBRjx05blQv30H AIj/tIuBE33/55eVaF8nwyPsx+ZcwuinaujMflMXtk3FRLxdvdM5P0IJ J1W5dbIHKAmMEo/mLKBgiyR7PEzGWYzz21V3Zip4z3QvOBsKfCjnGbYq ilm3aBlL
 arpa.					      86400 IN DNSKEY	256 3 8 AwEAAfMBHavSBJ3DmfLWcwI5KI8nEByITZaUuVbbWb8gX7kmdavGcVPx 1EAMsOkFqyZsM6RmVePOn06/XniS0nmvYu38wovzYPGCr+8DsWUo0rHT OHcI6tO+qWQV5lpEn2focGDMo9IrCmsyNTHmhMwowiDFutG9Y+RXqUH8 6LqhL8PZ
 arpa.					      86400 IN DNSKEY	257 3 8 AwEAAfAK6WPKwI+nOwE0Vlmyl9r2iWo4vBzOk+uPH+uqEE5U8JfuDMs3 GustOFWVHjHhJbgasa072r4P9FaENEKbaaXlFxsCfg9r420G10V7uXug JC7wxOwBTdTAqUGLIMx9U3c9ZNNv6xDb/DiDl5vm7xavBmNhk2dlj1ZO 4Kjj93q7mQ6iVd360C/9aPHoGE859sAdb6U852iFX+zHoWa4RAd1b4VG vSrMnutJGHmUrfiVrrdmUm+7Hq9S8F8U0XI3rFQlCXIupMhHiD+tUqlk Ug5C50/9zcarun1wYHzngxYY3OVvDT+Nbg5spVrLLJ3Q5KILxA4g2NXE GRzhAOm5bC0=
-arpa.					      86400 IN RRSIG	DNSKEY 8 1 86400 20150706060002 20150606060002 38779 arpa. UOTUkxz+UByxaqpN34lOIWw7k/qDtGB5k6AL60IuzoJKtkXrZ9r4knpu Jbx9vTau7Wtrm7KELwsxn+f+8ec5WavM9XQ7TQjQ6xVbPurt/TVU6gqH eU0O4YN8s4YmPVtJGmDmXeOIO4O+pF+I3Qd8Rm6DChC5pgvaiLqWaRB/ BN8HyWae8kN77bZmwCtym2BmrgC0CMKuFfJgteTkwOHOM31M2GJQSUo/ 3BT/GIWssx7kfsVZNejseU/wrO2kdds9h8M808UjjhRt1eQ/narn6OHU gQCdYhZG45blW7T6UitMubckyZkJZjoHZWNQ37H0Puf6QIC8LPsb5/DM GmQ5dA==
+arpa.					      86400 IN RRSIG	DNSKEY 8 1 86400 20150706070002 20150606070002 38779 arpa. OSZpgvTSXMBB9Pt+zP7jlHYJqCUjwrd1AX0UEaK76nVHPYUjA52jnDNG IFuijtyUTcSwP9J8D/4+bKIO+ZDsLzU8Jr6VGDVvRpxZb5Vslgpx5b56 btrYoQcyMl1qKggNMRoynsmvimB3cmb3KVroNDXl1rigyZGDiGKnkbWS c7/jTIJI6XGKB2MxPnE/jcHTNLKuuSby11oFDjj0rZKsKlSd+nvbXk5m USlJk2c9N/DO8N+W3qqKjEli51pIp9tKop8wgy8gOCAwKtJiiUsbqOdi a25aQkUVCxYD0kw77RVzh64pxf+5ooOrktnez2OOB/QLgYfn0aP/rrRj lT3EsA==
 a.in-addr-servers.arpa.			      172800 IN	A	199.212.0.73
 a.in-addr-servers.arpa.			      172800 IN	AAAA	2001:500:13::73
 b.in-addr-servers.arpa.			      172800 IN	A	199.253.183.183
@@ -36,16 +36,14 @@ e.ip6-servers.arpa.			      172800 IN	A	202.12.29.59
 e.ip6-servers.arpa.			      172800 IN	AAAA	2001:dc0:2001:a:4608::59
 f.ip6-servers.arpa.			      172800 IN	A	193.0.9.2
 f.ip6-servers.arpa.			      172800 IN	AAAA	2001:67c:e0::2
-in-addr.arpa.				      172800 IN	NS	a.in-addr-servers.arpa.
-in-addr.arpa.				      172800 IN	NS	b.in-addr-servers.arpa.
-in-addr.arpa.				      172800 IN	NS	c.in-addr-servers.arpa.
-in-addr.arpa.				      172800 IN	NS	d.in-addr-servers.arpa.
-in-addr.arpa.				      172800 IN	NS	e.in-addr-servers.arpa.
-in-addr.arpa.				      172800 IN	NS	f.in-addr-servers.arpa.
-in-addr.arpa.				      86400 IN DS	53696 8 2 13E5501C56B20394DA921B51412D48B7089C5EB6957A7C58553C4D4D 424F04DF
-in-addr.arpa.				      86400 IN RRSIG	DS 8 2 86400 20150706060002 20150606060002 61239 arpa. ZJ7qz7+WBR3Vjq+MPxFupcmDQm3rK53ZCgRhdcKfMV04RFChs2epvV9W BbLs5A9CRDAt2SwgMv/rO6EdMe6xBSGph4IzLHVzqo90fb7K8S8RUQJv DzG8PyTsxeQI4Ho/7FkXQ9a1SlgQ/Fjg6CBHqCud2wl/xHXhEuVzlX2f lxw=
-in-addr.arpa.				      86400 IN NSEC	in-addr-servers.arpa. NS DS RRSIG NSEC
-in-addr.arpa.				      86400 IN RRSIG	NSEC 8 2 86400 20150706060002 20150606060002 61239 arpa. eRMrY3xeyd3wxmF+bX6GJMgAdDEj5jgGfkzsVhEVUCWR4M+BtwBrjWIB uFDVWsJtmLDLTHX/Sy7+zlIJhEiBzwMxQeJBnaqEd4Vy8MCydVQxjhHJ e61K6/zBQxjjOv+r3S0SAX4jwe9vPnLj39WkDvAaOvR1aOdHD2a5Co78 Cg0=
+as112.arpa.				      172800 IN	NS	a.iana-servers.net.
+as112.arpa.				      172800 IN	NS	b.iana-servers.net.
+as112.arpa.				      172800 IN	NS	c.iana-servers.net.
+as112.arpa.				      86400 IN DS	20236 8 1 1307E5595598B25FE2EB07BCEF767C9D96C3ECDC
+as112.arpa.				      86400 IN DS	20236 8 2 72C9E5D15ACCC54A32C8C76FE5944BCBF3AABC2B13DC417609763E57 BD89D515
+as112.arpa.				      86400 IN RRSIG	DS 8 2 86400 20150706070002 20150606070002 61239 arpa. a+Hw2DZM6w4mZZbUp1W2rhGJHni4spxuXJOhhkkzvre1aNxyZsrIHkQp w9SiQMTUInIqHT6/cZWQZb8KJxa1SnEUwWSRQ0fDPVruZqe0RAzLPC9N N2xyyNcA0BiEK8+9aZjpPrgbTadeVRu2unG7oeGTntTalpRnfk17QkIU pjA=
+as112.arpa.				      86400 IN NSEC	e164.arpa. NS DS RRSIG NSEC
+as112.arpa.				      86400 IN RRSIG	NSEC 8 2 86400 20150706070002 20150606070002 61239 arpa. 6lvYBUrH7WJcy5tjxi+um8wHmdzag3RyaNfJb2GzC6CkNBb4PsS0f09U vrejP9qSwhjCYEuhdIEI/lro2s3x3B2+iL4vQxygT85mJQVm88B1Iq1a D/SyeVqxtkrtJuW1J+A4mdM9fcAAjRllgdcIOPQkpIwOzUgThc08ZYqR 914=
 ip6.arpa.				      172800 IN	NS	a.ip6-servers.arpa.
 ip6.arpa.				      172800 IN	NS	b.ip6-servers.arpa.
 ip6.arpa.				      172800 IN	NS	c.ip6-servers.arpa.
@@ -53,17 +51,65 @@ ip6.arpa.				      172800 IN	NS	d.ip6-servers.arpa.
 ip6.arpa.				      172800 IN	NS	e.ip6-servers.arpa.
 ip6.arpa.				      172800 IN	NS	f.ip6-servers.arpa.
 ip6.arpa.				      86400 IN DS	13880 8 2 068554EFCB5861F42AF93EF8E79C442A86C16FC5652E6B6D2419ED52 7F344D17
-ip6.arpa.				      86400 IN RRSIG	DS 8 2 86400 20150706060002 20150606060002 61239 arpa. vIFTK75/OpT/V2oYMXpGL+IitrcUBJdCfgtGAFRnrp/Mz9ZvFrIk+WVC pwSK1fZZy35WnQwwjHq3mfBAHUifMx8sTlEI0x7cp22Cjfg8FG8dvyhk 8FjFmFRBRrIxXwrG/icg3XEer8kMGp48as5A2qQle2TOGOxDO0tWVyL4 OgE=
+ip6.arpa.				      86400 IN RRSIG	DS 8 2 86400 20150706070002 20150606070002 61239 arpa. xPUGFDPWjeQrlVdQtBc436gWv4DKH5RkMRVSuHosSjyRdF2T+2DGrkyT 1E8Mbh0qwgnStF2R+u6qpkNQB4ScP5sIb9YyzGrKwg1kFlDRKSOyT7Ad rsLCft+PdD+XH3iOCjXxs9Bb7w6Umdtvm02yHHhSX5rPhK4Ga09jVTU/ 9Bw=
 ip6.arpa.				      86400 IN NSEC	ip6-servers.arpa. NS DS RRSIG NSEC
-ip6.arpa.				      86400 IN RRSIG	NSEC 8 2 86400 20150706060002 20150606060002 61239 arpa. Gfb6eCTrBdBKpg8XG97Mi05eleEV75xURW5O63tZgruT0GTqnHfdGcPS /xb3dC82c/DowoQujxF9Vzlk6F6dAcuPJMJlhVfMUlfvOHg3FShTblPz 3KCZLifBmDbPHY2gj9spYq1psb5HCjnG2b1O36nomiD5gDOF3NrCoRw6 8VQ=
-as112.arpa.				      172800 IN	NS	a.iana-servers.net.
-as112.arpa.				      172800 IN	NS	b.iana-servers.net.
-as112.arpa.				      172800 IN	NS	c.iana-servers.net.
-as112.arpa.				      86400 IN DS	20236 8 1 1307E5595598B25FE2EB07BCEF767C9D96C3ECDC
-as112.arpa.				      86400 IN DS	20236 8 2 72C9E5D15ACCC54A32C8C76FE5944BCBF3AABC2B13DC417609763E57 BD89D515
-as112.arpa.				      86400 IN RRSIG	DS 8 2 86400 20150706060002 20150606060002 61239 arpa. rvo3o/1V3anpcp63hBytzf3Q5UWCE+5kTRz45DWXYOI7h5MvcfvqjgJj ZjCF76AqBVyHYbvt3g5FKxQNMwOumjNv4Xh39LITzI9m+Oo8HNqceOWn Py8sEGS0kaGsc4dvi8Nr91HQE1zBBwFwjudm7rc134B9EctQbs/r774T YO0=
-as112.arpa.				      86400 IN NSEC	e164.arpa. NS DS RRSIG NSEC
-as112.arpa.				      86400 IN RRSIG	NSEC 8 2 86400 20150706060002 20150606060002 61239 arpa. PcCo2Moe1ARcGfHfKqjc3hcMEz/BjKn66rKyO9Nmi6XrqQ7kgt0VQaXM DRj+n3RbISTDKtM2OylRoHmZ78YrpJ6LB5OHrovPC+NxBfEC5nQsHe7j Rre57Ut0MFH18ROQGO8a96q0qXiDk35KmIkO2AlZ+sdLkfi4R6zcw6L3 rao=
+ip6.arpa.				      86400 IN RRSIG	NSEC 8 2 86400 20150706070002 20150606070002 61239 arpa. J65dLFvVD/pYx/tXvbCp1Cj6Gt9Pu1Pv4apLR/V4hrrvOGYHvVi7bmT+ C9F+dh9gd//W12vI6n51fqQnhO4XaD7fGF4YfWPDCXtm+egiOhI0jh6X gEpx5pqbcwG4/tpBSZsJdfQHkJj5y0LlJGGQMk33cOt9e2gaEqlLxJtk spo=
+ipv4only.arpa.				      172800 IN	NS	a.iana-servers.net.
+ipv4only.arpa.				      172800 IN	NS	b.iana-servers.net.
+ipv4only.arpa.				      172800 IN	NS	c.iana-servers.net.
+ipv4only.arpa.				      172800 IN	NS	ns.icann.org.
+ipv4only.arpa.				      86400 IN DS	31295 8 1 04098264BE768FEA8E365F6E7F83130431CF276F
+ipv4only.arpa.				      86400 IN DS	31295 8 2 BD8249D6C5F7D13A0D834C3C7598BF8AE8C1D3E2306E149CFF723B6E B16488E1
+ipv4only.arpa.				      86400 IN RRSIG	DS 8 2 86400 20150706070002 20150606070002 61239 arpa. GJahZio34sbBs0Dm8yDV991oovOqP7bXg74fVR+P4zqjlKWWbafnpyZE u1478RWPqAB3DSdAw/gWV2STIZMBaD55OrglP73uqme8sbQuf/iNOM66 87PABLXqrglGljbJ74Bg07xFMHeVa8nHWITn6KSuP8EhdLzQP2fqVlBT RMM=
+ipv4only.arpa.				      86400 IN NSEC	iris.arpa. NS DS RRSIG NSEC
+ipv4only.arpa.				      86400 IN RRSIG	NSEC 8 2 86400 20150706070002 20150606070002 61239 arpa. pmLFAsCX56PkVnMYzBdYf8lLoGYZxei/ZYUIkCtGxHnjw+SCwWZf1a6u onsde28lWtqQlT5qregk5Bkkv+rG3/1R3xJia8L52btXvLb1SEZiw3n+ L1aOmgzq0cQmE9oCkwx+xEVbznX6oMmvpzeqrq8UejRBXJmuvxDDcorz u5Y=
+iris.arpa.				      172800 IN	NS	a.iana-servers.net.
+iris.arpa.				      172800 IN	NS	b.iana-servers.net.
+iris.arpa.				      172800 IN	NS	c.iana-servers.net.
+iris.arpa.				      172800 IN	NS	ns2.lacnic.net.
+iris.arpa.				      172800 IN	NS	sec3.apnic.net.
+iris.arpa.				      86400 IN DS	44285 8 2 05CBF77375A8BF5702CF8E261FF947BE8C8AB7A0B9485A0241EDCFE2 F155C7F3
+iris.arpa.				      86400 IN RRSIG	DS 8 2 86400 20150706070002 20150606070002 61239 arpa. DdDF+yBMZIfojXfgl72YbCQXDccLG70sX43jzGZYkrZy7kaUPFbOoaud pTxY2T7HHFzmRU7E6FhXsBhnlhR4N2O+IuGfIWdvRrUJsbxYmVuzhKWi lr+Nmw+6K48tWwoWAo5e9IoRjzkNCE1ZIZkE0tnJzTEtWLBvtHjqHGia GXs=
+iris.arpa.				      86400 IN NSEC	uri.arpa. NS DS RRSIG NSEC
+iris.arpa.				      86400 IN RRSIG	NSEC 8 2 86400 20150706070002 20150606070002 61239 arpa. 3fj9W5I7mEyHDRU15fXCLNoEPoPQCVfV2yQUQyLpDhfCs5O4/KH138q9 I7coxT1yzNQRc0zvoiJq/yZvK2stIO2M47wiWWgIfXNZ6zT2lB1RWTop 6O6BDAHi6asWvVQmjqF8z6pg5X+X7k4jEjlHoWim2D3/svfegfJBLYZv WnE=
+in-addr.arpa.				      172800 IN	NS	a.in-addr-servers.arpa.
+in-addr.arpa.				      172800 IN	NS	b.in-addr-servers.arpa.
+in-addr.arpa.				      172800 IN	NS	c.in-addr-servers.arpa.
+in-addr.arpa.				      172800 IN	NS	d.in-addr-servers.arpa.
+in-addr.arpa.				      172800 IN	NS	e.in-addr-servers.arpa.
+in-addr.arpa.				      172800 IN	NS	f.in-addr-servers.arpa.
+in-addr.arpa.				      86400 IN DS	53696 8 2 13E5501C56B20394DA921B51412D48B7089C5EB6957A7C58553C4D4D 424F04DF
+in-addr.arpa.				      86400 IN RRSIG	DS 8 2 86400 20150706070002 20150606070002 61239 arpa. tsjwvG6zBzKZ2cef+ORNXC0D1PAmHbxA9/9ikH7o5QYOb8nKOG/MVpM/ 6h1Qrjy7+oNKhsWCDSLWmSazfdiCtLIz06AeCWX4DtckDREW1SLUFZSq bvXvl0+0Qd2dpzoAhuktwizPE7XSXkRQ8R4AMNso2hbj5S4ayZ3dc7FE 7Sk=
+in-addr.arpa.				      86400 IN NSEC	in-addr-servers.arpa. NS DS RRSIG NSEC
+in-addr.arpa.				      86400 IN RRSIG	NSEC 8 2 86400 20150706070002 20150606070002 61239 arpa. qTC0CwW6Te5q45IV+zYLoVMN2PtPtOANUPqKxw1qhZOP+ksXjpw/uhj1 2P7gmW0al0jOPp1neMIUNNgCZnHIbw8T3OvDq5LwI8GmVXmuR7uq4xSa rSJCZfSMPI5QGbFxB6qHnGVZMM9CRrjpuQ9ysHzTDNqPKdHWZ3fea4MM SwU=
+in-addr-servers.arpa.			      172800 IN	NS	a.in-addr-servers.arpa.
+in-addr-servers.arpa.			      172800 IN	NS	b.in-addr-servers.arpa.
+in-addr-servers.arpa.			      172800 IN	NS	c.in-addr-servers.arpa.
+in-addr-servers.arpa.			      172800 IN	NS	d.in-addr-servers.arpa.
+in-addr-servers.arpa.			      172800 IN	NS	e.in-addr-servers.arpa.
+in-addr-servers.arpa.			      172800 IN	NS	f.in-addr-servers.arpa.
+in-addr-servers.arpa.			      86400 IN DS	1987 8 2 DACFDEB02A489A514C6408D0D54E0904FE6E09A6E111ABC9EACB27F6 552805E1
+in-addr-servers.arpa.			      86400 IN RRSIG	DS 8 2 86400 20150706070002 20150606070002 61239 arpa. 4ofzoKW3HitlRE3kFFrDXnkLQbsEDT8bjJwR4f6kFws1eDhWfRHjZmWH uHge9wZa/0nFFY35OUff51J5GIHqqmzdayT4lv66uTkgvj7l7uu3Fx29 gTF6nX/DoqFy3parAqVnd9l01JqgzGtEy0+af0g8KINBrgUnSrVafQgQ FL4=
+in-addr-servers.arpa.			      86400 IN NSEC	ip6.arpa. NS DS RRSIG NSEC
+in-addr-servers.arpa.			      86400 IN RRSIG	NSEC 8 2 86400 20150706070002 20150606070002 61239 arpa. 6EOyX46ITFXpFWrk71UB3JOzVbNP9/Ol5zTuibYS3bxEHKYjtGtXZuRn OU5nV/1Eq7JyV0vEOmjuIgRy1ySglAfHD5bdg+Dsku0IgWLYP73noj/C Iy03IsgYKP3c1d8FUSM6kUbCY6A8ekr/56F8jF8QoEU6ousNoYpbfM5I SYA=
+uri.arpa.				      172800 IN	NS	a.iana-servers.net.
+uri.arpa.				      172800 IN	NS	b.iana-servers.net.
+uri.arpa.				      172800 IN	NS	c.iana-servers.net.
+uri.arpa.				      172800 IN	NS	ns2.lacnic.net.
+uri.arpa.				      172800 IN	NS	sec3.apnic.net.
+uri.arpa.				      86400 IN DS	28547 8 2 DEAEFD0C163175350152DA7B127DC7C4F9EC8BDF04CCC02829455DF8 6C5CA035
+uri.arpa.				      86400 IN RRSIG	DS 8 2 86400 20150706070002 20150606070002 61239 arpa. eyni7t3m0swhkSsPthlrnoIyyvHFB83iceZ6N44SlL25U4STY4d8UEkt cRAINKRm4QUfImpp9TRCc9KeYdWOEioz6Hj4sIpYokiFpS8S2W1XuyI4 0zOnnx8V6ltt65eAruKjOh2yQ/Q61cKvXnOZXY/Ne+IIn45VGWhqCU3N iIw=
+uri.arpa.				      86400 IN NSEC	urn.arpa. NS DS RRSIG NSEC
+uri.arpa.				      86400 IN RRSIG	NSEC 8 2 86400 20150706070002 20150606070002 61239 arpa. dPL9lrucXU1/nMb9iKOyzvfmOT+ZkYN9wMuz9KpnJGVj0tpxOozI+44I mGMm4+oiO1qZfN3iRJX7iIwrhhAiWtvEZDVtdmeBEOJTxF5Mrs3ufzsS PLrfmYyGhrMe7SVQvKDXO1aZU6urELE+DbDi4dP2QJIv1CbLozFn+EA5 iMU=
+urn.arpa.				      172800 IN	NS	a.iana-servers.net.
+urn.arpa.				      172800 IN	NS	b.iana-servers.net.
+urn.arpa.				      172800 IN	NS	c.iana-servers.net.
+urn.arpa.				      172800 IN	NS	ns2.lacnic.net.
+urn.arpa.				      172800 IN	NS	sec3.apnic.net.
+urn.arpa.				      86400 IN DS	45052 8 2 7685B675F93ADA412CFE534820C8DCC55654B1711F677BA83A8564C1 2943F695
+urn.arpa.				      86400 IN RRSIG	DS 8 2 86400 20150706070002 20150606070002 61239 arpa. iD+36zt+2HEgeHZciYm/5kgsMwbBCtT14Lu1chOmGBKwT6aH59AKplo/ OeKaBJpWRpmKD1QBeHX/ydY6jy94Z5ZDCWWitBx5AknrqMgfrOOjbYLo HZWjshgbXNbmfEJqF6uFPKcQqX+1NAv9/JAwaLyLafvgMIQiurCcpOI4 Ex8=
+urn.arpa.				      86400 IN NSEC	arpa. NS DS RRSIG NSEC
+urn.arpa.				      86400 IN RRSIG	NSEC 8 2 86400 20150706070002 20150606070002 61239 arpa. kWiaF6bKFKykHhxnqJN/5UG2fsLNkaWyQ7b7QSw9/dx0lglLD5RTGqhJ n/b0aosVpu4jM9EsjH7zx9Ex/kdb8IW4GOgFdjn1/fFg3UyZ04nedG5c vrNKlEOQmInrr+NFMqwMeSE8evmxPIkCByBxbsR+efLWkO8l/5AVb+Ra Aww=
 e164.arpa.				      172800 IN	NS	ns3.nic.fr.
 e164.arpa.				      172800 IN	NS	pri.authdns.ripe.net.
 e164.arpa.				      172800 IN	NS	sec1.apnic.net.
@@ -72,9 +118,9 @@ e164.arpa.				      172800 IN	NS	sns-pb.isc.org.
 e164.arpa.				      172800 IN	NS	tinnie.arin.net.
 e164.arpa.				      86400 IN DS	10057 5 1 3DEDB97EADE3CAE3C511138746289EBE93FF7E5A
 e164.arpa.				      86400 IN DS	10057 5 2 F875AEF290015094B323F5517CF12F6A85DEC51BBDCD8F1AE05FD83D 2FC454DB
-e164.arpa.				      86400 IN RRSIG	DS 8 2 86400 20150706060002 20150606060002 61239 arpa. M6k65JHcPGDYSh+YYw/sbbrHa4oOlDyJOF60XME4eOzRzI5/bMV3QFOW +crudQMEZC+ZxdoX3tG6KYKXrTKDoYI5penlu/7/4fJHTIQEcZLwUZyc IUTE82gozlMz/HXmSBMZ9tpHa+ZQr9tZVTgCBx23JrMXYDejNeApGqPR Z5I=
+e164.arpa.				      86400 IN RRSIG	DS 8 2 86400 20150706070002 20150606070002 61239 arpa. zv1pottz0qLYTsOAWfgVaDWC9zME2ko0KHxEQGeUGu0VMwZlo0LUwi5k wg15wWEjfINMgHaW17UXpwEg91pgbN2bbEvIimi1KtUpYJFbMxXHMgSJ /5UJpHJzv8j0AByCS1NvMrJT0IjUcpScW4cRYbm/sKInA/23FV02hX1E YlA=
 e164.arpa.				      86400 IN NSEC	in-addr.arpa. NS DS RRSIG NSEC
-e164.arpa.				      86400 IN RRSIG	NSEC 8 2 86400 20150706060002 20150606060002 61239 arpa. 0G2SVjOl+OzD9DhcmkXBKS4BlQZkImDK6wgMS+WN5lZwD/allcje+aBo efIC7GIQn8wbaV1fPaiNcvtspqsHm/x/yZ6MuqMGJEnOwBBVc7RX5i6X GBe1Ji2CuW1NqIGew5Y9vf3oAHtQ6DVWJceIFzbUdtrK/L7bWs/vjUTg DRw=
+e164.arpa.				      86400 IN RRSIG	NSEC 8 2 86400 20150706070002 20150606070002 61239 arpa. XkMVzuorv38nFCF4ql4jlG68EgLMWMhFiK7YzWZKOTNi/G2yfD8BxqDv yaf+P3armInvRIm++4dDyDcHycgEjVxNLcmDzdEpcupS8kWxwy2J02z8 g6QFcfXhapHtufzP95huUQNy+VZkxV6uTHtFIfsDBVYw0luPMFL6kgsA KPE=
 ip6-servers.arpa.			      172800 IN	NS	a.ip6-servers.arpa.
 ip6-servers.arpa.			      172800 IN	NS	b.ip6-servers.arpa.
 ip6-servers.arpa.			      172800 IN	NS	c.ip6-servers.arpa.
@@ -82,52 +128,6 @@ ip6-servers.arpa.			      172800 IN	NS	d.ip6-servers.arpa.
 ip6-servers.arpa.			      172800 IN	NS	e.ip6-servers.arpa.
 ip6-servers.arpa.			      172800 IN	NS	f.ip6-servers.arpa.
 ip6-servers.arpa.			      86400 IN DS	19720 8 2 F154D00F5759C274DE9CAD621910CC0B87D720D35B7DE4B0B566E135 196C38E2
-ip6-servers.arpa.			      86400 IN RRSIG	DS 8 2 86400 20150706060002 20150606060002 61239 arpa. 8EBMAw0Vlq5v+oGDqqRcnyW8WHlLk7zvm+DEfP7Q1nOFaL0ogYjW9/bT /mfWw/2+TcpWLvpanCfSNdG65iXTUiKkbhBwlP3t3Uc4F45Kbs/LL3F2 FF4vVZLA1ODOoGP2nZmyuGMPwnI69qP8Zvcm7Fz4/BYbE78wEvF1KDa0 AnE=
+ip6-servers.arpa.			      86400 IN RRSIG	DS 8 2 86400 20150706070002 20150606070002 61239 arpa. 8THEdbjiIpnVAQVtSsb/U+PXgTctwDhBwXn5m5TbK68Rzt9y9uKofm2U X30TznBWTNOoLMzUCt2i3LU6YMy/28pSBWwtuaClNW7J5FhFIP6JC5Hl 2V2YIO7rS8rnkJakM0kTjxpt4hjb4WL3sBYlE502Oe4bimBVLN/v6DvW Ke8=
 ip6-servers.arpa.			      86400 IN NSEC	ipv4only.arpa. NS DS RRSIG NSEC
-ip6-servers.arpa.			      86400 IN RRSIG	NSEC 8 2 86400 20150706060002 20150606060002 61239 arpa. aRaushR0gWf44Bs5GORgz57OOxUD1Cf2TwCWaQGxFb5oKT7EHMD9MSnU yFoTaF+rGXBLlPCbb39Hl9D8f1ulLNpNhluPLzGzYkqaerXmURaY+3Gf zBw7kMNcQ0tphIxToVlJUIf3ppQzKmvz6h2v6pjjW/0ntaxdIIblN58y v9o=
-uri.arpa.				      172800 IN	NS	a.iana-servers.net.
-uri.arpa.				      172800 IN	NS	b.iana-servers.net.
-uri.arpa.				      172800 IN	NS	c.iana-servers.net.
-uri.arpa.				      172800 IN	NS	ns2.lacnic.net.
-uri.arpa.				      172800 IN	NS	sec3.apnic.net.
-uri.arpa.				      86400 IN DS	28547 8 2 DEAEFD0C163175350152DA7B127DC7C4F9EC8BDF04CCC02829455DF8 6C5CA035
-uri.arpa.				      86400 IN RRSIG	DS 8 2 86400 20150706060002 20150606060002 61239 arpa. nbYF1CA6GuzHhuwX5dK+Rutmhj5knmb7zeTe4tLVYfVe91zHPWBk/XC0 SnsYdIK3pPAJbL3pX3RnG0rB9Y9QWfdq8i5+3Z4kUKJcPAEJFTw520hq eBDFGYEbB9b9ZupoAS6eJ5WAm+hRZAtd/lOdT3rjxN3TpSYy7ufhS3ra GdI=
-uri.arpa.				      86400 IN NSEC	urn.arpa. NS DS RRSIG NSEC
-uri.arpa.				      86400 IN RRSIG	NSEC 8 2 86400 20150706060002 20150606060002 61239 arpa. 7VCDIxXae0zrA3ydPz5EOqkBxub52a5cAoCMfZ1mWQCg27zfIGI5izEb y0M8mYfI7XJXvttdaqMUbSfQNDW9S3lOXTDUOT/7LJblXebxXdYqBle1 ylmjFMLiOwxK/P3Cxp0YsZlDRGEHWfU7IY49L0teDBShJi020+65+yjM x2s=
-ipv4only.arpa.				      172800 IN	NS	a.iana-servers.net.
-ipv4only.arpa.				      172800 IN	NS	b.iana-servers.net.
-ipv4only.arpa.				      172800 IN	NS	c.iana-servers.net.
-ipv4only.arpa.				      172800 IN	NS	ns.icann.org.
-ipv4only.arpa.				      86400 IN DS	31295 8 1 04098264BE768FEA8E365F6E7F83130431CF276F
-ipv4only.arpa.				      86400 IN DS	31295 8 2 BD8249D6C5F7D13A0D834C3C7598BF8AE8C1D3E2306E149CFF723B6E B16488E1
-ipv4only.arpa.				      86400 IN RRSIG	DS 8 2 86400 20150706060002 20150606060002 61239 arpa. w2magC4dSN0PhwexgjlPP1N2bTzVVZGiCF8ZhshjF4g7mnGFA7sxBTr5 dGWjklYJv7APIhpJrNWa98PkEhzV26s/qYqVUc4bsLUlrueK+irPCsOS eDtf2g1TvJBJgqYiaspt2y2U29twbotjPwzEWxoBGybiKWWcvcszH1ww PNQ=
-ipv4only.arpa.				      86400 IN NSEC	iris.arpa. NS DS RRSIG NSEC
-ipv4only.arpa.				      86400 IN RRSIG	NSEC 8 2 86400 20150706060002 20150606060002 61239 arpa. cm5DIOJACth9aMt4rffpfg+YFJaer7A0H0JN32OxtiwR/BMaUHA+dZJj rpuUzKkFAWiDAgfSTqfQzAXrb+gmLbNhdaRvJ0uRcNcZfDihkxYLsUZR NTsNtsCJls2zUmKIlo2za6aj/rIsnp+Gkv1soQF5ibrVTrRyixABI+x8 Yw8=
-iris.arpa.				      172800 IN	NS	a.iana-servers.net.
-iris.arpa.				      172800 IN	NS	b.iana-servers.net.
-iris.arpa.				      172800 IN	NS	c.iana-servers.net.
-iris.arpa.				      172800 IN	NS	ns2.lacnic.net.
-iris.arpa.				      172800 IN	NS	sec3.apnic.net.
-iris.arpa.				      86400 IN DS	44285 8 2 05CBF77375A8BF5702CF8E261FF947BE8C8AB7A0B9485A0241EDCFE2 F155C7F3
-iris.arpa.				      86400 IN RRSIG	DS 8 2 86400 20150706060002 20150606060002 61239 arpa. Ei267F7TXGwRUJci6r7m3aOIjl6WP9WQKg/Om5nFKWlUPMCW7iu0Kwf/ ue0dn3k0KD4qoqe+gxDjUN4XeDvOxn7mcfvvSTyzSEA7HiTJU6WFrhv1 huf9yaPKqbesZ25ACS48adlquQFstTHM9H4ANQuSWB6GlSnbr5Ji8S3X xTM=
-iris.arpa.				      86400 IN NSEC	uri.arpa. NS DS RRSIG NSEC
-iris.arpa.				      86400 IN RRSIG	NSEC 8 2 86400 20150706060002 20150606060002 61239 arpa. 1CsNkg8AlOgZ67+yoRMZ4SD4ermM+dXdDuDqFq3efzya3EUsqjpyCANA IZj2ENusPNPOT3FTEWxzxqwlFDe7xjUSDaPPBStTcOQv+eZJUaS7U5lx KBv2ywD0e4Bb/aYN5TZXMqSsJ9lfAoSXyf/ub+XxW3OHhfkIvArrSGfr CtY=
-urn.arpa.				      172800 IN	NS	a.iana-servers.net.
-urn.arpa.				      172800 IN	NS	b.iana-servers.net.
-urn.arpa.				      172800 IN	NS	c.iana-servers.net.
-urn.arpa.				      172800 IN	NS	ns2.lacnic.net.
-urn.arpa.				      172800 IN	NS	sec3.apnic.net.
-urn.arpa.				      86400 IN DS	45052 8 2 7685B675F93ADA412CFE534820C8DCC55654B1711F677BA83A8564C1 2943F695
-urn.arpa.				      86400 IN RRSIG	DS 8 2 86400 20150706060002 20150606060002 61239 arpa. HuJJaPL9yB01QpAVmcCdTiTUjCLLaAAzVYyhjX5LGNbd/AZh4PwvKoOy oV7taj4wqnXwX+9/tUN+AmCBeSKcIKBh6EwhOX6Dof5/XflXlQalvrPe KJ85IVWboVuh1ruKARaKcFvvZHPNwDtvvhT11+DYQDDy8G1B0PqZ0ArT H5E=
-urn.arpa.				      86400 IN NSEC	arpa. NS DS RRSIG NSEC
-urn.arpa.				      86400 IN RRSIG	NSEC 8 2 86400 20150706060002 20150606060002 61239 arpa. G09S6oetHqr/u+H49UQopli8bMEqPQ4OG37gR4+pR5wsgsU2p+GEs1Ys wH4u9eVUC1SEyugOdvEVg15akmNXeqp/hhtgLkUgytWWDdMgyNqc9bld f+xgbbIhaBdcPRLhOTDGRqLRE7jAqBB3RpmXSNm5LULTib92CLeakInC Rqs=
-in-addr-servers.arpa.			      172800 IN	NS	a.in-addr-servers.arpa.
-in-addr-servers.arpa.			      172800 IN	NS	b.in-addr-servers.arpa.
-in-addr-servers.arpa.			      172800 IN	NS	c.in-addr-servers.arpa.
-in-addr-servers.arpa.			      172800 IN	NS	d.in-addr-servers.arpa.
-in-addr-servers.arpa.			      172800 IN	NS	e.in-addr-servers.arpa.
-in-addr-servers.arpa.			      172800 IN	NS	f.in-addr-servers.arpa.
-in-addr-servers.arpa.			      86400 IN DS	1987 8 2 DACFDEB02A489A514C6408D0D54E0904FE6E09A6E111ABC9EACB27F6 552805E1
-in-addr-servers.arpa.			      86400 IN RRSIG	DS 8 2 86400 20150706060002 20150606060002 61239 arpa. wZHnq4YuwriwqrHuNoymCLy9Wwp8ObncUEiWFQYYJ86jIzDz7k64HqQg ob1IWdRRGO+G/fg3/RZHjYrKmwVm3I6eT8aXse68IjsUepJ+6LUQ2LxQ U2PxUM37489rN0CUIZnywmwFNsl4GUBUsBChVCLiDoYkfI2gFBuUg1Et RkY=
-in-addr-servers.arpa.			      86400 IN NSEC	ip6.arpa. NS DS RRSIG NSEC
-in-addr-servers.arpa.			      86400 IN RRSIG	NSEC 8 2 86400 20150706060002 20150606060002 61239 arpa. aB+4mtBAr1WQDQRte0N564vQAwkHEW/lENIRrVe9ltxUmMC2z2d3fbeE 0JStCGB2zaY4ujz4p5qpVtDR+X59CvOotNx+0oKZ3Mg+tUXrwky+yfIb bYyEkfyJK1/qt50ycOBOXyhYDpnHLgF+eRFUKeqi6TAKDQD18b9lSoyA hn8=
+ip6-servers.arpa.			      86400 IN RRSIG	NSEC 8 2 86400 20150706070002 20150606070002 61239 arpa. JsG4A8rleq0ErVVyRvS7fxd0hOUvTC4onbsQ9g8K4gmZewTkBeakQjf8 SESXSviJYPHAAIy8mdkZRyZk3jsG/3dU+T1KHdFRFsev/pJmR0jhQnRZ 90gbxU552733TUdUO/KTat+8T/gpvx3NuE80jsFl5Rj6GybIYPx2qQFl dEM=
