@@ -39,21 +39,21 @@ Below are details about the different ways of joining the effort.
     BIND:
 
     	masters yeti-dm {
-    		240c:f:1:22::6;			# bii
+    		240c:f:1:22::7;			# bii
     		2001:200:1d9::53;		# wide
-    		2001:559:8000::6;		# tisf
+    		2001:559:8000::7;		# tisf
     	};
 
     NSD:
 
     	zone:
     		name: "."
-    		request-xfr: 240c:f:1:22::6 NOKEY
-    		request-xfr: 2001:559:8000::6 NOKEY
-    		request-xfr: 2001:200:1d9::35 NOKEY
-    		allow-notify: 240c:f:1:22::6 NOKEY
-    		allow-notify: 2001:559:8000::6 NOKEY
-    		allow-notify: 2001:200:1d9::35 NOKEY
+    		request-xfr: 240c:f:1:22::7 NOKEY
+    		request-xfr: 2001:559:8000::7 NOKEY
+    		request-xfr: 2001:200:1d9::53 NOKEY
+    		allow-notify: 240c:f:1:22::7 NOKEY
+    		allow-notify: 2001:559:8000::7 NOKEY
+    		allow-notify: 2001:200:1d9::53 NOKEY
      
     Afterward, please send a mail to coordinators mailing list to notify that it is done.
 
