@@ -5,7 +5,10 @@
 # For discussion of the choice of pcapdump, see the file doc/Capture.md
 
 # binaries needed, change accordingly
-# pcapdump is at https://packages.debian.org/sid/pcaputils
+
+# pcapdump is at https://packages.debian.org/sid/pcaputils You *need*
+# the patch in
+# https://bugs.debian.org/cgi-bin/bugreport.cgi?bug=545985
 PCAPDUMP="/usr/local/bin/pcapdump"
 IFCONFIG="/sbin/ifconfig"
 NTPDATE="/usr/sbin/ntpdate"

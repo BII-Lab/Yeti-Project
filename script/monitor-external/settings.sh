@@ -25,6 +25,8 @@ IFACES="em1"
 #
 #SSH_ID="/root/.ssh/oarc_id_dsa"
 #RM_AFTER_UPLOAD="no"
+# Set to yes if you want to send info about uploads in syslog
+#SYSLOG_UPLOAD="no"
 #DESTINATIONS=""
 #DO_TCP="yes"
 #DO_V6="yes"
@@ -41,5 +43,8 @@ SAVEDIR=/root/data-monitor/data
 # Settings that you shouldn't change
 # 10 minutes
 INTERVAL="600"
+# For dnscap
 KICK_CMD="sh  data-commit.sh $SAVEDIR"
+# For pcapdump
+#KICK_CMD="(cd /usr/local/Yeti; ./data-commit.sh $SAVEDIR) && echo Rotating"
 
