@@ -9,7 +9,12 @@
 
 1. capture-dnscap.sh
      capture DNS packet with dnscap <https://github.com/verisign/dnscap>
-
+[Alternative to the previous one]
+1bis. capture-pcapdump.sh
+     capture DNS packet with pcapdump
+     <https://packages.debian.org/sid/pcaputils> You *need* the patch
+     in <https://bugs.debian.org/cgi-bin/bugreport.cgi?bug=545985>
+     
 2. data-commit.sh
     submit DNS packet via ssh
     
@@ -20,7 +25,7 @@ server：data.dnsv6lab.net
 user：yeti
 
 3. settings.sh
-   config option for dnscap
+   config option for dnscap/pcapdump 
    such as capture interval, ethernet interface, tcp support, fragment and so on
 
 4. run

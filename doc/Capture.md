@@ -5,9 +5,11 @@ DNS traffic sent for later analysis.
 
 Today this is done using
 [dnscap](https://www.dns-oarc.net/tools/dnscap), which is a
-DNS-specific tool to produce pcap files.
+DNS-specific tool to produce pcap files. There are several versions of dnscap floating around, some people use the [Verisign one](https://github.com/verisign/dnscap) 
 
 The script for this is `script/monitor-external/capture-dnscap.sh`.
+
+Since dnscap loses packets in some cases (tested on a Linux kernel), some people use [pcapdump](https://packages.debian.org/sid/pcaputils). It requires [the patch attached to this bug report](https://bugs.debian.org/cgi-bin/bugreport.cgi?bug=545985)
 
 # Packets vs. Messages
 
