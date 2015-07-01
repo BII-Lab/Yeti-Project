@@ -77,6 +77,8 @@ Below are details about the different ways of joining the effort.
 
     https://raw.githubusercontent.com/BII-Lab/Yeti-Project/master/domain/KSK.pub 
 
+    *Warning*: the DNSSEC key of the Yeti root (the KSK) changes *often* (typically every three months). You must therefore configure your resolver to use RFC 5011 automatic update *or* be ready to make many changes manually.
+    
     In the purpose of some experiment, we need information and feedback from client side, so we encourage resolver operator to register it mail address for technical assistance, Yeti  testbed changes or experiments coordination. If you setup your recursive server linked with Yeti root server, please contact <coordinators@lists.yeti-dns.org>.
 
     Configuration of the resolver:
@@ -85,7 +87,8 @@ Below are details about the different ways of joining the effort.
 
     	server:
     		root-hints: "yeti-hints"
-    		trust-anchor-file: yeti-key.key
+		# Check the file is writable by Unbound
+    		auto-trust-anchor-file: autokey/yeti-key.key
 
     BIND:
 
@@ -94,6 +97,7 @@ Below are details about the different ways of joining the effort.
            file "/etc/bind/yeti-hints";
         };
 
+        # TODO: modify for RFC 5011 support
         trusted-keys {
              "."             257 3 8 "AwEAAchb6LrHCdz9Yo55u1id/b+X1FqVDF66xNrhbgnV+vtpiq7pDsT8 KgzSijNuGs4GLGsMh\
 VE/9H0wOtmVRUQqQ50PHZsiqg8gqB6i5zLortjp aCLZS7Oke1xP+6LzVRgT4c8NXlRBg3m/gDjzijBD0BMACjVGZNv0gReA g2OCr\
