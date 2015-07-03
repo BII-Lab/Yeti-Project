@@ -75,14 +75,3 @@ application transactions.
 4. Source-Identifying Data. Participant may choose, at its own
    discretion, to “anonymize” source-identifying elements (for example
    IP addresses) prior to submitting Data.
-
-5. Participant Use of Data. Participant shall not use or circulate
-   Confidential Data within its own organization or its affiliates
-   (that is, entities controlled by or under common control with
-   Participant) other than as strictly necessary on a need-to-know
-   basis, and then with appropriate written confidentiality
-   agreements. In no event shall Participant cause, permit or enable
-   any third party to have access to or use Confidential Data in any
-   manner whatsoever. In no event shall Participant (or anyone to
-   whom it discloses Confidential Data) package or repackage any
-   Confidential Data into a commercial product or service.
