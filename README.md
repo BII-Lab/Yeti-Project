@@ -34,6 +34,8 @@ Below are details about the different ways of joining the effort.
 
     **Step 2: Root server setup**
 
+    The root server must provide DNS service only over IPv6. No A record and no answer when queried over IPv4.
+    
     Configure the root server as a slave to the Yeti DM. You can add the following to the configuration file of your root server.
 
     BIND:
