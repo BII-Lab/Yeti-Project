@@ -30,3 +30,10 @@ user：yeti
 
 4. run
     sh capture-dnscap.sh
+
+note:
+    on ubuntu 14.04.2(kernel 4.0.7), dnscap works well.
+    on Centos 6(kernel 2.6.32.*), dnscap works well.
+    on FreeBSD 10.0, dnscap works well.
+	
+    linux kernel below 3.19, dnscap some times lost packets.
