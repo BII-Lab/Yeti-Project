@@ -36,4 +36,4 @@ note:
     on Centos 6(kernel 2.6.32.*), dnscap works well.
     on FreeBSD 10.0, dnscap works well.
 	
-    linux kernel below 3.19, dnscap some times lost packets.
+    linux kernel below 3.19, dnscap sometimes lost packets.
