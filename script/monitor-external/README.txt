@@ -26,7 +26,7 @@ user：yeti
 
 3. settings.sh
    config option for dnscap/pcapdump 
-   confiure SSH_ID as user's SSH private key
+   configure SSH_ID as user's SSH private key
    such as capture interval, ethernet interface, tcp support, fragment and so on
 
 4. run
