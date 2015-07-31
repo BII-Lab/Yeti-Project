@@ -1,7 +1,7 @@
-##Yeti Root Testbed Health Monitoring Proposal
+#Yeti Root Testbed Health Monitoring Proposal
  
 0. introduction
--------
+------------
 Yeti root testbed sometimes will get problmes, such as network
 failures, DSC page data missing, without response, data inconsistency 
 and so on. so we need to detect the running status of yeti root name 
@@ -14,14 +14,14 @@ Breif outline:
     How to show the monitoring data: section 8
 
 1. yeti  server network metrics: all yeti servers
----------
+------------
     1.1 ping6 dealy
         check per an hour
     1.2 Hoplimit
         count IPv6 Hoplimit
         
 2. Yeti Distribution Masters metrics
---------
+------------
     2.1 DM group
            BII,WIDE
     2.2 SOA serial number
@@ -33,7 +33,7 @@ Breif outline:
         ZSK, KSK status
         
 3. Yeti root name server metrics
----------
+------------
     3.1 SOA serial number
         compare with other root name servers
     3.2 RTT
@@ -45,19 +45,19 @@ Breif outline:
          open or closed
  
 4. Yeti recursive server metrics
----------
+------------
     4.1 RTT
     4.2 SOA
     4.3 DNSKEY
     4.4 root zone NS records
 
 5. DSC/data collecting system
---------
+------------
     5.1 root server upload data or not
     
 	
 6. result format
---------
+------------
     use json to store monitoring result
 	
 	6.1 root server sample
@@ -90,12 +90,12 @@ Breif outline:
 	}
 
 7. How to monitoring
-----------
+------------
     7.1 monitoring rate
 	    per hour
 		
 8. How to show the monitoring result
----------
+------------
     8.1 display in official website
  	    yeti-dns.org
 
