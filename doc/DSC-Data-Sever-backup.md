@@ -6,7 +6,7 @@ Some reason cause root server can't upload data to yeti data storage server.
 such as network failure, middlebox or other problems. so we want to fix this
 problem. 
 
-One simple methord is to add a backup server on a different location. We update 
+One simple method is to add a backup server on a different location. We update 
 the upload code to use "SRV" records so that the upload process automatically 
 falls back to a secondary location.
  
