@@ -9,7 +9,8 @@ and so on. so we need to detect the running status of yeti root name
 servers. In this document we are propose what metrics to be monitored 
 and how to conduct the monitoring work in Yeti testbed.
 	
-Breif outline: 
+Brief outline:
+
     What metrics will be monitored: section 1-6
     How to do monitoring: section 7
     How to show the monitoring data: section 8
