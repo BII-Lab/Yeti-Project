@@ -28,7 +28,7 @@ Breif outline:
     2.2 SOA serial number
         compare with other root name servers
     2.3 RTT
-        dig  Query time
+        dig query respone time
     2.4 NS records
     2.5 DNSKEY
         ZSK, KSK status
@@ -38,7 +38,7 @@ Breif outline:
     3.1 SOA serial number
         compare with other root name servers
     3.2 RTT
-        dig  Query time
+        dig query response time
     3.3 NS records
     3.4 DNSKEY
         ZSK, KSK status
@@ -67,7 +67,7 @@ Breif outline:
 	"Status": "UP",
 	"Ping6": "100ms",
 	"RTT":	"295ms",
-	"Serial":	"2015072600",
+	"Serial": "2015072600",
 	"NS": [
 		{"Name":"bii.dns-lab.net.","IPV6":"240c:f:1:22::6"},
 		{"Name":"yeti.bofh.priv.at.","IPV6":"2a01:4f8:161:6106:1::10"},
@@ -82,7 +82,7 @@ Breif outline:
 	],
 	"ZSK": [
 		{"Algorithm":8,"Last section":"M8L51I/b"},
-		{"Algorithm":8,"Last  section":"ylQALn9x"}
+		{"Algorithm":8,"Last section":"ylQALn9x"}
 	],
 	"KSK": [
 		{"Algorithm":8,"Last section":"ABX8sQmwO7s="}
