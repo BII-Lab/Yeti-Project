@@ -3,9 +3,9 @@
 0. introduction
 ------------
 
-Yeti root testbed sometimes will get problmes, such as network
+Yeti root testbed sometimes will get problems, such as network
 failures, DSC page data missing, without response, data inconsistency 
-and so on. so we need to detect the running status of yeti root name 
+and so on. So we need to detect the running status of Yeti root name 
 servers. In this document we are propose what metrics to be monitored 
 and how to conduct the monitoring work in Yeti testbed.
 	
@@ -17,7 +17,7 @@ Brief outline:
 
 1. yeti  server network metrics: all yeti servers
 ------------
-    1.1 ping6 dealy
+    1.1 ping6 dealy (??? daily?)
         check per an hour
     1.2 Hoplimit
         count IPv6 Hoplimit
