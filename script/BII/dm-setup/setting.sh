@@ -21,8 +21,6 @@ fi
 [ ! -d ${ROOT_ZONE_PATH} ] && mkdir -p ${ROOT_ZONE_PATH}
 
 # key dir for bind9
-arpakeydir=$script_path/keys/arpa
-[ ! -d $arpakeydir ] && mkdir -p $arpakeydir
 rootkeydir=$script_path/keys/root
 [ ! -d $rootkeydir ] && mkdir -p $rootkeydir
  
