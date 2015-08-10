@@ -13,7 +13,7 @@ Operation System：Linux/NetBSD
     configure root zone params
     configure  root  nameservers
 
-7. get root and arpa’s KSK/ZSK from BII
+7. get root zone KSK/ZSK from BII
 Notice: 
 1) The algorithm to generate ZSK KSK：RSASHA256 
 2) Length of ZSK：1024, TTL: 2 weeks 
@@ -28,7 +28,7 @@ Notice:
 
 9. Add plans in crontab 
 (1)run resigning script everyday 
-sh /path/to/gen_root.sh autoupdate ---- Update root.zone, arpa.zone; sign root.zone and arpa.zone; reload named
+sh /path/to/gen_root.sh autoupdate ---- Update root.zone; sign root.zone; reload named
 
 (2)add time task key rollover 
 sh /path/to/update_soa_resign_zone.sh ----- update soa && resigning; run two days before ZSK/KSK inactive 
