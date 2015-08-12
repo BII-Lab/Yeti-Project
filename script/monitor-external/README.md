@@ -15,12 +15,12 @@
 
 1. capture-dnscap.sh
 ------------
-     capture DNS packet with dnscap <https://github.com/verisign/dnscap>
-[Alternative to the previous one]
-1bis. capture-pcapdump.sh
-     capture DNS packet with pcapdump
-     <https://packages.debian.org/sid/pcaputils> You *need* the patch
-     in <https://bugs.debian.org/cgi-bin/bugreport.cgi?bug=545985>
+     capture DNS packet with dnscap <https://github.com/verisign/dnscap>  
+    [Alternative to the previous one]  
+       capture-pcapdump.sh  
+       capture DNS packet with pcapdump
+       <https://packages.debian.org/sid/pcaputils>  
+     You *need* the patch in <https://bugs.debian.org/cgi-bin/bugreport.cgi?bug=545985>
      
 2. data-commit.sh
 ------------
