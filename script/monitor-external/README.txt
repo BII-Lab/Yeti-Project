@@ -2,10 +2,12 @@
 #
 # scripts from dns-orac ditl-tools
 #
-# capture DNS packet on DNS servers and save as pcap file, then send to our
+# capture DNS packet on DNS servers and save as pcap file, then send to Yeti
 # storage server
 #
 #
+0. setup.sh
+    install dnscap and wrapsrv
 
 1. capture-dnscap.sh
      capture DNS packet with dnscap <https://github.com/verisign/dnscap>
@@ -20,17 +22,21 @@
     
     notice: use ssh PubkeyAuthentication, so user should provide ssh public key
 
-collector info：
-server：data.dnsv6lab.net
-user：yeti
-
 3. settings.sh
-   config option for dnscap/pcapdump 
+   configure option for dnscap/pcapdump 
    configure SSH_ID as user's SSH private key
+   configure SAVEDIR to store pacp file
+   configure KICK_CMD, choose dnscap or pcapdump
    such as capture interval, ethernet interface, tcp support, fragment and so on
 
-4. run
-    sh capture-dnscap.sh
+4. how to run
+    1) setup
+       you should run command 'bash setup.sh', this will install dnscap and wrapsrv
+    2) run dnscap
+        sh capture-dnscap.sh
+    3) add task in crontab, monitor dnscap process
+       "*       *       *       *       *       root	[ pgrep dnscap ] || cd /path/of/capture-dnscap.sh && sh capture-dnscap.sh"
+
 
 note:
     on ubuntu 14.04.2(kernel 4.0.7), dnscap works well.
@@ -38,3 +44,4 @@ note:
     on FreeBSD 10.0, dnscap works well.
 	
     linux kernel below 3.19, dnscap sometimes lost packets.
+    so if choose Linux and use dnscap to capture packet, please upgrage your kernel.
