@@ -6,6 +6,8 @@
  capture DNS packet on DNS servers and save as pcap file, then send to Yeti
  storage server
 
+ please refer to <https://github.com/BII-Lab/Yeti-Project/blob/master/doc/Capture.md>
+
 
 0. setup.sh
 ------------
@@ -42,7 +44,7 @@
     2) run dnscap
         sh capture-dnscap.sh
     3) add task in crontab, monitor dnscap process
-       "*       *       *       *       *       root	pgrep dnscap || (cd /path/of/capture-dnscap.sh && sh capture-dnscap.sh")
+       "*       *       *       *       *       root	pgrep dnscap || (cd /path/of/capture-dnscap.sh && sh capture-dnscap.sh)"
 
 
 5. note
