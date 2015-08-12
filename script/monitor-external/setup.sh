@@ -24,8 +24,8 @@ install_wrapsrv() {
     cd wrapsrv
     make clean
 
-    if [ "$OS" = "FeeBSD" ]; then
-        make CC=cc LDFLAGS=
+    if [ "$OS" = "FreeBSD" ]; then
+        make CC=cc LDFLAGS=""
     elif [ "$OS" = "Linux" ]; then
         make
     else
