@@ -42,7 +42,7 @@
     2) run dnscap
         sh capture-dnscap.sh
     3) add task in crontab, monitor dnscap process
-       "*       *       *       *       *       root	[ pgrep dnscap ] || cd /path/of/capture-dnscap.sh && sh capture-dnscap.sh"
+       "*       *       *       *       *       root	pgrep dnscap || (cd /path/of/capture-dnscap.sh && sh capture-dnscap.sh")
 
 
 5. note
