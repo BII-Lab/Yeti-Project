@@ -30,11 +30,11 @@
 
 3. settings.sh
 ------------
-   configure option for dnscap/pcapdump 
-   configure SSH_ID as user's SSH private key
-   configure SAVEDIR to store pacp file
-   configure KICK_CMD, choose dnscap or pcapdump
-   such as capture interval, ethernet interface, tcp support, fragment and so on
+   configure option for dnscap/pcapdump  
+   configure SSH_ID as user's SSH private key  
+   configure SAVEDIR to store pacp file  
+   configure KICK_CMD, choose dnscap or pcapdump  
+   such as capture interval, ethernet interface, tcp support, fragment and so on  
 
 4. how to run
 ------------
