@@ -14,10 +14,7 @@ falls back to a secondary location.
 ---------
     srv:
     _data._tcp.yeti-dns.org  0 1 22 data.yeti-dns.org     # BII
-    _data._tcp.yeti-dns.org  0 2 22 bakup.yeti-dns.org    # VPS
-
-    data.yeti-dns.org 240c:f:1:23::33
-    backup.yeti-dns.org 2001:19f0:6c00:8963::33
+    _data._tcp.yeti-dns.org  0 2 22 backup.yeti-dns.org    # VPS
 
 2. data store
 ---------
