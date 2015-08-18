@@ -146,7 +146,7 @@ fi
 
 # NTP Check
 # Verifies if the clocks are properly synchronized
-NTP_CHECK=`${NTPDATE} -q clock.isc.org
+NTP_CHECK=`${NTPDATE} -q clock.isc.org`
 if [ $? != "0" ]; then
     echo "NTP check failed!"
     echo $NTP_CHECK
