@@ -31,7 +31,9 @@ IANA Root Zone
 The root zone is currently downloaded using AXFR from
 F.ROOT-SERVERS.NET:
 
+```sh
    $ dig -t axfr . @f.root-servers.net.
+```
 
 This appears to be the best way to get the updated version of the root
 zone as soon as possible.
@@ -60,12 +62,12 @@ The root zone is modified as follows:
     * The RRSIG and NSEC records
 * The IANA root server records are removed:
     * The NS records for [A-M].ROOT-SERVERS.NET
-    * The A and AAAA glue records for [A-M].ROOT-SERVERS.NET
 * The Yeti DNSSEC information is added:
     * The DNSKEY records
 * The Yeti root server records are added:
     * The NS records
     * The AAAA glue records
+* The Yeti root zone is signed
 
 It might be worthwhile to use the serial value in the SOA field,
 however for now we duplicate the IANA serial value.
@@ -132,6 +134,10 @@ sync_yeti_roots:
 We choose 48 hours as the current time to adopt a new list of Yeti
 name servers. This allows plenty of time for for DM administrators to
 fix issues.
+
+Only a single PENDING change is possible at one time. This is an
+entire new list of Yeti root servers. Further changes must be held
+until the current set is applied.
 
 Note that it might be possible to start using the new list of Yeti
 name servers as soon as all DM have received it. However for
