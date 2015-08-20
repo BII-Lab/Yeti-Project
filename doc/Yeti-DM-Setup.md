@@ -62,7 +62,6 @@ The root zone is modified as follows:
     * The RRSIG and NSEC records
 * The IANA root server records are removed:
     * The NS records for [A-M].ROOT-SERVERS.NET
-    * The A and AAAA glue records for [A-M].ROOT-SERVERS.NET
 * The Yeti DNSSEC information is added:
     * The DNSKEY records
 * The Yeti root server records are added:
