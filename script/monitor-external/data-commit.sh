@@ -1,21 +1,22 @@
 #!/bin/bash
- 
+
 SAVEDIR=$1
 SRVNAME="_data._tcp.yeti-dns.org"
 REMOTE="yeti@%h -p %p"
 
-DATANAME=`ls -lhtr $SAVEDIR | tail -n 3 |awk '{print $NF}' |sed -n 1p` 
-NODENAME=`hostname`  
-
-SSH_BIN="/usr/bin/ssh"
+SSH_BIN=/usr/bin/ssh
+# https://github.com/farsightsec/wrapsrv
 WRAPSRV_BIN="/usr/local/bin/wrapsrv"
+NODENAME=$(hostname)
 
 # Read local definitions if there is any
 # You can use this file to set your own values without modifying this
 # script
 if [ -s settings.sh ]; then
-    . ./settings.sh
+    . ./settings.sh $SAVEDIR
 fi
+
+DATANAME=$(ls -lh $SAVEDIR | tail -n 3 |awk '{print $NF}' |sed -n 1p)
 
 ##----md5sum---md5-------
 system=`uname -s`
@@ -28,7 +29,6 @@ elif [ $system = "FreeBSD" ]; then
 elif [ $system = "NetBSD" ]; then
     MY_MD5=`/usr/bin/md5 "${SAVEDIR}/${DATANAME}" | awk '{print $4}'`
 fi
-
 if [ "$SYSLOG_UPLOAD" = "yes" ] || [ "$SYSLOG_UPLOAD" = "y" ]; then
     LOGGER="logger -i -t Yeti"
 else
@@ -44,17 +44,17 @@ output=$(
     -o PreferredAuthentications=publickey \
     -i ${SSH_ID} \
     $REMOTE \
-    ditl $NODENAME  $DATANAME \
+    ditl $NODENAME $DATANAME \
     < ${SAVEDIR}/$DATANAME
 )
 
 if [ $? -eq 0 ]; then
-    # $SSH_BIN completed successfully" 
-    if [ "$output" = "$MY_MD5" ]; then
-        :
-    else
-        ${LOGGER} "Remote MD5 ($output) does not match local MD5 ($MY_MD5)" 
-    fi
+        ${LOGGER} "$SSH_BIN upload of $DATANAME completed successfully" 
+        if [ "$output" = "$MY_MD5" ]; then
+                ${LOGGER} "Remote and local MD5s match" 
+        else
+                ${LOGGER} "Remote MD5 ($output) does not match local MD5 ($MY_MD5)" 
+        fi
 else
-    ${LOGGER} "ssh upload $DATANAME failed, please check" 
+    ${LOGGER} "$SSH_BIN upload of $DATANAME failed: $?"
 fi
