@@ -89,60 +89,10 @@ on the following schedule:
 A new version of the Yeti root zone is generated if the IANA root zone
 has changed.
 
-Synchronizing List of Yeti Name Servers
-=======================================
-It is important that the root zone produced by the Yeti DM is always
-consistent. In order to do this, we use something like a 2-phase
-commit procedure.
-
-A change to the list of Yeti name servers gets put into a PENDING
-directory on any one of the Yeti DM. This directory contains:
-
-* the new list of Yeti name servers
-* the time when the new list will be valid from
-* a file for each Yeti DM which has confirmed the new list
-
-Each DM will periodically check this PENDING directory. If the
-directory is present, then the DM will download the new information,
-add a file documenting that it has received it.
-
-Sometime after the scheduled time arrives and before the next Yeti
-root zone is generated, each DM will check if the other DM have both
-received the new list of Yeti name servers. If they have, then the
-list of Yeti name servers will be replaced with the new one. If they
-have NOT, then an alarm is raised, and humans debug the failure.
-
-In pseudocode, something like this:
-
-```
-sync_yeti_roots:
-    loop forever:
-        try rsync with PENDING directory with each other DM
-
-        if PENDING list of roots != my list of roots:
-            add a DM file for me in the PENDING directory
-
-        if current time > PENDING scheduled time:
-            if the DM file for each DM is present:
-                copy PENDING list of roots to my list of roots
-            else:
-                PANIC (notify a human being)
-
-        sleep a bit
-```
-
-We choose 48 hours as the current time to adopt a new list of Yeti
-name servers. This allows plenty of time for for DM administrators to
-fix issues.
-
-Only a single PENDING change is possible at one time. This is an
-entire new list of Yeti root servers. Further changes must be held
-until the current set is applied.
-
-Note that it might be possible to start using the new list of Yeti
-name servers as soon as all DM have received it. However for
-predictability and simplicity we will always use the scheduled time
-for now.
+Synchronizing Yeti DM Configuration
+===================================
+Synchronization between the Yeti DM is described in the _Yeti DM
+Synchronization_ document.
 
 [1]: https://www.iana.org/domains/root
 [2]: http://yeti-dns.org/operators.html
