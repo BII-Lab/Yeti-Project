@@ -36,9 +36,10 @@ The SSH keys for the account include one from all three DM operators.
 
 Any firewall must allow access from:
 
-  2001:559:8000::/48      # tisf
-  240c:f:0:ffe7:1::11/128 # bii
-  2001:200::/32           # wide
+
+    2001:559:8000::/48      # tisf
+    240c:f:0:ffe7:1::11/128 # bii
+    2001:200::/32           # wide
 
 Only the master branch is used.
 
