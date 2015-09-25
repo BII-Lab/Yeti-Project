@@ -126,10 +126,10 @@ To generate a root zone the server does this:
 3. If the root serial number is >= `iana-start-serial.txt` then copy
    the `yeti-root-servers.txt` and use that.
 4. Modify the root zone:
-   a. Remove DNSSEC (NSEC, RRSIG, DNSKEY) records.
-   b. Remove records for . (SOA, NS).
-   c. Add Yeti SOA.
-   d. Add Yeti NS RRSET (based on `yeti-root-servers.txt`).
+    a. Remove DNSSEC (NSEC, RRSIG, DNSKEY) records.
+    b. Remove records for . (SOA, NS).
+    c. Add Yeti SOA.
+    d. Add Yeti NS RRSET (based on `yeti-root-servers.txt`).
 5. If the root serial number is >= `iana-start-serial.txt` then copy
    any the KSK and ZSK and add them to the existing set used.
 6. Sign the root zone (will automatically add needed DNSKEY records).
