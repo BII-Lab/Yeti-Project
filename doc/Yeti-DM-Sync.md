@@ -29,8 +29,8 @@ Details of Git Setup
 ====================
 Each DM operator runs a Git repository, with SSH access.
 
-username: yeticonf
-repository: dm
+    username: yeticonf
+    repository: dm
 
 The SSH keys for the account include one from all three DM operators.
 
