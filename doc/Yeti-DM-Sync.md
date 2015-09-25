@@ -75,14 +75,12 @@ An example:
 Each Yeti root starts with a '-' and then contains information about
 it. The following rules apply to each type of variable:
 
-    * `name` is required, and is a host name
-    * `public_ip` is required, and is an IPv6 address
-    * `transfer_net` is optional, and is a list of IPv6 prefixes or
-      addresses. If it is not present, then the `public_ip` of the
-      server is used instead.
-    * `notify_addr` is optional, and is a list of IPv6 addresses. If
-      it is not present, then the `public_ip` of the server is used
-      instead.
+* `name` is required, and is a host name
+* `public_ip` is required, and is an IPv6 address
+* `transfer_net` is optional, and is a list of IPv6 prefixes or addresses. If
+  it is not present, then the `public_ip` of the server is used instead.
+* `notify_addr` is optional, and is a list of IPv6 addresses. If it is not
+  present, then the `public_ip` of the server is used instead.
 
 The `iana-start-serial.txt` file contains the serial in the SOA of the
 IANA root zone when to start using the data:
