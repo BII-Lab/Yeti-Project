@@ -5,7 +5,11 @@ file as the other DM. In order to do this, the DM need to synchronize
 the information used to produce and publish the root zone. This
 includes:
 
-* the list of Yeti root servers
+* the list of Yeti root servers, including:
+    * public IPv6 address
+    * host name
+    * IPv6 addresses originating zone transfer
+    * IPv6 addresses to send DNS notify to
 * the ZSK used to sign the root
 * the KSK used to sign the root
 * the serial when this information is active
@@ -42,29 +46,43 @@ Only the master branch is used.
 
 Details of Files
 ================
-The Git repostitory has the following files:
+The Git repository has the following files:
 
-* yeti-root-servers.txt
+* yeti-root-servers.yaml
 * iana-start-serial.txt
 * yeti-root-ksk.key
 * yeti-root-ksk.private
 * yeti-root-zsk.key
 * yeti-root-zsk.private
 
-The `yeti-root-servers.txt` file contains one line per Yeti root
-server, which has the server name and IPv6 address, like this:
+The `yeti-root-servers.yaml` file contains one entry per Yeti root
+server, which has the server name, public IPv6 address, IPv6 networks
+to allow transfer from, and IPv6 addresses to send NOTIFY packets to.
+An example:
 
-    bii.dns-lab.net.            240c:f:1:22::6
-    yeti.bofh.priv.at.          2a01:4f8:161:6106:1::10
-    yeti.ipv6.ernet.in.         2001:e30:1c1e:1::333
-    dahu1.yeti.eu.org.          2001:4b98:dc2:45:216:3eff:fe4b:8c5b
-    ns-yeti.bondis.org.         2a02:2810:0:405::250
-    yeti-ns.ix.ru.              2001:6d0:6d06::53
-    yeti-ns.tisf.net.           2001:559:8000::6
-    yeti-ns.wide.ad.jp.         2001:200:1d9::35
-    yeti-ns.conit.co.           2607:ff28:2:10::47:a010
-    yeti-ns.as59715.net.        2a02:cdc5:9715:0:185:5:203:53
-    yeti-dns01.dnsworkshop.org. 2001:1608:10:167:32e::53
+```yaml
+    # BII
+    - name:          bii.dns-lab.net
+      public_ip:     240c:f:1:22::6
+      transfer_net:  [ "240c:f:1:23::/48", "240c:f:1:24::6" ]
+      notify_addr:   [ "240c:f:1:23::6", "240c:f:1:24::6" ]
+
+    # TISF
+    - name:          yeti-ns.tisf.net
+      public_ip:     2001:559:8000::6
+```
+
+Each Yeti root starts with a '-' and then contains information about
+it. The following rules apply to each type of variable:
+
+    * `name` is required, and is a host name
+    * `public_ip` is required, and is an IPv6 address
+    * `transfer_net` is optional, and is a list of IPv6 prefixes or
+      addresses. If it is not present, then the `public_ip` of the
+      server is used instead.
+    * `notify_addr` is optional, and is a list of IPv6 addresses. If
+      it is not present, then the `public_ip` of the server is used
+      instead.
 
 The `iana-start-serial.txt` file contains the serial in the SOA of the
 IANA root zone when to start using the data:
@@ -99,17 +117,9 @@ The logic behind any of these is:
 3. "git add"/"git commit"/"git push" of the file(s) and the
    `iana-start-serial.txt` file.
 
-To add a Yeti root server you add the name and IPv6 address of the
-server to `yeti-root-servers.txt`.
-
-To delete a Yeti root server you delete the line containing the name
-and IPv6 address from `yeti-root-servers.txt`.
-
-To renumber a Yeti root server you change the IPv6 address in the
-`yeti-root-servers.txt` file.
-
-To rename a Yeti root server you change the name in the
-`yeti-root-servers.txt` file.
+All of the basic CRUD (Create, Read, Update, Delete) operations on the
+list of Yeti root servers is made by changing the
+`yeti-root-servers.yaml` file.
 
 We rely on the time information in the ZSK and KSK files to revoke and
 remove old keys, so no delete operation is provided.
@@ -121,26 +131,16 @@ To generate a root zone the server does this:
 1. Download the root zone (F.ROOT-SERVERS.NET is good for this).
 2. Check the root zone is correct using DNSSEC validation.
 3. If the root serial number is >= `iana-start-serial.txt` then copy
-   the `yeti-root-servers.txt` and use that.
+   the `yeti-root-servers.yaml` and use that.
 4. Modify the root zone:
     1. Remove DNSSEC (NSEC, RRSIG, DNSKEY) records.
     2. Remove records for . (SOA, NS).
     3. Add Yeti SOA.
-    4. Add Yeti NS RRSET (based on `yeti-root-servers.txt`).
+    4. Add Yeti NS RRSET (based on `yeti-root-servers.yaml`).
 5. If the root serial number is >= `iana-start-serial.txt` then copy
    any the KSK and ZSK and add them to the existing set used.
 6. Sign the root zone (will automatically add needed DNSKEY records).
 7. Reload the root zone. (This will send notifies.)
-
-
-Future Work: ACL
-================
-An additional configuration that should be synchronized between the
-Yeti DM is the ACL of which root servers are allowed to transfer the
-Yeti root zone. This can be done in a similar fashion to the
-`yeti-root-servers.txt` file. It is possible to synchronize this
-without checking the serial number, since it does not affect the
-contents of the Yeti root zone.
 
 
 Future Work: Consistency Protocol
@@ -150,4 +150,11 @@ Yeti root zone. Solving this requires something like a 2-phase commit
 or some other consistency protocol. This coordination protocol has not
 been developed, and will be implemented as a future experiment. For
 now, we rely on each Yeti DM operator monitoring their systems
-carefully, along with uman oversight of the entire process.
+carefully, along with human oversight of the entire process.
+
+
+Future Work: Pre-publish Multiple Keys
+======================================
+Rather than synchronize keys using this protocol, we could instead
+share a set of keys for the future between the coordinators. This
+would make synchronization by a protocol unnecessary.
