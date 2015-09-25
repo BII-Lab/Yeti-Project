@@ -95,7 +95,8 @@ The various operations that change data are:
 
 The logic behind any of these is:
 
-1. Check to make sure that no operation is pending.
+1. Check to make sure that no operation is pending (if the
+   `iana-start-serial.txt` is in the future, an operation is pending).
 2. Update the appropriate file in the directory.
 3. Update the `iana-start-serial.txt` file with a serial 2 days in the
    future.
