@@ -1,8 +1,8 @@
 #!/bin/env sh
 
 if [ $# -ne 2 ];then
-	echo "sh generate_key.sh   zsk|ksk   number(delay_timex:int))"
-	exit 1
+    echo "sh generate_key.sh   zsk|ksk   number(delay_timex:int))"
+    exit 1
 fi
 
 get_workdir() {
@@ -51,9 +51,9 @@ zsk_retire_time="now+$((2*WEEK+4*DAY))"
 zsk_delete_time="now+$((2*WEEK+MAXTTL+ZONE_SYNC_ALL+4*DAY))"
 
 if [ -s ${workdir}/setting.sh ];then
-	. ${workdir}/setting.sh
+    . ${workdir}/setting.sh
 else
-	echo "setting.sh file is not exsit"
+    echo "setting.sh file is not exsit"
     exit 1
 fi
 
@@ -90,17 +90,17 @@ generate_start_serial () {
 #root  ksk
 generate_ksk () {
            
-	$dnsseckeygen -a 8 -b 2048 -K ${new_root_ksk_dir} -f KSK -P ${ksk_publish_time} -A ${ksk_activate_time} -I ${ksk_retire_time} \
-				  -D ${ksk_delete_time} -r /dev/urandom . >${root_ksk_name_file}
+    $dnsseckeygen -a 8 -b 2048 -K ${new_root_ksk_dir} -f KSK -P ${ksk_publish_time} -A ${ksk_activate_time} -I ${ksk_retire_time} \
+                  -D ${ksk_delete_time} -r /dev/urandom . >${root_ksk_name_file}
 
-	if [ $? -eq 0 ];then
+    if [ $? -eq 0 ];then
          echo "`${datetime}` root ksk generate successful" >> ${logfile}
-	else
+    else
          echo  "`${datetime}` Generate root ksk error on the pm(${servername}) server" >>${logfile}
          echo  "`${datetime}` Generate root ksk error on the pm($servername) server" | \
                mail -s "generate root ksk fail"  -r ${sender}   ${admin_mail}
-		 exit 1
-	fi          
+         exit 1
+    fi          
            
 }
 
@@ -127,13 +127,13 @@ generate_zsk () {
  -D ${zsk_delete_time} -r /dev/urandom  .  > ${root_zsk_name_file}
 
     if [ $? -ne  0 ];then 
-	    echo "`${datetime}` Generate root ZSK errors on the pm(${servername}) server"  >> ${logfile}
-   		echo "`${datetime}` Generate root ZSK errors on the pm(${servername}) server " | mail \
-			-s "Generate root ZSK errors"  -r  ${sender}  ${admin_mail} 
+        echo "`${datetime}` Generate root ZSK errors on the pm(${servername}) server"  >> ${logfile}
+        echo "`${datetime}` Generate root ZSK errors on the pm(${servername}) server " | mail \
+            -s "Generate root ZSK errors"  -r  ${sender}  ${admin_mail} 
         exit
     else
 
-	    echo "`${datetime}` Generate root zsk ok !!!"  >> ${logfile}
+        echo "`${datetime}` Generate root zsk ok !!!"  >> ${logfile}
     fi
 }
 
@@ -157,35 +157,35 @@ rename_zsk_move_git () {
 #upload  ksk  for git
 update_git () {
     cd ${git_repository_dir} || (echo "${git_repository_dir} don't exist" && exit 1)
-	for git_option  in pull  add commit  push ;do
+    for git_option  in pull  add commit  push ;do
 
-    	try_num=3
+        try_num=3
 
- 	    while [ ${try_num} -gt 0 ];do
+        while [ ${try_num} -gt 0 ];do
 
-			if [ ${git_option} = "add" ];then
-				${git} ${git_option} ${git_repository_dir}/yeti-root-$1.key ${git_repository_dir}/yeti-root-$1.private \
-				 ${git_repository_dir}/iana-start-serial.txt
+            if [ ${git_option} = "add" ];then
+                ${git} ${git_option} ${git_repository_dir}/yeti-root-$1.key ${git_repository_dir}/yeti-root-$1.private \
+                 ${git_repository_dir}/iana-start-serial.txt
 
-			elif [ ${git_option} = "commit" ];then
-				${git} ${git_option} -m "update root $1"	 
-			else
-	        	${git}  ${git_option}
-			fi
+            elif [ ${git_option} = "commit" ];then
+                ${git} ${git_option} -m "update root $1"     
+            else
+                ${git}  ${git_option}
+            fi
 
-        	if [ $? -eq 0 ];then
-            	break;
-        	fi
+            if [ $? -eq 0 ];then
+                break;
+            fi
 
-        	try_num=`expr $try_num - 1`
+            try_num=`expr $try_num - 1`
 
-        	if [ $try_num -eq 0 ];then
-            	echo "`${datetime}` git ${git_option}  command fail" >> ${logfile}
-            	echo "`${datetime}` git ${git_option}  command fail" |   mail \
-				-s "`${datetime}` git ${git_option} command fail" -r ${sender} ${admin_mail}
-        	    exit 1
-     	    fi
-		done
+            if [ $try_num -eq 0 ];then
+                echo "`${datetime}` git ${git_option}  command fail" >> ${logfile}
+                echo "`${datetime}` git ${git_option}  command fail" |   mail \
+                -s "`${datetime}` git ${git_option} command fail" -r ${sender} ${admin_mail}
+                exit 1
+            fi
+        done
     done
 
 }

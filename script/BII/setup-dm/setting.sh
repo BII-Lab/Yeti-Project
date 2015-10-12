@@ -2,34 +2,40 @@
 # settings for setup DM
 
 servername=`hostname`
-logfile="$workdir/log/setup-dm.log"
 
 # bind9 must listen on this address
 serveraddr="127.0.0.1"
 
-# change to where the final root zone published  
-root_zone_path="/dns/named/zone"
+# set to where the final root zone published  
+root_zone_path="/home/dns/named/zone"
 
-#email alert, must chang this
-sender="xxxx@xxxx.xxx"
-admin_mail="xxxx@xxx.com"
+#genertate notfiy_list and zonetransfer_list 
+named_notify_list="/etc/notify_list.conf"
+named_zonetransfer_acl="/etc/zonetransfer_list.conf"
 
-# must exist and should not change 
+# log, email alert, must chang this
+logfile="$workdir/log/setup-dm.log"
+sender="dbgong@biigroup.cn"
+admin_mail="359432901@qq.com"
+
+# must exist and have content
 icann_ksk_file="$workdir/config/ksk.txt"
 current_root_list="$workdir/config/yeti-root-servers.txt"
 
-# should not change
+#
 iana_start_serial="$workdir/config/iana-start-serial.txt"
 
-# git repo, should change to your git repo
-git_repository_dir="/tmp/yeti-dm"
-git_root_ns_list="$git_repository_dir/yeti-root-servers.txt"
+# git repo
+git_repository_dir="/tmp/dmtest"
+zsk_git_repository_dir="$git_repository_dir"
+git_root_ns_list="$git_repository_dir/yeti-root-servers.yaml"
+
 
 # command depends
 datetime="date +%Y-%m-%d-%H:%M:%S"
 ldns_verify_zone=`which ldns-verify-zone`
 parsednskey_command="$workdir/bin/parsednskey"
-
+python=`which python`
 # key dir for bind9
 rootkeydir=$workdir/keys/root
 [ ! -d $rootkeydir ] && mkdir -p $rootkeydir
@@ -44,8 +50,6 @@ config=$workdir/config
 
 zone_data=$workdir/zone
 [ ! -d ${zone_data} ] &&  mkdir $zone_data
-
-[ ! -d ${workdir}/log ] &&  mkdir -p ${workdir}/log
 
 os=`uname`
 case $os in
@@ -92,12 +96,10 @@ case $os in
     rndc="/usr/local/sbin/rndc"
     dig="/usr/local/bin/dig"
     wget="/usr/local/bin/wget"
-    git="/usr/local/bin/git"
     ;;
 esac
 
-# check depends
-for program in $sed $dnssecsignzone $dnsseckeygen $rndc $dig $wget ${ldns_verify_zone} $git; do
+for program in $sed $dnssecsignzone $dnsseckeygen $rndc $dig $wget $python; do
     if [ ! -x $program ]; then
         command=`basename $program`
         if which $command; then

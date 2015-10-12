@@ -1,47 +1,40 @@
 # How to setup DM
 #
-# Setup-dm script
-# currently only test on Centos6
+#Setup-dm script need to ldns-verify-zone command, to ensure that your system has the command.
 
-0. check depends
-    depends on bind9, golang, git, ldns, bash, wget
-    setup bind9, configure rndc, git repo
-    install golang
-    install ldns(ldns-verify-zone)
-    install wget
-    cd bin/
-    go build checkns.go
-    go build parsednskey.go
 
-1.setting.sh
-	configuration for setup DM
-    change git repo path
-    check depends
+0.setting.sh
+    configuration for setup DM
     
-2.setup-dm.sh
-	Yeti root zone generate and publish
-    must configure keys when sign Yeti root zone
-	sh /path/to/setup-dm.sh
+1.setup-dm.sh
+    Yeti root zone generate and publish
+    sh  /path/to/setup-dm.sh
 
-3.manage_root_zone.sh
-	add Yeti root name server:
-	    sh /path/to/manage_root_zone.sh  add domainname  'IPv6 address'  comment
+2.manage_root_zone.sh
+    add Yeti root name server:
+        sh /path/to/manage_root_zone.sh  add domainname  'IPv6 address'  
 
-	delete Yeti root name server:
-	    sh /path/to/manage_root_zone.sh  del domainname  comment
+    delete Yeti root name server:
+        sh /path/to/manage_root_zone.sh  del domainname  
 
-	renumbering Yeti root name server:
-	    sh /path/to/manage_root_zone.sh  renumbering domainname "new IPv6 address" comment
+    renumber Yeti root server IPv6 address:
+        sh manage_root_zone.sh renumber ns_domain_name new_ipv6address
 
-	update domain of Yeti root name server:
-	    sh /path/to/manage_root_zone.sh  updatens domainname "new domain" comment
+    rename Yeti root server name
+        sh manage_root_zone.sh rename old_domain_name new_domain
 
-4.add_crond.sh zsk|ksk
-	ZSK/KSK rollover
-	sh /path/to/add_crond.sh zsk
-	sh /path/to/add_crond.sh ksk
+    notify list management: add, delete, update
+        sh manage_root_zone.sh
+    zone transfer list management: add, delete, update
+        sh manage_root_zone.sh
 
-5. Todo
-    generate hint file and KSK, upload to github
-    add ACLs for Yeti name server zone transfer
-    rewrite the program with python/golang
+3.add_crond.sh zsk|ksk
+    ZSK/KSK rollover
+    sh /path/to/add_crond.sh zsk
+    sh /path/to/add_crond.sh ksk
+
+4. build depends
+    install golang
+    build bin/*.go
+    install python module yaml
+    install python module argparse

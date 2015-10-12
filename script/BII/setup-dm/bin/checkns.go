@@ -64,50 +64,66 @@ func main() {
 	var (
 		DOMAIN  string
 		ADDRESS string
-		RealAddr []string
+        RealAddr []string
 		ret     int
 	)
 
     if len(os.Args) < 3 {
         fmt.Println("Usage: ", os.Args[0], "-ns", "domain", "-addr", "'IPv6 Address'")
         fmt.Println("Usage: ", os.Args[0], "-ns=domain", "-addr='IPv6 Address'")
+        fmt.Println("Usage: ", os.Args[0], "-addr='IPv6 Address'")
         os.Exit(5)
     }
+
 
 	flag.StringVar(&DOMAIN, "ns", "ns1.sld.net.", "name server(FQDN)")
 	flag.StringVar(&ADDRESS, "addr", "240c:f:1:22::1", "'IPv6 Address'")
 
 	flag.Parse()
 
-	if CheckName(DOMAIN) {
-		fmt.Println("Domain: ", DOMAIN, "OK")
-		ret = 0
-	} else {
-		ret = 1
-		fmt.Println("Domain: ", DOMAIN, "ERROR")
-	}
+    if len(os.Args) == 5 {
+	    if CheckName(DOMAIN) {
+	    	fmt.Println("Domain: ", DOMAIN, "OK")
+	    	ret = 0
+	    } else {
+	    	ret = 1
+	    	fmt.Println("Domain: ", DOMAIN, "ERROR")
+	    }
 
-	if CheckIP(ADDRESS) {
-		fmt.Println("IPv6 Address:", ADDRESS, "OK")
-	} else {
-		ret = 2
-		fmt.Println("IPv6 Address:", ADDRESS, "ERROR")
-	}
+	    if CheckIP(ADDRESS) {
+	    	fmt.Println("IPv6 Address:", ADDRESS, "OK")
+	    } else {
+	    	ret = 2
+	    	fmt.Println("IPv6 Address:", ADDRESS, "ERROR")
+	    }
 
-    var err error
-    if RealAddr, err = net.LookupHost(DOMAIN); err != nil {
-        ret = 3
-        fmt.Println(err)
-        os.Exit(ret)
+        var err error
+        if RealAddr, err = net.LookupHost(DOMAIN); err != nil {
+            ret = 3
+            fmt.Println(err)
+            os.Exit(ret)
+        } 
+
+       if net.ParseIP(RealAddr[0]).Equal(net.ParseIP(ADDRESS)) {
+           ret = 0
+           fmt.Println("IPv6 Address match,", "dig: ", RealAddr[0],"Input: ", ADDRESS)
+       } else {
+            ret = 4
+            fmt.Println("IPv6 Address do not match,", "dig: ", RealAddr[0],"Input: ", ADDRESS)
+       }
+
+    } else if len(os.Args) == 3 {
+	    if CheckIP(ADDRESS) {
+	    	fmt.Println("IPv6 Address:", ADDRESS, "OK")
+	    } else {
+	    	ret = 2
+	    	fmt.Println("IPv6 Address:", ADDRESS, "ERROR")
+	    }
+
+    } else {
+	    	ret = 5
     } 
-
-   if net.ParseIP(RealAddr[0]).Equal(net.ParseIP(ADDRESS)) {
-       ret = 0
-       fmt.Println("IPv6 Address match,", "dig: ", RealAddr[0],"Input: ", ADDRESS)
-   } else {
-        ret = 4
-        fmt.Println("IPv6 Address do not match,", "dig: ", RealAddr[0],"Input: ", ADDRESS)
-    }
+    
 
 	os.Exit(ret)
 }
