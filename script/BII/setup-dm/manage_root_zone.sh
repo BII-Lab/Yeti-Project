@@ -96,7 +96,11 @@ add_root_ns(){
         
         # update yeti-root-servers.yaml in git repo
         python ${workdir}/bin/genyaml.py addserver "${ns_domain}" "${ipv6address}" \
-                    "${git_root_ns_list}" || (echo "$LINENO: genyaml addserver fail" && exit 1)
+                                                            "${git_root_ns_list}"
+        if [ $? -ne 0 ]; then
+            echo "$LINENO: genyaml addserver fail" && exit 1
+        fi
+
         echo ""${ns_domain}"  "${ipv6address}"" >> ${tmp_root_ns_list}
     else
         echo "${ns_domain} yeti root ns recode has been added"
@@ -118,8 +122,10 @@ del_root_ns() {
     origin_root_ns_num=`cat ${tmp_root_ns_list} |wc -l `
     if [ `grep "${ns_domain}" ${tmp_root_ns_list} |grep -v "grep" |wc -l` -eq 1  ]; then
        # del server in yeti-root-servers.yaml git repo
-       python ${workdir}/bin/genyaml.py delserver "${ns_domain}" "${git_root_ns_list}" \
-        || (echo "$LINENO: genyaml delserver fail" && exit 1)
+       python ${workdir}/bin/genyaml.py delserver "${ns_domain}" "${git_root_ns_list}" 
+       if [ $? -ne 0 ]; then
+           echo "$LINENO: genyaml delserver fail" && exit 1
+       fi
        $sed -i "/"${ns_domain}"/d" ${tmp_root_ns_list}
     else
         echo "${ns_domain} root server don't exsit"
@@ -146,7 +152,10 @@ update_root_ns() {
         if ${workdir}/bin/checkns -ns ${new_domain} -addr ${ipv6addr}; then
             # update domain in yeti-root-servers.yaml git repo
             python ${workdir}/bin/genyaml.py rename "${ns_domain}" "${new_domain}" \
-             "${git_root_ns_list}" || (echo "$LINENO: genyaml reanme fail" && exit 1)
+                                                            "${git_root_ns_list}"
+            if [ $? -ne 0 ]; then
+                echo "$LINENO: genyaml reanme fail" && exit 1
+            fi
             $sed -i s/${ns_domain}/${new_domain}/g ${tmp_root_ns_list}
         else
             echo "func: ${FUNCNAME} line: $LINENO wrong domain: ${new_domain}"
@@ -171,8 +180,10 @@ update_root_ip() {
         if ${workdir}/bin/checkns -ns ${ns_domain} -addr ${new_ipv6addr}; then
             # update root server address in yeti-root-servers.yaml git repo
             python ${workdir}/bin/genyaml.py renumber "${ns_domain}" \
-                "${ipv6addr}" "${new_ipv6addr}" "${git_root_ns_list}" || \
-                (echo "$LINENO: genyaml reanme fail" && exit 1)
+                "${ipv6addr}" "${new_ipv6addr}" "${git_root_ns_list}" 
+            if [ $? -ne 0 ]; then
+                echo "$LINENO: genyaml reanme fail" && exit 1
+            fi
             $sed -i s/${ns_domain}/${new_domain}/g ${tmp_root_ns_list}
         else
             echo "func: ${FUNCNAME} line: $LINENO wrong domain: ${new_domain}"
