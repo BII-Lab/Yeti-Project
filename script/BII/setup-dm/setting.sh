@@ -15,8 +15,8 @@ named_zonetransfer_acl="/etc/zonetransfer_list.conf"
 
 # log, email alert, must chang this
 logfile="$workdir/log/setup-dm.log"
-sender="dbgong@biigroup.cn"
-admin_mail="359432901@qq.com"
+sender="xxxx@xxx.com"
+admin_mail="admin@xxxx.com"
 
 # must exist and have content
 icann_ksk_file="$workdir/config/ksk.txt"
