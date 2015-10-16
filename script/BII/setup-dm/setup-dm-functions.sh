@@ -123,6 +123,7 @@ generate_root_ns_file () {
             echo "`${datetime}` ${root_name} or ${root_ip} is not Correct" >> ${logfile}
             echo "`${datetime}` ${root_name} or ${root_ip} is not Correct" |mail \
                  -s "check root ns list --fail" -r ${sender}  ${admin_mail}
+            exit 1
         fi
     done
 }
