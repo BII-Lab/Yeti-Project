@@ -1,7 +1,7 @@
 #
 # settings for setup DM
 
-servername=`hostname`
+servername=$(hostname)
 
 # bind9 must listen on this address
 serveraddr="127.0.0.1"
@@ -35,7 +35,7 @@ git_root_ns_list="$git_repository_dir/yeti-root-servers.yaml"
 datetime="date +%Y-%m-%d-%H:%M:%S"
 ldns_verify_zone=$(which ldns-verify-zone)
 parsednskey_command="$workdir/bin/parsednskey"
-python=$(which python
+python=$(which python)
 # key dir for bind9
 rootkeydir=$workdir/keys/root
 [ ! -d $rootkeydir ] && mkdir -p $rootkeydir
