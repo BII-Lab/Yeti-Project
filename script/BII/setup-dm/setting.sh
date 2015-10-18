@@ -1,7 +1,7 @@
 #
 # settings for setup DM
 
-servername=`hostname`
+servername=$(hostname)
 
 # bind9 must listen on this address
 serveraddr="127.0.0.1"
@@ -33,9 +33,9 @@ git_root_ns_list="$git_repository_dir/yeti-root-servers.yaml"
 
 # command depends
 datetime="date +%Y-%m-%d-%H:%M:%S"
-ldns_verify_zone=`which ldns-verify-zone`
+ldns_verify_zone=$(which ldns-verify-zone)
 parsednskey_command="$workdir/bin/parsednskey"
-python=`which python`
+python=$(which python)
 # key dir for bind9
 rootkeydir=$workdir/keys/root
 [ ! -d $rootkeydir ] && mkdir -p $rootkeydir
@@ -51,16 +51,16 @@ config=$workdir/config
 zone_data=$workdir/zone
 [ ! -d ${zone_data} ] &&  mkdir $zone_data
 
-os=`uname`
+os=$(uname)
 case $os in
   Linux*)
-    sed="/bin/sed"
-    dnssecsignzone="/usr/local/sbin/dnssec-signzone"
-    dnsseckeygen="/usr/local/sbin/dnssec-keygen"
-    rndc="/usr/local/sbin/rndc"
-    dig="/usr/local/bin/dig"
-    wget="/usr/bin/wget"
-    git="/usr/bin/git"
+    sed=$(which sed)
+    dnssecsignzone=$(which dnssec-signzone)
+    dnsseckeygen=$(which dnssec-keygen)
+    rndc=$(which rndc)
+    dig=$(which dig)
+    wget=$(which wget)
+    git=$(which git)
     ;;
   NetBSD?6*)
     sed="/usr/pkg/bin/gsed"
@@ -90,12 +90,12 @@ case $os in
     git="/usr/local/bin/git"
     ;;
   *)
-    sed="/bin/sed"
-    dnssecsignzone="/usr/local/sbin/dnssec-signzone"
-    dnsseckeygen="/usr/local/sbin/dnssec-keygen"
-    rndc="/usr/local/sbin/rndc"
-    dig="/usr/local/bin/dig"
-    wget="/usr/local/bin/wget"
+    sed=$(which sed)
+    dnssecsignzone=$(which dnssec-signzone)
+    dnsseckeygen=$(which dnssec-keygen)
+    rndc=$(which rndc)
+    dig=$(which dig)
+    wget=$(which wget)
     ;;
 esac
 
