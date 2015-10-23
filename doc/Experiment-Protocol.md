@@ -11,7 +11,7 @@ A Yeti experiment goes through four phases:
 
 1. Proposal  
    The first step is to make a proposal. This should be sent in an
-   e-mail to <yeti-discuss@lists.yeti.org>. A sample template is
+   e-mail to <discuss@lists.yeti.org>. A sample template is
    included below. It is discussed and if accepted by the Yeti
    participants then it can proceed to the next phase.
 
