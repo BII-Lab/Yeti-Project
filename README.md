@@ -107,13 +107,15 @@ Below are details about the different ways of joining the effort.
         };
 
         managed-keys {
-	       "." initial-key 257 3 8 "AwEAAchb6LrHCdz9Yo55u1id/b+X1FqVDF66xNrhbgnV+vtpiq7pDsT8 KgzSijNuGs4GLGsMhVE/9H0
-wOtmVRUQqQ50PHZsiqg8gqB6i5zLortjp aCLZS7Oke1xP+6LzVRgT4c8NXlRBg3m/gDjzijBD0BMACjVGZNv0gReA g2OCr9dBrweE6DnM6
-twG7D2NyuGjpWzKeJfNd3Hek39V9NGHuABGkmYG 16XCao37IWcP/s/57HuBom5U3SNfuzfVDppokatuL6dXp9ktuuVXsESc /rUERU/GPle
-uNfRuPHFr3URmrRud4DYbRWNVIsxqkSLrCldDjP1Hicf3 S8NgVHJTSRE=";
+	       "." initial-key 257 3 8 "AwEAAchb6LrHCdz9Yo55u1id/b+X1FqVDF66xNrhbgnV+vtpiq7pDsT8 KgzSijNuGs4GLGsMhVE/9H0wOtmVRUQqQ50PHZsiqg8gqB6i5zLortjp
+                                    aCLZS7Oke1xP+6LzVRgT4c8NXlRBg3m/gDjzijBD0BMACjVGZNv0gReA
+                                    g2OCr9dBrweE6DnM6twG7D2NyuGjpWzKeJfNd3Hek39V9NGHuABGkmYG
+                                    16XCao37IWcP/s/57HuBom5U3SNfuzfVDppokatuL6dXp9ktuuVXsESc
+                                    /rUERU/GPleuNfRuPHFr3URmrRud4DYbRWNVIsxqkSLrCldDjP1Hicf3
+                                    S8NgVHJTSRE=";
         };
 
-In the BIND example, the text between quotes is the key, from https://raw.githubusercontent.com/BII-Lab/Yeti-Project/master/domain/KSK.pub
+    In the BIND example, the text between quotes is the key, from https://raw.githubusercontent.com/BII-Lab/Yeti-Project/master/domain/KSK.pub
 
     Knot:
 
