@@ -92,7 +92,7 @@ fi
 
 
 # Command line construction for pcapdump
-set -- -t "${INTERVAL}" -w "${SAVEDIR}/${NODENAME}.%Y%m%d.%H%M%S" -m qun
+set -- -t "${INTERVAL}" -w "${SAVEDIR}/${NODENAME}.%Y%m%d.%H%M%S" -m 644
 if [ ! -z "${START_T}" ]; then
     set -- "$@" -B "${START_T}"
 fi
