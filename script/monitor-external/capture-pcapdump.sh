@@ -211,5 +211,5 @@ if [ ! -z ${NO_PAT} ]; then
 fi
 
 CMD="${PCAPDUMP} -f ${BPF_filter}"
-echo "Executing '${CMD}'"
-${PCAPDUMP} "$@" &
+echo "Executing ${CMD}"
+${PCAPDUMP} "$@" -f "${BPF_filter}" &
