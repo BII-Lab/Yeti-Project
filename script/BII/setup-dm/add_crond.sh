@@ -67,13 +67,13 @@ fi
 
 # wether have add this task or not
 if [ `grep "${minuts} ${hour} ${day} ${month} \* root \
-sh ${scripts_file_dir}/generate_key.sh ${keytype} ${delay_time}  >/dev/null 2>&1" \
-${crontab_file} |wc -l ` -lt 1 ];then
+sh ${scripts_file_dir}/generate_key.sh ${keytype} ${delay_time} >/dev/null 2>&1" \
+${crontab_file} |wc -l` -lt 1 ];then
 
     #add gen root key crontab
     echo "                                           " >>$crontab_file
-    echo "#create new ${keytype} for root or arpa " >> $crontab_file
-    echo "${minuts} ${hour} ${day} ${month} * root ${scripts_file_dir}/generate_key.sh ${keytype} ${delay_time}" >>$crontab_file
+    echo "#create new ${keytype} for root" >> $crontab_file
+    echo "${minuts} ${hour} ${day} ${month} * root sh ${scripts_file_dir}/generate_key.sh ${keytype} ${delay_time} >/dev/null 2>&1" >>$crontab_file
 
     if [ $? -ne 0 ];then
         echo "`$datetime` generate root ${keytype} cron task fail" | mail -s "add generate_key.sh ${keytype} into /etc/crontab" \

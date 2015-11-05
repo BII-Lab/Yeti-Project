@@ -102,7 +102,7 @@ generate_root_ns_file () {
     if [ -s ${git_root_ns_list} -a ${latest_root_soa_serial} -ge ${start_serial} ]; then
         $python $workdir/bin/parseyaml.py ns  ${git_root_ns_list}  > $current_root_list
         if [ $? -ne 0 ]; then
-            echo "${git_root_ns_list} file not exist or format error" >> ${logfilea}
+            echo "${git_root_ns_list} file not exist or format error" >> ${logfile}
             exit 1
         fi
     fi
@@ -146,13 +146,13 @@ generate_notify_zonetransfer_list () {
     if [ -s ${git_root_ns_list} -a ${latest_root_soa_serial} -ge ${start_serial} ];then
         $python $workdir/bin/parseyaml.py  notify ${git_root_ns_list}  > ${named_notify_list}
         if [ $? -ne 0 ]; then
-            echo "${git_root_ns_list} file not exist or format error" >> ${logfilea}
+            echo "${git_root_ns_list} file not exist or format error" >> ${logfile}
             exit 1
         fi
 
         $python $workdir/bin/parseyaml.py  acl    ${git_root_ns_list}  > ${named_zonetransfer_acl}
         if [ $? -ne 0 ]; then
-            echo "${git_root_ns_list} file not exist or format error" >> ${logfilea}
+            echo "${git_root_ns_list} file not exist or format error" >> ${logfile}
             exit 1
         fi
     fi
