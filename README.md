@@ -38,31 +38,33 @@ Below are details about the different ways of joining the effort.
 
     ACLs are in place on some of the distribution masters so you need
     to request a hole for your server's IPv6 address (send an email to
-    coordinators@lists.yeti-dns.org. Test with 'dig
-    @$DistributionMaster AXFR .' to see if you can do a zone
-    transfer. You may have to add '-b $ServiceIPaddress' if your
+    coordinators@lists.yeti-dns.org. Test with `dig
+    @$DistributionMaster AXFR .` to see if you can do a zone
+    transfer. You may have to add `-b $ServiceIPaddress` if your
     machine is multihomed.
     
     Configure the root server as a slave to the Yeti DM. You can add the following to the configuration file of your root server.
 
     BIND:
 
-    	masters yeti-dm {
-    		240c:f:1:22::7;			# bii
-    		2001:200:1d9::53;		# wide
-    		2001:559:8000::7;		# tisf
-    	};
+        masters yeti-dm {
+            240c:f:1:22::7;            # bii
+            2001:200:1d9::53;        # wide
+            2001:559:8000::7;        # tisf
+        };
 
     NSD:
 
-    	zone:
-    		name: "."
-    		request-xfr: 240c:f:1:22::7 NOKEY
-    		request-xfr: 2001:559:8000::7 NOKEY
-    		request-xfr: 2001:200:1d9::53 NOKEY
-    		allow-notify: 240c:f:1:22::7 NOKEY
-    		allow-notify: 2001:559:8000::7 NOKEY
-    		allow-notify: 2001:200:1d9::53 NOKEY
+    ```yaml
+    zone:
+        name: "."
+        request-xfr: 240c:f:1:22::7 NOKEY
+        request-xfr: 2001:559:8000::7 NOKEY
+        request-xfr: 2001:200:1d9::53 NOKEY
+        allow-notify: 240c:f:1:22::7 NOKEY
+        allow-notify: 2001:559:8000::7 NOKEY
+        allow-notify: 2001:200:1d9::53 NOKEY
+    ```
      
     Afterward, please send a mail to coordinators mailing list to notify that it is done.
 
@@ -94,10 +96,12 @@ Below are details about the different ways of joining the effort.
 
     Unbound:
 
-    	server:
-    		root-hints: "yeti-hints"
-		# Check the file is writable by Unbound
-    		auto-trust-anchor-file: autokey/yeti-key.key
+    ```yaml
+    server:
+        root-hints: "yeti-hints"
+        # Check the file is writable by Unbound
+        auto-trust-anchor-file: autokey/yeti-key.key
+    ```
 
     BIND:
 
@@ -107,45 +111,49 @@ Below are details about the different ways of joining the effort.
         };
 
         managed-keys {
-	       "." initial-key 257 3 8 "AwEAAchb6LrHCdz9Yo55u1id/b+X1FqVDF66xNrhbgnV+vtpiq7pDsT8 KgzSijNuGs4GLGsMhVE/9H0
-wOtmVRUQqQ50PHZsiqg8gqB6i5zLortjp aCLZS7Oke1xP+6LzVRgT4c8NXlRBg3m/gDjzijBD0BMACjVGZNv0gReA g2OCr9dBrweE6DnM6
-twG7D2NyuGjpWzKeJfNd3Hek39V9NGHuABGkmYG 16XCao37IWcP/s/57HuBom5U3SNfuzfVDppokatuL6dXp9ktuuVXsESc /rUERU/GPle
-uNfRuPHFr3URmrRud4DYbRWNVIsxqkSLrCldDjP1Hicf3 S8NgVHJTSRE=";
+           "." initial-key 257 3 8 "AwEAAchb6LrHCdz9Yo55u1id/b+X1FqVDF66xNrhbgnV+vtpiq7pDsT8 KgzSijNuGs4GLGsMhVE/9H0wOtmVRUQqQ50PHZsiqg8gqB6i5zLortjp
+                                    aCLZS7Oke1xP+6LzVRgT4c8NXlRBg3m/gDjzijBD0BMACjVGZNv0gReA
+                                    g2OCr9dBrweE6DnM6twG7D2NyuGjpWzKeJfNd3Hek39V9NGHuABGkmYG
+                                    16XCao37IWcP/s/57HuBom5U3SNfuzfVDppokatuL6dXp9ktuuVXsESc
+                                    /rUERU/GPleuNfRuPHFr3URmrRud4DYbRWNVIsxqkSLrCldDjP1Hicf3
+                                    S8NgVHJTSRE=";
         };
 
-In the BIND example, the text between quotes is the key, from https://raw.githubusercontent.com/BII-Lab/Yeti-Project/master/domain/KSK.pub
+    In the BIND example, the text between quotes is the key, from https://raw.githubusercontent.com/BII-Lab/Yeti-Project/master/domain/KSK.pub
 
     Knot:
 
-	-- -*- mode: lua -*-
-        -- Knot uses a specific format for the hints so we cannot use the official hints file.
+    ```lua
+    -- -*- mode: lua -*-
+    -- Knot uses a specific format for the hints so we cannot use the official hints file.
 
-	modules = {
-	   'hints' -- Add other modules, if necessary
-	}
+    modules = {
+       'hints' -- Add other modules, if necessary
+    }
 
-	hints.root({                                   
-	      ['bii.dns-lab.net.'] = '240c:f:1:22::6',
-	      ['yeti-ns.tisf.net.'] = '2001:559:8000::6',
-	      ['yeti-ns.wide.ad.jp.'] = '2001:200:1d9::35',
-	      ['yeti-ns.as59715.net.'] = '2a02:cdc5:9715:0:185:5:203:53',
-	      ['dahu1.yeti.eu.org.'] = '2001:4b98:dc2:45:216:3eff:fe4b:8c5b',
-	      ['ns-yeti.bondis.org.'] = '2a02:2810:0:405::250',
-	      ['yeti-ns.ix.ru.'] = '2001:6d0:6d06::53',
-	      ['yeti.bofh.priv.at.'] = '2a01:4f8:161:6106:1::10',
-	      ['yeti.ipv6.ernet.in.'] = '2001:e30:1c1e:1::333',
-	      ['yeti-dns01.dnsworkshop.org.'] = '2001:1608:10:167:32e::53',
-	      ['yeti-ns.conit.co.'] = '2607:ff28:2:10::47:a010',
-	      ['yeti.aquaray.com.'] = '2a02:ec0:200::1',
-	      ['dahu2.yeti.eu.org.'] = '2001:67c:217c:6::2',
-	      ['yeti-ns.switch.ch.'] = '2001:620:0:ff::29'
-	})
+    hints.root({                                   
+          ['bii.dns-lab.net.'] = '240c:f:1:22::6',
+          ['yeti-ns.tisf.net.'] = '2001:559:8000::6',
+          ['yeti-ns.wide.ad.jp.'] = '2001:200:1d9::35',
+          ['yeti-ns.as59715.net.'] = '2a02:cdc5:9715:0:185:5:203:53',
+          ['dahu1.yeti.eu.org.'] = '2001:4b98:dc2:45:216:3eff:fe4b:8c5b',
+          ['ns-yeti.bondis.org.'] = '2a02:2810:0:405::250',
+          ['yeti-ns.ix.ru.'] = '2001:6d0:6d06::53',
+          ['yeti.bofh.priv.at.'] = '2a01:4f8:161:6106:1::10',
+          ['yeti.ipv6.ernet.in.'] = '2001:e30:1c1e:1::333',
+          ['yeti-dns01.dnsworkshop.org.'] = '2001:1608:10:167:32e::53',
+          ['yeti-ns.conit.co.'] = '2607:ff28:2:10::47:a010',
+          ['yeti.aquaray.com.'] = '2a02:ec0:200::1',
+          ['dahu2.yeti.eu.org.'] = '2001:67c:217c:6::2',
+          ['yeti-ns.switch.ch.'] = '2001:620:0:ff::29'
+    })
 
-	trust_anchors.config('yeti-root.key')
+    trust_anchors.config('yeti-root.key')
+    ```
 
-yeti-root.key is the official root key file, from https://raw.githubusercontent.com/BII-Lab/Yeti-Project/master/domain/KSK.pub
+    yeti-root.key is the official root key file, from https://raw.githubusercontent.com/BII-Lab/Yeti-Project/master/domain/KSK.pub
 
-TODO: The above should work with RFC 5011 but let's test
+    TODO: The above should work with RFC 5011 but let's test
 
 3. Joining Yeti as a Researcher
 
