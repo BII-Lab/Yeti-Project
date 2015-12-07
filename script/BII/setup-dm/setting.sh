@@ -24,17 +24,21 @@ current_root_list="$workdir/config/yeti-root-servers.txt"
 
 #
 iana_start_serial="$workdir/config/iana-start-serial.txt"
+key_start_serial_file="iana-start-serial.txt"
 
 # git repo
 git_repository_dir="/tmp/dmtest"
-zsk_git_repository_dir="$git_repository_dir"
+zsk_git_repository_dir="$git_repository_dir/zsk"
+ksk_git_repository_dir="$git_repository_dir/ksk"
 git_root_ns_list="$git_repository_dir/yeti-root-servers.yaml"
 
+zsk_tag_file="zsk_tag.txt"
+ksk_tag_file="ksk_tag.txt"
 
 # command depends
 datetime="date +%Y-%m-%d-%H:%M:%S"
 ldns_verify_zone=$(which ldns-verify-zone)
-parsednskey_command="$workdir/bin/parsednskey"
+
 python=$(which python)
 # key dir for bind9
 rootkeydir=$workdir/keys/root

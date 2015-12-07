@@ -19,10 +19,16 @@ generate_notify_zonetransfer_list
 
 generate_root_ns_file
 
+generate_root_hint_file
+
 generate_root_zone
 
-get_latest_dnskey
+get_latest_key zsk
+
+get_latest_key ksk
 
 sign_root_zone
 
 reload_root_zone
+
+update_github
