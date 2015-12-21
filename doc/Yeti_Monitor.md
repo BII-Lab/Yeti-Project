@@ -94,8 +94,8 @@ know the general Yeti status.
 Provide A visualization like https://atlas.ripe.net/domainmon/yetiroot./85/f1gFuyhM/ 
   
 There are some TODO tasks to upgrade this page with more option(free probe selection, 
-adding/deleting servers problem alert to Yeti operation team). Shane will follow up 
-this thread with RIPE Atlas people.
+adding/deleting servers problem alert to Yeti operation team). 
+https://labs.ripe.net/Members/suzanne_taylor_muzzin/introducing-ripe-atlas-status-checks
     
 * Zone consistency check (15 root server and DMs)
 
@@ -115,7 +115,7 @@ Response to Priming+DNSSEC, DNSKEY+DNSSEC, (print the dig response)
 
 * Event Alert for Yeti root server failure.
 
-Combine Atlas status check with Nagios to build some alert of failure of server availability. Automatically send mails to contact of yeti server operator.
+Combine Atlas status check with Nagios to build some alert of failure of server availability. Automatically send mails to contact of yeti server operator.  
 
 * Event Alert for Yeti consistency failure 
 	
