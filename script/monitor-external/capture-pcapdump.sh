@@ -2,14 +2,17 @@
 
 # Capture packets on time-limited files
 
-# For discussion of the choice of dnscap, see the file doc/Capture.md
+# For discussion of the choice of pcapdump, see the file doc/Capture.md
 
 # binaries needed, change accordingly
-# dnscap is at https://github.com/verisign/dnscap
-DNSCAP="/usr/local/bin/dnscap"
+
+# pcapdump is at https://packages.debian.org/sid/pcaputils You *need*
+# the patch in
+# https://bugs.debian.org/cgi-bin/bugreport.cgi?bug=545985
+PCAPDUMP="/usr/local/bin/pcapdump"
 IFCONFIG="/sbin/ifconfig"
 NTPDATE="/usr/sbin/ntpdate"
-BC="/usr/bin/bc"
+BC="/bin/bc"
 
 # Interfaces to capture packets
 # if you want to specify more than one, separate by spaces
@@ -60,10 +63,10 @@ INTERVAL=""
 # Program to run to handle a file
 # Each time a INTERVAL is completed, will execute this code
 #KICK_CMD="./pcap-submit-to-oarc.sh"
-#KICK_CMD="sh  data-commit.sh $SAVEDIR"
+#KICK_CMD="sh data-commit.sh $SAVEDIR"
 
 # Unique name of the node where data is being collected.
-# Please make sure that no two instances of dnscap use the
+# Please make sure that no two instances of pcapdump use the
 # same NODENAME!
 #if [ `uname` = "Linux" ]; then
 #    NODENAME=`hostname --fqdn` 
@@ -88,8 +91,8 @@ if [ -s settings.sh ]; then
 fi
 
 
-# Command line construction for dnscap
-set -- -t "${INTERVAL}" -w "${SAVEDIR}/${NODENAME}" -m qun
+# Command line construction for pcapdump
+set -- -t "${INTERVAL}" -w "${SAVEDIR}/${NODENAME}.%Y%m%d.%H%M%S" -m 644
 if [ ! -z "${START_T}" ]; then
     set -- "$@" -B "${START_T}"
 fi
@@ -101,7 +104,7 @@ if [ ! -z "${KICK_CMD}" ]; then
 fi
 
 # Validate the programs I'm expecting to use
-for prog in ${DNSCAP} ${IFCONFIG} ${NTPDATE} ${BC}; do
+for prog in ${PCAPDUMP} ${IFCONFIG} ${NTPDATE} ${BC}; do
 if [ ! -x ${prog} ] ; then
     echo "${prog} is not executable, aborting!"
     exit 1
@@ -163,52 +166,50 @@ echo "Passed NTP check"
 
 # Build some of the command line options
 
+BPF_filter="port 53"
+
 # Check the list of destinations
 if [ ! -z ${DESTINATIONS} ]; then
+    echo "Capturing only for ${DESTINATIONS}"
+    BPF_filter="${BPF_filter} and ("
     for DEST in ${DESTINATIONS}; do
-        set -- "$@" -z "${DEST}"
+        BFP_filter="${BPF_filter} or dst host ${DEST} "
     done
+    BPF_filter="${BPF_filter})"
 fi
 
-# Queries only?
-if [ "${QUERIES_ONLY}" = "yes" ]; then
-    echo "Capturing queries only"
-    set -- "$@" -s "i"
-else
-    echo "Capturing queries and responses"
+if [ "${QUERIES_ONLY}" != "" ]; then
+    echo "Ignoring option QUERIES_ONLY=${QUERIES_ONLY} (unsupported)"
 fi
 
 # Include v6 traffic?
 if [ "${DO_V6}" = "yes" ]; then
     echo "Capturing IPv6"
-    set -- "$@" -6
+    BPF_filter="${BPF_filter} and (ip or ip6)"
 else
     echo "Not capturing IPv6"
+    BPF_filter="${BPF_filter} and ip"
 fi
 
 # Include TCP traffic?
 if [ "${DO_TCP}" = "yes" ]; then
     echo "Capturing TCP"
-    set -- "$@" -T
+    BPF_filter="${BPF_filter} and (tcp or udp)"
 else
     echo "Not capturing TCP"
+    BPF_filter="${BPF_filter} and udp"
 fi
 
 # Include IP fragments?
 if [ "${DO_FRAGS}" = "yes" ]; then
-    echo "Capturing IP fragments"
-    set -- "$@" -f
-else
-    echo "Not capturing IP fragments"
+    echo "Ignoring option DO_FRAGS (unsupported)"
 fi
 
 # Exclude Patterns
 if [ ! -z ${NO_PAT} ]; then
-    for PAT in ${NO_PAT}; do
-        set -- "$@" -X "${PAT}"
-    done
+    echo "Ignoring option NO_PAT=${NO_PAT} (unsupported)"
 fi
 
-CMD="${DNSCAP} $@"
-echo "Executing '${CMD}'"
-${DNSCAP} "$@" &
+CMD="${PCAPDUMP} -f ${BPF_filter}"
+echo "Executing ${CMD}"
+${PCAPDUMP} "$@" -f "${BPF_filter}" &

@@ -12,7 +12,7 @@
 IFACES="em1"
 #NODENAME=`hostname`
 #OARC_MEMBER=test
-#QUERIES_ONLY="yes"
+QUERIES_ONLY="no"
 
 # Leave these commented for dry runs and uncomment them for
 # the actual DITL data collection.  NOTE, times must be
@@ -23,8 +23,10 @@ IFACES="em1"
 
 # Settings that you probably wont need to change
 #
-#SSH_ID="/root/.ssh/oarc_id_dsa"
+SSH_ID="/root/.ssh/id_rsa"
 #RM_AFTER_UPLOAD="no"
+# Set to yes if you want to send info about uploads in syslog
+SYSLOG_UPLOAD="yes"
 #DESTINATIONS=""
 #DO_TCP="yes"
 #DO_V6="yes"
@@ -39,7 +41,10 @@ IFACES="em1"
 SAVEDIR=/root/data-monitor/data
 
 # Settings that you shouldn't change
-# 5 minuts
-INTERVAL="300"
+# 10 minutes
+INTERVAL="600"
+# For dnscap
 KICK_CMD="sh  data-commit.sh $SAVEDIR"
+# For pcapdump
+#KICK_CMD="(cd /usr/local/Yeti; ./data-commit.sh $SAVEDIR) && echo Rotating"
 
