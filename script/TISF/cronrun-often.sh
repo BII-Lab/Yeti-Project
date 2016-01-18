@@ -38,14 +38,14 @@ mv iana-root.dns.new iana-root.dns
 #
 # second, create the yeti zone based on the iana zone, and sign it
 #
-keys=$(./yeti-mkdns.pl)
+keys=$(perl scripts/yeti-mkdns.pl)
 if $? -ne 0; then
 	echo yeti-mkdns failed
 	exit 1
 fi
 
-if dnssec-signzone -Q -R -o . yeti-root.dns $keys \
-	> dnssec-signzone.out 2>&1; then
+if dnssec-signzone -Q -R -o . yeti-root.dns $keys > dnssec-signzone.out 2>&1
+then
 	:
 else
 	cat dnssec-signzone.out
@@ -56,7 +56,7 @@ rndc -s yeti-dm reload . 2>&1 | grep -v 'zone reload up-to-date'
 #
 # third, remake the conf-include file (allow-transfer, also-notify)
 #
-if ./yeti-mkinc.pl; then
+if perl scripts/yeti-mkinc.pl; then
 	:
 else
 	echo yeti-mkinc failed
