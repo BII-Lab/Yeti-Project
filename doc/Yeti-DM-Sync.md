@@ -48,12 +48,25 @@ Details of Files
 ================
 The Git repository has the following files:
 
-* yeti-root-servers.yaml
-* iana-start-serial.txt
-* yeti-root-ksk.key
-* yeti-root-ksk.private
-* yeti-root-zsk.key
-* yeti-root-zsk.private
+* `yeti-root-servers.yaml`
+* `iana-start-serial.txt`
+
+Additionally, it has the following directory structure:
+
+* `ksk/`
+  * `ksk-2015112601/`
+    * `ksk-iana-start-serial.txt`
+    * `K.+008+03558.key`
+    * `K.+008+03558.private`
+  * `ksk-2015112801/`
+    * ...
+* `zsk/`
+  * `zsk-2015112500/`
+    * `zsk-iana-start-serial.txt`
+    * `K.+008+59676.key`
+    * `K.+008+59676.private`
+  * `zsk-2015112903/`
+    * ...
 
 The `yeti-root-servers.yaml` file contains one entry per Yeti root
 server, which has the server name, public IPv6 address, IPv6 networks
@@ -77,19 +90,36 @@ it. The following rules apply to each type of variable:
 
 * `name` is required, and is a host name
 * `public_ip` is required, and is an IPv6 address
-* `transfer_net` is optional, and is a list of IPv6 prefixes or addresses. If
-  it is not present, then the `public_ip` of the server is used instead.
-* `notify_addr` is optional, and is a list of IPv6 addresses. If it is not
-  present, then the `public_ip` of the server is used instead.
+* `transfer_net` is optional, and is a list of IPv6 prefixes or
+  addresses. If it is not present, then the `public_ip` of the server
+  is used instead.
+* `notify_addr` is optional, and is a list of IPv6 addresses. If it is
+  not present, then the `public_ip` of the server is used instead.
 
 The `iana-start-serial.txt` file contains the serial in the SOA of the
 IANA root zone when to start using the data:
 
     2015092300
 
-The `yeti-root-ksk.private`, `yeti-root-ksk.key`,
-`yeti-root-zsk.private`, and `yeti-root-zsk.key` are in the format the
-BIND 9 `dnssec-keygen` uses.
+## KSK and ZSK subdirectories
+
+There are separate subdirectories, one for the KSK and one for the
+ZSK. Each contains a number of subdirectories, created with a unique
+name based on the ISO 8601 date format, with a number at the end to
+allow for more than one per day if necessary (up to 100).
+
+Each directory contains any number of `.key` files which is in the
+format that BIND 9 `dnssec-keygen` creates. It also contains a
+`.private` file for each such `.key` file, with the secret
+information.
+
+The KSK directories each contain a file called
+`ksk-iana-start-serial.txt`, which contains the serial in the SOA of
+the IANA root zone when to start using the contents of the directory.
+
+The ZSK directories each contain a file called
+`zsk-iana-start-serial.txt`, which contains the serial in the SOA of
+the IANA root zone when to start using the contents of the directory.
 
 
 Operations
@@ -102,10 +132,10 @@ Change Data
 The various operations that change data are:
 
 * Add/delete/renumber/rename Yeti root server
-* Add a new ZSK
-* Add a new KSK
+* Change to a new set of KSK
+* Change to a new set of ZSK
 
-The logic behind any of these is:
+The logic add/delete/renumber/rename of Yeti root servers is:
 
 1. Check to make sure that no operation is pending (if the
    `iana-start-serial.txt` is in the future, an operation is pending).
@@ -119,8 +149,14 @@ All of the basic CRUD (Create, Read, Update, Delete) operations on the
 list of Yeti root servers is made by changing the
 `yeti-root-servers.yaml` file.
 
-We rely on the time information in the ZSK and KSK files to revoke and
-remove old keys, so no delete operation is provided.
+To change the KSK and ZSK, the logic is:
+
+1. Make a directory named "{ksk,zsk}-YYYYMMDD##", where YYYYMMDD is the
+   current date and ## is a number, starting with 00.
+2. Put all of the desired KSK or ZSK files into the new directory.
+3. Create `ksk-iana-start-serial.txt` or `zsk-iana-start-serial.txt`
+   as appropriate, with a serial 2 days in the future.
+4. "git add"/"git commit"/"git push" of the directory.
 
 Generate a Yeti root zone
 -------------------------
@@ -135,8 +171,10 @@ To generate a root zone the server does this:
     2. Remove records for . (SOA, NS).
     3. Add Yeti SOA.
     4. Add Yeti NS RRSET (based on `yeti-root-servers.yaml`).
-5. If the root serial number is >= `iana-start-serial.txt` then copy
-   any the KSK and ZSK and add them to the existing set used.
+5. Find the latest KSK directory where the serial number is <= the
+   root serial number. Find the latest ZSK directory where the serial
+   number is <= the root serial number. Use the keys found there when
+   signing the root.
 6. Sign the root zone (will automatically add needed DNSKEY records).
 7. Reload the root zone. (This will send notifies.)
 
@@ -151,8 +189,22 @@ now, we rely on each Yeti DM operator monitoring their systems
 carefully, along with human oversight of the entire process.
 
 
-Future Work: Pre-publish Multiple Keys
-======================================
-Rather than synchronize keys using this protocol, we could instead
-share a set of keys for the future between the coordinators. This
-would make synchronization by a protocol unnecessary.
+Future Work: Pre-share Multiple Keys
+====================================
+Using the directory structure, it is possible to pre-share any
+number of keys (or indeed all keys for the lifetime of the project).
+ 
+
+Future Work: Per-DM ZSK
+=======================
+Each DM can generate its own ZSK. There is no need to share secret
+material for the ZSK then. It may be useful to alter the scheme so
+that it is clear which ZSK belong to which DM, but that is not
+necessary.
+
+
+Future Work: Hiding All Secrets
+===============================
+Eventually the system should be changed so that each ZSK is signed by
+the KSK in a ceremony. There is no need to synchronize any secret
+material in such a setup.
