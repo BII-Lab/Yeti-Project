@@ -55,15 +55,18 @@ Below are details about the different ways of joining the effort.
 
     NSD:
 
-    ```yaml
+    ```
     zone:
         name: "."
+	# BII
         request-xfr: 240c:f:1:22::7 NOKEY
-        request-xfr: 2001:559:8000::7 NOKEY
+	# WIDE
         request-xfr: 2001:200:1d9::53 NOKEY
+	# TISF
+        request-xfr: 2001:559:8000::7 NOKEY
         allow-notify: 240c:f:1:22::7 NOKEY
-        allow-notify: 2001:559:8000::7 NOKEY
         allow-notify: 2001:200:1d9::53 NOKEY
+        allow-notify: 2001:559:8000::7 NOKEY
     ```
      
     Afterward, please send a mail to coordinators mailing list to notify that it is done.
