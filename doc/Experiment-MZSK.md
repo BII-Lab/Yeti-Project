@@ -55,20 +55,23 @@ Changes:
 
 Experiment Plan
 ===============
-There are three specific things to test:
+In the first phase, we confirm that using 3 ZSK works in the wild.
+Here one of the DM (BII) will create and add 2 ZSK using the existing
+synchronization mechanism.
 
-1. Running with 3 ZSK
-   In this part, we duplicate the lab tests, but in production. We
-   will have 3 ZSK in the root zone, and each DM will produce a zone
-   file signed by their ZSK.
+In the second phase, we separate the management of the ZSK so that
+each DM will create and publish separate ZSK. For this phase, the
+modified zone generation software mentioned above must be in place.
 
-2. Rolling a ZSK (4 ZSK total)
+During the second phase, there are two specific things to test:
+
+1. Rolling a ZSK (4 ZSK total)
    In this part, we perform a key roll for a ZSK. This will mean that
    there will be 4 ZSK in the root. We expect everything to work
    normally, but the response to priming query will be slightly
    larger.
 
-3. Rolling all ZSK (6 ZSK total)
+2. Rolling all ZSK (6 ZSK total)
    Since ultimately all DM should be able to roll their ZSK
    independently of the other DM, we want to test the scenario where
    all 3 DM are rolling their key at once. This means there will be 6
@@ -117,10 +120,11 @@ same way as rolling a single ZSK.
 
 
 | Start Date | End Date   | Duration | Event 
-|------------|------------|----------|---------
+|------------|------------|----------|--------------------------------------
 |            |            |          | Preparation 
-|            |            |          | Introduce 2 additional ZSK
+|            |            |          | BII introduce 2 additional ZSK
 |            |            | 2 weeks  | Monitor traffic 
+|            |            |          | Introduce MZSK zone generation
 |            |            |          | Begin 1 ZSK roll (Introduce new ZSK)
 |            |            | 1 week   | Monitor traffic
 |            |            |          | Start signing with new ZSK
@@ -142,4 +146,3 @@ Once the MZSK experiment is complete, we will produce a final report.
 This will include the motivation and actions taken, as well as any
 observations made during the experiment. The results of traffic
 analysis will be included, along with a conclusion.
-
