@@ -55,10 +55,24 @@ Changes:
 
 Experiment Plan
 ===============
-In the first phase, we confirm that using 3 ZSK works in the wild.
-Here one of the DM (BII) will create and add 2 ZSK using the existing
-synchronization mechanism.
 
+## Phase 1
+In the first phase, we confirm that using multiple ZSK works in the
+wild. We will insure that using the maximum number of ZSK continues to
+work. Here one of the DM (BII) will create and add 5 ZSK using the
+existing synchronization mechanism. (If all 3 ZSK are rolling then we
+have 6 total. To get this number we add 5.)
+
+Since we will use the existing synchronization mechanism, all DM will
+sign using the previous ZSK. The 5 additional ZSK are there merely to
+test client behavior. We can set the activation date far in the future
+so they are never actually used.
+
+Once we confirm that traffic continues to work, we can remove 3 of the
+ZSK, leaving us with 3 ZSK which we will use for the start of phase 2
+of the experiment.
+
+## Phase 2
 In the second phase, we separate the management of the ZSK so that
 each DM will create and publish separate ZSK. For this phase, the
 modified zone generation software mentioned above must be in place.
@@ -77,6 +91,29 @@ During the second phase, there are two specific things to test:
    all 3 DM are rolling their key at once. This means there will be 6
    ZSK in the root. Again, we expect everything to work normally, but
    the priming query response will be even larger.
+
+
+Rollback Procedures
+===================
+In Phase 1 if we need to rollback, we remove all additional 5 keys and
+revert to the original ZSK.
+
+In Phase 2 if we need to rollback after starting the first ZSK roll,
+we remove all additional ZSK and revert to the original
+(pre-experiment) ZSK.
+
+In Phase 2 if we start signing with the new ZSK and there are
+problems, we revert to signing with the old (pre-experiment) ZSK.
+
+In Phase 2 if the first ZSK roll is successful, but we need to
+rollback after starting the second ZSK roll (where we roll all 3 ZSK)
+then we revert to the rolled ZSK.
+
+In Phase 2 if we start signing with the 3 new ZSK and there are
+problems, then we revert to the rolled ZSK.
+
+In all cases if there is a rollback we will announce it to the Yeti
+Discuss list as well as on the Yeti website.
 
 
 What to Measure
@@ -121,23 +158,25 @@ same way as rolling a single ZSK.
 
 | Start Date | End Date   | Duration | Event 
 |------------|------------|----------|--------------------------------------
-|            |            |          | Preparation 
-|            |            |          | BII introduce 2 additional ZSK
+| 2016-02-01 |            |          | Preparation 
+|            |            |          | *PHASE 1 STARTS*
+| 2016-02-15 |            |          | BII introduce 5 additional ZSK
 |            |            | 2 weeks  | Monitor traffic 
-|            |            |          | Introduce MZSK zone generation
-|            |            |          | Begin 1 ZSK roll (Introduce new ZSK)
+|            |            |          | *PHASE 2 STARTS*
+| 2016-02-22 |            |          | Introduce MZSK zone generation
+| 2016-02-29 |            |          | Begin 1 ZSK roll (remove 3 ZSK, add 1 ZSK)
 |            |            | 1 week   | Monitor traffic
-|            |            |          | Start signing with new ZSK
+| 2016-03-07 |            |          | Start signing with new ZSK
 |            |            | 2 days   | Monitor traffic
-|            |            |          | Retire old ZSK
+| 2016-03-09 |            |          | Retire old ZSK
 |            |            | 1 week   | Monitor traffic
-|            |            |          | Begin 3 ZSK roll (Introduce new ZSKs) 
+| 2016-03-16 |            |          | Begin 3 ZSK roll (add 3 ZSK)
 |            |            | 1 week   | Monitor traffic
-|            |            |          | Start signing with new ZSK
+| 2016-03-23 |            |          | Start signing with new ZSK
 |            |            | 2 days   | Monitor traffic
-|            |            |          | Retire old ZSK
+| 2015-03-25 |            |          | Retire old ZSK (remove 3 ZSK)
 |            |            | 1 week   | Monitor traffic
-|            |            |          | Champagne
+| 2015-04-01 |            |          | Champagne at DNS-OARC `:)`
 
 Report Format
 =============

@@ -68,22 +68,27 @@ Additionally, it has the following directory structure:
 
 * `ksk/`
   * `ksk-2015112601/`
-    * `ksk-iana-start-serial.txt`
+    * `iana-start-serial.txt`
     * `K.+008+03558.key`
   * `ksk-2015112801/`
     * ...
 * `zsk/`
   * `bii/`
     * `zsk-2015112500/`
-      * `zsk-iana-start-serial.txt`
+      * `iana-start-serial.txt`
       * `K.+008+59676.key`
-      * `K.+008+59676.rrsig`
     * `zsk-2015112903/`
       * ...
   * `tisf/`
     * `zsk-2016020100/`
       * ...
   * `wide/`
+    * ...
+* `rrsig/`
+  * `rrsig-2016020100/`
+    * `iana-start-serial.txt`
+    * `root.rrsig`
+  * `rrsig-2016030100/`
     * ...
 
 The `yeti-root-servers.yaml` file contains one entry per Yeti root
@@ -128,8 +133,8 @@ directory contains any number of `.key` files which is in the format
 that BIND 9 `dnssec-keygen` creates. 
 
 The KSK directories each contain a file called
-`ksk-iana-start-serial.txt`, which contains the serial in the SOA of
-the IANA root zone when to start using the contents of the directory.
+`iana-start-serial.txt`, which contains the serial in the SOA of the
+IANA root zone when to start using the contents of the directory.
 
 ## ZSK subdirectories
 
@@ -142,14 +147,27 @@ number at the end to allow for more than one per day if necessary (up
 to 100).
 
 Each directory contains any number of `.key` files which is in the
-format that BIND 9 `dnssec-keygen` creates. Additionally, they contain
-`.rrsig` files which contain the RRSIG of the ZSK DNSKEY record by the
-KSK.
+format that BIND 9 `dnssec-keygen` creates.
 
 The ZSK directories each contain a file called
-`zsk-iana-start-serial.txt`, which contains the serial in the SOA of
+`iana-start-serial.txt`, which contains the serial in the SOA of
 the IANA root zone when to start using the contents of the directory.
 
+## RRSIG subdirectories
+
+The RRSIG directory contains a number of subdirectories, created with a
+unique name based on the ISO 8601 date format, with a number at the
+end to allow for more than one per day if necessary (up to 100). Each
+directory contains a single `root.rrsig` file, which contains the
+RRSIG for the root DNSKEY RRSET.
+
+The RRSIG directories each contain a file called
+`iana-start-serial.txt`, which contains the serial in the SOA of
+the IANA root zone when to start using the contents of the directory.
+
+**NOTE:** The creation of the contents of the RRSIG directory is out
+of scope of this document, and will have to be populated manually for
+the MZSK experiment.  
 
 Operations
 ==========
@@ -183,7 +201,7 @@ To change the KSK and ZSK, the logic is:
 1. Make a directory named "{ksk,zsk}-YYYYMMDD##", where YYYYMMDD is the
    current date and ## is a number, starting with 00.
 2. Put all of the desired KSK or ZSK files into the new directory.
-3. Create `ksk-iana-start-serial.txt` or `zsk-iana-start-serial.txt`
+3. Create `iana-start-serial.txt`
    as appropriate, with a serial 2 days in the future.
 4. "git add"/"git commit"/"git push" of the directory.
 
@@ -204,7 +222,7 @@ To generate a root zone the server does this:
    root serial number. Find the latest ZSK directory where the serial
    number is <= the root serial number. Use the keys found there when
    signing the root.
-6. Add the KSK and ZSK DNSKEY, plus RRSIG for the ZSK.
+6. Add the KSK and ZSK DNSKEY, plus RRSIG for the root DNSKEY RRSET.
 7. Sign the root zone. Note that the signing process should use the
    active ZSK private key that the DM doing the signing is using.
 8. Reload the root zone. (This will send notifies.)
@@ -225,6 +243,13 @@ Future Work: Pre-share Multiple Keys
 ====================================
 Using the directory structure, it is possible to pre-share any
 number of keys (or indeed all keys for the lifetime of the project).
+
+
+Future Work: Figure out the KSK signing process
+===============================================
+Right now there is no automated or documented process for creating the
+RRSIG for the root DNSKEY RRSET. This should probably be invented and
+documented at some point.
  
 
 
@@ -242,12 +267,11 @@ The following changes were necessary:
   not strictly necessary this will help identify the DM responsible
   for each ZSK.
 
-* Added `.rrsig` to the ZSK directory so that the signatures
-  associated with each ZSK DNSKEY can be included.
+* Added `rrsig` directory as a place to store signatures.
 
-* The signing process was modified to including adding the RRSIG as
-  well as a note added to clarify that the secret keys must be used
-  there.
+* The signing process was modified to including adding the DNSKEY
+  RRSIG as well as a note added to clarify that the secret keys must
+  be used there.
 
 * Removed "Future Work" for multiple ZSK and hiding all secrets, as
   these are done in this experiment.
