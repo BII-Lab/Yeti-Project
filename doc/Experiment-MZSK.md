@@ -63,14 +63,20 @@ work. Here one of the DM (BII) will create and add 5 ZSK using the
 existing synchronization mechanism. (If all 3 ZSK are rolling then we
 have 6 total. To get this number we add 5.)
 
-Since we will use the existing synchronization mechanism, all DM will
-sign using the previous ZSK. The 5 additional ZSK are there merely to
-test client behavior. We can set the activation date far in the future
-so they are never actually used.
+<<Davey: add 5 ZSK pairs or just 5 ZSK public key? They will not be 
+active during the whole Phase 1 experiment, right?>>
+
+Since we will use the existing synchronization mechanism(TODO: give a 
+like to existing SYN Mechnisom), all DM will sign using the previous ZSK. 
+The 5 additional ZSK are there merely to test client behavior. We can 
+set the activation date far in the future so they are never actually used.
 
 Once we confirm that traffic continues to work, we can remove 3 of the
 ZSK, leaving us with 3 ZSK which we will use for the start of phase 2
 of the experiment.
+
+<<Davey: the current rutine code of three DMs may not support contain all 6 
+Public ZSK into the root zone. We should double check with Kato and Paul>>
 
 ## Phase 2
 In the second phase, we separate the management of the ZSK so that
@@ -132,6 +138,10 @@ We should run checks throughout the MZSK experiment to confirm that we
 can lookup and validate a range of zones, using both BIND 9 and
 Unbound, as well as a manual validator such as drill.
 
+<<Davey: There are two measurements: one is for IPv6 DNS MTU test. 
+By caculation, there will be 1400+ B packet for DNSKEY with signature. 
+We can use atlas probes to dig DNSKEY +DNSSEC and measuren the packets 
+loss and TCP transaction. The second is for DNSSEC validation under MZSK>>
 
 Timeline
 ========
@@ -177,6 +187,7 @@ same way as rolling a single ZSK.
 | 2015-03-25 |            |          | Retire old ZSK (remove 3 ZSK)
 |            |            | 1 week   | Monitor traffic
 | 2015-04-01 |            |          | Champagne at DNS-OARC `:)`
+
 
 Report Format
 =============
