@@ -20,8 +20,8 @@ our $yeticonf_dm = '/home/vixie/work/yeticonf/dm';
 our $rootservers_file = "$yeticonf_dm/yeti-root-servers.yaml";
 our $ianaroot_file = './iana-root.dns';
 our $yetiroot_file = './yeti-root.dns';
-our $yeti_mname = 'www.yeti-dns.net.';
-our $yeti_rname = 'hostmaster.yeti-dns.net.';
+our $yeti_mname = 'www.yeti-dns.org.';
+our $yeti_rname = 'hostmaster.yeti-dns.org.';
 our $start_serial_file = "$yeticonf_dm/iana-start-serial.txt";
 
 our $nameservers = {};
