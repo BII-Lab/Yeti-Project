@@ -55,14 +55,14 @@ Additionally, it has the following directory structure:
 
 * `ksk/`
   * `ksk-2015112601/`
-    * `ksk-iana-start-serial.txt`
+    * `iana-start-serial.txt`
     * `K.+008+03558.key`
     * `K.+008+03558.private`
   * `ksk-2015112801/`
     * ...
 * `zsk/`
   * `zsk-2015112500/`
-    * `zsk-iana-start-serial.txt`
+    * `iana-start-serial.txt`
     * `K.+008+59676.key`
     * `K.+008+59676.private`
   * `zsk-2015112903/`
@@ -114,12 +114,12 @@ format that BIND 9 `dnssec-keygen` creates. It also contains a
 information.
 
 The KSK directories each contain a file called
-`ksk-iana-start-serial.txt`, which contains the serial in the SOA of
-the IANA root zone when to start using the contents of the directory.
+`iana-start-serial.txt`, which contains the serial in the SOA of the
+IANA root zone when to start using the contents of the directory.
 
 The ZSK directories each contain a file called
-`zsk-iana-start-serial.txt`, which contains the serial in the SOA of
-the IANA root zone when to start using the contents of the directory.
+`iana-start-serial.txt`, which contains the serial in the SOA of the
+IANA root zone when to start using the contents of the directory.
 
 
 Operations
@@ -154,8 +154,8 @@ To change the KSK and ZSK, the logic is:
 1. Make a directory named "{ksk,zsk}-YYYYMMDD##", where YYYYMMDD is the
    current date and ## is a number, starting with 00.
 2. Put all of the desired KSK or ZSK files into the new directory.
-3. Create `ksk-iana-start-serial.txt` or `zsk-iana-start-serial.txt`
-   as appropriate, with a serial 2 days in the future.
+3. Create `iana-start-serial.txt` as appropriate, with a serial 2 days
+   in the future.
 4. "git add"/"git commit"/"git push" of the directory.
 
 Generate a Yeti root zone
