@@ -63,6 +63,11 @@ work. Here one of the DM (BII) will create and add 5 ZSK using the
 existing synchronization mechanism. (If all 3 ZSK are rolling then we
 have 6 total. To get this number we add 5.)
 
+Due to some concern that adding 5 at once will not work correctly with
+all root zone generation software by all DM, we add one ZSK for each
+serial change. IANA creates at least two versions of the root zone
+each day, so we can add two ZSK per day.
+
 Because we are using the existing mechanism, we need to also include
 private keys for the ZSK. However, these ZSK will not be active during
 the experiment, so they will not be used to sign.
