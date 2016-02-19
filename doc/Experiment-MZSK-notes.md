@@ -33,9 +33,9 @@ Smaller UDP queries worked too:
 
 This was reported on the Yeti list, and fixed shortly after:
 
-    http://lists.yeti-dns.org/pipermail/discuss/2016-February/000393.html
+http://lists.yeti-dns.org/pipermail/discuss/2016-February/000393.html
 
 The underlying cause was the issue documented here:
 
-    https://github.com/torvalds/linux/commit/efb6de9b4ba0092b2c55f6a52d16294a8a698edd
+https://github.com/torvalds/linux/commit/efb6de9b4ba0092b2c55f6a52d16294a8a698edd
 
