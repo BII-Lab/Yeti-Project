@@ -9,7 +9,7 @@ get_workdir() {
     if echo $path|egrep -q '^\.'; then
         #echo "start with ."
         workdir="${absoulte_path}"
-    elif echo $path|egrep -q '/'; then
+    elif echo $path|egrep -q '^/'; then
         # absoulte path
         :
     else
@@ -39,9 +39,9 @@ download_zone() {
 
     case "$method" in 
         axfr)
-            ${dig} -6 @f.root-servers.net . axfr   >  ${origin_data}/root.zone
+            ${dig} +onesoa +nocmd +nocomments +nostats -6 @f.root-servers.net . axfr   >  ${origin_data}/root.zone
             if [ $? -ne 0 ]; then
-                ${dig} -4 @f.root-servers.net . axfr   >  ${origin_data}/root.zone
+                ${dig} +onesoa +nocmd +nocomments +nostats -4 @f.root-servers.net . axfr   >  ${origin_data}/root.zone
             fi
             ;;
         ftp)
@@ -109,22 +109,22 @@ generate_root_ns_file() {
 
     # build root zone apex
     yeti_root_num=`cat ${current_root_list} | wc -l `
-    echo ".    86400   IN    SOA    bii.dns-lab.net.  yeti.biigroup.cn.  \
+    echo ".    86400   IN    SOA    www.yeti-dns.org.  hostmaster.yeti-dns.org.  \
         2015091000  1800  900  604800  86400" > ${config}/root.zone.apex
     for num in `seq 1 ${yeti_root_num}`; do
         root_name=`$sed -n "${num}p" ${current_root_list}  | awk '{print  $1}'`
         root_ip=`$sed -n "${num}p" ${current_root_list}  | awk '{print  $2}'`
         ${workdir}/bin/checkns -ns ${root_name} -addr ${root_ip}
         if [ $? -eq 0 ]; then
-            printf "%-30s %-10s %-4s %-8s %-40s\n"  "."   "518400" "IN" "NS" "${root_name}" >>${config}/root.zone.apex
-            printf "%-30s %-10s %-4s %-8s %-40s\n"  "${root_name}"  "172800" "IN" "AAAA" "${root_ip}"\
+            printf "%-30s %-10s %-4s %-8s %-40s\n"  "."   "86400" "IN" "NS" "${root_name}" >>${config}/root.zone.apex
+            printf "%-30s %-10s %-4s %-8s %-40s\n"  "${root_name}"  "86400" "IN" "AAAA" "${root_ip}"\
                  >>${config}/root.zone.apex
         else
             echo "`${datetime}` ${root_name} or ${root_ip} is not Correct" >> ${logfile}
             echo "`${datetime}` ${root_name} or ${root_ip} is not Correct" |mail \
                  -s "check root ns list --fail" -r ${sender}  ${admin_mail}
-            printf "%-30s %-10s %-4s %-8s %-40s\n"  "."   "518400" "IN" "NS" "${root_name}" >>${config}/root.zone.apex
-            printf "%-30s %-10s %-4s %-8s %-40s\n"  "${root_name}"  "172800" "IN" "AAAA" "${root_ip}"\
+            printf "%-30s %-10s %-4s %-8s %-40s\n"  "."   "86400" "IN" "NS" "${root_name}" >>${config}/root.zone.apex
+            printf "%-30s %-10s %-4s %-8s %-40s\n"  "${root_name}"  "86400" "IN" "AAAA" "${root_ip}"\
                  >>${config}/root.zone.apex
             #exit 1
         fi
