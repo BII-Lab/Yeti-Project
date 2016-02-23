@@ -39,3 +39,10 @@ The underlying cause was the issue documented here:
 
 https://github.com/torvalds/linux/commit/efb6de9b4ba0092b2c55f6a52d16294a8a698edd
 
+2016-02-22
+----
+Having multiple ZSK causes problems with IXFR:
+
+http://lists.yeti-dns.org/pipermail/discuss/2016-February/000399.html
+
+We should probably change to AXFR-only for the Yeti root servers.
