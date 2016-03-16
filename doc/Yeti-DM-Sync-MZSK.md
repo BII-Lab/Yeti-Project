@@ -199,16 +199,14 @@ To generate a root zone the server does this:
     3. Add Yeti SOA.
     4. Add Yeti NS RRSET (based on `yeti-root-servers.yaml`).
 5. Find the latest KSK directory where the serial number is <= the
-   root serial number. Find the latest ZSK directory where the serial
-   number is <= the root serial number. Use the keys found there when
-   signing the root.
-6. Add the KSK and ZSK DNSKEY.
-7. Sign the root zone. Note that the signing process should use the
-   active ZSK private key that the DM doing the signing is using, as
-   well as the KSK private key from the repository.
+   root serial number. Find all the ZSK directories where the serial
+   number is <= the root serial number. 
+6. Add the KSK and ZSK found there into DNSKEY when "Publish<time<Delete"
+7. Use the keys found there signing the root zone when "Active<time<Inactive"
+   Note that the signing process should use the active ZSK private key that 
+   the DM doing the signing is using, as well as the KSK private key from the 
+   repository.
 8. Reload the root zone. (This will send notifies.)
-
-
 
 Future Work: Consistency Protocol
 =================================
