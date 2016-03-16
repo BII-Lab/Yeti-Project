@@ -198,7 +198,7 @@ To generate a root zone the server does this:
     2. Remove records for . (SOA, NS).
     3. Add Yeti SOA.
     4. Add Yeti NS RRSET (based on `yeti-root-servers.yaml`).
-5. Find the latest KSK directories where the serial number is <= the
+5. Find the latest KSK directory where the serial number is <= the
    root serial number. Find all the ZSK directories where the serial
    number is <= the root serial number. 
 6. Add the KSK and ZSK found there into DNSKEY when "Publish<time<Delete"
