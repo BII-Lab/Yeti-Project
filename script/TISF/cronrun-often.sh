@@ -16,6 +16,7 @@ if dnssec-verify -o . iana-root.dns > dnssec-verify.out 2>&1; then
 	:
 else
 	cat dnssec-verify.out
+	traceroute -q1 192.5.5.241
 	exit 1
 fi
 if [ ! -s iana-root.dns ]; then
