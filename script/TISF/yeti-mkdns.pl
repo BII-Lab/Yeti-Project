@@ -9,8 +9,10 @@ use YAML::Syck qw/LoadFile/;
 use File::Find;
 use POSIX qw/strftime/;
 
-sub wanted;
+sub wanted_shared;
+sub wanted_local;
 sub key_dates($);
+sub is_ksk($);
 sub do_zf($$);
 sub do_rr($$);
 sub output($);
@@ -23,12 +25,15 @@ our $yetiroot_file = './yeti-root.dns';
 our $yeti_mname = 'www.yeti-dns.org.';
 our $yeti_rname = 'hostmaster.yeti-dns.org.';
 our $start_serial_file = "$yeticonf_dm/iana-start-serial.txt";
+our $local_zskdir = '/home/vixie/work/yeti-tisf/zsk';
 
 our $nameservers = {};
 our $addresses = {};
 our $soa_ttl = 0;
 our $soa_serial = undef;
 our $start_serial = undef;
+our %local_zsk = ();
+our %local_ksk = ();
 
 #
 # first, load in the yeti root name server information and min. serial#
@@ -55,7 +60,9 @@ open($yetiroot, ">$yetiroot_file") || die "$yetiroot_file: $!";
 do_zf($ianaroot_file, 0);
 die "not time yet, check iana serial" unless $soa_serial >= $start_serial;
 # process the DNSKEY files for yeti's keys
-find(\&wanted, "$yeticonf_dm/ksk", "$yeticonf_dm/zsk");
+find(\&wanted_shared, "$yeticonf_dm/ksk", "$yeticonf_dm/zsk");
+find(\&wanted_local, $local_zskdir);
+print join(' ', keys %local_ksk, keys %local_zsk), "\n";
 # process the NS and AAAA RR's from the YAML data
 foreach my $ns (@$glue) {
 	my ($nsdname, $address) = split /$;/, $ns;
@@ -79,9 +86,9 @@ close($yetiroot) || die "$yetiroot_file: $!";
 exit 0;
 
 #
-# wanted -- callback from the ksk/zsk "find"
+# wanted_shared -- callback from the ksk/zsk "find"
 #
-sub wanted {
+sub wanted_shared {
 	# we are looking for any directory containing iana-start-serial.txt
 	return unless $_ eq 'iana-start-serial.txt';
 	# the contents of that file have to be correct for current serial#
@@ -97,10 +104,31 @@ sub wanted {
 			&do_zf($keyfile, 1);
 		}
 		# if its activity range includes now, use it for signing
+		if (&is_ksk($keyfile) &&
+		    $now ge $attr->{Activate} && $now lt $attr->{Inactive}) {
+			$_ = $keyfile;
+			s:\.key$:.private:o;
+			$local_ksk{$_} = undef if -e;
+		}
+	}
+}
+
+#
+# wanted_local -- callback from the local key "find"
+#
+sub wanted_local {
+	# we are looking for any directory containing iana-start-serial.txt
+	return unless $_ eq 'iana-start-serial.txt';
+	# within such directories, *.key files are of potential interest
+	my $now = strftime '%Y%m%d%H%M%S', gmtime;
+	foreach my $keyfile (<$File::Find::dir/*.key>) {
+		my $attr = &key_dates($keyfile);
+		next unless defined $attr;
+		# if its activity range includes now, use it for signing
 		if ($now ge $attr->{Activate} && $now lt $attr->{Inactive}) {
 			$_ = $keyfile;
 			s:\.key$:.private:o;
-			print $_, "\n";
+			$local_zsk{$_} = undef if -e;
 		}
 	}
 }
@@ -129,6 +157,20 @@ sub key_dates($) {
 	return undef unless defined $attr->{Inactive};
 	return undef unless defined $attr->{Delete};
 	return $attr;
+}
+
+#
+# is_zsk -- determine whether this is a ksk or zsk file
+#
+sub is_ksk($) {
+	my ($keyfile) = @_;
+
+	my $file = undef;
+	open($file, "<$keyfile") || die "$keyfile: $!";
+	$_ = <$file>;
+	return 1 if /key-signing/;
+	return 0 if /zone-signing/;
+	die "bad key file '$keyfile'";
 }
 
 #
