@@ -10,7 +10,9 @@ use File::Find;
 use POSIX qw/strftime/;
 
 sub wanted;
+sub wanted_private_zsk;
 sub key_dates($);
+sub key_type($);
 sub do_zf($$);
 sub do_rr($$);
 sub output($);
@@ -23,12 +25,16 @@ our $yetiroot_file = './yeti-root.dns';
 our $yeti_mname = 'www.yeti-dns.org.';
 our $yeti_rname = 'hostmaster.yeti-dns.org.';
 our $start_serial_file = "$yeticonf_dm/iana-start-serial.txt";
+# zsk of each dm 
+our $local_zsk = '/root/mhb/TISF/key';
 
 our $nameservers = {};
 our $addresses = {};
 our $soa_ttl = 0;
 our $soa_serial = undef;
 our $start_serial = undef;
+our $private_zsk = '';
+our $private_ksk = '';
 
 #
 # first, load in the yeti root name server information and min. serial#
@@ -51,11 +57,16 @@ undef $rootservers;
 
 our $yetiroot = undef;
 open($yetiroot, ">$yetiroot_file") || die "$yetiroot_file: $!";
+
 # process the IANA root zone
 do_zf($ianaroot_file, 0);
 die "not time yet, check iana serial" unless $soa_serial >= $start_serial;
+
 # process the DNSKEY files for yeti's keys
 find(\&wanted, "$yeticonf_dm/ksk", "$yeticonf_dm/zsk");
+find(\&wanted_private_zsk, "$local_zsk");
+print $private_ksk." ".$private_zsk, "\n";
+
 # process the NS and AAAA RR's from the YAML data
 foreach my $ns (@$glue) {
 	my ($nsdname, $address) = split /$;/, $ns;
@@ -91,6 +102,7 @@ sub wanted {
 	my $now = strftime '%Y%m%d%H%M%S', gmtime;
 	foreach my $keyfile (<$File::Find::dir/*.key>) {
 		my $attr = &key_dates($keyfile);
+		my $ksk = &key_type($keyfile);
 		next unless defined $attr;
 		# if its publication range includes now, publish it
 		if ($now ge $attr->{Publish} && $now lt $attr->{Delete}) {
@@ -100,7 +112,35 @@ sub wanted {
 		if ($now ge $attr->{Activate} && $now lt $attr->{Inactive}) {
 			$_ = $keyfile;
 			s:\.key$:.private:o;
-			print $_, "\n";
+			if (-e $_) {
+				if ($ksk eq 1) {
+			        	$private_ksk=$_." ".$private_ksk;
+			   }
+			}
+		}
+	}
+}
+
+#
+# wanted_private_zsk -- callback from the zsk "find"
+#
+sub wanted_private_zsk {
+	return unless index($_, "private") != -1;
+	# within such directories, *.key files are of potential interest
+	my $now = strftime '%Y%m%d%H%M%S', gmtime;
+	foreach my $keyfile (<$File::Find::dir/*.key>) {
+		my $attr = &key_dates($keyfile);
+		my $ksk  = &key_type($keyfile);
+		next unless defined $attr;
+		# if its activity range includes now, use it for signing
+		if ($now ge $attr->{Activate} && $now lt $attr->{Inactive}) {
+			$_ = $keyfile;
+			s:\.key$:.private:o;
+			if (-e $_) {
+				if (index($private_zsk, $_) == -1) {
+					$private_zsk=$_." ".$private_zsk;
+			   }
+			}
 		}
 	}
 }
@@ -112,6 +152,7 @@ sub key_dates($) {
 	my ($keyfile) = @_;
 
 	my $file = undef;
+	my $ksk = 0;
 	open($file, "<$keyfile") || die "$keyfile: $!";
 	# ; Created: 20151111203103 (Thu Nov 12 04:31:03 2015)
 	# ; Publish: 20151111203103 (Thu Nov 12 04:31:03 2015)
@@ -121,6 +162,7 @@ sub key_dates($) {
 	my $attr = {};
 	while (<$file>) {
 		chomp;
+		$ksk = 1 if /key-signing/;
 		next unless /^\; (\w+)\: (\d{14})/;
 		$attr->{$1} = $2;
 	}
@@ -128,7 +170,23 @@ sub key_dates($) {
 	return undef unless defined $attr->{Activate};
 	return undef unless defined $attr->{Inactive};
 	return undef unless defined $attr->{Delete};
-	return $attr;
+	return ($attr);
+}
+
+#
+# key_type --  Judge key is ksk or zsk
+sub key_type($) {
+	my ($keyfile) = @_;
+
+	my $file = undef;
+	my $ksk = 0;
+	open($file, "<$keyfile") || die "$keyfile: $!";
+	while (<$file>) {
+		chomp;
+		$ksk = 1 if /key-signing/;
+		last;
+	}
+	return ($ksk);
 }
 
 #
