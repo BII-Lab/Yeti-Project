@@ -12,7 +12,6 @@ use POSIX qw/strftime/;
 sub wanted_shared;
 sub wanted_local;
 sub key_dates($);
-sub is_ksk($);
 sub do_zf($$);
 sub do_rr($$);
 sub output($);
@@ -103,9 +102,8 @@ sub wanted_shared {
 		if ($now ge $attr->{Publish} && $now lt $attr->{Delete}) {
 			&do_zf($keyfile, 1);
 		}
-		# if its activity range includes now, use it for signing
-		if (&is_ksk($keyfile) &&
-		    $now ge $attr->{Activate} && $now lt $attr->{Inactive}) {
+		# if its activity range includes now, consider it for signing
+		if ($now ge $attr->{Activate} && $now lt $attr->{Inactive}) {
 			$_ = $keyfile;
 			s:\.key$:.private:o;
 			$local_ksk{$_} = undef if -e;
@@ -157,20 +155,6 @@ sub key_dates($) {
 	return undef unless defined $attr->{Inactive};
 	return undef unless defined $attr->{Delete};
 	return $attr;
-}
-
-#
-# is_zsk -- determine whether this is a ksk or zsk file
-#
-sub is_ksk($) {
-	my ($keyfile) = @_;
-
-	my $file = undef;
-	open($file, "<$keyfile") || die "$keyfile: $!";
-	$_ = <$file>;
-	return 1 if /key-signing/;
-	return 0 if /zone-signing/;
-	die "bad key file '$keyfile'";
 }
 
 #
