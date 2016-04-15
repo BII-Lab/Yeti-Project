@@ -28,3 +28,9 @@ yeti.aquaray.com               3600000    IN   AAAA     2a02:ec0:200::1
 yeti-ns.switch.ch              3600000    IN   AAAA     2001:620:0:ff::29                       
 .                              3600000    IN   NS       yeti-ns.lab.nic.cl                      
 yeti-ns.lab.nic.cl             3600000    IN   AAAA     2001:1398:1:21::8001                    
+.                              3600000    IN   NS       yeti-ns1.dns-lab.net                    
+yeti-ns1.dns-lab.net           3600000    IN   AAAA     2001:da8:a3:a027::6                     
+.                              3600000    IN   NS       yeti-ns2.dns-lab.net                    
+yeti-ns2.dns-lab.net           3600000    IN   AAAA     2001:da8:268:4200::6                    
+.                              3600000    IN   NS       yeti-ns3.dns-lab.net                    
+yeti-ns3.dns-lab.net           3600000    IN   AAAA     2400:a980:30ff::6                       
