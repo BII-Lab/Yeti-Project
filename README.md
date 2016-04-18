@@ -47,25 +47,58 @@ Below are details about the different ways of joining the effort.
 
     BIND:
 
+    ```
         masters yeti-dm {
             240c:f:1:22::7;            # bii
             2001:200:1d9::53;        # wide
             2001:559:8000::7;        # tisf
         };
-
+    ```
+    
     NSD:
 
-    ```yaml
+    ```
     zone:
         name: "."
+	# BII
         request-xfr: 240c:f:1:22::7 NOKEY
-        request-xfr: 2001:559:8000::7 NOKEY
+	# WIDE
         request-xfr: 2001:200:1d9::53 NOKEY
+	# TISF
+        request-xfr: 2001:559:8000::7 NOKEY
         allow-notify: 240c:f:1:22::7 NOKEY
-        allow-notify: 2001:559:8000::7 NOKEY
         allow-notify: 2001:200:1d9::53 NOKEY
+        allow-notify: 2001:559:8000::7 NOKEY
     ```
-     
+
+    Knot:
+    ```
+remote:
+  - id: yeti-dm-bii
+    address: 240c:f:1:22::7
+  - id: yeti-dm-wide
+    address: 2001:200:1d9::53
+  - id: yeti-dm-tisf
+    address: 2001:559:8000::7
+
+acl:
+  - id: yeti-notify-bii
+    address: 240c:f:1:22::7
+    action: notify
+  - id: yeti-notify-wide
+    address: 2001:200:1d9::53
+    action: notify
+  - id: yeti-notify-tisf
+    address: 2001:559:8000::7
+    action: notify
+
+zone:
+  - domain: "."
+    file: "root.zone"
+    master: [ yeti-dm-bii, yeti-dm-wide, yeti-dm-tisf ]
+    acl: [ yeti-notify-bii, yeti-notify-wide, yeti-notify-tisf ]
+    ```
+
     Afterward, please send a mail to coordinators mailing list to notify that it is done.
 
     **Step 3: Monitoring system setup**
@@ -96,7 +129,7 @@ Below are details about the different ways of joining the effort.
 
     Unbound:
 
-    ```yaml
+    ```
     server:
         root-hints: "yeti-hints"
         # Check the file is writable by Unbound
@@ -111,12 +144,12 @@ Below are details about the different ways of joining the effort.
         };
 
         managed-keys {
-           "." initial-key 257 3 8 "AwEAAchb6LrHCdz9Yo55u1id/b+X1FqVDF66xNrhbgnV+vtpiq7pDsT8 KgzSijNuGs4GLGsMhVE/9H0wOtmVRUQqQ50PHZsiqg8gqB6i5zLortjp
-                                    aCLZS7Oke1xP+6LzVRgT4c8NXlRBg3m/gDjzijBD0BMACjVGZNv0gReA
-                                    g2OCr9dBrweE6DnM6twG7D2NyuGjpWzKeJfNd3Hek39V9NGHuABGkmYG
-                                    16XCao37IWcP/s/57HuBom5U3SNfuzfVDppokatuL6dXp9ktuuVXsESc
-                                    /rUERU/GPleuNfRuPHFr3URmrRud4DYbRWNVIsxqkSLrCldDjP1Hicf3
-                                    S8NgVHJTSRE=";
+           "." initial-key 257 3 8 "AwEAAaP3gGQ4db0tAiDEky0dcUNGeI1aTDYP5NFxzhbdpD60ZhKLVV4KyxPmoSNU
+                                    pq5Fv5M0iBwK1Tyswsyq/9sMSoZ8zx8a T3ho1YnPsSqQeJfjTT1WsX6YZ5Kw6B2Q
+                                    kjRNa6OMGZ96Kn8AI/slqsw+z8hY49Sn 3baeo9iJxHPzloNc2dQkW4aLqzNEYxnu
+                                    oJsthCfGrPSAXlUjY9m3YKIaEWR5WFYQ k770fT+gGWLk/54Vp0sG+Lw75JZnwhDh
+                                    ixPFaToTDNqbHQmkEylq1XJLO15uZ/+R ZNRfTXZKO4fVR0tMEbMAITqRmyP8xLXY
+                                    4RXbS4J32gnenQbzABX8sQmwO7s=";
         };
 
     In the BIND example, the text between quotes is the key, from https://raw.githubusercontent.com/BII-Lab/Yeti-Project/master/domain/KSK.pub

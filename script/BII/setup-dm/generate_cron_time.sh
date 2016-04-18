@@ -6,7 +6,7 @@ generate_crontab_time() {
     local keyname
 
     if [ "$keytype" = "zsk" ]; then
-        keytag=`/usr/local/bin/dig  @${server} . soa +dnssec +short |grep "SOA" |awk '{print $7}'`
+        keytag=`/usr/local/bin/dig  @${server} . dnskey +all |grep "ZSK" |awk '{print $NF}'`
     elif [ "$keytype" = "ksk" ]; then
         keytag=`/usr/local/bin/dig @${server}  .  dnskey  +all | grep "KSK" |awk '{print $NF}'`
     else
