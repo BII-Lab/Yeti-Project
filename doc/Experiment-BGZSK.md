@@ -13,9 +13,10 @@ bits in 2016:
 
 https://indico.dns-oarc.net/event/22/session/4/contribution/14/material/slides/0.pptx
 
-Yeti should change to RSA 2048 for ZSK and observe the results. If the
-response size is greater than 1280 bytes it is likely that increased
-TCP will be observed from priming queries.
+Yeti should change to RSA 2048 for ZSK and observe the results. While
+signed replies will be larger, it is unlikely that we will see
+increased truncation or fragmentation, as most replies will still be
+less than 1280 bytes.
 
 Given that this is merely an extension of existing key length, and
 that the KSK is already signed with the same algorithm and key length,
