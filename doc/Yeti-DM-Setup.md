@@ -92,7 +92,7 @@ has changed.
 Synchronizing Yeti DM Configuration
 ===================================
 Synchronization between the Yeti DM is described in the [Yeti DM
-Synchronization document].
+Synchronization document][4].
 
 [1]: https://www.iana.org/domains/root
 [2]: http://yeti-dns.org/operators.html
