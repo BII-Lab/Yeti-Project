@@ -178,7 +178,16 @@ zone:
           ['yeti-ns.conit.co.'] = '2607:ff28:2:10::47:a010',
           ['yeti.aquaray.com.'] = '2a02:ec0:200::1',
           ['dahu2.yeti.eu.org.'] = '2001:67c:217c:6::2',
-          ['yeti-ns.switch.ch.'] = '2001:620:0:ff::29'
+          ['yeti-ns.switch.ch.'] = '2001:620:0:ff::29',
+          ['yeti-ns.lab.nic.cl.'] = '2001:1398:1:21::8001',
+	  ['yeti-ns1.dns-lab.net.'] = '2001:da8:a3:a027::6',
+	  ['yeti-ns2.dns-lab.net.'] = '2001:da8:268:4200::6',
+	  ['yeti-ns3.dns-lab.net.'] = '2400:a980:30ff::6',
+	  ['18ac3e7343f016890c510e93f93526.yeti-dns.net.'] = '2a05:78c0:0:2::3:6',
+	  ['2e7d2c03a9507ae265ecf5b5356885.yeti-dns.net.'] = '2400:8901:e001:39::6',
+	  ['3e23e8160039594a33894f6564e1b1.yeti-dns.net.'] = '2803:80:1004:63::1',
+	  ['3f79bb7b435b05321651daefd374cd.yeti-dns.net.'] = '2401:c900:1401:3b:c::6',
+	  ['ca978112ca1bbdcafac231b39a23dc.yeti-dns.net.'] = '2c0f:f530::6'
     })
 
     trust_anchors.config('yeti-root.key')
