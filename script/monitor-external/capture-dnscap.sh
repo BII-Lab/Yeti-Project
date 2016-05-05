@@ -9,6 +9,7 @@
 DNSCAP="/usr/local/bin/dnscap"
 IFCONFIG="/sbin/ifconfig"
 NTPDATE="/usr/sbin/ntpdate"
+BC="/usr/bin/bc"
 
 # Interfaces to capture packets
 # if you want to specify more than one, separate by spaces
@@ -100,7 +101,7 @@ if [ ! -z "${KICK_CMD}" ]; then
 fi
 
 # Validate the programs I'm expecting to use
-for prog in ${DNSCAP} ${IFCONFIG} ${NTPDATE} bc; do
+for prog in ${DNSCAP} ${IFCONFIG} ${NTPDATE} ${BC}; do
 if [ ! -x ${prog} ] ; then
     echo "${prog} is not executable, aborting!"
     exit 1
@@ -142,7 +143,7 @@ fi
 
 # NTP Check
 # Verifies if the clocks are properly synchronized
-NTP_CHECK=`${NTPDATE} -q pool.ntp.org`
+NTP_CHECK=`${NTPDATE} -q clock.isc.org`
 if [ $? != "0" ]; then
     echo "NTP check failed!"
     echo $NTP_CHECK

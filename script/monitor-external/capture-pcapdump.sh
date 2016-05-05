@@ -92,7 +92,7 @@ fi
 
 
 # Command line construction for pcapdump
-set -- -t "${INTERVAL}" -w "${SAVEDIR}/${NODENAME}" -m qun
+set -- -t "${INTERVAL}" -w "${SAVEDIR}/${NODENAME}.%Y%m%d.%H%M%S" -m 644
 if [ ! -z "${START_T}" ]; then
     set -- "$@" -B "${START_T}"
 fi
@@ -146,7 +146,7 @@ fi
 
 # NTP Check
 # Verifies if the clocks are properly synchronized
-NTP_CHECK=`${NTPDATE} -q pool.ntp.org`
+NTP_CHECK=`${NTPDATE} -q clock.isc.org`
 if [ $? != "0" ]; then
     echo "NTP check failed!"
     echo $NTP_CHECK
@@ -211,5 +211,5 @@ if [ ! -z ${NO_PAT} ]; then
 fi
 
 CMD="${PCAPDUMP} -f ${BPF_filter}"
-echo "Executing '${CMD}'"
-${PCAPDUMP} "$@" &
+echo "Executing ${CMD}"
+${PCAPDUMP} "$@" -f "${BPF_filter}" &
