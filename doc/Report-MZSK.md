@@ -21,9 +21,9 @@ DNSSEC uses a Key-Signing Key (KSK), which in turn signs one or more
 Zone-Signing Keys (ZSK), which in turn sign the zone. In the IANA
 setup it looks something like this:
 
-   +-----------+          +--------------+         +-----------+
-   | ICANN KSK |--------->| Verisign ZSK |-------->| IANA root |
-   +-----------+   signs  +--------------+  signs  +-----------+
+    +-----------+          +--------------+         +-----------+
+    | ICANN KSK |--------->| Verisign ZSK |-------->| IANA root |
+    +-----------+   signs  +--------------+  signs  +-----------+
 
 In the IANA root, ICANN is the holder of the KSK, and Verisign is the
 holder of the ZSK. There is a key signing ceremony where Verisign
@@ -31,9 +31,9 @@ submits the ZSK to ICANN and they are signed.
 
 In the original Yeti setup, the setup was very similar:
 
-   +-----------+          +--------------+         +-----------+
-   | Yeti KSK  |--------->| Yeti ZSK     |-------->| Yeti root |
-   +-----------+   signs  +--------------+  signs  +-----------+
+    +-----------+          +--------------+         +-----------+
+    | Yeti KSK  |--------->| Yeti ZSK     |-------->| Yeti root |
+    +-----------+   signs  +--------------+  signs  +-----------+
 
 However, in the Yeti setup both the KSK and ZSK were each held by all
 three DM. This meant that each DM operator had full access to all of
@@ -43,15 +43,17 @@ The MZSK experiment changes this setup, so that each DM operator
 creates a separate ZSK, which is used to sign the Yeti root, looking
 something like this:
 
-                          +--------------+         +-----------+
-                 +------->| BII ZSK      |-------->| Yeti root |
-                 | signs  +--------------+  signs  +-----------+
-   +-----------+ |        +--------------+         +-----------+
-   | Yeti KSK  |-+------->| TISF ZSK     |-------->| Yeti root |
-   +-----------+ | signs  +--------------+  signs  +-----------+
-                 |        +--------------+         +-----------+
-                 +------->| WIDE ZSK     |-------->| Yeti root |
-                   signs  +--------------+  signs  +-----------+
+                           +--------------+         +-----------+
+                  +------->| BII ZSK      |-------->| Yeti root |
+                  | signs  +--------------+  signs  +-----------+
+                  |
+    +-----------+ |        +--------------+         +-----------+
+    | Yeti KSK  |-+------->| TISF ZSK     |-------->| Yeti root |
+    +-----------+ | signs  +--------------+  signs  +-----------+
+                  |
+                  |        +--------------+         +-----------+
+                  +------->| WIDE ZSK     |-------->| Yeti root |
+                    signs  +--------------+  signs  +-----------+
 
 
 In the MZSK setup, each DM maintains a separate ZSK and produces a
@@ -240,9 +242,9 @@ Yeti project has left it in place and it is now the standard way that
 Yeti root zones are signed.
 
 
-[1] https://github.com/BII-Lab/Yeti-Project/blob/master/doc/Yeti-DM-Setup.md
-[2] https://github.com/BII-Lab/Yeti-Project/blob/master/doc/Experiment-MZSK.md
-[3] https://github.com/BII-Lab/Yeti-Project/blob/master/doc/Experiment-Protocol.md
-[4] http://lists.yeti-dns.org/pipermail/discuss/2015-October/000269.html
-[5] http://lists.yeti-dns.org/pipermail/discuss/2016-January/000362.html
-[6] http://lists.yeti-dns.org/pipermail/discuss/2016-April/000501.html
+[1]: https://github.com/BII-Lab/Yeti-Project/blob/master/doc/Yeti-DM-Setup.md
+[2]: https://github.com/BII-Lab/Yeti-Project/blob/master/doc/Experiment-MZSK.md
+[3]: https://github.com/BII-Lab/Yeti-Project/blob/master/doc/Experiment-Protocol.md
+[4]: http://lists.yeti-dns.org/pipermail/discuss/2015-October/000269.html
+[5]: http://lists.yeti-dns.org/pipermail/discuss/2016-January/000362.html
+[6]: http://lists.yeti-dns.org/pipermail/discuss/2016-April/000501.html
