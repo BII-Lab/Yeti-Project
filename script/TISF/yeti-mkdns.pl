@@ -5,7 +5,7 @@
 use strict;
 use warnings;
 use Net::DNS::ZoneFile;
-use YAML::Syck qw/LoadFile/;
+use YAML::Syck;
 use File::Find;
 use POSIX qw/strftime/;
 
@@ -26,21 +26,13 @@ our $yeti_rname = 'hostmaster.yeti-dns.org.';
 our $start_serial_file = "$yeticonf_dm/iana-start-serial.txt";
 our $local_zskdir = '/home/vixie/work/yeti-tisf/zsk';
 
-our $nameservers = {};
-our $addresses = {};
-our $soa_ttl = 0;
-our $soa_serial = undef;
-our $start_serial = undef;
-our %local_zsk = ();
-our %local_ksk = ();
-
 #
 # first, load in the yeti root name server information and min. serial#
 #
 
-$start_serial = &load_serial($start_serial_file);
+our $start_serial = &load_serial($start_serial_file);
 
-our $rootservers = LoadFile($rootservers_file);
+our $rootservers = YAML::Syck::LoadFile($rootservers_file);
 my $glue = [];
 foreach my $s (@$rootservers) {
 	die "missing name" unless defined $s->{name};
@@ -53,16 +45,22 @@ undef $rootservers;
 # second, generate the yeti zone from the iana zone
 #
 
+our $nameservers = {};
+our $addresses = {};
 our $yetiroot = undef;
 open($yetiroot, ">$yetiroot_file") || die "$yetiroot_file: $!";
 # process the IANA root zone
-do_zf($ianaroot_file, 0);
+our ($soa_ttl, $soa_serial) = do_zf($ianaroot_file, 0);
 die "not time yet, check iana serial" unless $soa_serial >= $start_serial;
 # process the DNSKEY files for yeti's keys
-find(\&wanted_shared, "$yeticonf_dm/ksk", "$yeticonf_dm/zsk");
+our @sharedkeys = ();
+our @localkeys = ();
+find(\&wanted_shared, "$yeticonf_dm/ksk");
 find(\&wanted_local, $local_zskdir);
-print join(' ', keys %local_ksk, keys %local_zsk), "\n";
-# process the NS and AAAA RR's from the YAML data
+# only look for shared ksk if no qualifying local ksk was found
+find(\&wanted_shared, "$yeticonf_dm/ksk") if $#localkeys < $[;
+print join(' ', @sharedkeys, @localkeys), "\n";
+# synthesize NS and AAAA RR's from the YAML data
 foreach my $ns (@$glue) {
 	my ($nsdname, $address) = split /$;/, $ns;
 	do_rr(new Net::DNS::RR(name => '.',
@@ -106,7 +104,7 @@ sub wanted_shared {
 		if ($now ge $attr->{Activate} && $now lt $attr->{Inactive}) {
 			$_ = $keyfile;
 			s:\.key$:.private:o;
-			$local_ksk{$_} = undef if -e;
+			push @sharedkeys, $_ if -e;
 		}
 	}
 }
@@ -126,7 +124,7 @@ sub wanted_local {
 		if ($now ge $attr->{Activate} && $now lt $attr->{Inactive}) {
 			$_ = $keyfile;
 			s:\.key$:.private:o;
-			$local_zsk{$_} = undef if -e;
+			push @localkeys, $_ if -e;
 		}
 	}
 }
@@ -162,6 +160,7 @@ sub key_dates($) {
 #
 sub do_zf($$) {
 	my ($zf_file, $allow_dnssec) = @_;
+	my ($soa_ttl, $soa_serial);
 
 	my $zf = new Net::DNS::ZoneFile($zf_file, ['.']);
 	my $soa_seen = 0;
@@ -178,6 +177,7 @@ sub do_zf($$) {
 		do_rr($rr, $allow_dnssec);
 	}
 	undef $zf;
+	return ($soa_ttl, $soa_serial);
 }
 
 #
