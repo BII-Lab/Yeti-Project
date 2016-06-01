@@ -18,12 +18,12 @@ sub output($);
 sub load_serial($);
 
 our $yeticonf_dm = '/home/vixie/work/yeticonf/dm';
-our $rootservers_file = "$yeticonf_dm/yeti-root-servers.yaml";
+our $rootservers_file = "$yeticonf_dm/ns/yeti-root-servers.yaml";
 our $ianaroot_file = './iana-root.dns';
 our $yetiroot_file = './yeti-root.dns';
 our $yeti_mname = 'www.yeti-dns.org.';
 our $yeti_rname = 'hostmaster.yeti-dns.org.';
-our $start_serial_file = "$yeticonf_dm/iana-start-serial.txt";
+our $start_serial_file = "$yeticonf_dm/ns/iana-start-serial.txt";
 our $local_zskdir = '/home/vixie/work/yeti-tisf/zsk';
 
 #
@@ -120,6 +120,10 @@ sub wanted_local {
 	foreach my $keyfile (<$File::Find::dir/*.key>) {
 		my $attr = &key_dates($keyfile);
 		next unless defined $attr;
+		# if its publication range includes now, publish it
+		if ($now ge $attr->{Publish} && $now lt $attr->{Delete}) {
+			&do_zf($keyfile, 1);
+		}
 		# if its activity range includes now, use it for signing
 		if ($now ge $attr->{Activate} && $now lt $attr->{Inactive}) {
 			$_ = $keyfile;
