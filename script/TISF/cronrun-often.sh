@@ -27,7 +27,7 @@ if [ ! -s iana-root.dns ]; then
 	exit 1
 fi
 reality=$(awk '$3 = "SOA" { print $7; exit }' iana-root.dns)
-policy=$(cat $yeticonf_dm/iana-start-serial.txt)
+policy=$(cat $yeticonf_dm/ns/iana-start-serial.txt)
 new_zone=0
 if [ $reality -ge $policy ]; then
 	new_zone=1
