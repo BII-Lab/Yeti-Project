@@ -1,7 +1,7 @@
 #!/bin/env sh
 
 if [ $# -ne 2 ];then
-    echo "sh generate_key.sh   zsk|ksk   number(delay_timex:int))"
+    echo "sh generate_key.sh zsk|ksk number(delay_timex:int))"
     exit 1
 fi
 
@@ -29,6 +29,7 @@ get_workdir $workdir
 
 #apply new key or ns list time
 delay_time="$2"
+key_type="$1"
 
 #time in second
 HOUR=3600
@@ -37,7 +38,6 @@ WEEK=604800
 MONTH=2592000
 MAXTTL=518400
 ZONE_SYNC_ALL=86400
-
 
 #key parameter setting
 ksk_publish_time="now"
@@ -64,34 +64,51 @@ else
     exit 1
 fi
 
-
 logfile=$workdir/log/generate_key.log
-
 root_ksk_name_file="$workdir/tmp/root_ksk_name"
 root_zsk_name_file="$workdir/tmp/root_ksk_name"
-
 new_root_ksk_dir="$workdir/keys/root/newkey/ksk"
 new_root_zsk_dir="$workdir/keys/root/newkey/zsk"
 
 [ ! -d ${new_root_ksk_dir} ] && mkdir -p ${new_root_ksk_dir}
 [ ! -d ${new_root_zsk_dir} ] && mkdir -p ${new_root_zsk_dir}
 
+#Create KSK or ZSK  directory
+create_key_dir() {
+
+    date_time=`date +%Y%m%d`
+    #This function is dependent on the "ls" command the default collation.
+    key_num=`ls -l ${git_repository_dir}/$key_type/ | grep "${date_time}" | wc -l `
+    if [ "$key_num" -lt 10 ]; then
+        generate_num="0${key_num}"
+        key_dir="${date_time}${generate_num}"
+        mkdir -p ${git_repository_dir}/$key_type/${key_dir}
+    else
+        generate_num="${key_num}"
+        key_dir="${date_time}${generate_num}"
+        mkdir -p ${git_repository_dir}/$key_type/${key_dir}
+    fi
+}
 
 #generate reference soa 
-generate_start_serial () {
+generate_start_serial() {
     current_root_soa_serial=` head -1 $zone_data/root.zone  |awk '{print $7}'`
     date_num=`echo ${current_root_soa_serial:0:8}`
     modify_num=`echo ${current_root_soa_serial:8:10}`
-    newdate_num=`date -d "$date_num +${1} days" +%Y%m%d`
+    newdate_num=`date -d "$date_num +${2} days" +%Y%m%d`
     reference_soa_num=`echo ${newdate_num}${modify_num}`
-    echo ${reference_soa_num} > ${git_repository_dir}/iana-start-serial.txt
+    echo ${reference_soa_num} > ${git_repository_dir}/$key_type/${key_dir}/${key_start_serial_file}
 }
 
 #root  ksk
-generate_ksk () {
+generate_ksk() {
            
-    $dnsseckeygen -a 8 -b 2048 -K ${new_root_ksk_dir} -f KSK -P ${ksk_publish_time} -A ${ksk_activate_time} -I ${ksk_retire_time} \
-                  -D ${ksk_delete_time} -r /dev/urandom . >${root_ksk_name_file}
+    $dnsseckeygen -a 8 -b 2048 -K ${new_root_ksk_dir} -f KSK \
+                  -P ${ksk_publish_time} \
+                  -A ${ksk_activate_time} \
+                  -I ${ksk_retire_time} \
+                  -D ${ksk_delete_time} \
+                  -r /dev/urandom . >${root_ksk_name_file}
 
     if [ $? -eq 0 ];then
          echo "`${datetime}` root ksk generate successful" >> ${logfile}
@@ -105,26 +122,31 @@ generate_ksk () {
 }
 
 #rename ksk and cp ksk to git repository
-rename_ksk_move_git () {
+update_ksk_git() {
 
     root_ksk_prefix=`cat ${root_ksk_name_file}`
-    /bin/cp  ${new_root_ksk_dir}/${root_ksk_prefix}.key   ${git_repository_dir}/yeti-root-ksk.key
+    /bin/cp  ${new_root_ksk_dir}/${root_ksk_prefix}.key   ${ksk_git_repository_dir}/${key_dir}
     if [ $? -ne 0 ];then
         echo "`${datetime}` rename root_ksk public key fail" >> ${logfile}
         exit 1
     fi
 
-    /bin/cp ${new_root_ksk_dir}/${root_ksk_prefix}.private   ${git_repository_dir}/yeti-root-ksk.private
+    /bin/cp ${new_root_ksk_dir}/${root_ksk_prefix}.private   ${ksk_git_repository_dir}/${key_dir}
     if [ $? -ne 0 ];then
         echo "`${datetime}` rename root_ksk  private key fail" >> ${logfile}
         exit 1
     fi
 }
 
-generate_zsk () {
+# generate ZSK   
+generate_zsk() {
 
-    ${dnsseckeygen} -a 8 -b 1024 -K ${new_root_zsk_dir} -P ${zsk_publish_time}  -A ${zsk_activate_time} -I ${zsk_retire_time} \
- -D ${zsk_delete_time} -r /dev/urandom  .  > ${root_zsk_name_file}
+    ${dnsseckeygen} -a 8 -b 1024 -K ${new_root_zsk_dir} \
+                    -P ${zsk_publish_time} \
+                    -A ${zsk_activate_time} \
+                    -I ${zsk_retire_time} \
+                    -D ${zsk_delete_time} \
+                    -r /dev/urandom  .  > ${root_zsk_name_file}
 
     if [ $? -ne  0 ];then 
         echo "`${datetime}` Generate root ZSK errors on the pm(${servername}) server"  >> ${logfile}
@@ -138,16 +160,16 @@ generate_zsk () {
 }
 
 #rename zsk and cp zsk to git repository
-rename_zsk_move_git () {
+update_zsk_git() {
 
     root_zsk_prefix=`cat ${root_zsk_name_file}`
-    /bin/cp ${new_root_zsk_dir}/${root_zsk_prefix}.key   ${git_repository_dir}/yeti-root-zsk.key
+    /bin/cp ${new_root_zsk_dir}/${root_zsk_prefix}.key   ${zsk_git_repository_dir}/${key_dir}
     if [ $? -ne 0 ];then
          echo "`${datetime}` rename root_zsk public key fail" >> ${logfile}
          exit 1
     fi
 
-    /bin/cp ${new_root_zsk_dir}/${root_zsk_prefix}.private   ${git_repository_dir}/yeti-root-zsk.private 
+    /bin/cp ${new_root_zsk_dir}/${root_zsk_prefix}.private   ${zsk_git_repository_dir}/${key_dir}
     if [ $? -ne 0 ];then
         echo "`${datetime}` rename root_zsk  private key fail" >> ${logfile}
         exit 1
@@ -155,7 +177,7 @@ rename_zsk_move_git () {
 }
 
 #upload  ksk  for git
-update_git () {
+update_git() {
     cd ${git_repository_dir} || (echo "${git_repository_dir} don't exist" && exit 1)
     for git_option  in pull  add commit  push ;do
 
@@ -164,9 +186,9 @@ update_git () {
         while [ ${try_num} -gt 0 ];do
 
             if [ ${git_option} = "add" ];then
-                ${git} ${git_option} ${git_repository_dir}/yeti-root-$1.key ${git_repository_dir}/yeti-root-$1.private \
-                 ${git_repository_dir}/iana-start-serial.txt
-
+                ${git} ${git_option} ${git_repository_dir}/$key_type/$key_dir/*.key \
+                        ${git_repository_dir}/$key_type/$key_dir/*.private \
+                        ${git_repository_dir}/$key_type/$key_dir/*.txt
             elif [ ${git_option} = "commit" ];then
                 ${git} ${git_option} -m "update root $1"     
             else
@@ -191,21 +213,19 @@ update_git () {
 }
 
 refresh_git_repository
-
-# check git repo status
-is_pending
-
 case $1 in
     zsk)
-    generate_start_serial ${delay_time}
+    create_key_dir $key_type
+    generate_start_serial $key_type  ${delay_time}
     generate_zsk
-    rename_zsk_move_git
+    update_zsk_git
     update_git zsk
     ;;
     ksk)
-    generate_start_serial ${delay_time}
+    create_key_dir $key_type
+    generate_start_serial $key_type ${delay_time}
     generate_ksk
-    rename_ksk_move_git
+    update_ksk_git
     update_git ksk
     ;;
     *)
