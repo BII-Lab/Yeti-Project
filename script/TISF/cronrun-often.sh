@@ -45,22 +45,25 @@ fi
 #
 # second, remake the conf-include file (allow-transfer, also-notify)
 #
-if perl scripts/yeti-mkinc.pl; then
-	:
-else
-	echo 'yeti-mkinc failed' >&2
-	exit 1
-fi
 new_inc=0
-if [ -e named.yeti.inc.old ]; then
-	if cmp -s named.yeti.inc named.yeti.inc.old; then
-		new_inc=0
+if [ $reality -ge $policy ]; then
+	new_inc=1
+	if perl scripts/yeti-mkinc.pl; then
+		:
+	else
+		echo 'yeti-mkinc failed' >&2
+		exit 1
 	fi
-fi
-if [ $new_inc -ne 0 ]; then
-	rndc -s yeti-dm reconfig
-	rm -f named.yeti.inc.old
-	cp named.yeti.inc named.yeti.inc.old
+	if [ -e named.yeti.inc.old ]; then
+		if cmp -s named.yeti.inc named.yeti.inc.old; then
+			new_inc=0
+		fi
+	fi
+	if [ $new_inc -ne 0 ]; then
+		rndc -s yeti-dm reconfig
+		rm -f named.yeti.inc.old
+		cp named.yeti.inc named.yeti.inc.old
+	fi
 fi
 
 #
