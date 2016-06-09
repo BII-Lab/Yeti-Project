@@ -52,21 +52,21 @@ The Git repository has the following directory structure:
   * `iana-start-serial.txt`
   * `yeti-root-servers.yaml`
 * `ksk/`
-  * `ksk-2015112601/`
+  * `2015112601/`
     * `iana-start-serial.txt`
     * `K.+008+03558.key`
     * `K.+008+03558.private`
-  * `ksk-2015112801/`
+  * `2015112801/`
     * ...
 * `zsk/`
   * `bii/`
-    * `zsk-2015112500/`
+    * `2015112500/`
       * `iana-start-serial.txt`
       * `K.+008+59676.key`
-    * `zsk-2015112903/`
+    * `2015112903/`
       * ...
   * `tisf/`
-    * `zsk-2016020100/`
+    * `2016020100/`
       * ...
   * `wide/`
     * ...
@@ -168,7 +168,7 @@ list of Yeti root servers is made by changing the
 
 To change the KSK and ZSK, the logic is:
 
-1. Make a directory named "{ksk,zsk}-YYYYMMDD##", where YYYYMMDD is the
+1. Make a directory named "YYYYMMDD##", where YYYYMMDD is the
    current date and ## is a number, starting with 00.
 2. Put all of the desired KSK or ZSK files into the new directory.
 3. Create `iana-start-serial.txt`
@@ -182,7 +182,8 @@ To generate a root zone the server does this:
 1. Download the root zone (F.ROOT-SERVERS.NET is good for this).
 2. Check the root zone is correct using DNSSEC validation.
 3. If the root serial number is >= `iana-start-serial.txt` then copy
-   the `yeti-root-servers.yaml` and use that.
+   the `yeti-root-servers.yaml` and use that, else use the previous 
+   `yeti-root-servers.yaml`.
 4. Modify the root zone:
     1. Remove DNSSEC (NSEC, RRSIG, DNSKEY) records.
     2. Remove records for . (SOA, NS).
