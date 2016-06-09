@@ -1,3 +1,9 @@
+WARNING
+=======
+This describes the Yeti DM synchronization protocol as used by the
+Multi-ZSK experiment, which ended in 2016-04. Look at Yeti-DM-Sync.md
+for the current production documentation.
+
 Introduction
 ============
 This is a modification of the synchronization protocol that will allow
