@@ -46,13 +46,11 @@ Only the master branch is used.
 
 Details of Files
 ================
-The Git repository has the following files:
+The Git repository has the following directory structure:
 
-* `yeti-root-servers.yaml`
-* `iana-start-serial.txt`
-
-Additionally, it has the following directory structure:
-
+* `ns/`
+  * `iana-start-serial.txt`
+  * `yeti-root-servers.yaml`
 * `ksk/`
   * `ksk-2015112601/`
     * `iana-start-serial.txt`
@@ -61,12 +59,22 @@ Additionally, it has the following directory structure:
   * `ksk-2015112801/`
     * ...
 * `zsk/`
-  * `zsk-2015112500/`
-    * `iana-start-serial.txt`
-    * `K.+008+59676.key`
-    * `K.+008+59676.private`
-  * `zsk-2015112903/`
+  * `bii/`
+    * `zsk-2015112500/`
+      * `iana-start-serial.txt`
+      * `K.+008+59676.key`
+    * `zsk-2015112903/`
+      * ...
+  * `tisf/`
+    * `zsk-2016020100/`
+      * ...
+  * `wide/`
     * ...
+
+Note that while the various `ksk` and `zsk` directories use a date
+format, this is to make it easy to generate unique names and also to
+give humans some indication of when changes were made. The directory
+names *MUST NOT* be interpreted in any other way.
 
 The `yeti-root-servers.yaml` file contains one entry per Yeti root
 server, which has the server name, public IPv6 address, IPv6 networks
@@ -101,26 +109,35 @@ IANA root zone when to start using the data:
 
     2015092300
 
-## KSK and ZSK subdirectories
+## KSK subdirectories
 
-There are separate subdirectories, one for the KSK and one for the
-ZSK. Each contains a number of subdirectories, created with a unique
-name based on the ISO 8601 date format, with a number at the end to
-allow for more than one per day if necessary (up to 100).
-
-Each directory contains any number of `.key` files which is in the
-format that BIND 9 `dnssec-keygen` creates. It also contains a
-`.private` file for each such `.key` file, with the secret
-information.
+The KSK directory contains a number of subdirectories, created with a
+unique name based on the ISO 8601 date format, with a number at the
+end to allow for more than one per day if necessary (up to 100). Each
+directory contains any number of `.key` files which is in the format
+that BIND 9 `dnssec-keygen` creates.  It also contains a `.private`
+file for each `.key` file, with the secret information.
 
 The KSK directories each contain a file called
 `iana-start-serial.txt`, which contains the serial in the SOA of the
 IANA root zone when to start using the contents of the directory.
 
-The ZSK directories each contain a file called
-`iana-start-serial.txt`, which contains the serial in the SOA of the
-IANA root zone when to start using the contents of the directory.
+## ZSK subdirectories
 
+The ZSK directory contains three subdirectories, named for each of the
+DM operators: bii, tisf, and wide.
+
+Each DM operator subdirectory contains a number of subdirectories,
+created with a unique name based on the ISO 8601 date format, with a
+number at the end to allow for more than one per day if necessary (up
+to 100).
+
+Each directory contains any number of `.key` files which is in the
+format that BIND 9 `dnssec-keygen` creates.
+
+The ZSK directories each contain a file called
+`iana-start-serial.txt`, which contains the serial in the SOA of
+the IANA root zone when to start using the contents of the directory.
 
 Operations
 ==========
@@ -154,8 +171,8 @@ To change the KSK and ZSK, the logic is:
 1. Make a directory named "{ksk,zsk}-YYYYMMDD##", where YYYYMMDD is the
    current date and ## is a number, starting with 00.
 2. Put all of the desired KSK or ZSK files into the new directory.
-3. Create `iana-start-serial.txt` as appropriate, with a serial 2 days
-   in the future.
+3. Create `iana-start-serial.txt`
+   as appropriate, with a serial 2 days in the future.
 4. "git add"/"git commit"/"git push" of the directory.
 
 Generate a Yeti root zone
@@ -172,11 +189,23 @@ To generate a root zone the server does this:
     3. Add Yeti SOA.
     4. Add Yeti NS RRSET (based on `yeti-root-servers.yaml`).
 5. Find the latest KSK directory where the serial number is <= the
-   root serial number. Find the latest ZSK directory where the serial
-   number is <= the root serial number. Use the keys found there when
-   signing the root.
-6. Sign the root zone (will automatically add needed DNSKEY records).
-7. Reload the root zone. (This will send notifies.)
+   root serial number. Find all the ZSK directories where the serial
+   number is <= the root serial number.
+6. Add the KSK and ZSK found there into DNSKEY when "Publish<time<Delete"
+7. Use the keys found there signing the root zone when "Active<time<Inactive"
+   Note that the signing process should use the active ZSK private key that
+   the DM doing the signing is using, as well as the KSK private key from the
+   repository.
+8. Reload the root zone. (This will send notifies.)
+
+Notes:
+
+* If there is an error getting the IANA root zone, then the DM should
+  not generate a Yeti root. (Probably an alarm of some kind shoul de
+  raised in this case.)
+
+* A DM should always generate a zone during its time slot if the Yeti
+  serial is less than the IANA serial for the root zone.
 
 
 Future Work: Consistency Protocol
@@ -193,18 +222,19 @@ Future Work: Pre-share Multiple Keys
 ====================================
 Using the directory structure, it is possible to pre-share any
 number of keys (or indeed all keys for the lifetime of the project).
- 
-
-Future Work: Per-DM ZSK
-=======================
-Each DM can generate its own ZSK. There is no need to share secret
-material for the ZSK then. It may be useful to alter the scheme so
-that it is clear which ZSK belong to which DM, but that is not
-necessary.
 
 
-Future Work: Hiding All Secrets
-===============================
-Eventually the system should be changed so that each ZSK is signed by
-the KSK in a ceremony. There is no need to synchronize any secret
-material in such a setup.
+Future Work: Figure out the KSK signing process
+===============================================
+Right now we assume that each DM operator has access to the KSK secret
+material. Ultimately this should change, so that there is a true
+separation of authority between the KSK and ZSK holders.
+
+
+Future Work: Pre-configure Yeti Root Servers
+============================================
+It might be useful to be able to change the ACL and notify so that a
+new Yeti root server can get copies of the root zone from the DM in
+before it is published in the Yeti root zone. This would allow a
+server to be brought to a production state and then added to the list
+of Yeti servers answering root queries.
