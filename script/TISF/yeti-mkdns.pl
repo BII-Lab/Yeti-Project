@@ -25,6 +25,7 @@ our $yeti_mname = 'www.yeti-dns.org.';
 our $yeti_rname = 'hostmaster.yeti-dns.org.';
 our $start_serial_file = "$yeticonf_dm/ns/iana-start-serial.txt";
 our $local_zskdir = '/home/vixie/work/yeti-tisf/zsk';
+our $debug = 0;
 
 #
 # first, load in the yeti root name server information and min. serial#
@@ -55,10 +56,11 @@ die "not time yet, check iana serial" unless $soa_serial >= $start_serial;
 # process the DNSKEY files for yeti's keys
 our @sharedkeys = ();
 our @localkeys = ();
+our $mzsk_mode = 0;
 find(\&wanted_shared, "$yeticonf_dm/ksk");
 find(\&wanted_local, $local_zskdir);
-# only look for shared ksk if no qualifying local ksk was found
-find(\&wanted_shared, "$yeticonf_dm/ksk") if $#localkeys < $[;
+$mzsk_mode = ($#localkeys >= $[);
+find(\&wanted_shared, "$yeticonf_dm/zsk");
 print join(' ', @sharedkeys, @localkeys), "\n";
 # synthesize NS and AAAA RR's from the YAML data
 foreach my $ns (@$glue) {
@@ -90,21 +92,36 @@ sub wanted_shared {
 	return unless $_ eq 'iana-start-serial.txt';
 	# the contents of that file have to be correct for current serial#
 	my $serial = &load_serial($_);
+	printf STDERR
+		"wanted_shared(%s) serial %u\n", $File::Find::dir, $serial
+		if $debug;
 	return unless $soa_serial >= $serial;
 	# within such directories, *.key files are of potential interest
 	my $now = strftime '%Y%m%d%H%M%S', gmtime;
 	foreach my $keyfile (<$File::Find::dir/*.key>) {
 		my $attr = &key_dates($keyfile);
 		next unless defined $attr;
+		printf STDERR
+			"wanted_shared(%s)\n", $keyfile
+			if $debug;
 		# if its publication range includes now, publish it
 		if ($now ge $attr->{Publish} && $now lt $attr->{Delete}) {
+			printf STDERR
+				"wanted_shared(%s) do_zf()\n", $keyfile
+				if $debug;
 			&do_zf($keyfile, 1);
 		}
-		# if its activity range includes now, consider it for signing
-		if ($now ge $attr->{Activate} && $now lt $attr->{Inactive}) {
+		# if its activity range includes now, and we are not in mzsk
+		# mode, then consider it for signing
+		if ($now ge $attr->{Activate} && $now lt $attr->{Inactive} &&
+		    !$mzsk_mode)
+		{
 			$_ = $keyfile;
 			s:\.key$:.private:o;
 			push @sharedkeys, $_ if -e;
+			printf STDERR
+				"wanted_shared(%s) push %s\n", $keyfile, $_
+				if $debug;
 		}
 	}
 }
@@ -120,10 +137,10 @@ sub wanted_local {
 	foreach my $keyfile (<$File::Find::dir/*.key>) {
 		my $attr = &key_dates($keyfile);
 		next unless defined $attr;
-		# if its publication range includes now, publish it
-		if ($now ge $attr->{Publish} && $now lt $attr->{Delete}) {
-			&do_zf($keyfile, 1);
-		}
+#		# if its publication range includes now, publish it
+#		if ($now ge $attr->{Publish} && $now lt $attr->{Delete}) {
+#			&do_zf($keyfile, 1);
+#		}
 		# if its activity range includes now, use it for signing
 		if ($now ge $attr->{Activate} && $now lt $attr->{Inactive}) {
 			$_ = $keyfile;
