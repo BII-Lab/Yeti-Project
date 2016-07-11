@@ -91,13 +91,13 @@ Since the Yeti DNS Project already has all the necessary
 infrastructure for this experiment, it is straightforward, requiring
 no preparation in advance.
 
-We can do preparation and add the new KSK on 2016-07-08 (Friday).
+We can do preparation and add the new KSK on 2016-07-10 (Sunday).
 
-We can switch signing to the new KSK on 2016-08-01 (Monday), which is
+We can switch signing to the new KSK on 2016-08-12 (Monday), which is
 more than 30 days later. This will also set the revoked bit on the old
 KSK.
 
-The old KSK will be totally removed on 2016-09-01 (Thursday), which is
+The old KSK will be totally removed on 2016-09-14 (Thursday), which is
 more than 30 days after the revoked bit is set.
 
 
