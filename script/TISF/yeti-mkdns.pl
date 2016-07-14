@@ -5,7 +5,7 @@
 use strict;
 use warnings;
 use Net::DNS::ZoneFile;
-use YAML::Syck qw/LoadFile/;
+use YAML::Syck;
 use File::Find;
 use POSIX qw/strftime/;
 
@@ -18,29 +18,22 @@ sub output($);
 sub load_serial($);
 
 our $yeticonf_dm = '/home/vixie/work/yeticonf/dm';
-our $rootservers_file = "$yeticonf_dm/yeti-root-servers.yaml";
+our $rootservers_file = "$yeticonf_dm/ns/yeti-root-servers.yaml";
 our $ianaroot_file = './iana-root.dns';
 our $yetiroot_file = './yeti-root.dns';
 our $yeti_mname = 'www.yeti-dns.org.';
 our $yeti_rname = 'hostmaster.yeti-dns.org.';
-our $start_serial_file = "$yeticonf_dm/iana-start-serial.txt";
+our $start_serial_file = "$yeticonf_dm/ns/iana-start-serial.txt";
 our $local_zskdir = '/home/vixie/work/yeti-tisf/zsk';
-
-our $nameservers = {};
-our $addresses = {};
-our $soa_ttl = 0;
-our $soa_serial = undef;
-our $start_serial = undef;
-our %local_zsk = ();
-our %local_ksk = ();
+our $debug = 0;
 
 #
 # first, load in the yeti root name server information and min. serial#
 #
 
-$start_serial = &load_serial($start_serial_file);
+our $start_serial = &load_serial($start_serial_file);
 
-our $rootservers = LoadFile($rootservers_file);
+our $rootservers = YAML::Syck::LoadFile($rootservers_file);
 my $glue = [];
 foreach my $s (@$rootservers) {
 	die "missing name" unless defined $s->{name};
@@ -53,16 +46,23 @@ undef $rootservers;
 # second, generate the yeti zone from the iana zone
 #
 
+our $nameservers = {};
+our $addresses = {};
 our $yetiroot = undef;
 open($yetiroot, ">$yetiroot_file") || die "$yetiroot_file: $!";
 # process the IANA root zone
-do_zf($ianaroot_file, 0);
+our ($soa_ttl, $soa_serial) = do_zf($ianaroot_file, 0);
 die "not time yet, check iana serial" unless $soa_serial >= $start_serial;
 # process the DNSKEY files for yeti's keys
-find(\&wanted_shared, "$yeticonf_dm/ksk", "$yeticonf_dm/zsk");
+our @sharedkeys = ();
+our @localkeys = ();
+our $mzsk_mode = 0;
+find(\&wanted_shared, "$yeticonf_dm/ksk");
 find(\&wanted_local, $local_zskdir);
-print join(' ', keys %local_ksk, keys %local_zsk), "\n";
-# process the NS and AAAA RR's from the YAML data
+$mzsk_mode = ($#localkeys >= $[);
+find(\&wanted_shared, "$yeticonf_dm/zsk");
+print join(' ', @sharedkeys, @localkeys), "\n";
+# synthesize NS and AAAA RR's from the YAML data
 foreach my $ns (@$glue) {
 	my ($nsdname, $address) = split /$;/, $ns;
 	do_rr(new Net::DNS::RR(name => '.',
@@ -92,21 +92,36 @@ sub wanted_shared {
 	return unless $_ eq 'iana-start-serial.txt';
 	# the contents of that file have to be correct for current serial#
 	my $serial = &load_serial($_);
+	printf STDERR
+		"wanted_shared(%s) serial %u\n", $File::Find::dir, $serial
+		if $debug;
 	return unless $soa_serial >= $serial;
 	# within such directories, *.key files are of potential interest
 	my $now = strftime '%Y%m%d%H%M%S', gmtime;
 	foreach my $keyfile (<$File::Find::dir/*.key>) {
 		my $attr = &key_dates($keyfile);
 		next unless defined $attr;
+		printf STDERR
+			"wanted_shared(%s)\n", $keyfile
+			if $debug;
 		# if its publication range includes now, publish it
 		if ($now ge $attr->{Publish} && $now lt $attr->{Delete}) {
+			printf STDERR
+				"wanted_shared(%s) do_zf()\n", $keyfile
+				if $debug;
 			&do_zf($keyfile, 1);
 		}
-		# if its activity range includes now, consider it for signing
-		if ($now ge $attr->{Activate} && $now lt $attr->{Inactive}) {
+		# if its activity range includes now, and we are not in mzsk
+		# mode, then consider it for signing
+		if ($now ge $attr->{Activate} && $now lt $attr->{Inactive} &&
+		    !$mzsk_mode)
+		{
 			$_ = $keyfile;
 			s:\.key$:.private:o;
-			$local_ksk{$_} = undef if -e;
+			push @sharedkeys, $_ if -e;
+			printf STDERR
+				"wanted_shared(%s) push %s\n", $keyfile, $_
+				if $debug;
 		}
 	}
 }
@@ -122,11 +137,15 @@ sub wanted_local {
 	foreach my $keyfile (<$File::Find::dir/*.key>) {
 		my $attr = &key_dates($keyfile);
 		next unless defined $attr;
+#		# if its publication range includes now, publish it
+#		if ($now ge $attr->{Publish} && $now lt $attr->{Delete}) {
+#			&do_zf($keyfile, 1);
+#		}
 		# if its activity range includes now, use it for signing
 		if ($now ge $attr->{Activate} && $now lt $attr->{Inactive}) {
 			$_ = $keyfile;
 			s:\.key$:.private:o;
-			$local_zsk{$_} = undef if -e;
+			push @localkeys, $_ if -e;
 		}
 	}
 }
@@ -162,6 +181,7 @@ sub key_dates($) {
 #
 sub do_zf($$) {
 	my ($zf_file, $allow_dnssec) = @_;
+	my ($soa_ttl, $soa_serial);
 
 	my $zf = new Net::DNS::ZoneFile($zf_file, ['.']);
 	my $soa_seen = 0;
@@ -178,6 +198,7 @@ sub do_zf($$) {
 		do_rr($rr, $allow_dnssec);
 	}
 	undef $zf;
+	return ($soa_ttl, $soa_serial);
 }
 
 #

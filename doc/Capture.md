@@ -16,7 +16,7 @@ Since dnscap loses packets in some cases (tested on a Linux kernel), some people
 While usually a DNS message fits into a single IP packet, it is not
 always true.
 
-Sometimes an IPv4 UDP packet is fragmented and needs to be
+Sometimes an IPv6 UDP packet is fragmented and needs to be
 reassembled. If this assembly does not complete we will still see
 these fragments in dnscap output.
 
