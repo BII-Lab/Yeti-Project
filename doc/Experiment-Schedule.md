@@ -18,8 +18,8 @@ Timeline
 
 | Start Date | End Date   | ID    | Experiment
 |------------|------------|-------|--------
-| 2016-02-17 | 2016-04-25 | MZSK  | Multi-ZSK
-| 2016-05-06 | 2016-06-06 | BGZSK | ZSK 2048 Bits
+| 2016-02-17 | 2016-04-28 | MZSK  | Multi-ZSK
+| 2016-05-09 | 2016-06-06 | BGZSK | ZSK 2048 Bits
 | 2016-07-08 | 2016-08-09 | KROLL | KSK Roll
 |            |            | RENUM | Root Server Renumbering
 |            |            | IROLL | ICANN KSK Roll Simulation
@@ -63,6 +63,16 @@ recorded the results. The proposal can be found here:
 https://github.com/shane-kerr/Yeti-Project/blob/experiment-bgzsk/doc/Experiment-BGZSK.md
 
 The report is still pending.
+
+### BGZSK: ZSK 2048 Bits
+
+RSA 1024 is no longer recommended for cryptography. At some point the
+ZSK should be made longer. Common practice is to adopt 2048 bits keys.
+
+Yeti should change to RSA 2048 for ZSK and observe the results. If the
+response size is greater than 1280 bytes it is likely that increased
+TCP will be observed from priming queries.
+
 
 ### KROLL: KSK Roll
 
