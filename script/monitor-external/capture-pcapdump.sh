@@ -156,7 +156,7 @@ fi
 NTP_OFFSET=`echo $NTP_CHECK | grep offset | head -1 | cut -d, -f3 | cut -d' ' -f3`
 # Shell don't do float arithmetic, so we use bc for comparison
 OFFSET_THRESHOLD="0.5"
-if [ $(echo "${NTP_OFFSET} > ${OFFSET_THRESHOLD}" | bc) -eq 1 ]; then
+if [ $(echo "${NTP_OFFSET} < -${OFFSET_THRESHOLD} || ${NTP_OFFSET} > ${OFFSET_THRESHOLD}" | bc) -eq 1 ]; then
     echo "Your clock is skewed by ${NTP_OFFSET} seconds!"
     echo "We suggest a clock sync, Aborting"
     exit 1
