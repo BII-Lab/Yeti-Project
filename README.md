@@ -189,7 +189,8 @@ zone:
           ['ca978112ca1bbdcafac231b39a23dc.yeti-dns.net.'] = '2c0f:f530::6',
           ['yeti1.ipv6.ernet.in.'] = '2001:e30:187d::333',
           ['xn--r2bi1c.xn--h2bv6c0a.xn--h2brj9c.'] = '2001:e30:1c1e:10::333',
-          ['yeti-dns02.dnsworkshop.org.'] = '2001:19f0:0:1133::53'
+          ['yeti-dns02.dnsworkshop.org.'] = '2001:19f0:0:1133::53'，
+          ['yeti.mind-dns.nl.'] = '2a02:990:100:b01::53:0'
     })
 
     trust_anchors.config('yeti-root.key')
