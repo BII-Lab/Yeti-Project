@@ -12,7 +12,7 @@ As a result the proposal of Yeti Project is formed which is aiming to build such
 
 In addition measurement study will be done to create useful analysis as output of Yeti Project.
 
-Participants will be invited into Yeti Project which is hopefully helpful for their own interests. We would like to invite some interested parties in this community, like the research labs of universities and institutes. We also hope Yeti Project can gain the support from vendors, for example, the DNS software implementers, Developers of CPE devices & IoT devices, middlebox developers who can test their product and connect their own testbed into Yeti testbed. It is expected that the activity of Yeti Project could have good input to the DNS related industry, which will finally make them ready for advanced DNS and Root services.  
+Participants will be invited into Yeti Project which is hopefully helpful for their own interests. We would like to invite some interested parties in this community, like the research labs of universities and institutes. We also hope Yeti Project can gain the support from vendors, for example, the DNS software implementers, developers of CPE devices & IoT devices, middlebox developers who can test their product and connect their own testbed into Yeti testbed. It is expected that the activity of Yeti Project could have good input to the DNS related industry, which will finally make them ready for advanced DNS and Root services.  
 
 *NOTE THAT THIS PROJECT NEVER INTENTS TO REPLACE CURRENT OPERATIONAL ROOT DNS SYSTEM.　REGULAR DNS SERVICES MUST NOT DEPEND ON THE TESTBED.*
 
