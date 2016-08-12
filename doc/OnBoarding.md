@@ -25,15 +25,14 @@
 4. Each coordinator will need to review the request at this point and record the approvel decision or other suggestions in RT system. Coordinators can simply make a decision or discuss the application via RT system which also will be recorded in RT.
 5. No matter all coordinators approved or not, then a comment will be added to the ticket, and the ticket will be resolved. BII Coordinator will issue an e-mail of the final decision sent to the applicant.
 6. If the application is approved, BII coordinator adds the new name server to the list of Yeti roots, via the [**Yeti DM synchronization procedure**](https://github.com/BII-Lab/Yeti-Project/blob/master/doc/Yeti-DM-Sync.md). This means waiting for the IANA serial to advance to the desired serial number.
-7. The BII coordinator verifies that all coordinators are producing the correct Yeti 
-8. root zone after the publication serial.
+7. The BII coordinator verifies that all coordinators are producing the correct Yeti root zone after the publication serial.
 8. The BII coordinator updates the Yeti root.hints file in the GitHub repository.
 9. The BII coordinator updates the Yeti internal document which
    contains the details of all Yeti root operators. (Currently a
-   Google doc which will be moved to Yeti Team tool，mattermost for example )
+   Google doc)
 10. The BII coordinator updates the Yeti web page with the information about the new Yeti operator.
 11. The BII coordinator sends a mail to the Yeti discuss and Yeti
-   operators lists announcing the new operator, and inviting them tointroduce themselves.
+   operators lists announcing the new operator, and inviting them to introduce themselves.
 12. The BII coordinator closes the ticket.
 13. Champagne.
 

@@ -18,15 +18,15 @@ Timeline
 
 | Start Date | End Date   | ID    | Experiment
 |------------|------------|-------|--------
-| 2016-02-01 | 2016-02-19 | MZSK  | Multi-ZSK
-| 2016-02-22 | 2016-04-08 | KROLL | KSK Roll
+| 2016-02-17 | 2016-04-28 | MZSK  | Multi-ZSK
+| 2016-05-09 | 2016-06-06 | BGZSK | ZSK 2048 Bits
+| 2016-07-08 | 2016-08-09 | KROLL | KSK Roll
 |            |            | RENUM | Root Server Renumbering
 |            |            | IROLL | ICANN KSK Roll Simulation
 |            |            | 5011X | RFC 5011 Roll-Back
 |            |            | FAKER | Lots of Root Servers
 |            |            | DOT-Y | Rename Servers to .YETI
 |            |            | PMTNC | Priming Truncation
-|            |            | BGZSK | ZSK 2048 Bits
 |            |            | ECDSA | KSK ECDSA Roll
 |            |            | FSTRL | Frequent ZSK Roll
 |            |            | TCPRT | TCP-only Root
@@ -37,21 +37,42 @@ Experiments
 
 ### MZSK: Multi-ZSK
 
-The Multi-ZSK experiment is designed to test operating the Yeti root
-using more than a single ZSK. The goal is to have each distribution
-master (DM) have a separate ZSK, signed by a single KSK. This will
-allow DM to operate independently, each maintaining their own key
+The Multi-ZSK experiment was designed to test operating the Yeti root
+using more than a single ZSK. The goal was to have each distribution
+master (DM) have a separate ZSK, signed by a single KSK. This allows
+each DM to operate independently, each maintaining their own key
 secret material.
 
-The preliminary, lab-research has been completed. This experiment does
-not require any specific changes on the part of the Yeti root
-operators or the Yeti resolver operators.
+A draft report describing this experiment can be found here:
 
-http://lists.yeti-dns.org/pipermail/discuss/2015-October/000269.html
+https://github.com/shane-kerr/Yeti-Project/blob/experiment-mzsk/doc/Report-MZSK.md
 
-Details need to be finished before the experiment starts, such as the
-exact measurements, a detailed timeline, and the format of the final
-report.
+### BGZSK: ZSK 2048 Bits
+
+RSA 1024 is no longer recommended for cryptography. At some point the
+ZSK should be made longer. Common practice is to adopt 2048 bits keys.
+
+Verisign announced that it would be increasing the IANA root zone ZSK
+to 2048 bits at the DNS-OARC meeting in Buenos Aires:
+
+https://indico.dns-oarc.net/event/22/session/4/contribution/14
+
+Yeti ran an experiment where it changed to RSA 2048 for ZSK and
+recorded the results. The proposal can be found here:
+
+https://github.com/shane-kerr/Yeti-Project/blob/experiment-bgzsk/doc/Experiment-BGZSK.md
+
+The report is still pending.
+
+### BGZSK: ZSK 2048 Bits
+
+RSA 1024 is no longer recommended for cryptography. At some point the
+ZSK should be made longer. Common practice is to adopt 2048 bits keys.
+
+Yeti should change to RSA 2048 for ZSK and observe the results. If the
+response size is greater than 1280 bytes it is likely that increased
+TCP will be observed from priming queries.
+
 
 ### KROLL: KSK Roll
 
@@ -179,15 +200,6 @@ server software or perhaps a proxy.
 This experiment can provide input into the expected outcome of work
 that expands the priming answers, such as increasing the ZSK key
 length.
-
-### BGZSK: ZSK 2048 Bits
-
-RSA 1024 is no longer recommended for cryptography. At some point the
-ZSK should be made longer. Common practice is to adopt 2048 bits keys.
-
-Yeti should change to RSA 2048 for ZSK and observe the results. If the
-response size is greater than 1280 bytes it is likely that increased
-TCP will be observed from priming queries.
 
 ### ECDSA: KSK ECDSA Roll
 

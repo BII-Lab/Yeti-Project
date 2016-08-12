@@ -8,15 +8,18 @@ cd /home/vixie/work/yeti-dm || exit 1
 yeticonf_dm="/home/vixie/work/yeticonf/dm"
 (cd $yeticonf_dm; git pull) 2>&1 | grep -v 'Already up-to-date.'
 
+# this is F-root
+iana_server="2001:500:2f::f"
+
 #
-# first, fetch the iana zone, and stop if it's broken or too new
+# first, fetch the iana zone, and rebuild yeti zone if possible and indicated
 #
-dig @192.5.5.241 +onesoa +nocmd +nocomments +nostats . axfr > iana-root.dns
+dig @$iana_server +onesoa +nocmd +nocomments +nostats . axfr > iana-root.dns
 if dnssec-verify -o . iana-root.dns > dnssec-verify.out 2>&1; then
 	:
 else
 	cat dnssec-verify.out
-	traceroute -q1 192.5.5.241
+	traceroute6 -q1 $iana_server
 	exit 1
 fi
 if [ ! -s iana-root.dns ]; then
@@ -24,40 +27,43 @@ if [ ! -s iana-root.dns ]; then
 	exit 1
 fi
 reality=$(awk '$3 = "SOA" { print $7; exit }' iana-root.dns)
-policy=$(cat $yeticonf_dm/iana-start-serial.txt)
-if [ $reality -lt $policy ]; then
-	exit 0
-fi
-new_zone=1
-if [ -e iana-root.dns.old ]; then
-	if cmp -s iana-root.dns iana-root.dns.old; then
-		new_zone=0
+policy=$(cat $yeticonf_dm/ns/iana-start-serial.txt)
+new_zone=0
+if [ $reality -ge $policy ]; then
+	new_zone=1
+	if [ -e iana-root.dns.old ]; then
+		if cmp -s iana-root.dns iana-root.dns.old; then
+			new_zone=0
+		fi
 	fi
-fi
-if [ $new_zone -ne 0 ]; then
-	rm -f iana-root.dns.old
-	cp iana-root.dns iana-root.dns.old
+	if [ $new_zone -ne 0 ]; then
+		rm -f iana-root.dns.old
+		cp iana-root.dns iana-root.dns.old
+	fi
 fi
 
 #
 # second, remake the conf-include file (allow-transfer, also-notify)
 #
-if perl scripts/yeti-mkinc.pl; then
-	:
-else
-	echo 'yeti-mkinc failed' >&2
-	exit 1
-fi
 new_inc=0
-if [ -e named.yeti.inc.old ]; then
-	if cmp -s named.yeti.inc named.yeti.inc.old; then
-		new_inc=0
+if [ $reality -ge $policy ]; then
+	new_inc=1
+	if perl scripts/yeti-mkinc.pl; then
+		:
+	else
+		echo 'yeti-mkinc failed' >&2
+		exit 1
 	fi
-fi
-if [ $new_inc -ne 0 ]; then
-	rndc -s yeti-dm reconfig
-	rm -f named.yeti.inc.old
-	cp named.yeti.inc named.yeti.inc.old
+	if [ -e named.yeti.inc.old ]; then
+		if cmp -s named.yeti.inc named.yeti.inc.old; then
+			new_inc=0
+		fi
+	fi
+	if [ $new_inc -ne 0 ]; then
+		rndc -s yeti-dm reconfig
+		rm -f named.yeti.inc.old
+		cp named.yeti.inc named.yeti.inc.old
+	fi
 fi
 
 #

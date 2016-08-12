@@ -4,16 +4,16 @@
 
 use strict;
 use warnings;
-use YAML::Syck qw/LoadFile/;
+use YAML::Syck;
 
-our $rootservers_file = '/home/vixie/work/yeticonf/dm/yeti-root-servers.yaml';
+our $rootservers_file = '/home/vixie/work/yeticonf/dm/ns/yeti-root-servers.yaml';
 our $confinc_file = './named.yeti.inc';
 
 #
 # first, load in our configuration data from the YAML, and aggregate it
 #
 
-our $rootservers = LoadFile($rootservers_file);
+our $rootservers = YAML::Syck::LoadFile($rootservers_file);
 
 my $also_notify = [];
 my $allow_transfer = [];

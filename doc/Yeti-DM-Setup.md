@@ -91,9 +91,10 @@ has changed.
 
 Synchronizing Yeti DM Configuration
 ===================================
-Synchronization between the Yeti DM is described in the _Yeti [DM
-Synchronization_ document](https://github.com/BII-Lab/Yeti-Project/blob/master/doc/Yeti-DM-Sync.md).
+Synchronization between the Yeti DM is described in the [Yeti DM
+Synchronization document][4].
 
 [1]: https://www.iana.org/domains/root
 [2]: http://yeti-dns.org/operators.html
 [3]: https://www.iana.org/domains/root/servers
+[4]: https://github.com/BII-Lab/Yeti-Project/blob/master/doc/Yeti-DM-Sync.md
