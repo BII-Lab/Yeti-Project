@@ -1,113 +1,130 @@
-#
 # settings for setup DM
 
-servername=$(hostname)
+# server name
+SERVER_NAME=$(hostname)
 
 # bind9 must listen on this address
-serveraddr="127.0.0.1"
+SERVER_ADDR="xx::xx"
+F_SERVER="f.root-servers.net"
+
+# genertate notfist and zonetransfer_list
+BIND_CONF="/etc/named" 
+[ ! -d $BIND_CONF ] && mkdir $BIND_CONF
 
 # set to where the final root zone published  
-root_zone_path="/home/dns/named/zone"
-
-#genertate notfiy_list and zonetransfer_list 
-named_notify_list="/etc/notify_list.conf"
-named_zonetransfer_acl="/etc/zonetransfer_list.conf"
+BIND_ZONE_PATH="/path/to/named/zone"
+NOTIFY_LIST="$BIND_CONF/notify_list.conf"
+ZONETRANSFER_ACL="$BIND_CONF/zonetransfer_list.conf"
+HINT="$WORKDIR/tmp/named.cache"
 
 # log, email alert, must chang this
-logfile="$workdir/log/setup-dm.log"
-sender="xxxx@xxx.com"
-admin_mail="admin@xxxx.com"
+LOG_FILE="$WORKDIR/log/setup-dm.log"
+SENDER="xxx@y.com"
+ADMIN_MAIL="admin@y.com"
 
-# must exist and have content
-icann_ksk_file="$workdir/config/ksk.txt"
-current_root_list="$workdir/config/yeti-root-servers.txt"
+# configuration for DM setup
+CONFIG=$WORKDIR/config
+ICANN_KSK="$CONFIG/ksk.txt"
+CURRENT_ROOT_LIST="$CONFIG/yeti-root-servers.txt"
+START_SERIAL="iana-start-serial.txt"
+IANA_START_SERIAL="$CONFIG/${START_SERIAL}"
 
-#
-iana_start_serial="$workdir/config/iana-start-serial.txt"
-key_start_serial_file="iana-start-serial.txt"
+# Yeti DM repository, please change this.
+DM_REPO="/path/to/dmrepo"
+ADMIN='Kevin Gong'
+# three dm node are bii wide tisf 
+DM='bii'
+CHANGE="${DM_REPO}/CHANGES"
 
-# git repo
-git_repository_dir="/tmp/dmtest"
-zsk_git_repository_dir="$git_repository_dir/zsk"
-ksk_git_repository_dir="$git_repository_dir/ksk"
-git_root_ns_list="$git_repository_dir/yeti-root-servers.yaml"
+# public key dir
+ZSK_DIR="$DM_REPO/zsk"
+[ ! -d ${ZSK_DIR} ] && mkdir ${ZSK_DIR}
 
-zsk_tag_file="zsk_tag.txt"
-ksk_tag_file="ksk_tag.txt"
+KSK_DIR="$DM_REPO/ksk"
+[ ! -d ${KSK_DIR} ] && mkdir ${KSK_DIR}
+
+ROOT_LIST="$DM_REPO/ns/yeti-root-servers.yaml"
 
 # command depends
-datetime="date +%Y-%m-%d-%H:%M:%S"
-ldns_verify_zone=$(which ldns-verify-zone)
+NOW="date +%Y-%m-%d-%H:%M:%S"
+LDNS_VERIFY_ZONE=$(which ldns-verify-zone)
+PERL=$(which perl)
+PYTHON=$(which python)
 
-python=$(which python)
-# key dir for bind9
-rootkeydir=$workdir/keys/root
-[ ! -d $rootkeydir ] && mkdir -p $rootkeydir
+# dir layout for DM setup
+ROOT_KEY=$WORKDIR/keys/root
+NEW_ZSK="${ROOT_KEY}/newkey/zsk"
+NEW_KSK="${ROOT_KEY}/newkey/ksk"
+ORIGIN_ZONE="$WORKDIR/origin"
+TMP_ZONE="$WORKDIR/tmp"
+LOG_DIR="$WORKDIR/log"
+ZONE_DATA="$WORKDIR/zone"
 
-origin_data=$workdir/origin
-[ ! -d ${origin_data} ] && mkdir $origin_data
+# init dirs
+ALL="$ROOT_KEY $NEW_ZSK $NEW_KSK $ORIGIN_ZONE $TMP_ZONE $LOG_DIR $ZONE_DATA"
+for dir in ${ALL}; do
+    [ ! -d ${dir} ] && mkdir -p ${dir}
+done
 
-tmp_data=$workdir/tmp
-[ ! -d ${tmp_data} ] && mkdir $tmp_data
-
-config=$workdir/config
-
-zone_data=$workdir/zone
-[ ! -d ${zone_data} ] &&  mkdir $zone_data
-
-os=$(uname)
-case $os in
+OS=$(uname)
+case $OS in
   Linux*)
-    sed=$(which sed)
-    dnssecsignzone=$(which dnssec-signzone)
-    dnsseckeygen=$(which dnssec-keygen)
-    rndc=$(which rndc)
-    dig=$(which dig)
-    wget=$(which wget)
-    git=$(which git)
+    SED=$(which sed)
+    DNSSECSIGNZONE=$(which dnssec-signzone)
+    DNSSECKEYGEN=$(which dnssec-keygen)
+    RNDC=$(which rndc)
+    DIG=$(which dig)
+    WGET=$(which wget)
+    GIT=$(which git)
+    PERL=$(which perl)
     ;;
   NetBSD?6*)
-    sed="/usr/pkg/bin/gsed"
-    dnssecsignzone="/usr/pkg/sbin/dnssec-signzone"
-    dnsseckeygen="/usr/local/sbin/dnssec-keygen"   
-    rndc="/usr/pkg/sbin/rndc"
-    dig="/usr/pkg/bin/dig"
-    wget="/usr/local/bin/wget"
-    git="/usr/bin/git"
+    SED="/usr/pkg/bin/gsed"
+    DNSSECSIGNZONE="/usr/pkg/sbin/dnssec-signzone"
+    DNSSECKEYGEN="/usr/local/sbin/dnssec-keygen"
+    RNDC="/usr/pkg/sbin/rndc"
+    DIG="/usr/pkg/bin/dig"
+    WGET="/usr/local/bin/wget"
+    GIT="/usr/bin/git"
+    PERL="usr/bin/perl"
     ;;
   NetBSD?7*)
-    sed="/usr/local/sbin/gsed"
-    dnssecsignzone="/usr/pkg/sbin/dnssec-signzone"
-    dnsseckeygen="/usr/local/sbin/dnssec-keygen"
-    rndc="/usr/pkg/sbin/rndc"
-    dig="/usr/pkg/bin/dig"
-    wget="/usr/pkg/bin/wget"
-    git="/usr/pkg/bin/git"
+    SED="/usr/local/sbin/gsed"
+    DNSSECSIGNZONE="/usr/pkg/sbin/dnssec-signzone"
+    DNSSECKEYGEN="/usr/local/sbin/dnssec-keygen"
+    RNDC="/usr/pkg/sbin/rndc"
+    DIG="/usr/pkg/bin/dig"
+    WGET="/usr/pkg/bin/wget"
+    GIT="/usr/pkg/bin/git"
+    PERL="usr/pkg/bin/perl"
     ;;
   FreeBSD*)
-    sed="/usr/local/sbin/gsed"
-    dnssecsignzone="/usr/local/sbin/dnssec-signzone"
-    dnsseckeygen="/usr/local/sbin/dnssec-keygen"
-    rndc="/usr/local/sbin/rndc"
-    dig="/usr/local/bin/dig"
-    wget="/usr/local/bin/wget"
-    git="/usr/local/bin/git"
+    SED="/usr/local/sbin/gsed"
+    DNSSECSIGNZONE="/usr/local/sbin/dnssec-signzone"
+    DNSSECKEYGEN="/usr/local/sbin/dnssec-keygen"
+    RNDC="/usr/local/sbin/rndc"
+    DIG="/usr/local/bin/dig"
+    WGET="/usr/local/bin/wget"
+    GIT="/usr/local/bin/git"
+    PERL="/usr/local/bin/perl"
     ;;
   *)
-    sed=$(which sed)
-    dnssecsignzone=$(which dnssec-signzone)
-    dnsseckeygen=$(which dnssec-keygen)
-    rndc=$(which rndc)
-    dig=$(which dig)
-    wget=$(which wget)
+    SED=$(which sed)
+    DNSSECSIGNZONE=$(which dnssec-signzone)
+    DNSSECKEYGEN=$(which dnssec-keygen)
+    RNDC=$(which rndc)
+    DIG=$(which dig)
+    WGET=$(which wget)
+    PERL=$(which perl)
     ;;
 esac
 
-for program in $sed $dnssecsignzone $dnsseckeygen $rndc $dig $wget $python; do
+# check program exist or not
+for program in $SED $DNSSECSIGNZONE $DNSSECKEYGEN $RNDC $DIG $WGET $PYTHON; do
     if [ ! -x $program ]; then
         command=`basename $program`
         if which $command; then
-            echo "please set correct path for $command in the case ${os}"
+            echo "please set correct path for $command in the case ${OS}"
             exit 1
         fi
 

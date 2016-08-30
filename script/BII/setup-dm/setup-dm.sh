@@ -1,34 +1,32 @@
 #!/bin/sh
 
+#
+# setup Yeti Distribute Master
+# generate Yeti root zone from IANA root zone file
+# replace with Yeti root zone apex
+# sign with Yeti ZSK and KSK
+#
+
 # load functions
-workdir=`dirname $0`
-if [ -s $workdir/setup-dm-functions.sh ];then
-     . $workdir/setup-dm-functions.sh 
+WORKDIR=`dirname $0`
+if [ -s $WORKDIR/setup-dm-functions.sh ]; then
+     . $WORKDIR/setup-dm-functions.sh 
 else
-    echo "`$datetime` setup-dm-functions.sh is't exsit" >> $logfile
+    echo "`$NOW` setup-dm-functions.sh isn't exsit" >> $LOG_FILE
     exit 1
 fi
 
+# check IANA serial number changed or not
+is_new_zone || exit 0
+
+# get the latest DM repository(Yeti NS list, ZSK and KSK)
 refresh_git_repository
 
-root_zone_download
+# first, generate Yeti root zone file
+generate_yeti_zone
 
-check_root_zone
+# second, sign Yeti root zone
+sign_yeti_zone
 
-generate_notify_zonetransfer_list
-
-generate_root_ns_file
-
-generate_root_hint_file
-
-generate_root_zone
-
-get_latest_key zsk
-
-get_latest_key ksk
-
-sign_root_zone
-
-reload_root_zone
-
-update_github
+# last, distribute Yeti root zone
+distribute_yeti_zone
