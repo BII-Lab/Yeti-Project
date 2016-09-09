@@ -18,20 +18,17 @@ sub output($);
 sub load_serial($);
 
 our $yeticonf_dm = '/home/vixie/work/yeticonf/dm';
-our $rootservers_file = "$yeticonf_dm/ns/yeti-root-servers.yaml";
+our $rootservers_file = "./yeti-root-servers.yaml";
 our $ianaroot_file = './iana-root.dns';
 our $yetiroot_file = './yeti-root.dns';
 our $yeti_mname = 'www.yeti-dns.org.';
 our $yeti_rname = 'hostmaster.yeti-dns.org.';
-our $start_serial_file = "$yeticonf_dm/ns/iana-start-serial.txt";
 our $local_zskdir = '/home/vixie/work/yeti-tisf/zsk';
 our $debug = 0;
 
 #
 # first, load in the yeti root name server information and min. serial#
 #
-
-our $start_serial = &load_serial($start_serial_file);
 
 our $rootservers = YAML::Syck::LoadFile($rootservers_file);
 my $glue = [];
@@ -52,7 +49,6 @@ our $yetiroot = undef;
 open($yetiroot, ">$yetiroot_file") || die "$yetiroot_file: $!";
 # process the IANA root zone
 our ($soa_ttl, $soa_serial) = do_zf($ianaroot_file, 0);
-die "not time yet, check iana serial" unless $soa_serial >= $start_serial;
 # process the DNSKEY files for yeti's keys
 our @sharedkeys = ();
 our @localkeys = ();
