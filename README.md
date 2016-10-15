@@ -12,13 +12,13 @@ As a result the proposal of Yeti Project is formed which is aiming to build such
 
 In addition measurement study will be done to create useful analysis as output of Yeti Project.
 
-Participants will be invited into Yeti Project which is hopefully helpful for their own interests. We would like to invite some interested parties in this community, like the research labs of universities and institutes. We also hope Yeti Project can gain the support from vendors, for example, the DNS software implementers, Developers of CPE devices & IoT devices, middlebox developers who can test their product and connect their own testbed into Yeti testbed. It is expected that the activity of Yeti Project could have good input to the DNS related industry, which will finally make them ready for advanced DNS and Root services.  
+Participants will be invited into Yeti Project which is hopefully helpful for their own interests. We would like to invite some interested parties in this community, like the research labs of universities and institutes. We also hope Yeti Project can gain the support from vendors, for example, the DNS software implementers, developers of CPE devices & IoT devices, middlebox developers who can test their product and connect their own testbed into Yeti testbed. It is expected that the activity of Yeti Project could have good input to the DNS related industry, which will finally make them ready for advanced DNS and Root services.  
 
-*NOTE THAT THIS PROJECT NEVER INTENT TO REPLACE CURRENT OPERATIONAL ROOT DNS SYSTEM.　REGULAR DNS SERVICES MUST NOT DEPEND ON THE TESTBED.*
+*NOTE THAT THIS PROJECT NEVER INTENTS TO REPLACE CURRENT OPERATIONAL ROOT DNS SYSTEM.　REGULAR DNS SERVICES MUST NOT DEPEND ON THE TESTBED.*
 
 # How to Join Yeti
 
-Please contact <discuss@lists.yeti-dns.org> if you wish to ask question and receive latest update in the Yeti project.
+Please contact <discuss@lists.yeti-dns.org> if you wish to ask questions and receive latest updates in the Yeti project.
 
 Below are details about the different ways of joining the effort.
 
@@ -99,11 +99,11 @@ zone:
     acl: [ yeti-notify-bii, yeti-notify-wide, yeti-notify-tisf ]
     ```
 
-    Afterward, please send a mail to coordinators mailing list to notify that it is done.
+    Afterward, please send a mail to coordinators' mailing list to notify that it is done.
 
     **Step 3: Monitoring system setup**
 
-    For the purpose of experiment and measurement study,we require each root server operator to capture DNS packet on DNS servers and save as pcap file, then send to our storage server. Regarding the data sharing issue, please turn to the [data sharing document](doc/DataSharingDeclaration.md) of YETI Project.
+    For the purpose of experiment and measurement study, we require each root server operator to capture DNS packets on DNS servers and save as pcap file, then send to our storage server. Regarding the data sharing issue, please turn to the [data sharing document](doc/DataSharingDeclaration.md) of YETI Project.
 
     Please read the following link how to setup and join the YETI monitoring system: https://github.com/BII-Lab/Yeti-Project/blob/master/script/monitor-external/README.txt 
 
@@ -123,7 +123,7 @@ zone:
 
     *Warning*: the DNSSEC key of the Yeti root (the KSK) changes *often* (typically every three months). You must therefore configure your resolver to use RFC 5011 automatic update *or* be ready to make many changes manually.
     
-    In the purpose of some experiment, we need information and feedback from client side, so we encourage resolver operator to register it mail address for technical assistance, Yeti  testbed changes or experiments coordination. If you setup your recursive server linked with Yeti root server, please contact <coordinators@lists.yeti-dns.org>.
+    In the purpose of some experiment, we need information and feedback from client side, so we encourage resolver operators to register their mail address for technical assistance, Yeti testbed changes or experiments coordination. If you setup your recursive server linked with Yeti root server, please contact <coordinators@lists.yeti-dns.org>.
 
     Configuration of the resolver:
 
@@ -183,13 +183,14 @@ zone:
           ['yeti-ns1.dns-lab.net.'] = '2001:da8:a3:a027::6',
           ['yeti-ns2.dns-lab.net.'] = '2001:da8:268:4200::6',
           ['yeti-ns3.dns-lab.net.'] = '2400:a980:30ff::6',
-          ['18ac3e7343f016890c510e93f93526.yeti-dns.net.'] = '2a05:78c0:0:2::3:6',
           ['2e7d2c03a9507ae265ecf5b5356885.yeti-dns.net.'] = '2400:8901:e001:39::6',
-          ['3e23e8160039594a33894f6564e1b1.yeti-dns.net.'] = '2803:80:1004:63::1',
           ['3f79bb7b435b05321651daefd374cd.yeti-dns.net.'] = '2401:c900:1401:3b:c::6',
           ['ca978112ca1bbdcafac231b39a23dc.yeti-dns.net.'] = '2c0f:f530::6',
           ['yeti1.ipv6.ernet.in.'] = '2001:e30:187d::333',
-          ['xn--r2bi1c.xn--h2bv6c0a.xn--h2brj9c.'] = '2001:e30:1c1e:10::333'
+          ['xn--r2bi1c.xn--h2bv6c0a.xn--h2brj9c.'] = '2001:e30:1c1e:10::333',
+          ['yeti-dns02.dnsworkshop.org.'] = '2001:19f0:0:1133::53'，
+          ['yeti.mind-dns.nl.'] = '2a02:990:100:b01::53:0'，
+          ['yeti-ns.datev.net.'] = '2a00:e50:f15c:1000::1:53'
     })
 
     trust_anchors.config('yeti-root.key')
@@ -213,7 +214,7 @@ zone:
 
 Q：The requirement for the machine (apparently, a VPS could be enough?)
 
-A: A VPS is OK. The experiments we expected so far (described in the webpage) are not strongly related to computing and mem capacity of server , but networking connectivity matters.
+A: A VPS is OK. The experiments we expected so far (described in the webpage) are not strongly related to computing and mem capacity of server, but networking connectivity matters.
  
 Q: How about its connectivity?
 
@@ -221,8 +222,8 @@ A: IPv6 networking environment is important to our experiment especially IPv6 DN
  
 Q: Human resources commitment for root server operator. 
 
-A: Well, this is a good question. Before we announce the project, three Initiators (WIDE, TISF and BII) had a basic consensus on the commitment to this scientific project. Because it is not for production network, so we do not expect any urgent configuration changes. however the server cannot be fully on auto-pilot, due to experiments that will affect the distribution master servers and may require changes to the authority servers. therefore, we expect authority operators to offer 24-hour response time to questions and outage notifications, and 72-hour response time for planned configuration changes. We are non-profit, no exchange of money, only for public and technical interest. So we would like to invite qualified contributors who are willing to share the same interest and commitment with us.
+A: Well, this is a good question. Before we announced the project, three Initiators (WIDE, TISF and BII) had a basic consensus on the commitment to this scientific project. Because it is not for production network, so we do not expect any urgent configuration changes. However the server cannot be fully on auto-pilot, due to experiments that will affect the distribution master servers and may require changes to the authority servers. Therefore, we expect authority operators to offer 24-hours response time to questions and outage notifications, and 72-hours response time for planned configuration changes. We are non-profit, no exchange of money, only for public and technical interest. So we would like to invite qualified contributors who are willing to share the same interest and commitment with us.
 
 Q: Is there Data usage policy in Yeti project?
 
-A: Please turn to the [data sharing document](doc/DataSharingDeclaration.md) of Yeti DNS project. Basically, the Yeti project is not for production network and the Yeti data is for scientific usage which means the data with personal information or with privacy concern is not expected to join Yeti experiment. on another hand, every participant who want to get access to the data should make a public statement of using Yeti data to protect privacy, and do not publish the raw data.
+A: Please turn to the [data sharing document](doc/DataSharingDeclaration.md) of Yeti DNS project. Basically, the Yeti project is not for production network and the Yeti data is for scientific usage which means the data with personal information or with privacy concern is not expected to join Yeti experiment. On the other hand, every participant who wants to get access to the data should make a public statement of using Yeti data to protect privacy, and do not publish the raw data.

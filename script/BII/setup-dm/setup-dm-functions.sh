@@ -2,33 +2,21 @@
 
 # get absoulte path
 get_workdir() {
-    local path="$1"
-    local absoulte_path=`pwd`
-
-    # wirkdir do not start with /
-    if echo $path|egrep -q '^\.'; then
-        #echo "start with ."
-        workdir="${absoulte_path}"
-    elif echo $path|egrep -q '^/'; then
-        # absoulte path
-        :
-    else
-        # relative path
-        #echo "relative path ."
-        workdir="${absoulte_path}/${workdir}"
-    fi
+    local path=`readlink -f $0`
+    WORKDIR=`dirname $path`
 }
 
+get_workdir
 
-if [ -s ${workdir}/setting.sh ]; then
-    . ${workdir}/setting.sh
+if [ -s ${WORKDIR}/setting.sh ]; then
+    . ${WORKDIR}/setting.sh
 else
     echo "setting.sh file is not exsit"
     exit 1
 fi
 
-if [ -s ${workdir}/common.sh ]; then
-    . ${workdir}/common.sh
+if [ -s ${WORKDIR}/common.sh ]; then
+    . ${WORKDIR}/common.sh
 else
     echo "common.sh file is not exsit"
     exit 1
@@ -36,17 +24,16 @@ fi
 
 download_zone() {
     local method="$1"
-
     case "$method" in 
         axfr)
-            ${dig} +onesoa +nocmd +nocomments +nostats -6 @f.root-servers.net . axfr   >  ${origin_data}/root.zone
+            ${DIG} +onesoa +nocmd +nocomments +nostats -6 @${F_SERVER} . axfr > ${ORIGIN_ZONE}/root.zone
             if [ $? -ne 0 ]; then
-                ${dig} +onesoa +nocmd +nocomments +nostats -4 @f.root-servers.net . axfr   >  ${origin_data}/root.zone
+                ${DIG} +onesoa +nocmd +nocomments +nostats  @${F_SERVER} . axfr > ${ORIGIN_ZONE}/root.zone
             fi
             ;;
         ftp)
             root_zone_url="ftp://rs.internic.net/domain/root.zone"
-            $wget -O ${origin_data}/root.zone ${root_zone_url}
+            $WGET -O ${ORIGIN_ZONE}/root.zone ${root_zone_url}
             ;;
         *)
            echo "Usage: $0 axfr|ftp"
@@ -57,18 +44,19 @@ download_zone() {
 
 # download root zone fromm F-root or ftp
 root_zone_download() {
-    rm -f ${origin_data}/root.zone
+    rm -f ${ORIGIN_ZONE}/root.zone
 
-    zone_download_num=3
-    while [ ${zone_download_num} -gt 0 ]; do
-        download_zone ftp && break
+    tries=3
+    while [ "${tries}" -gt 0 ]; do
         download_zone axfr && break
+        download_zone ftp && break
 
-        zone_download_num=`expr ${zone_download_num} - 1`
-        if [ ${zone_download_num} -eq 0 ]; then
-            echo "`${datetime}` The HM(${servername}) server download root zonefile  failed"  >> ${logfile}
-            echo "`${datetime}` The HM(${servername}) server download root zonefile  failed"  | \
-                 mail -s "The HM download root  zonefile  failed " -r ${sender}  ${admin_mail}
+        tries=`expr ${tries} - 1`
+        if [ "${tries}" -eq 0 ]; then
+            echo "`${NOW}` The HM(${SERVER_NAME}) server download root zonefile failed" >>\
+                       ${LOG_FILE}
+            echo "`${NOW}` The HM(${SERVER_NAME}) server download root zonefile failed" |\
+                       mail -s "The HM download root zonefile failed " -r ${SENDER} ${ADMIN_MAIL}
             exit 1
         fi
     done
@@ -77,243 +65,357 @@ root_zone_download() {
 # check original root zone 
 # depends on ldns-verify-zone :yum install ldns
 check_root_zone() { 
-    ${ldns_verify_zone} -k ${icann_ksk_file} ${origin_data}/root.zone
+    ${LDNS_VERIFY_ZONE} -k ${ICANN_KSK} ${ORIGIN_ZONE}/root.zone
     if [ $? -ne 0 ]; then
-        echo "`${datetime}` root.zone verify fail" >> ${logfile}
+        echo "`${NOW}` root.zone verify fail" >> ${LOG_FILE}
         exit 1
     fi
-
 } 
 
-# generate root zone apex part
-generate_root_ns_file() {
-    local start_serial
-
-    if [ -s ${git_repository_dir}/iana-start-serial.txt ]; then
-        /bin/cp ${git_repository_dir}/iana-start-serial.txt  ${iana_start_serial} 
-        start_serial=`cat ${iana_start_serial}`
+get_serial() {
+    if [ -s ${DM_REPO}/ns/${START_SERIAL} ]; then
+        /bin/cp ${DM_REPO}/ns/${START_SERIAL} ${IANA_START_SERIAL} 
+        start_serial=`cat ${IANA_START_SERIAL}`
     else
         # git repo is empty, we shuold not get serial from git
         start_serial=9015092200
     fi
 
     # get latest SOA serial from root zone file
-    latest_root_soa_serial=`grep "SOA" ${origin_data}/root.zone | egrep -v "NSEC|RRSIG"| head -1 |awk '{print $7}'`     
-    if [ -s ${git_root_ns_list} -a ${latest_root_soa_serial} -ge ${start_serial} ]; then
-        $python $workdir/bin/parseyaml.py ns  ${git_root_ns_list}  > $current_root_list
+    latest_serial=`grep "SOA" ${ORIGIN_ZONE}/root.zone |\
+        egrep -v "NSEC|RRSIG"| head -1 |awk '{print $7}'`     
+}
+
+generate_ns() {
+    if [ -s ${ROOT_LIST} -a "${latest_serial}" -ge "${start_serial}" ]; then
+        $PYTHON $WORKDIR/bin/parseyaml.py ns ${ROOT_LIST} >\
+            $CURRENT_ROOT_LIST
         if [ $? -ne 0 ]; then
-            echo "${git_root_ns_list} file not exist or format error" >> ${logfile}
+            echo "${ROOT_LIST} file not exist or format error" >> ${LOG_FILE}
             exit 1
         fi
+    else
+        echo "${ROOT_LIST} not exsit or serial number is not update" >> ${LOG_FILE}
     fi
 
-    # build root zone apex
-    yeti_root_num=`cat ${current_root_list} | wc -l `
-    echo ".    86400   IN    SOA    www.yeti-dns.org.  hostmaster.yeti-dns.org.  \
-        2015091000  1800  900  604800  86400" > ${config}/root.zone.apex
-    for num in `seq 1 ${yeti_root_num}`; do
-        root_name=`$sed -n "${num}p" ${current_root_list}  | awk '{print  $1}'`
-        root_ip=`$sed -n "${num}p" ${current_root_list}  | awk '{print  $2}'`
-        ${workdir}/bin/checkns -ns ${root_name} -addr ${root_ip}
-        if [ $? -eq 0 ]; then
-            printf "%-30s %-10s %-4s %-8s %-40s\n"  "."   "86400" "IN" "NS" "${root_name}" >>${config}/root.zone.apex
-            printf "%-30s %-10s %-4s %-8s %-40s\n"  "${root_name}"  "86400" "IN" "AAAA" "${root_ip}"\
-                 >>${config}/root.zone.apex
-        else
-            echo "`${datetime}` ${root_name} or ${root_ip} is not Correct" >> ${logfile}
-            echo "`${datetime}` ${root_name} or ${root_ip} is not Correct" |mail \
-                 -s "check root ns list --fail" -r ${sender}  ${admin_mail}
-            printf "%-30s %-10s %-4s %-8s %-40s\n"  "."   "86400" "IN" "NS" "${root_name}" >>${config}/root.zone.apex
-            printf "%-30s %-10s %-4s %-8s %-40s\n"  "${root_name}"  "86400" "IN" "AAAA" "${root_ip}"\
-                 >>${config}/root.zone.apex
-            #exit 1
-        fi
+    local root_count=`cat ${CURRENT_ROOT_LIST} | wc -l `
+    for n in `seq 1 ${root_count}`; do
+        root_name=`$SED -n "${n}p" ${CURRENT_ROOT_LIST} | awk '{print $1}'`
+        root_ip=`$SED -n "${n}p" ${CURRENT_ROOT_LIST} | awk '{print $2}'`
+
+        #${WORKDIR}/bin/checkns -ns ${root_name} -addr ${root_ip}
+        #if [ $? -eq 0 ]; then
+        printf "%-30s %-10s %-4s %-8s %-40s\n"  "."   "$ttl" "IN" "NS" "${root_name}" >> $f
+        printf "%-30s %-10s %-4s %-8s %-40s\n"  "${root_name}"  "$ttl" "IN" "AAAA" "${root_ip}" >>$f
+        #else
+        #    echo "`${NOW}` ${root_name} or ${root_ip} is not Correct" >> ${LOG_FILE}
+        #    echo "`${NOW}` ${root_name} or ${root_ip} is not Correct" |\ 
+        #        mail  -s "check root ns list --fail ${root_name} -addr ${root_ip}" -r ${SENDER} ${ADMIN_MAIL}
+        #    printf "%-30s %-10s %-4s %-8s %-40s\n"  "."   "$ttl" "IN" "NS" "${root_name}" >> $f
+        #    printf "%-30s %-10s %-4s %-8s %-40s\n" "${root_name}" "$ttl" "IN" "AAAA" "${root_ip}" >> $f
+        #fi
     done
 }
 
-# generate root hint file
-generate_root_hint_file() {
-    local start_serial
-    /bin/rm -f ${root_hint_file}
-    if [ -s ${git_repository_dir}/iana-start-serial.txt ]; then
-        /bin/cp ${git_repository_dir}/iana-start-serial.txt  ${iana_start_serial}
-        start_serial=`cat ${iana_start_serial}`
-    else
-        # git repo is empty, we shuold not get serial from git
-        start_serial=9015092200
-    fi
+# generate root zone apex part
+generate_apex() {
+    local f="${CONFIG}/root.zone.apex"
+    local ttl="86400"
 
-    # get latest SOA serial from root zone file
-    latest_root_soa_serial=`grep "SOA" ${origin_data}/root.zone | egrep -v "NSEC|RRSIG"| head -1 |awk '{print $7}'`
-    if [ -s ${git_root_ns_list} -a ${latest_root_soa_serial} -ge ${start_serial} ]; then
-        $python $workdir/bin/parseyaml.py ns  ${git_root_ns_list}  > $current_root_list
-        if [ $? -ne 0 ]; then
-            echo "${git_root_ns_list} file not exist or format error" >> ${logfile}
-            exit 1
-        fi
-    fi
+    get_serial
 
-    #generate root hint file 
-    yeti_root_num=`cat ${current_root_list} | wc -l `
-    for num in `seq 1 ${yeti_root_num}`; do
-        root_name=`$sed -n "${num}p" ${current_root_list}  | awk '{print  $1}'`
-        root_ip=`$sed -n "${num}p" ${current_root_list}  | awk '{print  $2}'`
-        ${workdir}/bin/checkns -ns ${root_name} -addr ${root_ip}
-        if [ $? -eq 0 ]; then
-            printf "%-30s %-10s %-4s %-8s %-40s\n"  "."   "3600000" "IN" "NS" "${root_name}" >>${root_hint_file}
-            printf "%-30s %-10s %-4s %-8s %-40s\n"  "${root_name}"  "3600000" "IN" "AAAA" "${root_ip}"\
-                 >>${root_hint_file}
-            /bin/cp -f ${root_hint_file}  ${root_zone_path}
-        else
-            echo "`${datetime}` ${root_name} or ${root_ip} is not Correct" >> ${logfile}
-            echo "`${datetime}` ${root_name} or ${root_ip} is not Correct" |mail \
-                 -s "check root ns list --fail" -r ${sender}  ${admin_mail}
-            printf "%-30s %-10s %-4s %-8s %-40s\n"  "."   "3600000" "IN" "NS" "${root_name}" >>${root_hint_file}
-            printf "%-30s %-10s %-4s %-8s %-40s\n"  "${root_name}"  "3600000" "IN" "AAAA" "${root_ip}"\
-                 >>${root_hint_file}
-            /bin/cp -f ${root_hint_file}  ${root_zone_path}
-            #exit 1
-        fi
-    done
+    # generate soa 
+    echo ".    86400   IN    SOA    www.yeti-dns.org.  hostmaster.yeti-dns.org.\
+        2015091000  1800  900  604800  86400" > $f
+    
+    # generate ns 
+    generate_ns
+}
+
+generate_hint() {
+    local f="$HINT"
+    local ttl="3600000"
+     
+    get_serial
+
+    # delete original hint file
+    /bin/rm -f $HINT
+    
+    # generate hint file
+    generate_ns
+
+    /bin/cp -f $f  ${BIND_ZONE_PATH}
 }
 
 # generate acl_zone_transfer and notify_list
-generate_notify_zonetransfer_list() {
-    local start_serial
+generate_acl() {
+    local list_type="$1"
 
-    if [ -s ${git_repository_dir}/iana-start-serial.txt ]; then
-        /bin/cp ${git_repository_dir}/iana-start-serial.txt  ${iana_start_serial}
-        start_serial=`cat ${iana_start_serial}`
+    get_serial
+
+    if [ "$list_type" = "notify" ]; then
+         local f="${NOTIFY_LIST}"
+    elif [ "$list_type" = "acl" ]; then
+         local f="${ZONETRANSFER_ACL}"
     else
-        # git repo is empty, we shuold not get serial from git
-        start_serial=9015092200
+        echo "Parameter $list_type does not exist"
+        exit 1
     fi
 
-    # get latest SOA serial from root zone file
-    latest_root_soa_serial=`grep "SOA" ${origin_data}/root.zone | egrep -v "NSEC|RRSIG"| head -1 |awk '{print $7}'`
-    if [ -s ${git_root_ns_list} -a ${latest_root_soa_serial} -ge ${start_serial} ];then
-        $python $workdir/bin/parseyaml.py  notify ${git_root_ns_list}  > ${named_notify_list}
+    if [ -s ${ROOT_LIST} -a "${latest_serial}" -ge "${start_serial}" ]; then
+        $PYTHON $WORKDIR/bin/parseyaml.py  $list_type ${ROOT_LIST} > $f
         if [ $? -ne 0 ]; then
-            echo "${git_root_ns_list} file not exist or format error" >> ${logfile}
+            echo "${ROOT_LIST} file not exist or format error" >>\
+                ${LOG_FILE}
             exit 1
         fi
 
-        $python $workdir/bin/parseyaml.py  acl    ${git_root_ns_list}  > ${named_zonetransfer_acl}
-        if [ $? -ne 0 ]; then
-            echo "${git_root_ns_list} file not exist or format error" >> ${logfile}
-            exit 1
-        fi
     fi
-
 }
 
 generate_root_zone() {
-    tmp_root_soa_serial=` head -1 ${config}/root.zone.apex |awk '{print $7}'`
-    
-    if [ -s ${zone_data}/root.zone ]; then
-        current_root_soa_serial=` head -1 ${zone_data}/root.zone  |awk '{print $7}'`
+    local tmp_serial=` head -1 ${CONFIG}/root.zone.apex |awk '{print $7}'`
+
+    if [ -s ${ZONE_DATA}/root.zone ]; then
+        local current_serial=`head -1 ${ZONE_DATA}/root.zone |awk '{print $7}'`
     else
-        current_root_soa_serial=0
+        local current_serial=0
     fi
 
-    latest_root_soa_serial=`grep "SOA" ${origin_data}/root.zone | egrep -v "NSEC|RRSIG"| head -1 |awk '{print $7}'`
-    if [ ${latest_root_soa_serial} -gt ${current_root_soa_serial} ]; then
+    local latest_serial=`grep "SOA" ${ORIGIN_ZONE}/root.zone |\
+        egrep -v "NSEC|RRSIG"| head -1 |awk '{print $7}'`
+
+    if [ ${latest_serial} -gt ${current_serial} ]; then
         # zone cut
-        egrep -v "NSEC|RRSIG|DNSKEY|SOA|^;|^\." ${origin_data}/root.zone > ${tmp_data}/root.zone.cut
+        egrep -v "NSEC|RRSIG|DNSKEY|SOA|^;|^\." ${ORIGIN_ZONE}/root.zone >\
+            ${TMP_ZONE}/root.zone.cut
 
         #update root zone serial number
-        $sed -i "s/${tmp_root_soa_serial}/${latest_root_soa_serial}/" ${config}/root.zone.apex
+        $SED -i "s/${tmp_serial}/${latest_serial}/"\
+            ${CONFIG}/root.zone.apex
 
         # append zone cut
-        /bin/cp ${config}/root.zone.apex  ${zone_data}/root.zone
-        cat ${tmp_data}/root.zone.cut >> ${zone_data}/root.zone
+        /bin/cp ${CONFIG}/root.zone.apex  ${ZONE_DATA}/root.zone
+        cat ${TMP_ZONE}/root.zone.cut >> ${ZONE_DATA}/root.zone
     fi
 }
 
-find_latest_key() {
-   #key dir
-   local keydir=$1
-   # key type
-   local type=$2
+add_public_key() {
+    local current_serial=`grep "SOA" ${ORIGIN_ZONE}/root.zone |\
+                                 egrep -v "NSEC|RRSIG"| head -1 |awk '{print $7}'`
+    local current_utc_time=`date -u +%Y%m%d%H%M%S`
 
-    #get ZSK or KSK  serial number
-    key_start_serial=`cat ${git_repository_dir}/${type}/${keydir}/${key_start_serial_file}`
+    #import public zsk of bii tisf wide
+    for dm_dir in bii tisf wide; do
+        #import public key of zsk
+        for zskdir in `ls  ${ZSK_DIR}/${dm_dir}`; do
+            local zsk_serial=`cat ${ZSK_DIR}/$dm_dir/$zskdir/${START_SERIAL}`
+            local zsk_delete_time=`$SED -n '/Delete/p' ${ZSK_DIR}/$dm_dir/$zskdir/*.key |\
+                                       awk '{print $3}'`
 
-    #get the latest serial number
-    latest_root_soa_serial=`grep "SOA" ${origin_data}/root.zone | egrep -v "NSEC|RRSIG"| head -1 |awk '{print $7}'`
+            if [ "${current_serial}" -ge "${zsk_serial}" -a \
+                 "${zsk_delete_time}" -gt "${current_utc_time}" ]; then 
 
-    # compare serial number
-    if [ "${latest_root_soa_serial}" -ge "${key_start_serial}" ]; then
-
-        #apply zsk or ksk
-        /bin/cp  ${git_repository_dir}/${type}/${keydir}/K.*   ${rootkeydir}/
-
-        #generate Pub.ksk and key tag 
-        if [ "${type}" = "ksk" ]; then
-            grep -v "^;"  ${git_repository_dir}/${type}/${keydir}/*.key  >  ${root_zone_path}/KSK.pub
-        fi
-        echo "${keydir}"  > $config/${type}_tag_file
-        key_name=`ls  ${git_repository_dir}/${type}/${keydir}/ |grep "key" `
-        echo "`${datetime}` ${type}  $key_name  is applied" >> ${logfile}
-    fi
-
-}
-
-get_latest_key() {
-    # ZSK/KSK
-    local type=$1 
-
-    # check tag file
-    if [ ! -f ${git_repository_dir}/config/${type}_tag_file ]; then
-        # tag file not exist, check all file in key dir
-        # 
-        for f in `ls ${git_repository_dir}/${type} |sort `; do
-            find_latest_key $f $type
-        done
-    else
-        #get  the tag for ZSk or KSK last used
-        last_key_generate_time=`cat $config/${type}_tag_file`
-   
-        for  f in `ls ${git_repository_dir}/${type}/ |sort `; do
-            key_generate_time="$f" 
-
-            #find and apply the new key
-            if [ "${key_generate_time}" -gt "${last_key_generate_time}" ]; then
-                find_latest_key $f $type
+                $SED -n '$'p ${ZSK_DIR}/$dm_dir/$zskdir/*.key |\
+                    awk -F' IN' '{print $1,"86400  IN",$2}' >> ${ZONE_DATA}/root.zone
+                
             fi
         done
+    done
+
+    #import public zsk of zsk dir 
+    for zskdir in `find ${ZSK_DIR} -type d -name "20*"`; do
+        #import public key of zsk
+            local zsk_serial=`cat $zskdir/${START_SERIAL}`
+            local zsk_delete_time=`$SED -n '/Delete/p' $zskdir/*.key | awk '{print $3}'`
+
+            if [ "${current_serial}" -ge "${zsk_serial}" -a \
+                 "${zsk_delete_time}" -gt "${current_utc_time}" ]; then 
+
+                $SED -n '$'p $zskdir/*.key |\
+                    awk -F' IN' '{print $1,"86400  IN",$2}' >> ${ZONE_DATA}/root.zone
+                
+            fi
+    done
+    
+}
+
+copy_zsk() {
+    local key_dir="$1"
+    key_serial=`cat $key_dir/${START_SERIAL}`
+    key_activate_time=`$SED -n '/Activate/p' $key_dir/*.key | awk '{print $3}'`
+    key_inactivite_time=`$SED -n '/Inactive/p' $key_dir/*.key | awk '{print $3}'`
+    key_name=`ls $key_dir/*.key | awk -F'/' '{print $NF}' |\
+                  awk -F'key' '{print $1}'`
+    latest_serial=`grep "SOA" ${ORIGIN_ZONE}/root.zone | egrep -v "NSEC|RRSIG" |\
+                      head -1 |awk '{print $7}'`
+    # compare serial number
+    if [ "${latest_serial}" -ge "${key_serial}" ]; then
+        if [ "${current_utc_time}" -ge "${key_activate_time}" -a\
+            "${key_inactivite_time}" -gt "${current_utc_time}" ]; then
+            #apply zsk or ksk
+            /bin/cp ${NEW_ZSK}/${key_name}* ${ROOT_KEY}/
+            echo "ok" > $status_file
+            echo "`${NOW}` ${type} $key_name is applied" >> ${LOG_FILE}
+        fi
     fi
 }
-   
-update_github() {
-    local current_path=`pwd`
-    cd ${root_zone_path}
-    sh github.sh 
-    cd $current_path
+
+find_lastest_zsk() {
+    local current_utc_time=`date -u +%Y%m%d%H%M%S`
+    local status_file="$WORKDIR/tmp/status.txt"
+    
+    # delete old message of zsk of bii
+    rm -f $status_file
+
+    # delete old ksk and zsk 
+    rm -f ${ROOT_KEY}/K.*
+    
+    # find zsk in bii dir
+    for keydir in `ls ${ZSK_DIR}/${DM}`; do
+        copy_zsk ${ZSK_DIR}/${DM}/$keydir
+    done
+    
+    #find zsk in zsk dir
+    if [ ! -f $status_file  ]; then
+        for keydir in `find ${ZSK_DIR} -type d -name "20*"`; do
+            copy_zsk $keydir
+        done
+    fi
+}       
+
+find_lastest_ksk() {
+    local current_utc_time=`date -u +%Y%m%d%H%M%S`
+    local dir
+    local newkey_dir
+    dir="${KSK_DIR}"
+    newkey_dir="${NEW_KSK}"
+    for keydir in `ls $dir`; do    
+        local key_serial=`cat $dir/${keydir}/${START_SERIAL}`
+        local key_delete_time=`$SED -n '/Delete/p' $dir/$keydir/*.key |\
+                                 awk '{print $3}'`
+        local key_publish_time=`$SED -n '/Publish/p' $dir/$keydir/*.key |\
+                                   awk '{print $3}'`
+        local key_name=`ls ${dir}/$keydir/*.key |\
+                            awk -F'/' '{print $NF}' |awk -F'key' '{print $1}'`
+        local latest_serial=`grep "SOA" ${ORIGIN_ZONE}/root.zone | egrep -v "NSEC|RRSIG" |\
+                                 head -1 |awk '{print $7}'`
+
+        # compare serial number
+        if [ "${latest_serial}" -ge "${key_serial}" ]; then
+            if [ "${current_utc_time}" -ge "${key_publish_time}" -a\
+                 "${key_delete_time}" -gt "${current_utc_time}" ]; then
+                #apply zsk or ksk
+                /bin/cp ${KSK_DIR}/$keydir/${key_name}* ${ROOT_KEY}/
+                echo "`${NOW}` ${type} $key_name is applied" >> ${LOG_FILE}
+            fi
+        fi
+    done
 }
 
+# get serial number
+_get_serial() {
+  local server="$1"
+  local result="$2"
+  local status="$(dig -6 @$server . soa|tee $result|grep status|awk -F"[:,]" '{print $4}')"
+  if [ "$status" = " NOERROR" ]; then
+      # find SOA RR and get SOA serial number
+      grep "^\..*SOA" $result|awk '{print $7}'  
+  fi
+  
+  echo > "$result"
+}
 
+get_yeti_serial() {
+    for server in '240c:F:1:22::4'; do
+        YETI_SERIAL=$(_get_serial "$server" "/tmp/dig.log")
+        if [ ! -z "$IANA_SERIAL" ]; then
+            break
+        fi
+    done
+}
+
+get_iana_serial() {
+    for server in f.root-servers.net l.root-servers.net; do
+        IANA_SERIAL=$(_get_serial "$server" "/tmp/dig.log")
+        if [ ! -z "$IANA_SERIAL" ]; then
+            break
+        fi
+    done
+}
+
+is_new_zone() {
+  get_yeti_serial
+  get_iana_serial
+
+  if [ -z "$IANA_SERIAL" -o -z "$YETI_SERIAL" ]; then
+    # tiemout
+    return 1
+  else
+    # contine
+    :
+  fi
+
+  if [[ $IANA_SERIAL > $YETI_SERIAL ]]; then
+      # need genereate new zone
+      :
+  else
+      # no need to generate new zone
+      return 1
+  fi
+}
+   
 sign_root_zone() {
-    ${dnssecsignzone} -K ${rootkeydir} -o . -O full -S -x ${zone_data}/root.zone 
+    ${DNSSECSIGNZONE} -K ${ROOT_KEY} -P -o . -O full -S  -x ${ZONE_DATA}/root.zone 
     if [ $? -eq 0 ]; then 
-        $sed '/^;/d'  ${zone_data}/root.zone.signed >  ${root_zone_path}/root.zone.signed
-        /bin/cp -f ${zone_data}/root.zone ${root_zone_path}
+        $SED '/^;/d' ${ZONE_DATA}/root.zone.signed > ${BIND_ZONE_PATH}/root.zone.signed
     else 
-        echo "`${datetime}` root zone resgined failed on pm(${servername}) server" >> ${logfile}
-        echo "`${datetime}` root zone resgined failed on pm(${servername}) server" | \
-               mail -s "root zone signed fail"  -r ${sender} ${admin_mail} 
+        echo "`${NOW}` root zone resgined failed on pm(${SERVER_NAME}) server" >>\
+                   ${LOG_FILE}
+        echo "`${NOW}` root zone resgined failed on pm(${SERVER_NAME}) server" |\
+                   mail -s "root zone signed fail"  -r ${SENDER} ${ADMIN_MAIL} 
         exit 1
     fi
 }
 
 #reload bind 
-reload_root_zone() {
-    $rndc reload .
-    if [  $? -eq  0 ]; then
-        echo "`${datetime}` pm(${servername}) named reload successful" >> ${logfile}
+reload_name_server() {
+    $RNDC reload .
+    if [ $? -eq 0 ]; then
+        echo "`${NOW}` pm(${SERVER_NAME}) named reload successful" >> ${LOG_FILE}
     else
-        echo "`${datetime}` named process reload failed on the pm(${servername}) server" | \
-               mail -s "HM named reload failed " -r ${sender}  ${admin_mail}
+        echo "`${NOW}` named process reload failed pm(${SERVER_NAME}) server" |\
+                   mail -s "HM named reload failed " -r ${SENDER} ${ADMIN_MAIL}
         exit 1
     fi
 }
+
+update_github() {
+    local current_path=`pwd`
+    cd ${BIND_ZONE_PATH}
+    sh github.sh 
+    cd $current_path
+}
+
+generate_yeti_zone() {
+    root_zone_download
+    check_root_zone
+    generate_apex 
+    generate_hint 
+    generate_acl notify
+    generate_acl acl
+    generate_root_zone
+}
+
+sign_yeti_zone() {
+    add_public_key
+    find_lastest_zsk 
+    find_lastest_ksk 
+    sign_root_zone
+}
+
+distribute_yeti_zone() {
+    reload_name_server
+    update_github
+}
+
