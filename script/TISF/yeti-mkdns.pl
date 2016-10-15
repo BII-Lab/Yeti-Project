@@ -35,6 +35,7 @@ my $glue = [];
 foreach my $s (@$rootservers) {
 	die "missing name" unless defined $s->{name};
 	die "missing public_ip" unless defined $s->{public_ip};
+	next if defined($s->{active}) && $s->{active} ne 'yes';
 	push @$glue, join($;, $s->{name}, $s->{public_ip});
 }
 undef $rootservers;
@@ -45,6 +46,7 @@ undef $rootservers;
 
 our $nameservers = {};
 our $addresses = {};
+our $addr_ttl = {};
 our $yetiroot = undef;
 open($yetiroot, ">$yetiroot_file") || die "$yetiroot_file: $!";
 # process the IANA root zone
@@ -72,6 +74,7 @@ foreach my $ns (sort by_dns keys %$nameservers) {
 	foreach my $a (sort keys %$ref) {
 		output(new Net::DNS::RR(
 			name => $ns, type => $addresses->{$ns}->{$a},
+			ttl => $addr_ttl->{$ns}->{$addresses->{$ns}->{$a}},
 			address => $a
 		));
 	}
@@ -234,6 +237,11 @@ sub do_rr($$) {
 			my $ref = $addresses->{$rr->name};
 			$ref->{$rr->address} = $rr->type;
 		}
+		$addr_ttl->{$rr->name} = {}
+			unless defined $addr_ttl->{$rr->name};
+		$addr_ttl->{$rr->name}->{$rr->type} = $rr->ttl
+			unless defined($addr_ttl->{$rr->name}->{$rr->type}) &&
+			       $rr->ttl > $addr_ttl->{$rr->name}->{$rr->type};
 		return;
 	}
 	if (!$allow_dnssec) {
