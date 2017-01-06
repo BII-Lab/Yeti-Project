@@ -24,7 +24,7 @@ QUERIES_ONLY="no"
 # Settings that you probably wont need to change
 #
 SSH_ID="/root/.ssh/id_rsa"
-#RM_AFTER_UPLOAD="no"
+RM_AFTER_UPLOAD="yes"
 # Set to yes if you want to send info about uploads in syslog
 SYSLOG_UPLOAD="yes"
 #DESTINATIONS=""
@@ -44,7 +44,7 @@ SAVEDIR=/root/data-monitor/data
 # 10 minutes
 INTERVAL="600"
 # For dnscap
-KICK_CMD="sh  data-commit.sh $SAVEDIR"
+KICK_CMD="/bin/bash data-commit.sh $SAVEDIR"
 # For pcapdump
 #KICK_CMD="(cd /usr/local/Yeti; ./data-commit.sh $SAVEDIR) && echo Rotating"
 
