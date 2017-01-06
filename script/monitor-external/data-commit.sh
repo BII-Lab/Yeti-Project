@@ -16,7 +16,9 @@ if [ -s settings.sh ]; then
     . ./settings.sh $SAVEDIR
 fi
 
-DATANAME=$(ls -lh $SAVEDIR | tail -n 3 |awk '{print $NF}' |sed -n 1p)
+# the last argument is the pcap file
+PCAP_FULL_PATH="${!#}"
+DATANAME="$(basename $PCAP_FULL_PATH)"
 
 ##----md5sum---md5-------
 system=`uname -s`
@@ -49,12 +51,13 @@ output=$(
 )
 
 if [ $? -eq 0 ]; then
-        ${LOGGER} "$SSH_BIN upload of $DATANAME completed successfully" 
-        if [ "$output" = "$MY_MD5" ]; then
-                ${LOGGER} "Remote and local MD5s match" 
-        else
-                ${LOGGER} "Remote MD5 ($output) does not match local MD5 ($MY_MD5)" 
-        fi
+   if [ "$output" = "$MY_MD5" ]; then
+       if [ "${RM_AFTER_UPLOAD}" == "yes" ]; then
+           test -f "${SAVEDIR}/$DATANAME" && rm -f ${SAVEDIR}/$DATANAME
+       fi
+   else
+       ${LOGGER} "Remote MD5 ($output) does not match local MD5 ($MY_MD5)"
+   fi
 else
     ${LOGGER} "$SSH_BIN upload of $DATANAME failed: $?"
 fi
