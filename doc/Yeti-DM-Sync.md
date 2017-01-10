@@ -10,6 +10,7 @@ includes:
     * host name
     * IPv6 addresses originating zone transfer
     * IPv6 addresses to send DNS notify to
+    * a flag indicating whether it is active or not
 * the ZSK used to sign the root
 * the KSK used to sign the root
 * the serial when this information is active
@@ -91,6 +92,7 @@ An example:
     # TISF
     - name:          yeti-ns.tisf.net
       public_ip:     2001:559:8000::6
+      active:        no
 ```
 
 Each Yeti root starts with a '-' and then contains information about
@@ -103,6 +105,12 @@ it. The following rules apply to each type of variable:
   is used instead.
 * `notify_addr` is optional, and is a list of IPv6 addresses. If it is
   not present, then the `public_ip` of the server is used instead.
+* `active` is optional, and is either "yes" or "no". If it is not
+  present, then the server is active. If it is set to "no", then the
+  DM should set up the transfer and notify addresses, but will not
+  publish the server in the Yeti root zone. (This allows for a new
+  server to be provisioned and tested before being published, and also
+  allows a server to easily be temporarily removed from production.)
 
 The `iana-start-serial.txt` file contains the serial in the SOA of the
 IANA root zone when to start using the data:
@@ -230,12 +238,3 @@ Future Work: Figure out the KSK signing process
 Right now we assume that each DM operator has access to the KSK secret
 material. Ultimately this should change, so that there is a true
 separation of authority between the KSK and ZSK holders.
-
-
-Future Work: Pre-configure Yeti Root Servers
-============================================
-It might be useful to be able to change the ACL and notify so that a
-new Yeti root server can get copies of the root zone from the DM in
-before it is published in the Yeti root zone. This would allow a
-server to be brought to a production state and then added to the list
-of Yeti servers answering root queries.
