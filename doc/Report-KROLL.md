@@ -47,22 +47,39 @@ resources; no HSM is used, and no published procedures exist for
 accessing or updating the KSK.
 
 
+# Prior Experience with KSK Roll
+
+Early in the Yeti project the Yeti KSK was rolled in an unplanned
+fashion. This was done because the default KSK timings from the
+utility that generated the keys, dnssec-keygen, were set up to do a
+KSK roll. This resulted in errors because it did not follow the RFC
+5011 hold-down timer recommendations. BIND 9 continued to function,
+because it does not follow the RFC 5011 recommendations, but Unbound
+failed, because it does.
+
+These results are documented in the Yeti Testbed Experience Internet
+Draft<sup>[2]</sup>.
+
+
 # Experiment Protocol
 The Yeti project uses an experiment protocol, documented in
-Experiment-Protocol<sup>[2]</sup>. The KROLL experiment followed this
-protocol, which has four parts:
+Experiment-Protocol<sup>[3]</sup>. The KROLL experiment did not follow
+this protocol. Normally there are:
 
 1. Proposal
 2. Lab Test
 3. Yeti Test
 4. Report of Findings
 
-The first three have concluded and this document is the final part.
+In the case of the KROLL we already had experience because of the
+unplanned KSK roll early on in the Yeti project, so we decided to omit
+the lab test. So for the KROLL experiment we simply followed:
 
-# Lab Test
+1. Proposal
+2. Yeti Test
+3. Report of Findings
 
-[ I couldn't find any reference to a lab test, but I recall one being
-  done. ]
+This document is the report of findings.
 
 # Experiment Plan
 
@@ -234,4 +251,5 @@ anchors for views.
 [1]: https://github.com/BII-Lab/Yeti-Project/blob/master/doc/Experiment-KROLL.md
 2: https://github.com/BII-Lab/Yeti-Project/blob/master/doc/Experiment-Protocol.md
 [2]: https://github.com/BII-Lab/Yeti-Project/blob/master/doc/Experiment-Protocol.md
-3: http://lists.yeti-dns.org/pipermail/discuss/2016-July/000625.html
+3: https://tools.ietf.org/html/draft-song-yeti-testbed-experience-03#section-4.5
+[3]: https://tools.ietf.org/html/draft-song-yeti-testbed-experience-03#section-4.5
