@@ -18,12 +18,11 @@ sub output($);
 sub load_serial($);
 
 our $yeticonf_dm = '/home/vixie/work/yeticonf/dm';
-our $rootservers_file = "$yeticonf_dm/ns/yeti-root-servers.yaml";
+our $rootservers_file = "./yeti-root-servers.yaml";
 our $ianaroot_file = './iana-root.dns';
 our $yetiroot_file = './yeti-root.dns';
 our $yeti_mname = 'www.yeti-dns.org.';
 our $yeti_rname = 'hostmaster.yeti-dns.org.';
-our $start_serial_file = "$yeticonf_dm/ns/iana-start-serial.txt";
 our $local_zskdir = '/home/vixie/work/yeti-tisf/zsk';
 our $debug = 0;
 
@@ -31,13 +30,12 @@ our $debug = 0;
 # first, load in the yeti root name server information and min. serial#
 #
 
-our $start_serial = &load_serial($start_serial_file);
-
 our $rootservers = YAML::Syck::LoadFile($rootservers_file);
 my $glue = [];
 foreach my $s (@$rootservers) {
 	die "missing name" unless defined $s->{name};
 	die "missing public_ip" unless defined $s->{public_ip};
+	next if defined($s->{active}) && $s->{active} ne 'yes';
 	push @$glue, join($;, $s->{name}, $s->{public_ip});
 }
 undef $rootservers;
@@ -48,11 +46,11 @@ undef $rootservers;
 
 our $nameservers = {};
 our $addresses = {};
+our $addr_ttl = {};
 our $yetiroot = undef;
 open($yetiroot, ">$yetiroot_file") || die "$yetiroot_file: $!";
 # process the IANA root zone
 our ($soa_ttl, $soa_serial) = do_zf($ianaroot_file, 0);
-die "not time yet, check iana serial" unless $soa_serial >= $start_serial;
 # process the DNSKEY files for yeti's keys
 our @sharedkeys = ();
 our @localkeys = ();
@@ -76,6 +74,7 @@ foreach my $ns (sort by_dns keys %$nameservers) {
 	foreach my $a (sort keys %$ref) {
 		output(new Net::DNS::RR(
 			name => $ns, type => $addresses->{$ns}->{$a},
+			ttl => $addr_ttl->{$ns}->{$addresses->{$ns}->{$a}},
 			address => $a
 		));
 	}
@@ -238,6 +237,11 @@ sub do_rr($$) {
 			my $ref = $addresses->{$rr->name};
 			$ref->{$rr->address} = $rr->type;
 		}
+		$addr_ttl->{$rr->name} = {}
+			unless defined $addr_ttl->{$rr->name};
+		$addr_ttl->{$rr->name}->{$rr->type} = $rr->ttl
+			unless defined($addr_ttl->{$rr->name}->{$rr->type}) &&
+			       $rr->ttl > $addr_ttl->{$rr->name}->{$rr->type};
 		return;
 	}
 	if (!$allow_dnssec) {

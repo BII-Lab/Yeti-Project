@@ -360,8 +360,8 @@ is_new_zone() {
       # need genereate new zone
       :
   else
-      # return
-      :
+      # no need to generate new zone
+      return 1
   fi
 }
    

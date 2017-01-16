@@ -28,18 +28,29 @@ if [ ! -s iana-root.dns ]; then
 fi
 reality=$(awk '$3 = "SOA" { print $7; exit }' iana-root.dns)
 policy=$(cat $yeticonf_dm/ns/iana-start-serial.txt)
-new_zone=0
 if [ $reality -ge $policy ]; then
-	new_zone=1
-	if [ -e iana-root.dns.old ]; then
-		if cmp -s iana-root.dns iana-root.dns.old; then
-			new_zone=0
+	new_yaml=1
+	if [ -e yeti-root-servers.yaml ]; then
+		if cmp -s $yeticonf_dm/ns/yeti-root-servers.yaml \
+			  yeti_root-servers.yaml; then
+			new_yaml=0
 		fi
 	fi
-	if [ $new_zone -ne 0 ]; then
-		rm -f iana-root.dns.old
-		cp iana-root.dns iana-root.dns.old
+	if [ $new_yaml -ne 0 ]; then
+		rm -f yeti-root-servers.yaml
+		cp $yeticonf_dm/ns/yeti-root-servers.yaml .
 	fi
+fi
+
+new_zone=1
+if [ -e iana-root.dns.old ]; then
+	if cmp -s iana-root.dns iana-root.dns.old; then
+		new_zone=0
+	fi
+fi
+if [ $new_zone -ne 0 ]; then
+	rm -f iana-root.dns.old
+	cp iana-root.dns iana-root.dns.old
 fi
 
 #

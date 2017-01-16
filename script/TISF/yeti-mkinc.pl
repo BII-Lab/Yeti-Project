@@ -20,6 +20,7 @@ my $allow_transfer = [];
 foreach my $s (@$rootservers) {
 	die "missing name" unless defined $s->{name};
 	die "missing public_ip" unless defined $s->{public_ip};
+	next if defined($s->{active}) && $s->{active} ne 'yes';
 	push @$also_notify, ( $s->{notify_addr} || [$s->{public_ip}] );
 	push @$allow_transfer, ( $s->{transfer_net} || [$s->{public_ip}] );
 }
