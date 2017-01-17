@@ -51,7 +51,7 @@ Below are details about the different ways of joining the effort.
         masters yeti-dm {
             240c:f:1:22::7;            # bii
             2001:200:1d9::53;        # wide
-            2001:559:8000::7;        # tisf
+            2001:4f8:3:1006::1:5;        # tisf
         };
     ```
     
@@ -65,10 +65,10 @@ Below are details about the different ways of joining the effort.
 	# WIDE
         request-xfr: 2001:200:1d9::53 NOKEY
 	# TISF
-        request-xfr: 2001:559:8000::7 NOKEY
+        request-xfr: 2001:4f8:3:1006::1:5 NOKEY
         allow-notify: 240c:f:1:22::7 NOKEY
         allow-notify: 2001:200:1d9::53 NOKEY
-        allow-notify: 2001:559:8000::7 NOKEY
+        allow-notify: 2001:4f8:3:1006::1:5 NOKEY
     ```
 
     Knot:
@@ -79,7 +79,7 @@ remote:
   - id: yeti-dm-wide
     address: 2001:200:1d9::53
   - id: yeti-dm-tisf
-    address: 2001:559:8000::7
+    address: 2001:4f8:3:1006::1:5
 
 acl:
   - id: yeti-notify-bii
@@ -89,7 +89,7 @@ acl:
     address: 2001:200:1d9::53
     action: notify
   - id: yeti-notify-tisf
-    address: 2001:559:8000::7
+    address: 2001:4f8:3:1006::1:5
     action: notify
 
 zone:
@@ -166,7 +166,7 @@ zone:
 
     hints.root({                                   
           ['bii.dns-lab.net.'] = '240c:f:1:22::6',
-          ['yeti-ns.tisf.net.'] = '2001:559:8000::6',
+          ['yeti-ns.tisf.net.'] = '2001:4f8:3:1006::1:4',
           ['yeti-ns.wide.ad.jp.'] = '2001:200:1d9::35',
           ['yeti-ns.as59715.net.'] = '2a02:cdc5:9715:0:185:5:203:53',
           ['dahu1.yeti.eu.org.'] = '2001:4b98:dc2:45:216:3eff:fe4b:8c5b',
@@ -183,7 +183,6 @@ zone:
           ['yeti-ns1.dns-lab.net.'] = '2001:da8:a3:a027::6',
           ['yeti-ns2.dns-lab.net.'] = '2001:da8:268:4200::6',
           ['yeti-ns3.dns-lab.net.'] = '2400:a980:30ff::6',
-          ['2e7d2c03a9507ae265ecf5b5356885.yeti-dns.net.'] = '2400:8901:e001:39::6',
           ['3f79bb7b435b05321651daefd374cd.yeti-dns.net.'] = '2401:c900:1401:3b:c::6',
           ['ca978112ca1bbdcafac231b39a23dc.yeti-dns.net.'] = '2c0f:f530::6',
           ['yeti1.ipv6.ernet.in.'] = '2001:e30:187d::333',
