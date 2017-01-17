@@ -144,12 +144,10 @@ zone:
         };
 
         managed-keys {
-           "." initial-key 257 3 8 "AwEAAaP3gGQ4db0tAiDEky0dcUNGeI1aTDYP5NFxzhbdpD60ZhKLVV4KyxPmoSNU
-                                    pq5Fv5M0iBwK1Tyswsyq/9sMSoZ8zx8a T3ho1YnPsSqQeJfjTT1WsX6YZ5Kw6B2Q
-                                    kjRNa6OMGZ96Kn8AI/slqsw+z8hY49Sn 3baeo9iJxHPzloNc2dQkW4aLqzNEYxnu
-                                    oJsthCfGrPSAXlUjY9m3YKIaEWR5WFYQ k770fT+gGWLk/54Vp0sG+Lw75JZnwhDh
-                                    ixPFaToTDNqbHQmkEylq1XJLO15uZ/+R ZNRfTXZKO4fVR0tMEbMAITqRmyP8xLXY
-                                    4RXbS4J32gnenQbzABX8sQmwO7s=";
+           "." initial-key 257 3 8 "AwEAAbA0lBT1aDxwoNl7d/fXqFFBtL+VwBLqgOYHgAqrnvhRvHs+GrTW ZZ5gZu/0NeX4YGXmovT1nGpY/9oi30pDvbzPluQXOKSVP/xr1KyLPp8p
+                                    xiVqGe973F55fX4iQOUMB2n2VXfIxSryTNYPz44Zltpa10WAVYzHpy3o xx0qZSeDsdPHMNB7Ym0hBMY92cifWyQWifHbcgbFGf2mpwF00vALl92q 
+                                    hnvIORVZC/ihNNd7DvQtMLdUvSoQ0woC/EhqexXQv0bLlPkG55d37Joa VbWCEnWLZ+CT+Eei5U4VCqH+xCEvOjT45ZQt0kfB3K4bwfh6D5EBleJ1
+                                    3z3pbUwBy0U=";
         };
 
     In the BIND example, the text between quotes is the key, from https://raw.githubusercontent.com/BII-Lab/Yeti-Project/master/domain/KSK.pub
