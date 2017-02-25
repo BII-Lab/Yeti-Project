@@ -87,8 +87,8 @@ if [ $new_zone -ne 0 ]; then
 		exit 1
 	fi
 
-	if dnssec-signzone -Q -R -o . -x yeti-root.dns \
-		-s now-1h -e now+167h $keys \
+	if dnssec-signzone -Q -R -o . -x -s now-1h -e now+167h \
+		yeti-root.dns $keys \
 			> dnssec-signzone.out 2>&1
 	then
 		rndc -s yeti-dm reload . 2>&1 \
