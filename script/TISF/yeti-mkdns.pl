@@ -22,7 +22,7 @@ our $rootservers_file = "./yeti-root-servers.yaml";
 our $ianaroot_file = './iana-root.dns';
 our $yetiroot_file = './yeti-root.dns';
 our $yeti_mname = 'www.yeti-dns.org.';
-our $yeti_rname = 'hostmaster.yeti-dns.org.';
+our $yeti_rname = 'tisf.yeti-dns.org.';
 our $local_zskdir = '/home/vixie/work/yeti-tisf/zsk';
 our $debug = 0;
 
