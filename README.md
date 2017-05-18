@@ -144,10 +144,7 @@ zone:
         };
 
         managed-keys {
-           "." initial-key 257 3 8 "AwEAAbA0lBT1aDxwoNl7d/fXqFFBtL+VwBLqgOYHgAqrnvhRvHs+GrTW ZZ5gZu/0NeX4YGXmovT1nGpY/9oi30pDvbzPluQXOKSVP/xr1KyLPp8p
-                                    xiVqGe973F55fX4iQOUMB2n2VXfIxSryTNYPz44Zltpa10WAVYzHpy3o xx0qZSeDsdPHMNB7Ym0hBMY92cifWyQWifHbcgbFGf2mpwF00vALl92q 
-                                    hnvIORVZC/ihNNd7DvQtMLdUvSoQ0woC/EhqexXQv0bLlPkG55d37Joa VbWCEnWLZ+CT+Eei5U4VCqH+xCEvOjT45ZQt0kfB3K4bwfh6D5EBleJ1
-                                    3z3pbUwBy0U=";
+           "." initial-key 257 3 8 "AwEAAdZZqL65TA/kHkLq1+ON5eQYm9PUBgV5UQbPcQtRAXbad1l6m6R0 iJIg46IiyFyUkEh+H7Z9/oPNnkM9zub2TjFiNVZUSnpyWtPqVD5nHrhU OdS3yW/AXpZuNJ3zX9XDXUpiEnfTPOMrUiZppP1fqx/jnAC9YDLs4K26 ocoDyQp+umu+eOrP/TOacRag+9r9NiQzsVuXHQnCwpPY4NwlA7QRaOOj BiI9tNEDD2khVE7Yy5c/sZYirlTOTEBbXkd9l9WVqRgEO+ikb8GMg7hg Oddvqj7ItBZvBUACQc3c0OqaLnEZx6CwIQpjxpPPYdyiEdKSwHGH3V3T fS+AEQlW8uk=";
         };
 
     In the BIND example, the text between quotes is the key, from https://raw.githubusercontent.com/BII-Lab/Yeti-Project/master/domain/KSK.pub
@@ -172,7 +169,7 @@ zone:
           ['yeti-ns.ix.ru.'] = '2001:6d0:6d06::53',
           ['yeti.bofh.priv.at.'] = '2a01:4f8:161:6106:1::10',
           ['yeti.ipv6.ernet.in.'] = '2001:e30:1c1e:1::333',
-          ['yeti-dns01.dnsworkshop.org.'] = '2001:1608:10:167:32e::53',
+          ['yeti-dns01.dnsworkshop.org.'] = '2a03:4000:5:2c3::53',
           ['yeti-ns.conit.co.'] = '2604:6600:2000:11::4854:a010',
           ['yeti.aquaray.com.'] = '2a02:ec0:200::1',
           ['dahu2.yeti.eu.org.'] = '2001:67c:217c:6::2',
