@@ -37,7 +37,7 @@
 12. The BII coordinator closes the ticket.
 13. Champagne.
 
-##Basic requirement for Yeti root server operator
+## Basic requirement for Yeti root server operator
 
 To be come a Yeti root operator, you should know the basic requirements and our expectations:
 
