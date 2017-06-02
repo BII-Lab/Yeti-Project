@@ -22,6 +22,7 @@
   * Check anything missing for the application
 
   If the technical requirements are not met, then the BII coordinator will reply to the applicant via the ticket.
+  
 4. Each coordinator will need to review the request at this point and record the approvel decision or other suggestions in RT system. Coordinators can simply make a decision or discuss the application via RT system which also will be recorded in RT.
 5. No matter all coordinators approved or not, then a comment will be added to the ticket, and the ticket will be resolved. BII Coordinator will issue an e-mail of the final decision sent to the applicant.
 6. If the application is approved, BII coordinator adds the new name server to the list of Yeti roots, via the [**Yeti DM synchronization procedure**](https://github.com/BII-Lab/Yeti-Project/blob/master/doc/Yeti-DM-Sync.md). This means waiting for the IANA serial to advance to the desired serial number.
