@@ -44,7 +44,7 @@
     2) run dnscap
         sh capture-dnscap.sh
     3) add task in crontab, monitor dnscap process
-       "*       *       *       *       *       root	pgrep dnscap || (cd /path/of/capture-dnscap.sh && sh capture-dnscap.sh)"
+       "*       *       *       *       *       root	pgrep dnscap || (cd /path/of/script-dir && sh capture-dnscap.sh)"
 
 
 5. note
@@ -55,3 +55,5 @@
 	
     linux kernel below 3.19, dnscap sometimes lost packets.
     so if choose Linux and use dnscap to capture packet, please upgrage your kernel.
+    
+    the latest dnscap run as user nobody, you should make sure dnscap can wirte pcaps to the data dir
