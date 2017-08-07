@@ -7,6 +7,7 @@
 # binaries needed, change accordingly
 # dnscap is at https://github.com/verisign/dnscap
 DNSCAP="/usr/local/bin/dnscap"
+DNSCAPUSR="nobody"
 IFCONFIG="/sbin/ifconfig"
 NTPDATE="/usr/sbin/ntpdate"
 BC="/usr/bin/bc"
@@ -209,6 +210,6 @@ if [ ! -z ${NO_PAT} ]; then
     done
 fi
 
-CMD="${DNSCAP} $@"
+CMD="${DNSCAP} -o user=${DNSCAPUSR} $@"
 echo "Executing '${CMD}'"
-${DNSCAP} "$@" &
+${DNSCAP} -o user=${DNSCAPUSR} "$@" &
