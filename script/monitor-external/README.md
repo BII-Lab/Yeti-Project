@@ -56,4 +56,5 @@
     linux kernel below 3.19, dnscap sometimes lost packets.
     so if choose Linux and use dnscap to capture packet, please upgrage your kernel.
     
-    the latest dnscap run as user nobody, you should make sure dnscap can wirte pcaps to the data dir
+    the latest dnscap run as user nobody, you should make sure dnscap can wirte pcaps to the data dir or specify a
+    different user in capture-dnscap.sh
