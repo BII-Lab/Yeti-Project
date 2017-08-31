@@ -170,7 +170,6 @@ zone:
           ['yeti.bofh.priv.at.'] = '2a01:4f8:161:6106:1::10',
           ['yeti.ipv6.ernet.in.'] = '2001:e30:1c1e:1::333',
           ['yeti-dns01.dnsworkshop.org.'] = '2a03:4000:5:2c3::53',
-          ['yeti-ns.conit.co.'] = '2604:6600:2000:11::4854:a010',
           ['yeti.aquaray.com.'] = '2a02:ec0:200::1',
           ['dahu2.yeti.eu.org.'] = '2001:67c:217c:6::2',
           ['yeti-ns.switch.ch.'] = '2001:620:0:ff::29',
