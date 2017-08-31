@@ -170,7 +170,6 @@ zone:
           ['yeti.bofh.priv.at.'] = '2a01:4f8:161:6106:1::10',
           ['yeti.ipv6.ernet.in.'] = '2001:e30:1c1e:1::333',
           ['yeti-dns01.dnsworkshop.org.'] = '2a03:4000:5:2c3::53',
-          ['yeti-ns.conit.co.'] = '2604:6600:2000:11::4854:a010',
           ['yeti.aquaray.com.'] = '2a02:ec0:200::1',
           ['dahu2.yeti.eu.org.'] = '2001:67c:217c:6::2',
           ['yeti-ns.switch.ch.'] = '2001:620:0:ff::29',
@@ -184,7 +183,8 @@ zone:
           ['xn--r2bi1c.xn--h2bv6c0a.xn--h2brj9c.'] = '2001:e30:1c1e:10::333',
           ['yeti-dns02.dnsworkshop.org.'] = '2001:19f0:0:1133::53'，
           ['yeti.mind-dns.nl.'] = '2a02:990:100:b01::53:0'，
-          ['yeti-ns.datev.net.'] = '2a00:e50:f15c:1000::1:53'
+          ['yeti-ns.datev.net.'] = '2a00:e50:f15c:1000::1:53'，
+          ['yeti.jhcloos.net.'] = '2001:19f0:5401:1c3::53'
     })
 
     trust_anchors.config('yeti-root.key')
