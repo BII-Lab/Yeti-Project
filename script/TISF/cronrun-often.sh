@@ -12,7 +12,7 @@ yeticonf_dm="/home/vixie/work/yeticonf/dm"
 iana_server="2001:500:2f::f"
 
 #
-# first, fetch the iana zone, and rebuild yeti zone if possible and indicated
+# first, fetch the iana zone, and decide whether it has changed
 #
 dig @$iana_server +onesoa +nocmd +nsid +nostats . axfr > iana-root.dns
 if dnssec-verify -o . iana-root.dns > dnssec-verify.out 2>&1; then

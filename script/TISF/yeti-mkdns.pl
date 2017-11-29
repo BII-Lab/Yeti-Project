@@ -1,6 +1,10 @@
 #!/usr/bin/env perl
 
 # yeti-mkdns -- creates a yeti zone file based on an IANA file + some metadata
+#
+# STDERR is diagnostics
+# STDOUT is the set of keys to sign with
+# $yetiroot_file is the output zone file
 
 use strict;
 use warnings;
