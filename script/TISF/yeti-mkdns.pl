@@ -250,7 +250,7 @@ sub do_rr($$) {
 	}
 	if (!$allow_dnssec) {
 		return if $rr->type eq 'RRSIG';
-		return if $rr->type eq 'DNSKEY';
+		return if $rr->type eq 'DNSKEY' && !$rr->zone;
 		return if $rr->type eq 'NSEC';
 		return if $rr->type eq 'NSEC3';
 	}
