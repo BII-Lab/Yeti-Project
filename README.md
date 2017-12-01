@@ -150,14 +150,12 @@ Below are details about the different ways of joining the effort.
 
     Knot:
 
-    ```lua
+    ```
     -- -*- mode: lua -*-
     -- Knot uses a specific format for the hints so we cannot use the official hints file.
-
     modules = {
        'hints' -- Add other modules, if necessary
     }
-
     hints.root({                                   
           ['bii.dns-lab.net.'] = '240c:f:1:22::6',
           ['yeti-ns.tisf.net.'] = '2001:4f8:3:1006::1:4',
@@ -181,11 +179,11 @@ Below are details about the different ways of joining the effort.
           ['yeti1.ipv6.ernet.in.'] = '2001:e30:187d::333',
           ['xn--r2bi1c.xn--h2bv6c0a.xn--h2brj9c.'] = '2001:e30:1c1e:10::333',
           ['yeti-dns02.dnsworkshop.org.'] = '2001:19f0:0:1133::53'，
-          ['yeti.mind-dns.nl.'] = '2a02:990:100:b01::53:0'，
-          ['yeti-ns.datev.net.'] = '2a00:e50:f15c:1000::1:53'，
-          ['yeti.jhcloos.net.'] = '2001:19f0:5401:1c3::53'
+          ['yeti.mind-dns.nl.'] = '2a02:990:100:b01::53:0',
+	      ['yeti-ns.datev.net.'] = '2a00:e50:f15c:1000::1:53',
+	      ['yeti.jhcloos.net.'] = '2001:19f0:5401:1c3::53'
     })
-
+    
     trust_anchors.config('yeti-root.key')
     ```
 
