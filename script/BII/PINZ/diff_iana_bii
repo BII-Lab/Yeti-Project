@@ -1,0 +1,133 @@
+--- iana_sort.txt	2018-04-16 13:57:52.084335100 +0800
++++ bii_sort.txt	2018-04-16 13:58:09.344533400 +0800
+@@ -1,28 +1,43 @@
+-.			172800	IN	DNSKEY	256 3 8 AwEAAaDJd0KOMYGCEF0/cftC2hrFtz5GSn1HOiaxEp053AfbxQ3pT8BE tahPiUkCo1Qx4PECJ23YwaFhfWWjapr6AFxhD8klfZGp95ickoRlm91Z zXX/mcfn9vlUpZK2M8qjljNMzZJSopFY+cxRvib2Irb6YeP2a0vppaLn vR4BeOyEkQolLqvVHW7UqDFiP/CM15BWBsAIdbyo8L1h3OeP63TaYIrW ttjGBILeZinSaJ39amiVs8t00RjTaKVo3vY2k6dje1Rh1ELqjNj8+cKA 8iWC3VU7ApkyuGDy631RDILa6wCgcBVCzfFfOthQILxQra88tNWzCVor yQ89f1WjBJc=
+-.			172800	IN	DNSKEY	256 3 8 AwEAAdU4aKlDgEpXWWpH5aXHJZI1Vm9Cm42mGAsqkz3akFctS6zsZHC3 pNNMug99fKa7OW+tRHIwZEc//mX8Jt6bcw5bPgRHG6u2eT8vUpbXDPVs 1ICGR6FhlwFWEOyxbIIiDfd7Eq6eALk5RNcauyE+/ZP+VdrhWZDeEWZR rPBLjByBWTHl+v/f+xvTJ3Stcq2tEqnzS2CCOr6RTJepprYhu+5Yl6aR ZmEVBK27WCW1Zrk1LekJvJXfcyKSKk19C5M5JWX58px6nB1IS0pMs6aC IK2yaQQVNUEg9XyQzBSv/rMxVNNy3VAqOjvh+OASpLMm4GECbSSe8jtj wG0I78sfMZc=
+-.			172800	IN	DNSKEY	257 3 8 AwEAAagAIKlVZrpC6Ia7gEzahOR+9W29euxhJhVVLOyQbSEW0O8gcCjF FVQUTf6v58fLjwBd0YI0EzrAcQqBGCzh/RStIoO8g0NfnfL2MTJRkxoX bfDaUeVPQuYEhg37NZWAJQ9VnMVDxP/VHL496M/QZxkjf5/Efucp2gaD X6RS6CXpoY68LsvPVjR0ZSwzz1apAzvN9dlzEheX7ICJBBtuA6G3LQpz W5hOA2hzCTMjJPJ8LbqF6dsV6DoBQzgul0sGIcGOYl7OyQdXfZ57relS Qageu+ipAdTTJ25AsRTAoub8ONGcLmqrAmRLKBP1dfwhYB4N7knNnulq QxA+Uk1ihz0=
+-.			172800	IN	DNSKEY	257 3 8 AwEAAaz/tAm8yTn4Mfeh5eyI96WSVexTBAvkMgJzkKTOiW1vkIbzxeF3 +/4RgWOq7HrxRixHlFlExOLAJr5emLvN7SWXgnLh4+B5xQlNVz8Og8kv ArMtNROxVQuCaSnIDdD5LKyWbRd2n9WGe2R8PzgCmr3EgVLrjyBxWezF 0jLHwVN8efS3rCj/EWgvIWgb9tarpVUDK/b58Da+sqqls3eNbuv7pr+e oZG+SrDK6nWeL3c6H5Apxz7LjVc1uTIdsIXxuOLYA4/ilBmSVIzuDWfd RUfhHdY6+cn8HFRm+2hM8AnXGXws9555KrUB5qihylGa8subX2Nn6UwN R1AkUTV74bU=
+-.			172800	IN	RRSIG	DNSKEY 8 0 172800 20180412000000 20180322000000 19036 . mTjt4Mk/pWO2y03Pu0F72nzPo91sZdn3o41l8TKmoQEPS7J191LObt/w Jh/qKu4P4CZMZ5ie2pBXX8RdB3voAEzWo6hfGw3727+ZW9RcQtdeuuXo 6tUn5OFTfidvdy6kOkv9bCrBUahu6B4t4ALIQVZHp2ZpoC1LgTlkcELx 9XvmIrcqw5NBjqni1adkAOMHBAYpCXivRaS0Y2rNXPPOJreWYP0L1DVd BxP4vK/2UDm1xCeMODsZzx4M2FAIENM0NgLn+Oi4CPR5DHoyrxv1eu3L ZgxFDTUoYqa8eaOfOQkrxndnP65+YmRiwcz4P177AbhBN+tqZbk67F83 dnx3OQ==
+-.			518400	IN	NS	a.root-servers.net.
+-.			518400	IN	NS	b.root-servers.net.
+-.			518400	IN	NS	c.root-servers.net.
+-.			518400	IN	NS	d.root-servers.net.
+-.			518400	IN	NS	e.root-servers.net.
+-.			518400	IN	NS	f.root-servers.net.
+-.			518400	IN	NS	g.root-servers.net.
+-.			518400	IN	NS	h.root-servers.net.
+-.			518400	IN	NS	i.root-servers.net.
+-.			518400	IN	NS	j.root-servers.net.
+-.			518400	IN	NS	k.root-servers.net.
+-.			518400	IN	NS	l.root-servers.net.
+-.			518400	IN	NS	m.root-servers.net.
+-.			518400	IN	RRSIG	NS 8 0 518400 20180408170000 20180326160000 41824 . kCKTS+N4kFTg1h8RrL+9bY0lLNCS50X0bsFztGySl7s+miPlWAl4uc+B +ynvFQ/agGE4CgYmOoVw8rj1jKezxU3/BdMWPUN+0bq7JPCfoZ5oZMk1 71wRV52pRtZdUSZ3tWwI1/a5DAgAvCvPjohD3V1F5vFXO8dBPqkNOUZo Dtp1T5RWc1yw/BAHh/gxASMW4K1nO7RQkuHV2BpWTYE2ok43dOxYKlE8 7EDJmT5z9l64ZqQiGzlvB+EJi7ZQRpMexMrbucJUsanPKw2dyAN697Vd 805Bd/Xmm00pZqJSHWFCdG3Xzxus1HASK3+dB/EgU+GDZc63AVobCHsc 7f190A==
++.					      86400 IN DNSKEY	256 3 8 AwEAAaDJd0KOMYGCEF0/cftC2hrFtz5GSn1HOiaxEp053AfbxQ3pT8BE tahPiUkCo1Qx4PECJ23YwaFhfWWjapr6AFxhD8klfZGp95ickoRlm91Z zXX/mcfn9vlUpZK2M8qjljNMzZJSopFY+cxRvib2Irb6YeP2a0vppaLn vR4BeOyEkQolLqvVHW7UqDFiP/CM15BWBsAIdbyo8L1h3OeP63TaYIrW ttjGBILeZinSaJ39amiVs8t00RjTaKVo3vY2k6dje1Rh1ELqjNj8+cKA 8iWC3VU7ApkyuGDy631RDILa6wCgcBVCzfFfOthQILxQra88tNWzCVor yQ89f1WjBJc=
++.					      86400 IN DNSKEY	256 3 8 AwEAAbrsPE4n9QA736mUoiJXdH+op49v2s+RwL5KlgyrlCZA5Azsdzam FRIPDBXajkElMCMLQfH9CWERVk76d61V0+M5NGFlytNOxkTyux4w5VOO xCAm1av6XdRp5cCdQc5X6HWpZkNOb7JTkS4xHtory0MKFEtTRxlSnqGV kc4NX6u71oB4mQfCSnsmBdv+I325zNFr2IfWayfVV0lOc8kQnujIKJSj 8ECP1t/sVtcWvHMLwwizH3GK32Ti2Egg4HQZlrZtZXZ5R1s5cp/auwqn HW+/VaePnV5Z7bDkP4wJAfV2BYjTDfLE9Mqet5IbMSGs9Dxq3lSnQcaV SUvJu+jnLJc=
++.					      86400 IN DNSKEY	256 3 8 AwEAAdU4aKlDgEpXWWpH5aXHJZI1Vm9Cm42mGAsqkz3akFctS6zsZHC3 pNNMug99fKa7OW+tRHIwZEc//mX8Jt6bcw5bPgRHG6u2eT8vUpbXDPVs 1ICGR6FhlwFWEOyxbIIiDfd7Eq6eALk5RNcauyE+/ZP+VdrhWZDeEWZR rPBLjByBWTHl+v/f+xvTJ3Stcq2tEqnzS2CCOr6RTJepprYhu+5Yl6aR ZmEVBK27WCW1Zrk1LekJvJXfcyKSKk19C5M5JWX58px6nB1IS0pMs6aC IK2yaQQVNUEg9XyQzBSv/rMxVNNy3VAqOjvh+OASpLMm4GECbSSe8jtj wG0I78sfMZc=
++.					      86400 IN DNSKEY	256 3 8 AwEAAerI9AK9BgqAe1ozKzjkDhCeGDnZrzYOno7+76xC6ZSiFnC/az1p HZybTwPs13cd7jXqhR4ebUJtgWqvJv7LkgQ/vrXAGmspRTiPAPB4uJN4 XKUV5LRJzHTtl1n2J4Sn7xpBgTmxjNtEwJaatf182gCE9etxiGbESGhM d2PgQZzCQo+A85U1NqabcTvv2yn6SqTmHAp9rNvnPN4G+m3NG4WVMOU7 yyoZ8D+dJ/6y8NNhQ4D4szd1aEhJor4HnexOTqqmbhEP5YJWuy1ZCBd8 DIxEJ+1FRVeneB/jF0kd2cM8reJcvfegiacco8wQhvZc2FfC+ovtwS74 nuVZ08lcttc=
++.					      86400 IN DNSKEY	256 3 8 AwEAAZ2nvX3qCLCGIbv5IbOIGWuRhZd9WcFujJXaS3CcNTXJMemPkJe/ rcn4hSnmTp8EIFrIBHOnG48+eKZzaiXVOHXY+73w6gif8KdKreGw40wz 8N5zQ32Pwx0XDE0hgYADHrKQXP/VzSlDopszeX3tAfNKAVm9OKVSMydw tAJAe804Oef4geAkIOgpiuHUsxnVGxWW6XcubjeNjWPH+dZQB4vCGXhQ vbKNPedq0ZGVuoTUVGRhHhDTzngalL9XvJkm0LcmMCwMx7D69o8XOFmT Ua03h9WOFgQPZp9dhfxtkLbXOmkN5evt0rcFLhVhquj92ddtGTn/kj6Q cDU3V6zub7U=
++.					      86400 IN DNSKEY	257 3 8 AwEAAdZZqL65TA/kHkLq1+ON5eQYm9PUBgV5UQbPcQtRAXbad1l6m6R0 iJIg46IiyFyUkEh+H7Z9/oPNnkM9zub2TjFiNVZUSnpyWtPqVD5nHrhU OdS3yW/AXpZuNJ3zX9XDXUpiEnfTPOMrUiZppP1fqx/jnAC9YDLs4K26 ocoDyQp+umu+eOrP/TOacRag+9r9NiQzsVuXHQnCwpPY4NwlA7QRaOOj BiI9tNEDD2khVE7Yy5c/sZYirlTOTEBbXkd9l9WVqRgEO+ikb8GMg7hg Oddvqj7ItBZvBUACQc3c0OqaLnEZx6CwIQpjxpPPYdyiEdKSwHGH3V3T fS+AEQlW8uk=
++.					      86400 IN NS	3f79bb7b435b05321651daefd374cd.yeti-dns.net.
++.					      86400 IN NS	bii.dns-lab.net.
++.					      86400 IN NS	ca978112ca1bbdcafac231b39a23dc.yeti-dns.net.
++.					      86400 IN NS	dahu1.yeti.eu.org.
++.					      86400 IN NS	dahu2.yeti.eu.org.
++.					      86400 IN NS	ns-yeti.bondis.org.
++.					      86400 IN NS	xn--r2bi1c.xn--h2bv6c0a.xn--h2brj9c.
++.					      86400 IN NS	yeti.aquaray.com.
++.					      86400 IN NS	yeti.bofh.priv.at.
++.					      86400 IN NS	yeti.ipv6.ernet.in.
++.					      86400 IN NS	yeti.jhcloos.net.
++.					      86400 IN NS	yeti.mind-dns.nl.
++.					      86400 IN NS	yeti1.ipv6.ernet.in.
++.					      86400 IN NS	yeti-dns01.dnsworkshop.org.
++.					      86400 IN NS	yeti-dns02.dnsworkshop.org.
++.					      86400 IN NS	yeti-ns.as59715.net.
++.					      86400 IN NS	yeti-ns.datev.net.
++.					      86400 IN NS	yeti-ns.ix.ru.
++.					      86400 IN NS	yeti-ns.lab.nic.cl.
++.					      86400 IN NS	yeti-ns.switch.ch.
++.					      86400 IN NS	yeti-ns.tisf.net.
++.					      86400 IN NS	yeti-ns.wide.ad.jp.
++.					      86400 IN NS	yeti-ns1.dns-lab.net.
++.					      86400 IN NS	yeti-ns2.dns-lab.net.
++.					      86400 IN NS	yeti-ns3.dns-lab.net.
++.					      86400 IN RRSIG	DNSKEY 8 0 86400 20180403003903 20180327003903 59302 . DR1jZ4Q+YncsLI0e1Sj64qmyW6fEdlhZv32DgSnT9q5aDEwzOY97GefG z2fdyjBNd5RWWiFcKRzFoOa1CMk9BWJrM62Co6OfwToxed3lc4r7vSab 0TYqSupaj+otUwdq1wFT1P1Vs+ViD5tOA7glgRx6fU1GINA6l1v3aUv9 vqrU7saL22R/Olu0G9fPhTb4BqTCLtida+7ciP5Xzm0aH+ZTr40ujcPe yccoGT89ewM3rqCoaLB0vptKd0jklA4lJ2fhXK9wc8ufUSBL+lM1Ogpl I22wdekaSE39V0cVdoDlj7/2tJbdlGpDX5gYtnLsED1APaowMO/ne5uV GyTzQg==
++.					      86400 IN RRSIG	NS 8 0 86400 20180403003903 20180327003903 1116 . DUit/VEdjBK+RR5g3DwQEA/HPJBJ/GQw8pd/+eHj6CtwSH3kp5pYjVaC x14odziY1N8sZdMCuew9XRMJPCGQW7h1seq6gTUMqnAZwhPkvi2ozOew HK1Mb4tGZ0hOKYlBQLy4SQxeyy5yeLmZoNZ39HrmgVBqRXjMbuQo6geI tnia4x3XlZ84tgI9RFCZuW6w8pUawe3laXfx4DhwXl9Z62abrgpyBSwS kQYBMwR1lbAtd2uehyEJ1o3zV/ckL/f/SU4qeV1o5zDeGjHgg5m9YiLU b93azbZPSuQIrgB22musUkBaHlnrXfLUI7X/DlrnxyPp4MxQQODo0Kkw dfIwrA==
++.					      86400 IN RRSIG	SOA 8 0 86400 20180403003903 20180327003903 1116 . QnEl10slDZTr+Xnt/zKBCR7EI4ddOP06z3D7tXs1/7GC5V/V/NZhVkCE CbboXyKQWUIySpfhjM1qIExUXT4zCnQVo1BvNDpkGyvpobl/WHbmKh7/ IG3GgZ9rUn9Du1kepErP9x/QWnEvp4N9R1ETqN4sxdN8qtkINyaXX5ad 5GWVPwXNkfaatTiZ1RC6N+RXzDNVW7srEkG2BxaWpxgX+NOxmqeNEMX/ RkUoes4lnscZ/D/IrwbYu9QuoFSVlJUSa7T8wtFU/fDjVtRFiyUZgFkf cd+G/sGiZcF7HNtOaHPj23+rPh8eKBOgg7fqcFL41lBy1S9D/oa3fRgC w8lSAA==
++.					      86400 IN SOA	www.yeti-dns.org. bii.yeti-dns.org. 2018032601 1800 900 604800 86400
+ .			86400	IN	NSEC	aaa. NS SOA RRSIG NSEC DNSKEY
+ .			86400	IN	RRSIG	NSEC 8 0 86400 20180408170000 20180326160000 41824 . Y92qGWb+WoOWfepLKS9We7zBwJlSo3o/LTQI75VvgJHPcyMaag6ZrCFu WS9nX8Rov88fl6knFRPyROcH4jM4FIleMeMkL1uoADdXqU7177QELATx ueh6k9uqqPLUFzb7YJxIvcxaLBp5OSeIX0yb5VRIAR4sicZb3MT2pEo3 CO5sNV1NrnxhZw718E8oWcu60GKOFSwHtJW1e8J/ZgxOMFsPpx5G60H7 +rzhBho+60u40WTr1wOUh6Q3RfhOd9LDCkksCMIPyer0R8B+DFxS6h8n /e8y6hirI+c/I2lCKk2QsaBXpkEVCuCs5mGW7g+E3h4LffwdWndDz8j+ px6I4w==
+-.			86400	IN	RRSIG	SOA 8 0 86400 20180408170000 20180326160000 41824 . Q3T9Yacy6ZhI+iPAMTLOOCOkujcj+4ASP96RQqDEHBc7A4QK/16lGlb7 VsENwVnSClEuClayb5h1VrLTEIVY2PxK7vtsL0Uf4MGkJ9r6tt2QgT/z lmgYnD6Yf1lXy7ha+FDXrwmCx9+bvve4t9CXsjZTz76Eu8igEPtPhC5g COIyzpu9nI40bpF1lAM63ZxfGzaFsklG9Spw3pvVuCz1Pdea9Eg1tOiB MpExu/LVIJd8Z7aTXKT1OC7gNHrcSF4/sUfXdvsMXJbRuRhC7jjlxQfb 9rx1UIv5V4QcbKiBR1fPGaX6AeVagebyX/yDN7mIWRZgdxZAjS2GotyD QRlnNw==
+-.			86400	IN	SOA	a.root-servers.net. nstld.verisign-grs.com. 2018032601 1800 900 604800 86400
+ 1.ns.ph.		172800	IN	A	206.51.255.1
+ 1.ns.ph.		172800	IN	AAAA	2620:171:805:ad2:7068::1
++3f79bb7b435b05321651daefd374cd.yeti-dns.net.  86400 IN AAAA	2401:c900:1401:3b:c::6
+ a.aq.dyntld.net.	172800	IN	A	162.88.52.6
+ a.aq.dyntld.net.	172800	IN	AAAA	2600:2000:3000::6
+ a.au.			172800	IN	A	58.65.254.73
+@@ -3520,6 +3535,7 @@
+ bid.			86400	IN	NSEC	bike. NS DS RRSIG NSEC
+ bid.			86400	IN	RRSIG	DS 8 1 86400 20180408170000 20180326160000 41824 . GxtkBvZ87L/hI7ENzFfSlommcQyYsheZPNILLtJN2R2j2irZfuFQZYq+ GwMndXHEd+FLbdobfo5gjj0JE1qUGFgZ/n0Gee86ZfTgt9WkHJJxh+CA BgyT14wJ6880Nctg0TNKqJfqcmsQIJY03fhsP2JmTJLvB+UDuFdbnpF/ rlUoQBo40vdTIxrS1jA0TgqNoVNbZnuNGmDFeSpehzwp2W9E2vWbwl/L 6nL+U7v42w3xqwndnhVqgBTbCV4XsBAmwidNCRXBOJUAi5J6sxPyzDmk yoVOSLB4JDSNXex1ZZCt1vQ4pmtNq8EyIwco7dd9EZPOtt7vOykAp30A 9R8dTg==
+ bid.			86400	IN	RRSIG	NSEC 8 1 86400 20180408170000 20180326160000 41824 . kWIzNftJdl2JtusHnBO3Bgr75rycL8O7KMknO5LspmnTfFqVxsCFQwxQ JkuZvHSW4V1eM0TNMGUqaQx1WVFLezCGOaQiIPXsD0vTyjdjs8QLnBiy e9QD1gCWj3/erq84Ap1QH/opdl6KIoBwaj2K/zQh7hC6792G4i9FeYb2 jRa/dtxmDHmMXXLgsuZTsMFiByVmTFijnZL72uH/vUUne1Brmxbcy3an mwMnl5CLNSt4sRz5IfsqacZQxMLs69xh0xjBGc/v+JqREpKJcX+GSdBQ GmycSswvFGKETSI+Iq5Mznrq50lrgKdKtwZD435RTjFtIbtJsH/kMVsL SJRUMA==
++bii.dns-lab.net.			      86400 IN AAAA	240c:f:1:22::6
+ bike.			172800	IN	NS	demand.alpha.aridns.net.au.
+ bike.			172800	IN	NS	demand.beta.aridns.net.au.
+ bike.			172800	IN	NS	demand.delta.aridns.net.au.
+@@ -4840,6 +4856,7 @@
+ ca1.nic.cr.		172800	IN	AAAA	2620:10a:80aa::100
+ ca2.nic.cr.		172800	IN	A	185.159.198.100
+ ca2.nic.cr.		172800	IN	AAAA	2620:10a:80ab::100
++ca978112ca1bbdcafac231b39a23dc.yeti-dns.net.  86400 IN AAAA	2c0f:f530::6
+ cab.			172800	IN	NS	demand.alpha.aridns.net.au.
+ cab.			172800	IN	NS	demand.beta.aridns.net.au.
+ cab.			172800	IN	NS	demand.delta.aridns.net.au.
+@@ -6451,6 +6468,8 @@
+ dad.			86400	IN	NSEC	dance. NS DS RRSIG NSEC
+ dad.			86400	IN	RRSIG	DS 8 1 86400 20180408170000 20180326160000 41824 . IfFf2MTB26Se8HuE0Mr0zv8JY0NAgQ8xz4EKpbz1lf8GQKwrSMHxT2rr CpsCCfF8F5Gd+cPt0n1CyKcTrP3WDksvd/tJEO1dy9gpoIp+D+jeNIb+ GcyvrlI6v9r/kddkuV38PsbO5Yq9vNjeXtG7w6b7GnM76EANvsbbQcen WcpVCnr/mUa/PLx1pgE7lcFizzvGGNF2NMl7tsteGvIwpVh3XrtDwNGv 4MRBmHYeGmFmEgUyn6CaQiB17sRSJkxBdpaITF1Q8EQmwMyvkh7kDohB DM8nCaAhokJhRyk7J6T9bgevj5k91C3jgTqXCHA6UWfNf0uXCtHJ4JeY zElt1g==
+ dad.			86400	IN	RRSIG	NSEC 8 1 86400 20180408170000 20180326160000 41824 . CpQMXi+YBsdMg9Vzsl/KV7Ji/TR/JGZ2fRUtgkJC98cBibM9pmdNPcHH ZgixYLaQ0IffX02Jregpp1wQQ1vjjn/qRhoFFEGlOFc6yMe6BLLmTj3f SAY3Bwyq7Xs+pICVGaag755adhLFamSScmuXkxJUQUauWzC0JBYuFTgp 9M7mY3bbbB9oUjChCunzNZ9TK70ekNcWMFp6lBl+SuT876OpP73hUu5z grTttivH9VLVjQVW5dAyLlDoodG3FszZ4n9mYWtcIo8uxjORkoyLEvb2 UWZYpoC+lODTL7PZQZN3euurbc3In6vsBX44brc6iGf94Ocx95hwy1ZC ku9q3A==
++dahu1.yeti.eu.org.			      86400 IN AAAA	2001:4b98:dc2:45:216:3eff:fe4b:8c5b
++dahu2.yeti.eu.org.			      86400 IN AAAA	2001:67c:217c:6::2
+ dance.			172800	IN	NS	demand.alpha.aridns.net.au.
+ dance.			172800	IN	NS	demand.beta.aridns.net.au.
+ dance.			172800	IN	NS	demand.delta.aridns.net.au.
+@@ -16029,6 +16048,7 @@
+ nsx.nic.al.		172800	IN	AAAA	2001:678:e:108::53
+ ns-y1.tm.		172800	IN	A	91.208.95.22
+ ns-y1.tm.		172800	IN	AAAA	2001:470:1f07:d0b::22
++ns-yeti.bondis.org.			      86400 IN AAAA	2a02:2810:0:405::250
+ nsza.is.co.za.		172800	IN	A	196.4.160.27
+ ns-zm.afrinic.net.	172800	IN	A	196.216.168.44
+ ns-zm.afrinic.net.	172800	IN	AAAA	2001:43f8:120::44
+@@ -22018,6 +22038,7 @@
+ xn--qxam.		172800	IN	NS	grdns.ics.forth.gr.
+ xn--qxam.		86400	IN	NSEC	xn--rhqv96g. NS RRSIG NSEC
+ xn--qxam.		86400	IN	RRSIG	NSEC 8 1 86400 20180408170000 20180326160000 41824 . R3UbZ2s621kHjaONcQliT1hKsn0mY82tis29sVcm4yvOyyGWZgzqDS61 C46ghs4oTOm+V55hZTqn2cJolnr/v6YrVZtvMDm/+FES+M94ta1eh72p mT8YctAAqElpv6trsgPN09gOJFtO/6BdeLnbOwdTsJ6eJdX8CP9NYQMm gwodmZQWWhtOjlrHohq7EX/awne2XOOAiIJnn37FYjeTHmVz5pGsaM2Y d/KKAgpgHPMfOo5m+Di83nNCh2xCJuC0OsxKwO8lSKlvOOjVj8adlB7a a9hUsg7psZeyGTNlnlaI1Qair19NnvYBQqWKiTMZ5KQYneA5bb0m9mEk +hIlQA==
++xn--r2bi1c.xn--h2bv6c0a.xn--h2brj9c.	      86400 IN AAAA	2001:e30:1c1e:10::333
+ xn--rhqv96g.		172800	IN	NS	ns1.dns.nic.xn--rhqv96g.
+ xn--rhqv96g.		172800	IN	NS	ns2.dns.nic.xn--rhqv96g.
+ xn--rhqv96g.		172800	IN	NS	ns3.dns.nic.xn--rhqv96g.
+@@ -22346,6 +22367,24 @@
+ ye.			172800	IN	NS	sah2.ye.
+ ye.			86400	IN	NSEC	yodobashi. NS RRSIG NSEC
+ ye.			86400	IN	RRSIG	NSEC 8 1 86400 20180408170000 20180326160000 41824 . d2mEDtv5rKxul4uy4vyFFSlNd11hdzPM+XK4ZrbUDeNr3a2xe4vi+/Qo NnOBMLLGelOsF8jjNAMEV9BRnbTBOe6o+VomVg2wcu5Q2cESL3RNIO6x oudmtqfzn2pPO0TB3hI5EGj8XoBN91XW6vgxkq6V0r9dfuuI5KwFC/qN 7PXxzE+Qi7BiLMB66//gaZ9U0BHI32FmOzvi8UVbFMPHlkpLOHBfrMvO cQuHD40uMbK3LagpB0svawtRsgZodSVF6RsFM1LqRNefnCUOyQwmF5TJ ZVAirbvaH7KHF7WwT5j4b45TPpo67Hfvz0FxAsF5sS7qcUfkCrIkMR1H x9f5LA==
++yeti.aquaray.com.			      86400 IN AAAA	2a02:ec0:200::1
++yeti.bofh.priv.at.			      86400 IN AAAA	2a01:4f8:161:6106:1::10
++yeti.ipv6.ernet.in.			      86400 IN AAAA	2001:e30:1c1e:1::333
++yeti.jhcloos.net.			      86400 IN AAAA	2001:19f0:5401:1c3::53
++yeti.mind-dns.nl.			      86400 IN AAAA	2a02:990:100:b01::53:0
++yeti1.ipv6.ernet.in.			      86400 IN AAAA	2001:e30:187d::333
++yeti-dns01.dnsworkshop.org.		      86400 IN AAAA	2a03:4000:5:2c3::53
++yeti-dns02.dnsworkshop.org.		      86400 IN AAAA	2001:19f0:0:1133::53
++yeti-ns.as59715.net.			      86400 IN AAAA	2a02:cdc5:9715:0:185:5:203:53
++yeti-ns.datev.net.			      86400 IN AAAA	2a00:e50:f155:e::1:53
++yeti-ns.ix.ru.				      86400 IN AAAA	2001:6d0:6d06::53
++yeti-ns.lab.nic.cl.			      86400 IN AAAA	2001:1398:1:21::8001
++yeti-ns.switch.ch.			      86400 IN AAAA	2001:620:0:ff::29
++yeti-ns.tisf.net.			      86400 IN AAAA	2001:4f8:3:1006::1:4
++yeti-ns.wide.ad.jp.			      86400 IN AAAA	2001:200:1d9::35
++yeti-ns1.dns-lab.net.			      86400 IN AAAA	2001:da8:a3:a027::6
++yeti-ns2.dns-lab.net.			      86400 IN AAAA	2001:da8:268:4200::6
++yeti-ns3.dns-lab.net.			      86400 IN AAAA	2400:a980:30ff::6
+ yodobashi.		172800	IN	NS	a.gmoregistry.net.
+ yodobashi.		172800	IN	NS	b.gmoregistry.net.
+ yodobashi.		172800	IN	NS	k.gmoregistry.net.
