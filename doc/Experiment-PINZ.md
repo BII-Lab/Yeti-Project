@@ -47,7 +47,7 @@ Similar to ZKS rollover process, the transition to PINZ requires administrator t
 
 As a result, it is important to design a transition plan for PINZ experiment, pretty similar to the Yeti ZSK rollover plan which follows the [Pre-Publish approach](https://tools.ietf.org/html/rfc6781#section-4.1.1.1) defined in [RFC6781](https://tools.ietf.org/html/rfc6781). The only different is that the PINZ transition do not require a DNSKEY removal process suggested in [RFC6781](https://tools.ietf.org/html/rfc6781), because the Yeti ZSK will continue sign the . SOA and . NS RRs. It means all Yeti keys and VeriSign ZSK will remain in the Yeti root zone unless any potential serious problem happen. 
 
-Note that In case of serious failure taking down the system, a fall back mechanism will be triggered to roll the system back. The [Fallback Plan]() is introduced later in this document.
+Note that In case of serious failure taking down the system, a fall back mechanism will be triggered to roll the system back. The [Fallback Plan](/Experiment-PINZ.md#fallback-plan) is introduced later in this document.
 
 Note that it is desired according to Yeti DM operators that the PINZ transition period avoid IANA-ZSK rollover and ZSK rollover of each DM. The ZSK rollover information is given as belows:
 
