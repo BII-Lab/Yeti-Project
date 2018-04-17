@@ -4,9 +4,9 @@
 
 Yeti DNS Project takes the IANA root zone, and performs minimal changes needed to serve the zone from the Yeti root servers instead of the IANA root servers. The [Yeti-DM-Setup document](https://github.com/BII-Lab/Yeti-Project/blob/master/doc/Yeti-DM-Setup.md) describes what's the minimal changes is necessary and how it is done in Yeti DM. 
 
-One changes of DNSSEC is that the current Yeti root zone is signed by Yeti's key(ZSK and KSK) replacing all keys and signatures from VeriSign and IANA in the zone. However, it is proved that this change is not that "minimal" and the difference (by diff) between IANA root zone and Yeti root zone can be further reduced. It is proposed as a Yeti experiment which preserves IANA NSEC Chain and ZSK RRSIGs in Yeti root zone. The purpose of this experiment is to verify the capability of root zone including record-by-record signatures and respective keys based on current DNS protocol and implementation, and to verify whether it is workable without breaking DNSSEC validation in validating resolver.
+One change of DNSSEC is that the current Yeti root zone is signed by Yeti's key(ZSK and KSK) replacing all keys and signatures from VeriSign and IANA in the zone. However, it is proved that this change is not that "minimal" and the difference (by diff) between IANA root zone and Yeti root zone can be further reduced. It is proposed as a Yeti experiment which preserves IANA NSEC Chain and ZSK RRSIGs in Yeti root zone. The purpose of this experiment is to verify the capability of root zone including record-by-record signatures and respective keys based on current DNS protocol and implementation, and to verify whether it is workable without breaking DNSSEC validation in validating resolver.
 
-This document describes in detail the operational steps to accomplish a Yeti experiment called PINZ (Preserving IANA NSEC Chain and ZSK RRSIGs). It is first introduced as a experiment proposal in [a Yeti blog post](http://yeti-dns.org/yeti/blog/2017/08/22/Preserving-IANA-NSEC-Chain-and-ZSK-RRSIGs.html) and a lab test was done for feasibility study. The steps to be performed are based on the experiment proposal, meetings of Yeti coordinator, and comments collected from Yeti participants.
+This document describes in detail the operational steps to accomplish a Yeti experiment called PINZ (Preserving IANA NSEC Chain and ZSK RRSIGs). It is first introduced as an experiment proposal in [a Yeti blog post](http://yeti-dns.org/yeti/blog/2017/08/22/Preserving-IANA-NSEC-Chain-and-ZSK-RRSIGs.html) and a lab test was done for feasibility study. The steps to be performed are based on the experiment proposal, meetings of Yeti coordinator, and comments collected from Yeti participants.
 
 ## Preparation and considerations
 
@@ -14,7 +14,7 @@ There are mainly three parts for preparation and consideration for this experime
 
 ### The Changes in PINZ
 
-To simply understand the changes made in PINZ, there is a table provided to compare the difference between current Yeti root zone with the zone in PINZ experiment. It is helpful for DM operator to prepare the system to generate new zone in PINZ.
+To simply understand the changes made in PINZ, there is a table provided to compare the difference between current Yeti root zone with the zone in PINZ experiment. It is helpful for DM operators to prepare the system to generate new zone in PINZ.
 
 Table 1. The changes made in PINZ
 
@@ -45,13 +45,13 @@ The example of diff result between BII-DM's zone and WIDE-DM's zone at SOA Seria
 
 Similar to ZKS rollover process, the transition to PINZ requires administrator to consider the fact that data published in previous versions of Yeti zone still lives in caches. For example the signatures of NSEC Chain and DS records saved from IANA root zone will meet the old DNSKEY RRSet which is still cached in Yeti's resolvers. 
 
-As a result, it is important to design a transition plan for PINZ experiment, pretty similar to the Yeti ZSK rollover plan which follows the [Pre-Publish approach](https://tools.ietf.org/html/rfc6781#section-4.1.1.1) defined in [RFC6781](https://tools.ietf.org/html/rfc6781). The only different is that the PINZ transition do not require a DNSKEY removal process suggested in [RFC6781](https://tools.ietf.org/html/rfc6781), because the Yeti ZSK will continue sign the . SOA and . NS RRs. It means all Yeti keys and VeriSign ZSK will remain in the Yeti root zone unless any potential serious problem happen. 
+As a result, it is important to design a transition plan for PINZ experiment, pretty similar to the Yeti ZSK rollover plan which follows the [Pre-Publish approach](https://tools.ietf.org/html/rfc6781#section-4.1.1.1) defined in [RFC6781](https://tools.ietf.org/html/rfc6781). The only difference is that the PINZ transition does not require a DNSKEY removal process suggested in [RFC6781](https://tools.ietf.org/html/rfc6781), because the Yeti ZSK will continue to sign the . SOA and . NS RRs. It means all Yeti keys and VeriSign ZSK will remain in the Yeti root zone unless any potential serious problem happens. 
 
-Note that In case of serious failure taking down the system, a fall back mechanism will be triggered to roll the system back. The [Fallback Plan](/Experiment-PINZ.md#fallback-plan) is introduced later in this document.
+Note that in case of serious failure taking down the system, a fall back mechanism will be triggered to roll the system back. The [Fallback Plan](/Experiment-PINZ.md#fallback-plan) is introduced later in this document.
 
-Note that it is desired according to Yeti DM operators that the PINZ transition period avoid IANA-ZSK rollover and ZSK rollover of each DM. The ZSK rollover information is given as belows:
+Note that it is desired, according to Yeti DM operators, that the PINZ transition period avoids IANA-ZSK rollover and ZSK rollover of each DM. The ZSK rollover information is given as below:
 
-* Next ZSK rollover time of VeriSign: TBD(communication)
+* Next ZSK rollover time of VeriSign: TBD (communication)
 
 * Next ZSK rollover time of BII: pre-publish at 2018042100 (and next rollover at 2018050500), activate in 3 days
 
@@ -62,7 +62,7 @@ Note that it is desired according to Yeti DM operators that the PINZ transition 
 PINZ transition can be simply divided into two phases:
 
 ### Phase A : Publication
-According to The table 1, the first changes made by PINZ is to publish VeriSign's ZSK of the time into Root DNSKEY RRset. This phase is called Publication for Phase A. And it will last 10 days according to table 2. 
+According to The table 1, the first change made by PINZ is to publish VeriSign's ZSK of the time into Root DNSKEY RRset. This phase is called Publication for Phase A. And it will last 10 days according to table 2. 
 
 Phase A is successful when the new key is successfully configured in both server and resolver as a valid ZSK in DNSKEY RRset. And there is no identifiable systemic failure impacting DNSSEC validating servers and resolvers.
 
@@ -74,8 +74,7 @@ Phase B is successful when no operational issues remain after transition from cu
 
 ### Schedule 
 
-There is a timeline for PINZ experiment in which one "slot"
-is 10 days long:
+There is a timeline for PINZ experiment in which one "slot" is 10 days long:
 
 |           |  slot 1  |  slot 2  |  slot 3  |  slot 4,5,6,...  |
 |-----------|----------|----------|----------|----------|
@@ -90,22 +89,22 @@ The tentative time:
 
 ### Fallback Plan
 
-Even though Yeti testbed does not have large-scale network, but for research purpose, it is worth considering and preparing a fallback plan, in case any unforeseen problem which cause very serious failures and can not be solved by (temporarily) disabling DNSSEC validation for small group of validating resolvers.  
+Even though Yeti testbed does not have large-scale network, but for research purpose, it is worth considering and preparing a fallback plan, in case any unforeseen circumstances occur which cause very serious failures and can not be solved by (temporarily) disabling DNSSEC validation for small group of validating resolvers.  
 
-According to the milestones in the experiment schedule, the beginning of Phase A(slot 2) and Phase B(slot) 4 are the two failure points where fallback may be happen.
+According to the milestones in the experiment schedule, the beginning of Phase A (slot 2) and Phase B (slot 4) are the two failure points where fallback may happen.
 
-*  If a problem arises during the slot 2 when VeriSign ZSK is Pre-publised in the Yeti root zone, the fallback plan is to simply un-publish that VeriSign ZSK from Yeti root zone, and continue sign with the current Yeti ZSK (one DM's ZSk). The experiment will be postponed for looking into what's wrong.
-*  If a problem arises during the slot 4 when IANA's RRSIGs (DS/NSEC) are included replacing the RRSIG signed by Yeti ZSK, The fallback plan is simply to revert to signing NSEC RR and TLD's DS with Yeti ZSK. The VeriSign Key is still published in the root zone until some decision made to remove it.
+*  If a problem arises during the slot 2 when VeriSign ZSK is Pre-publised in the Yeti root zone, the fallback plan is to simply un-publish that VeriSign ZSK from Yeti root zone, and continue signing with the current Yeti ZSK (one DM's ZSk). The experiment will be postponed for looking into what's wrong.
+*  If a problem arises during the slot 4 when IANA's RRSIGs (DS/NSEC) are included replacing the RRSIG signed by Yeti ZSK, the fallback plan is simply to revert to signing NSEC RR and TLD's DS with Yeti ZSK. The VeriSign Key is still published in the root zone until some decision is made to remove it.
 
-Note there may be other corner cases which is not obvious right now. So it is worth doing the monitoring at high alert and report any issue ASAP.
+Note that there may be other corner cases which are not obvious right now. So it is worth doing the monitoring at high alert and report any issue ASAP.
 
 ## What to Measure 
 
-As a Yeti experiment generally we should capture the events of weird and failure with sufficient information to diagnose the events. logs and captured packets will be helpful. Specific to PINZ, there are mainly two expected events worth of measuring:
+As a Yeti experiment, generally we should capture weird and failing events with sufficient information to diagnose them. Logs and captured packets will be helpful. Specific to PINZ, there are mainly two expected events worth of measuring:
 
 ###1) DNSSEC validation failure
 
-In lab test, we tested as a black box to check the RCODE of DNS response to query with DO bit. We also recorded the DNSSEC log to demonstrate whether it worked or not. So Yeti resolver operators can monitoring in that way. If anything weird they can report the event to [Yeti discuss mailing list](mailto:discuss@lists.yeti-dns.org) with descriptions of the event and DNSSEC log.
+In lab test, we tested as a black box to check the RCODE of DNS response to query with DO bit. We also recorded the DNSSEC log to demonstrate whether it worked or not. So Yeti resolver operators can monitor in that way. If anything weird happens they can report the event to [Yeti discuss mailing list](mailto:discuss@lists.yeti-dns.org) with descriptions of the event and DNSSEC log.
 
 ```
 31-May-2017 15:46:49.278 dnssec: debug 3: validating net/DS: starting
@@ -116,25 +115,24 @@ In lab test, we tested as a black box to check the RCODE of DNS response to quer
 31-May-2017 15:46:49.278 dnssec: debug 3: validating net/DS: marking as secure, noqname proof not needed
 ```
 
-In the above DNSSEC log, The keyid 14796 is VeriSign's zsk. It's successful because the VeriSign's zsk is recognized and used for validation.
+In the above DNSSEC log, the keyid 14796 is VeriSign's zsk. It's successful because the VeriSign's zsk is recognized and used for validation.
 
-Note it is also proposed that a small piece of script running on volunteer resolver and recording the event in a formal and unified format may help for analysis and statistic.
+Note that it is also proposed that a small piece of script running on volunteer resolver and recording the event in a formal and unified format may help for analysis and statistic.
 
 ###2) Response increase for DNSKEY query. 
 
-Similar to the [monitoring on Yeti KSK rollover](http://yeti-dns.org/yeti/blog/2017/08/02/large-packet-impact-during-yeti-ksk-rollover.html), a monitoring on response size should be perform during the experiment. Although it can be foresee and calculated by adding additional key, the monitoring is useful providing extra information on the impact of PINZ experiment. 
+Similar to the [monitoring on Yeti KSK rollover](http://yeti-dns.org/yeti/blog/2017/08/02/large-packet-impact-during-yeti-ksk-rollover.html), a monitoring on response size should be performed during the experiment. Although it can be foreseen and calculated by adding additional key, the monitoring is useful for providing extra information on the impact of PINZ experiment. 
 
 ## Notification to Yeti resolvers
 
-Currently Yeti has hundreds of resolvers who send queries to Yeti root servers. Although we fully expect the change to occur without
-incident. However, unforeseen problems may be beyond our control which may cause DNSSEC validation fail for some validating resolvers. So it needs more publicity and awareness of these changes in PINZ in Yeti community before the kick off of the experiment.
+Currently Yeti has hundreds of resolvers who send queries to Yeti root servers. Although we fully expect the change to occur without incidents. However, unforeseen problems may be beyond our control which may cause DNSSEC validation fail for some validating resolvers. So it needs more publicity and awareness of these changes in PINZ among Yeti community members before the kick off of the experiment.
 
-One-month notify and warning in advanced is necessary for Yeti resolvers with mails and blog post introducing how the experiment will be perform as well as the impact.
+One-month notify and warning in advanced is necessary for Yeti resolvers with mails and blog post introducing how the experiment will be performed as well as the impact.
 
-One simple way to fix the unforeseen problems on resolver side is to disabling DNSSEC if any validation failure noticed during the transition period (new RRSIG phase). 
+One simple way to fix unforeseen problems on resolver side is to disable DNSSEC if any validation failure is noticed during the transition period (new RRSIG phase). 
 
 ## TBD
 
 The plan is still under comments and reviews. Tentative data and schedule may be changed during the process. 
 
-It is proposed that a small piece of script running on volunteer resolver and recording the event in a formal and unified format may help for analysis and statistic. If a monitoring tool can be developed before slot2 or slot4 it will be help to achieve that purpose.
+It is proposed that a small piece of script running on volunteer resolver and recording the event in a formal and unified format may help for analysis and statistic. If a monitoring tool can be developed before slot2 or slot4 it will help to achieve that purpose.
