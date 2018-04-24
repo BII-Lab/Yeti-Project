@@ -26,6 +26,7 @@ Table 1. The changes made in PINZ
 | . RRSIG SOA     | Signed by Yeti ZSK |No Change |
 | . RRSIG NS      | Signed by Yeti ZSK |No Change |
 | . RRSIG DNSKEY  | Signed by Yeti KSK |No Change|
+| . RRSIG NSEC    | Signed by Yeti KSK |**Signed by VeriSign ZSK** |
 | TLD's RRSIG DS  | Signed by Yeti ZSK |**Signed by VeriSign ZSK** |
 | TLD's RRSIG NSEC| Signed by Yeti ZSK |**Signed by VeriSign ZSK** |
 
