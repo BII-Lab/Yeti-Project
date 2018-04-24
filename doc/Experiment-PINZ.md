@@ -16,9 +16,9 @@ There are mainly three parts for preparation and consideration for this experime
 
 To simply understand the changes made in PINZ, there is a table provided to compare the difference between current Yeti root zone with the zone in PINZ experiment. It is helpful for DM operators to prepare the system to generate new zone in PINZ.
 
-Table 1. The changes made in PINZ
+Table 1. The changes made in PINZ Compared with current Yeti zone
 
-| RR in the zone | Current Yeti zone  | PINZ Zone|
+| RR in the zone | Current Yeti zone  | PINZ Zone | 
 |-----------------|--------------------|----------|    
 | . SOA           |Yeti SOA            |No Change |
 | . NS            | All Yeti's server  |No Change |
