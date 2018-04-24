@@ -22,13 +22,13 @@ Table 1. The changes made in PINZ Compared with current Yeti zone
 |-----------------|--------------------|----------|    
 | . SOA           |Yeti SOA            |No Change |
 | . NS            | All Yeti's server  |No Change |
-| . DNSKEY        | Yeti's Keys        |**Yeti's key +VeriSign's ZSK** |
+| . DNSKEY        | Yeti's Keys        |**Yeti's key +IANA ZSK** |
 | . RRSIG SOA     | Signed by Yeti ZSK |No Change |
 | . RRSIG NS      | Signed by Yeti ZSK |No Change |
 | . RRSIG DNSKEY  | Signed by Yeti KSK |No Change|
-| . RRSIG NSEC    | Signed by Yeti KSK |**Signed by VeriSign ZSK** |
-| TLD's RRSIG DS  | Signed by Yeti ZSK |**Signed by VeriSign ZSK** |
-| TLD's RRSIG NSEC| Signed by Yeti ZSK |**Signed by VeriSign ZSK** |
+| . RRSIG NSEC    | Signed by Yeti KSK |**Signed by IANA ZSK** |
+| TLD's RRSIG DS  | Signed by Yeti ZSK |**Signed by IANA ZSK** |
+| TLD's RRSIG NSEC| Signed by Yeti ZSK |**Signed by IANA ZSK** |
 
 
 Before the experiment, DM operators are required to develop a new routine (Python or Perl script) to apply the changes when generating a new root zone according to the experiment proposal. 
