@@ -120,7 +120,7 @@ In the above DNSSEC log, the keyid 14796 is VeriSign's zsk. It's successful beca
 
 Note that it is also proposed that a small piece of script running on volunteer resolver and recording the event in a formal and unified format may help for analysis and statistic.
 
-###2) Response increase for DNSKEY query. 
+###2) Response size increase for DNSKEY query. 
 
 Similar to the [monitoring on Yeti KSK rollover](http://yeti-dns.org/yeti/blog/2017/08/02/large-packet-impact-during-yeti-ksk-rollover.html), a monitoring on response size should be performed during the experiment. Although it can be foreseen and calculated by adding additional key, the monitoring is useful for providing extra information on the impact of PINZ experiment. 
 
