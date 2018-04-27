@@ -90,7 +90,7 @@ Note that WIDE and BII will make the DM system ready at 0700 UTC on May 1st wait
 
 * **Starting Slot 4 on May 21st 2018.**
 
-Note that WIDE and BII will make DM system ready at 0700 UTC on May 21st waiting for next IANA serial to pubulish IAN ZSK.
+Note that WIDE and BII will make DM system ready at 0700 UTC on May 21st waiting for next IANA serial to pubulish IANA RRSIG.
 
 ### Fallback Plan
 
