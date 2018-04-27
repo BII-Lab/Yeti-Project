@@ -4,7 +4,7 @@
 
 Yeti DNS Project takes the IANA root zone, and performs minimal changes needed to serve the zone from the Yeti root servers instead of the IANA root servers. The [Yeti-DM-Setup document](https://github.com/BII-Lab/Yeti-Project/blob/master/doc/Yeti-DM-Setup.md) describes what's the minimal changes is necessary and how it is done in Yeti DM. 
 
-One change of DNSSEC is that the current Yeti root zone is signed by Yeti's key(ZSK and KSK) replacing all keys and signatures from VeriSign and IANA in the zone. However, it is proved that this change is not that "minimal" and the difference (by diff) between IANA root zone and Yeti root zone can be further reduced. It is proposed as a Yeti experiment which preserves IANA NSEC Chain and ZSK RRSIGs in Yeti root zone. The purpose of this experiment is to verify the capability of root zone including record-by-record signatures and respective keys based on current DNS protocol and implementation, and to verify whether it is workable without breaking DNSSEC validation in validating resolver.
+One change of DNSSEC is that the current Yeti root zone is signed by Yeti's key(ZSK and KSK) replacing all keys and signatures from IANA in the zone. However, it is proved that this change is not that "minimal" and the difference (by diff) between IANA root zone and Yeti root zone can be further reduced. It is proposed as a Yeti experiment which preserves IANA NSEC Chain and ZSK RRSIGs in Yeti root zone. The purpose of this experiment is to verify the capability of root zone including record-by-record signatures and respective keys based on current DNS protocol and implementation, and to verify whether it is workable without breaking DNSSEC validation in validating resolver.
 
 This document describes in detail the operational steps to accomplish a Yeti experiment called PINZ (Preserving IANA NSEC Chain and ZSK RRSIGs). It is first introduced as an experiment proposal in [a Yeti blog post](http://yeti-dns.org/yeti/blog/2017/08/22/Preserving-IANA-NSEC-Chain-and-ZSK-RRSIGs.html) and a lab test was done for feasibility study. The steps to be performed are based on the experiment proposal, meetings of Yeti coordinator, and comments collected from Yeti participants.
 
@@ -46,13 +46,13 @@ The example of diff result between BII-DM's zone and WIDE-DM's zone at SOA Seria
 
 Similar to ZKS rollover process, the transition to PINZ requires administrator to consider the fact that data published in previous versions of Yeti zone still lives in caches. For example the signatures of NSEC Chain and DS records saved from IANA root zone will meet the old DNSKEY RRSet which is still cached in Yeti's resolvers. 
 
-As a result, it is important to design a transition plan for PINZ experiment, pretty similar to the Yeti ZSK rollover plan which follows the [Pre-Publish approach](https://tools.ietf.org/html/rfc6781#section-4.1.1.1) defined in [RFC6781](https://tools.ietf.org/html/rfc6781). The only difference is that the PINZ transition does not require a DNSKEY removal process suggested in [RFC6781](https://tools.ietf.org/html/rfc6781), because the Yeti ZSK will continue to sign the . SOA and . NS RRs. It means all Yeti keys and VeriSign ZSK will remain in the Yeti root zone unless any potential serious problem happens. 
+As a result, it is important to design a transition plan for PINZ experiment, pretty similar to the Yeti ZSK rollover plan which follows the [Pre-Publish approach](https://tools.ietf.org/html/rfc6781#section-4.1.1.1) defined in [RFC6781](https://tools.ietf.org/html/rfc6781). The only difference is that the PINZ transition does not require a DNSKEY removal process suggested in [RFC6781](https://tools.ietf.org/html/rfc6781), because the Yeti ZSK will continue to sign the . SOA and . NS RRs. It means all Yeti keys and IANA ZSK will remain in the Yeti root zone unless any potential serious problem happens. 
 
 Note that In case of serious failure taking down the system, a fall back mechanism will be triggered to roll the system back. The [Fallback Plan](https://github.com/BII-Lab/Yeti-Project/blob/master/doc/Experiment-PINZ.md#fallback-plan) is introduced later in this document.
 
 Note that it is desired, according to Yeti DM operators, that the PINZ transition period avoids IANA-ZSK rollover and ZSK rollover of each DM. The ZSK rollover information is given as below:
 
-* Next ZSK rollover time of VeriSign: TBD (communication)
+* Next ZSK rollover time of IANA: TBD (communication)
 
 * Next ZSK rollover time of BII: pre-publish at 2018042100 (and next rollover at 2018050500), activate in 3 days
 
@@ -63,7 +63,7 @@ Note that it is desired, according to Yeti DM operators, that the PINZ transitio
 PINZ transition can be simply divided into two phases:
 
 ### Phase A : Publication
-According to The table 1, the first change made by PINZ is to publish VeriSign's ZSK of the time into Root DNSKEY RRset. This phase is called Publication for Phase A. And it will last 10 days according to table 2. 
+According to The table 1, the first change made by PINZ is to publish IANA ZSK of the time into Root DNSKEY RRset. This phase is called Publication for Phase A. And it will last 10 days according to table 2. 
 
 Phase A is successful when the new key is successfully configured in both server and resolver as a valid ZSK in DNSKEY RRset. And there is no identifiable systemic failure impacting DNSSEC validating servers and resolvers.
 
@@ -80,7 +80,7 @@ There is a timeline for PINZ experiment in which one "slot" is 10 days long:
 |           |  slot 1  |  slot 2  |  slot 3  |  slot 4,5,6,...  |
 |-----------|----------|----------|----------|----------|
 | Yeti ZSK  | pub+sign | pub+sign | pub+sign | pub+Sign (. NS/SOA/DNSKEY)|
-| VeriSign ZSK|       | pub      | pub      | pub+ TLD's RRSIG NSEC/DS (Signed by VerSign ZSk) |
+| IANA ZSK|       | pub      | pub      | pub+ TLD's RRSIG NSEC/DS (Signed by IANA ZSk) |
 
 The tentative time:
 
@@ -98,8 +98,8 @@ Even though Yeti testbed does not have large-scale network, but for research pur
 
 According to the milestones in the experiment schedule, the beginning of Phase A (slot 2) and Phase B (slot 4) are the two failure points where fallback may happen.
 
-*  If a problem arises during the slot 2 when VeriSign ZSK is Pre-publised in the Yeti root zone, the fallback plan is to simply un-publish that VeriSign ZSK from Yeti root zone, and continue signing with the current Yeti ZSK (one DM's ZSk). The experiment will be postponed for looking into what's wrong.
-*  If a problem arises during the slot 4 when IANA's RRSIGs (DS/NSEC) are included replacing the RRSIG signed by Yeti ZSK, the fallback plan is simply to revert to signing NSEC RR and TLD's DS with Yeti ZSK. The VeriSign Key is still published in the root zone until some decision is made to remove it.
+*  If a problem arises during the slot 2 when IANA ZSK is Pre-publised in the Yeti root zone, the fallback plan is to simply un-publish that IANA ZSK from Yeti root zone, and continue signing with the current Yeti ZSK (one DM's ZSk). The experiment will be postponed for looking into what's wrong.
+*  If a problem arises during the slot 4 when IANA's RRSIGs (DS/NSEC) are included replacing the RRSIG signed by Yeti ZSK, the fallback plan is simply to revert to signing NSEC RR and TLD's DS with Yeti ZSK. The IANA Key is still published in the root zone until some decision is made to remove it.
 
 Note that there may be other corner cases which are not obvious right now. So it is worth doing the monitoring at high alert and report any issue ASAP.
 
@@ -120,7 +120,7 @@ In lab test, we tested as a black box to check the RCODE of DNS response to quer
 31-May-2017 15:46:49.278 dnssec: debug 3: validating net/DS: marking as secure, noqname proof not needed
 ```
 
-In the above DNSSEC log, the keyid 14796 is VeriSign's zsk. It's successful because the VeriSign's zsk is recognized and used for validation.
+In the above DNSSEC log, the keyid 14796 is IANA ZSK. It's successful because the IANA ZSK is recognized and used for validation.
 
 Note that it is also proposed that a small piece of script running on volunteer resolver and recording the event in a formal and unified format may help for analysis and statistic.
 
