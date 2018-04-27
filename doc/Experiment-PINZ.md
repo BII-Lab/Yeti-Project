@@ -1,4 +1,4 @@
-# PINZ (Preserving IANA NSEC Chain and ZSK RRSIGs) Experiment Plan (draft)
+# Yeti experiment Plan for PINZ (Preserving IANA NSEC Chain and ZSK RRSIGs)
 
 ## Introductions
 
