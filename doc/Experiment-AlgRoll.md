@@ -1,8 +1,6 @@
 # Yeti Algorithm Rollover Experiment
 
-Before ICANN rolled its KSK successfully on 15th October 2018, we had rolled Yeti KSK in Yeti testbed twice in 2017. It has been proved that rolling with a different key is not easy for DNS Root system due to divers behavior of the DNS installed base. However, it is considered more challenging to roll the DNSSEC algorithm on the root (roll the key with different algorithm).
-
-Like rolling with a different key, rolling with a different algorithm has security benefit. Moreover, rolling from current RSA/SHA256 to ECDSA p-256 has benefit to generate smaller size of the RRSIG, DNSKEY and DS records.
+Before ICANN rolled its KSK successfully on 15th October 2018, we had rolled Yeti KSK in Yeti testbed twice in 2017. It has been proved that rolling with a different key is not easy for DNS Root system due to divers behavior of the DNS installed base. However, it is considered more challenging to roll the DNSSEC algorithm on the root (roll the key with different algorithm). Like rolling with a different key, rolling with a different algorithm has security benefit. Moreover, rolling from current RSA/SHA256 to ECDSA p-256 has benefit to generate smaller size of the RRSIG, DNSKEY and DS records.
 
 More reading about DNSSEC and ECDSA:
 
