@@ -14,7 +14,7 @@ Different from the conservative approach proposed in [section 4.1.4.2 of RFC6781
 
 * The reason of choosing Double-DS KSK rollover method lies in that 1) it is our prior Yeti KSK rollover approach and, 2) our deliberate violation of saying in section 4.1.4 of RFC6781. We think it does not apply in Algorithm rollover for root because Root has no parents.
 
-^  "Note that the Double-DS KSK rollover method cannot be used, since
+>"Note that the Double-DS KSK rollover method cannot be used, since
    that would introduce a parental DS of which the apex DNSKEY RRset has
    not been signed with the introduced algorithm."--section 4.1.4 of RFC6781
 
