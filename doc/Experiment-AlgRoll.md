@@ -4,6 +4,10 @@ Before ICANN rolled its KSK successfully on 15th October 2018, we had rolled Yet
 
 Like rolling with a different key, rolling with a different algorithm has security benefit. Moreover, rolling from current RSA/SHA256 to ECDSA p-256 has benefit to generate smaller size of the RRSIG, DNSKEY and DS records.
 
+More reading about DNSSEC and ECDSA:
+https://blog.apnic.net/2016/10/06/dnssec-and-ecdsa/
+https://blog.apnic.net/2018/08/23/measuring-ecdsa-in-dnssec-an-update/
+
 # Methodology
 
 Different from the conservative approach proposed in [section 4.1.4.2 of RFC6781](https://tools.ietf.org/html/rfc6781#section-4.1.4.2), Yeti Algorithm Rollover is similar with the prior [Yeti KSK rollover](https://github.com/BII-Lab/Yeti-Project/blob/master/doc/Experiment-KROLL2.md), **adopting a liberal approach and only rolling KSK with Double-DS rollover**. It is explained why we choose this approach as follows:
