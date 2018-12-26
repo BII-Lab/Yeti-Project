@@ -7,6 +7,7 @@ Like rolling with a different key, rolling with a different algorithm has securi
 More reading about DNSSEC and ECDSA:
 
 https://blog.apnic.net/2016/10/06/dnssec-and-ecdsa/
+
 https://blog.apnic.net/2018/08/23/measuring-ecdsa-in-dnssec-an-update/
 
 # Methodology
