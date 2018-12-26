@@ -51,8 +51,7 @@ As with the prior KSK rollover, We will do the following:
    then adding 1 slot (10 days) to the 30-day RFC 5011 hold-down timer
    should ensure that no replay attack is possible.
 
-1. Generate a new KSK. This will be placed into the DM synchronization
-   repository. The DM synchronization is described here:
+1. Generate a new KSK using ECDSA p-265 algorithm. This will be placed into the DM synchronization repository. The DM synchronization is described here:
 
    https://github.com/BII-Lab/Yeti-Project/blob/master/doc/Yeti-DM-Sync.md
 
@@ -60,13 +59,12 @@ As with the prior KSK rollover, We will do the following:
 
 2. Wait 40 days.
 
-3. Use the new KSK to sign the zone. The old ZSK will be signed with
-   the old and the new ZSK.
+3. Use the new KSK to sign the DNSSEC RRset.
 
 4. Wait 20 days.
 
 5. Set the "revoked" flag on the old KSK and place that into the DM
-   synchronization repository. The ZSK will be signed with the old and
+   synchronization repository. The DNSKEY RRset will be signed with the old and
    the new KSK.
 
 6. Wait 10 days.
@@ -81,7 +79,7 @@ signing. If this happens, then we can simply remove the new KSK.
 
 If an problem happens after changing to the new KSK, we can go back to
 the old KSK before we add the KSK with the "revoked" flag set. If this
-happens, we will remove the new ZSK.
+happens, we will remove the new KSK.
 
 If a problem happens after we publish the old KSK with the "revoked"
 flag set, we will not be able to simply go back to the old KSK, since
