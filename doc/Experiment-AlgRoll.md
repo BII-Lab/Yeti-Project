@@ -74,7 +74,7 @@ As with the prior KSK rollover, We will do the following:
 7. Remove the old KSK at each distribution master.
 
 
-# Rollback Procedures
+## Rollback Procedures
 
 It is unlikely that an error occurs while still using the old KSK for
 signing. If this happens, then we can simply remove the new KSK.
@@ -90,7 +90,7 @@ failure, resolver operators may need to update their configurations
 manually to fix the problem. This will be announced on the Yeti
 Discuss list as well as on the Yeti website.
 
-# What to Measure: Fragmentation & Packet Loss
+## What to Measure: Fragmentation & Packet Loss
 
 Since fragmentation and packet loss are questions that Yeti was
 started to investigate, we will look carefully at these.
@@ -104,7 +104,7 @@ side. We will run this on our resolvers and ask Yeti participants to
 also run this script.
 
 
-# What to Measure: Validation Failure
+## What to Measure: Validation Failure
 
 We set up checks for the experiment to confirm that we can lookup
 and validate a range of signed zones, using both BIND 9 and Unbound. We will
