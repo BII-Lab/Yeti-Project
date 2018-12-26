@@ -5,6 +5,7 @@ Before ICANN rolled its KSK successfully on 15th October 2018, we had rolled Yet
 Like rolling with a different key, rolling with a different algorithm has security benefit. Moreover, rolling from current RSA/SHA256 to ECDSA p-256 has benefit to generate smaller size of the RRSIG, DNSKEY and DS records.
 
 More reading about DNSSEC and ECDSA:
+
 https://blog.apnic.net/2016/10/06/dnssec-and-ecdsa/
 https://blog.apnic.net/2018/08/23/measuring-ecdsa-in-dnssec-an-update/
 
