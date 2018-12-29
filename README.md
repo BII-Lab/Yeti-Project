@@ -168,7 +168,7 @@ Below are details about the different ways of joining the effort.
           ['yeti-ns.switch.ch.'] = '2001:620:0:ff::29',
           ['yeti-ns.lab.nic.cl.'] = '2001:1398:1:21::8001',
           ['yeti-ns1.dns-lab.net.'] = '2400:a980:60ff:7::2',
-	  ['yeti-ns2.dns-lab.net.'] = '2001:da8:268:4200::6',
+          ['yeti-ns2.dns-lab.net.'] = '2001:da8:268:4200::6',
           ['yeti-ns3.dns-lab.net.'] = '2400:a980:30ff::6',
           ['3f79bb7b435b05321651daefd374cd.yeti-dns.net.'] = '2401:c900:1401:3b:c::6',
           ['ca978112ca1bbdcafac231b39a23dc.yeti-dns.net.'] = '2c0f:f530::6',
