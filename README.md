@@ -164,6 +164,7 @@ Below are details about the different ways of joining the effort.
           ['yeti-ns.ix.ru.'] = '2001:6d0:6d06::53',
           ['yeti.bofh.priv.at.'] = '2a01:4f8:161:6106:1::10',
           ['yeti.ipv6.ernet.in.'] = '2001:e30:1c1e:1::333',
+          ['yeti1.ipv6.ernet.in.'] = '2001:e30:187d::333',
           ['yeti.aquaray.com.'] = '2a02:ec0:200::1',
           ['yeti-ns.switch.ch.'] = '2001:620:0:ff::29',
           ['yeti-ns.lab.nic.cl.'] = '2001:1398:1:21::8001',
@@ -174,8 +175,10 @@ Below are details about the different ways of joining the effort.
           ['ca978112ca1bbdcafac231b39a23dc.yeti-dns.net.'] = '2c0f:f530::6',
           ['xn--r2bi1c.xn--h2bv6c0a.xn--h2brj9c.'] = '2001:e30:1c1e:10::333',
           ['yeti.mind-dns.nl.'] = '2a02:990:100:b01::53:0',
-	      ['yeti-ns.datev.net.'] = '2a00:e50:f15c:1000::1:53',
-	      ['yeti.jhcloos.net.'] = '2001:19f0:5401:1c3::53'
+          ['yeti-ns.datev.net.'] = '2a00:e50:f15c:1000::1:53',
+          ['yeti.jhcloos.net.'] = '2001:19f0:5401:1c3::53',
+          ['yeti-ns.ipv6forummalaysia.com.'] = '2401:340:aaaa:100::8b31:256e',
+          ['ns3.root-yeti.net.'] = '2400:6180:100:d0::8df:4001'
     })
     
     trust_anchors.config('yeti-root.key')
