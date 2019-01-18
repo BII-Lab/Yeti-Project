@@ -107,9 +107,3 @@ also run this script.
 We set up checks for the experiment to confirm that we can lookup
 and validate a range of signed zones, using both BIND 9 and Unbound. We will
 keep these in place for the Algorithm rollover experiment.
-
-
-
-
-
-
