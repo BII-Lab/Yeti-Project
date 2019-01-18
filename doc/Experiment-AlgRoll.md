@@ -1,16 +1,20 @@
 # Yeti Algorithm Rollover Experiment
 
-Before ICANN rolled its KSK successfully on 15th October 2018, we had rolled Yeti KSK in Yeti testbed twice in 2017. It has been proved that rolling with a different key is not easy for DNS Root system due to varying behavior of the DNS installed base. However, it is considered more challenging to roll the DNSSEC algorithm on the root (roll the key with different algorithm).
+Before ICANN rolled its KSK successfully on 15th October 2018, we had rolled Yeti KSK in Yeti testbed twice in 2017. It has been proved that rolling with a different key is not easy for DNS Root system due to divers behavior of the DNS installed base. However, it is considered more challenging to roll the DNSSEC algorithm on the root (roll the key with different algorithm). Like rolling with a different key, rolling with a different algorithm has security benefit. Moreover, rolling from current RSA/SHA256 to ECDSA p-256 has benefit to generate smaller size of the RRSIG, DNSKEY and DS records.
 
-Like rolling with a different key, rolling with a different algorithm has security benefit. Moreover, rolling from current RSA/SHA256 to ECDSA p-256 has benefit to generate smaller size of the RRSIG, DNSKEY and DS records.
+More reading about DNSSEC and ECDSA:
+
+https://blog.apnic.net/2016/10/06/dnssec-and-ecdsa/
+
+https://blog.apnic.net/2018/08/23/measuring-ecdsa-in-dnssec-an-update/
 
 # Methodology
 
 Different from the conservative approach proposed in [section 4.1.4.2 of RFC6781](https://tools.ietf.org/html/rfc6781#section-4.1.4.2), Yeti Algorithm Rollover is similar with the prior [Yeti KSK rollover](https://github.com/BII-Lab/Yeti-Project/blob/master/doc/Experiment-KROLL2.md), **adopting a liberal approach and only rolling KSK with Double-DS rollover**. It is explained why we choose this approach as follows:
 
-* The reasons of only rolling KSK is that some people suggested that some resolver may not tolerate a KSK and a ZSK using different algorithms in the same zone (notably PowerDNS). We need to investigate this with more details.
-
 * The reasons of choosing liberal approach are twofold: 1) [Algorithm rollover in .SE](https://www.sidnlabs.nl/downloads/presentations/Rolling%20with%20Confidence%20Managing%20the%20Complexity%20of%20DNSSEC%20Operations.pdf) shows that conservative algorithm rollover is not necessary (only 6 out of 10000 failed). 2)Yeti algorithm rollover is deliberately design to expose more possible failures.
+
+* The reasons of only rolling KSK is that some people suggested that some resolver may not tolerate a KSK and a ZSK using different algorithms in the same zone (notably PowerDNS). We need to investigate this with more details.
 
 * The reason of choosing Double-DS KSK rollover method lies in that 1) it is our prior Yeti KSK rollover approach and, 2) our deliberate violation of saying in section 4.1.4 of RFC6781. We think it does not apply in Algorithm rollover for root because Root has no parents.
 
