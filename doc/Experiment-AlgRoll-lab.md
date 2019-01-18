@@ -48,7 +48,6 @@ Time schedule for case 1:
 | **old KSK** | pub+sign | pub+sign | pub+sign | pub+sign | pub+sign |   revoke+sign |      | |       |
 |  **new KSK**  |          |   pub    |   pub    |   pub    |   pub    | pub+sign | pub+sign | pub+sign | pub+sign |
 
-Table: Time schedule for case 1
 
 Time schedule for case 2:
 
@@ -57,7 +56,6 @@ Time schedule for case 2:
 | **old KSK** | pub+sign | pub+sign | pub+sign | pub+sign | pub+sign | Revoke+sign | |     |          |
 |  **new KSK**  |        | pub+sign | pub+sign |  pub+sign |  pub+sign   | pub+sign | pub+sign | pub+sign | pub+sign |
 
-Table: Time schedule for case 2
 
 Time schedule for case 3:
 
@@ -68,7 +66,6 @@ Time schedule for case 3:
 | **old ZSK** | pub+sign | pub+sign | pub+sign | pub+sign | pub+sign | pub+sign  | |     |          |
 |  **New ZSK**  |        | pub+sign | pub+sign |  pub+sign |  pub+sign   | pub+sign | pub+sign   | pub+sign  | pub+sign  |
 
-Table: Time schedule for case 3
 
 Time schedule for case 4:
 
@@ -79,7 +76,6 @@ Time schedule for case 4:
 | **old ZSK** | pub+sign | pub+sign | pub+sign | pub+sign | pub+sign | pub+sign |  sign |     |          |
 |  **New ZSK**  |        | sign | pub+sign |  pub+sign |  pub+sign   | pub+sign | pub+sign  |  pub+sign | pub+sign  |
 
-Table: Time schedule for case 4
 
 
 
