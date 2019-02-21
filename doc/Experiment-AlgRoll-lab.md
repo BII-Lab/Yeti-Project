@@ -53,7 +53,7 @@ Time schedule for case 2:
 
 |           |  slot 1  |  slot 2  |  slot 3  |  slot 4  |  slot 5  |  slot 6  |  slot 7  |  slot 8  |  slot 9  |
 |-----------|----------|----------|----------|----------|----------|----------|----------|----------|----------|
-| **old KSK** | pub+sign | pub+sign | pub+sign | pub+sign | pub+sign | Revoke+sign | |     |          |
+| **old KSK** | pub+sign | pub+sign | pub+sign | pub+sign | pub+sign | pub | Revoke+sign |     |          |
 |  **new KSK**  |        | pub+sign | pub+sign |  pub+sign |  pub+sign   | pub+sign | pub+sign | pub+sign | pub+sign |
 
 
