@@ -77,7 +77,25 @@ Time schedule for case 4:
 |  **New ZSK**  |        | sign | pub+sign |  pub+sign |  pub+sign   | pub+sign | pub+sign  |  pub+sign | pub+sign  |
 
 
+## Rollback consideration
 
+It might be interesting to test a rollback, in case a rollover would fail.
+
+It is unlikely that an error occurs while still using the old algorithm for
+signing when new key/algorithm is added. If this happens, then we can simply 
+remove the new algorithm and its signature.
+
+If an problem happens after changing to the new key and algorithm, we can go back to
+the old key and algorithm before we set the old KSK with the "revoked" flag set. If this
+happens, we will roll back to remove the new algoritm and key.
+
+If a problem happens right after we publish the old KSK with the "revoked"
+flag set, we should remove the revoked old KSK and its signature ASAP. Old KSK 
+is not revoked in validators that have not observed the revoked old KSK. For those 
+validators already observed the revoked old KSK and failed, resolver operators 
+may need to update their configurations manually to fix the problem. 
+This will be announced on the Yeti Discuss list as well as on the 
+Yeti website.
 
 ## What to Measure: Fragmentation & Packet Loss
 
