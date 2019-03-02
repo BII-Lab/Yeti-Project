@@ -14,7 +14,7 @@ iana_server="2001:500:2f::f"
 #
 # first, fetch the iana zone, and decide whether it has changed
 #
-dig @$iana_server +onesoa +nocmd +nsid +nostats . axfr > iana-root.dns
+dig @$iana_server +noidnout +onesoa +nocmd +nsid +nostats . axfr > iana-root.dns
 if dnssec-verify -o . iana-root.dns > dnssec-verify.out 2>&1; then
 	:
 else
