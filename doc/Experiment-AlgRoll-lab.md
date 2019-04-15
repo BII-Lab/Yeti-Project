@@ -116,3 +116,20 @@ also run this script.
 We set up checks for the experiment to confirm that we can lookup
 and validate a range of signed zones, using both BIND 9 and Unbound. We will
 keep these in place for the Algorithm rollover experiment.
+
+## Consideration of Stand-by Keys
+
+Defined in rfc6781#section-4.2.4, Stand-by keys are keys that are 
+published in your zone but are not used to sign RRsets. There are 
+two reasons why someone would want to use stand-by keys.  One is to 
+speed up the emergency key rollover. The other is to recover from a 
+disaster that leaves your production private keys inaccessible.
+
+As ECDSA saves more space in the DNS response, it is worth of 
+considering testing the Stand-by keys for new algorithm, by 
+rolling the algorith with two KSKs, one is for signing and 
+another for stand-by key. In the timelines for case 1, 2, 3 and 4 
+for exmaple, every time slot when new key is introduced, 
+a stand-by key is introduce without signing.  
+
+
