@@ -63,13 +63,13 @@ Time schedule for case 2:
 
 Time schedule for case 3:
 
-|           |  slot 1  |  slot 2  |  slot 3  |  slot 4  |  slot 5  |  slot 6  |  slot 7  |  slot 8  |
-|-----------|----------|----------|----------|----------|----------|----------|----------|----------|
-| **old KSK** | pub+sign | pub+sign | pub+sign | pub+sign | Revoke+sign | |     |          |
-|  **new KSK**  |        | pub+sign | pub+sign |  pub+sign | pub+sign | pub+sign | pub+sign | pub+sign |
-|  **stand-by KSK**  |        | pub | pub |  pub|  pub | pub | pub | pub |
-| **old ZSK** | pub+sign | pub+sign | pub+sign | pub+sign | pub+sign | pub+sign  |    |          |
-|  **New ZSK**  |        | pub+sign | pub+sign |  pub+sign |  pub+sign  | pub+sign   | pub+sign  | pub+sign  |
+|           |  slot 1  |  slot 2  |  slot 3  |  slot 4  |  slot 5  |  slot 6  |  slot 7  |
+|-----------|----------|----------|----------|----------|----------|----------|----------|
+| **old KSK** | pub+sign | pub+sign | pub+sign | pub+sign | Revoke+sign | |     | 
+|  **new KSK**  |        | pub+sign | pub+sign |  pub+sign | pub+sign | pub+sign | pub+sign |
+|  **stand-by KSK**  |        | pub | pub |  pub|  pub | pub | pub |
+| **old ZSK** | pub+sign | pub+sign | pub+sign | pub+sign | pub+sign |  |          |
+|  **New ZSK**  |        | pub+sign | pub+sign |  pub+sign |  pub+sign  | pub+sign   | pub+sign  |
 
 * Note: slot 1,2,3,4, 7 and 8 are 10 days. slot 5 and slot 6 are 1 days. 
 
