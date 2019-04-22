@@ -9,26 +9,26 @@ However, there are some uncertainties on KSK algorithm rollover which will resul
 There are 4 possible approaches worth of testing:
 
 **Case 1: Roll only KSK algorithm with Double-DS approach (Figure 5 of RFC6781). (PS:It is going to fail due to the violation of RFC6781.)** 
-   * Pre-publish the new KSK in the root zone to fit RFC5011. 
+   * Pre-publish the new KSKs (one is stand-by ksk) in the root zone to fit RFC5011. 
    * Wait a period of RFC5011 Add Hold-Down Time, 40 days. 
    * Change the RRSIG of DNSKEY in a flag day. Wait 10 days
    * Revoke the old KSK and sign DNSKEY RRset with both old and new key
    * Remove the old KSK and RRSIG of DNSEKY,2 days later
 
 **Case 2: Roll only KSK algorithm with liberal and double signature approach (Figure 4 of RFC6781)**
-   * Add both the new KSK and RRSIG of DNSKEY in the zone to fit RFC6781.
+   * Add both the new KSKs (one is stand-by ksk) and RRSIG of DNSKEY in the zone to fit RFC6781.
    * Wait a period of RFC5011 Add Hold-Down Time, 40 days.
    * Revoke the old key and keep double signature in the zone. Wait 10 days
    * Remove the old KSK and RRSIG of DNSEKY
 
 **Case 3: Roll the algorithm both KSK and ZSK with liberal and double-signature approach**
-   * Add new ZSK and KSK as well as RRSIG signed by these keys in the zone, and wait for 10 days.Wait a period of RFC5011 Add Hold-Down Time，40 days.
+   * Add new ZSK and KSKs (one is stand-by ksk) as well as RRSIG signed by these keys in the zone, and wait for 10 days.Wait a period of RFC5011 Add Hold-Down Time，40 days.
    * Revoke the old KSK and keep double signature in the zone, wait for 10 days
    * Remove the old KSK and ZSK as well as the RRSIG signed by old KSK and ZSK.
 
 **Case 4：Roll the algorithm both KSK and ZSK with conservative and double-signature approach( recommended in Figure 13 of RFC6781)**
    * Add the RRSIG signed by new ZSK, and wait for 10 days
-   * Add new ZSK and KSK as well as RRSIG signed by KSK. Wait a period of RFC5011 Add Hold-Down Time，40 days.
+   * Add new ZSK and KSKs (one is stand-by ksk) as well as RRSIG signed by one KSK. Wait a period of RFC5011 Add Hold-Down Time，40 days.
    * Revoke the old KSK and keep double signature in the zone, and wait for 10 days
    * Remove the old KSK and ZSK as well as the RRSIG signed by old KSK keeping RRSIG signed by old ZSK in the zone, and wait 10 days later
    * Remove the RRSIG signed by old ZSK
@@ -47,6 +47,7 @@ Time schedule for case 1:
 |-----------|----------|----------|----------|----------|----------|----------|----------|----------|----------|
 | **old KSK** | pub+sign | pub+sign | pub+sign | pub+sign | pub+sign | pub   |   revoke+sign   | |       |
 |  **new KSK**  |          |   pub    |   pub    |   pub    |   pub    | pub+sign | pub+sign | pub+sign | pub+sign |
+|  **stand-by KSK**  |          |   pub    |   pub    |   pub    |   pub    | pub | pub | pub | pub |
 
 
 Time schedule for case 2:
@@ -55,6 +56,7 @@ Time schedule for case 2:
 |-----------|----------|----------|----------|----------|----------|----------|----------|----------|----------|
 | **old KSK** | pub+sign | pub+sign | pub+sign | pub+sign | pub+sign | pub | Revoke+sign |     |          |
 |  **new KSK**  |        | pub+sign | pub+sign |  pub+sign |  pub+sign   | pub+sign | pub+sign | pub+sign | pub+sign |
+|  **stand-by KSK**  |          |   pub    |   pub    |   pub    |   pub    | pub | pub | pub | pub |
 
 
 Time schedule for case 3:
@@ -63,6 +65,7 @@ Time schedule for case 3:
 |-----------|----------|----------|----------|----------|----------|----------|----------|----------|----------|
 | **old KSK** | pub+sign | pub+sign | pub+sign | pub+sign | pub+sign | Revoke+sign | |     |          |
 |  **new KSK**  |        | pub+sign | pub+sign |  pub+sign |  pub+sign   | pub+sign | pub+sign | pub+sign | pub+sign |
+|  **stand-by KSK**  |        | pub | pub |  pub|  pub | pub | pub | pub | pub |
 | **old ZSK** | pub+sign | pub+sign | pub+sign | pub+sign | pub+sign | pub+sign  | |     |          |
 |  **New ZSK**  |        | pub+sign | pub+sign |  pub+sign |  pub+sign   | pub+sign | pub+sign   | pub+sign  | pub+sign  |
 
@@ -73,6 +76,7 @@ Time schedule for case 4:
 |-----------|----------|----------|----------|----------|----------|----------|----------|----------|----------|
 | **old KSK** | pub+sign | pub+sign | pub+sign | pub+sign | pub+sign | Revoke+sign |   |     |          |
 |  **new KSK**  |        |      | pub+sign |  pub+sign |  pub+sign   | pub+sign | pub+sign | pub+sign | pub+sign |
+|  **new KSK**  |        |      | pub |  pub |  pub | pub | pub | pub | pub |
 | **old ZSK** | pub+sign | pub+sign | pub+sign | pub+sign | pub+sign | pub+sign |  sign |     |          |
 |  **New ZSK**  |        | sign | pub+sign |  pub+sign |  pub+sign   | pub+sign | pub+sign  |  pub+sign | pub+sign  |
 
