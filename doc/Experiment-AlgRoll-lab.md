@@ -10,27 +10,27 @@ There are 4 possible approaches worth of testing:
 
 **Case 1: Roll only KSK algorithm with Double-DS approach (Figure 5 of RFC6781). (PS:It is going to fail due to the violation of RFC6781.)** 
    * Pre-publish the new KSKs (one is stand-by ksk) in the root zone to fit RFC5011. 
-   * Wait a period of RFC5011 Add Hold-Down Time, 40 days. 
-   * Change the RRSIG of DNSKEY in a flag day. Wait 10 days
+   * Wait a period of RFC5011 Add Hold-Down Time, 30 days. 
+   * Change the RRSIG of DNSKEY in a flag day. Wait 1 days
    * Revoke the old KSK and sign DNSKEY RRset with both old and new key
-   * Remove the old KSK and RRSIG of DNSEKY,2 days later
+   * Remove the old KSK and RRSIG of DNSEKY,1 days later
 
 **Case 2: Roll only KSK algorithm with liberal and double signature approach (Figure 4 of RFC6781)**
    * Add both the new KSKs (one is stand-by ksk) and RRSIG of DNSKEY in the zone to fit RFC6781.
-   * Wait a period of RFC5011 Add Hold-Down Time, 40 days.
-   * Revoke the old key and keep double signature in the zone. Wait 10 days
+   * Wait a period of RFC5011 Add Hold-Down Time, 30 days.
+   * Revoke the old key and keep double signature in the zone. Wait 1 days
    * Remove the old KSK and RRSIG of DNSEKY
 
 **Case 3: Roll the algorithm both KSK and ZSK with liberal and double-signature approach**
-   * Add new ZSK and KSKs (one is stand-by ksk) as well as RRSIG signed by these keys in the zone, and wait for 10 days.Wait a period of RFC5011 Add Hold-Down Time，40 days.
-   * Revoke the old KSK and keep double signature in the zone, wait for 10 days
+   * Add new ZSK and KSKs (one is stand-by ksk) as well as RRSIG signed by these keys in the zone, and wait for 10 days.Wait a period of RFC5011 Add Hold-Down Time，30 days.
+   * Revoke the old KSK and keep double signature in the zone, wait for 1 days
    * Remove the old KSK and ZSK as well as the RRSIG signed by old KSK and ZSK.
 
 **Case 4：Roll the algorithm both KSK and ZSK with conservative and double-signature approach( recommended in Figure 13 of RFC6781)**
-   * Add the RRSIG signed by new ZSK, and wait for 10 days
-   * Add new ZSK and KSKs (one is stand-by ksk) as well as RRSIG signed by one KSK. Wait a period of RFC5011 Add Hold-Down Time，40 days.
-   * Revoke the old KSK and keep double signature in the zone, and wait for 10 days
-   * Remove the old KSK and ZSK as well as the RRSIG signed by old KSK keeping RRSIG signed by old ZSK in the zone, and wait 10 days later
+   * Add the RRSIG signed by new ZSK, and wait for 1 days
+   * Add new ZSK and KSKs (one is stand-by ksk) as well as RRSIG signed by one KSK. Wait a period of RFC5011 Add Hold-Down Time，30 days.
+   * Revoke the old KSK and keep double signature in the zone, and wait for 1 days
+   * Remove the old KSK and ZSK as well as the RRSIG signed by old KSK keeping RRSIG signed by old ZSK in the zone, and wait 1 days later
    * Remove the RRSIG signed by old ZSK
 
 Different with the KSK roll, The new KSK uses the ECDSA p-256 algorithm with a 256 bits key which is shorter than RSA/SHA-256 algorithm with a 2048 bit key. It is generated on software, and stored on systems secured with similar security to enterprise computing resources; no HSM is used.
@@ -83,7 +83,7 @@ Time schedule for case 4:
 | **old ZSK** | pub+sign | pub+sign | pub+sign | pub+sign | pub+sign | pub+sign |  sign |     |          |
 |  **New ZSK**  |        | sign | pub+sign |  pub+sign | pub+sign| pub+sign | pub+sign  |  pub+sign | pub+sign  |
 
-* Note: slot 1,3,4,5,8 and 9 are 10 days and slot 2, 6 and  7 are 1 day. It means new/old zsk sign action and the old KSK revoke+sign action only last 1 day. 
+* Note: slot 1,3,4,5,8 and 9 are 10 days and slot 2, 6 and 7 are 1 day. It means new/old zsk sign action and the old KSK revoke+sign action only last 1 day. 
 
 ## Rollback consideration
 
