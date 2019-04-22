@@ -49,6 +49,7 @@ Time schedule for case 1:
 |  **new KSK**  |          |   pub    |   pub    |   pub    | pub+sign | pub+sign | pub+sign | pub+sign |
 |  **stand-by KSK**  |          |   pub    |   pub    |   pub    | pub | pub | pub | pub |
 
+* Note: slot 1,2,3,4, 7 and 8 are 10 days. slot 5 and slot 6 are 1 days
 
 Time schedule for case 2:
 
@@ -58,6 +59,7 @@ Time schedule for case 2:
 |  **new KSK**  |        | pub+sign | pub+sign |  pub+sign | pub+sign | pub+sign | pub+sign | pub+sign |
 |  **stand-by KSK**  |          |   pub    |   pub    |   pub    | pub | pub | pub | pub |
 
+* Note: slot 1,2,3,4, 7 and 8 are 10 days. slot 5 and slot 6 are 1 days 
 
 Time schedule for case 3:
 
@@ -69,6 +71,7 @@ Time schedule for case 3:
 | **old ZSK** | pub+sign | pub+sign | pub+sign | pub+sign | pub+sign | pub+sign  |    |          |
 |  **New ZSK**  |        | pub+sign | pub+sign |  pub+sign |  pub+sign  | pub+sign   | pub+sign  | pub+sign  |
 
+* Note: slot 1,2,3,4, 7 and 8 are 10 days. slot 5 and slot 6 are 1 days. 
 
 Time schedule for case 4:
 
@@ -80,6 +83,7 @@ Time schedule for case 4:
 | **old ZSK** | pub+sign | pub+sign | pub+sign | pub+sign | pub+sign | pub+sign |  sign |     |          |
 |  **New ZSK**  |        | sign | pub+sign |  pub+sign | pub+sign| pub+sign | pub+sign  |  pub+sign | pub+sign  |
 
+* Note: slot 1,3,4,5,8 and 9 are 10 days and slot 2, 6 and  7 are 1 days. It means new/old zsk sign action and the old KSK revoke+sign action only last 1 day. 
 
 ## Rollback consideration
 
