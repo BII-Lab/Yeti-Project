@@ -76,7 +76,7 @@ Time schedule for case 4:
 |-----------|----------|----------|----------|----------|----------|----------|----------|----------|
 | **old KSK** | pub+sign | pub+sign | pub+sign | pub+sign | Revoke+sign |   |     |          |
 |  **new KSK**  |        |      | pub+sign |  pub+sign |  pub+sign| pub+sign | pub+sign | pub+sign |
-|  **new KSK**  |        |      | pub |  pub |  pub | pub | pub | pub |
+|  **stand-by KSK**  |        |      | pub |  pub |  pub | pub | pub | pub |
 | **old ZSK** | pub+sign | pub+sign | pub+sign | pub+sign | pub+sign |  sign |     |          |
 |  **New ZSK**  |        | sign | pub+sign |  pub+sign | pub+sign | pub+sign  |  pub+sign | pub+sign  |
 
