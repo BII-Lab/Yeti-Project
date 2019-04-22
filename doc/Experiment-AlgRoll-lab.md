@@ -39,7 +39,7 @@ Note that we deliberately shorten the remove hold-down time which is irrelevant 
 
 ## Time schedule
 
-Note The "slots" will be 10 days long for each timing table. 
+Note the "slots" will be 10 days long for each timing table except for some special time slots.
 
 Time schedule for case 1: 
 
