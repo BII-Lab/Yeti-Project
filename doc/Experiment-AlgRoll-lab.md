@@ -43,47 +43,47 @@ Note the "slots" will be 10 days long for each timing table except for some spec
 
 Time schedule for case 1: 
 
-|           |  slot 1  |  slot 2  |  slot 3  |  slot 4  |  slot 5  |  slot 6  |  slot 7  |  slot 8  |
-|-----------|----------|----------|----------|----------|----------|----------|----------|----------|
-| **old KSK** | pub+sign | pub+sign | pub+sign | pub+sign | pub   |   revoke+sign   | |       |
-|  **new KSK**  |          |   pub    |   pub    |   pub    | pub+sign | pub+sign | pub+sign | pub+sign |
-|  **stand-by KSK**  |          |   pub    |   pub    |   pub    | pub | pub | pub | pub |
+|           |  slot 1  |  slot 2  |  slot 3  |  slot 4  |  slot 5  |  slot 6  |  slot 7  |
+|-----------|----------|----------|----------|----------|----------|----------|----------|
+| **old KSK** | pub+sign | pub+sign | pub+sign | pub+sign | pub   |   revoke+sign   | |
+|  **new KSK**  |          |   pub    |   pub    |   pub    | pub+sign | pub+sign | pub+sign |
+|  **stand-by KSK**  |          |   pub    |   pub    |   pub    | pub | pub | pub |
 
-* Note: slot 1,2,3,4, 7 and 8 are 10 days. slot 5 and slot 6 are 1 day
+* Note: slot 1,2,3,4 and 7 are 10 days. slot 5 and slot 6 are 1 day
 
 Time schedule for case 2:
 
-|           |  slot 1  |  slot 2  |  slot 3  |  slot 4  |  slot 5  |  slot 6  |  slot 7  |  slot 8  |
-|-----------|----------|----------|----------|----------|----------|----------|----------|----------|
-| **old KSK** | pub+sign | pub+sign | pub+sign | pub+sign | pub | Revoke+sign |     |          |
-|  **new KSK**  |        | pub+sign | pub+sign |  pub+sign | pub+sign | pub+sign | pub+sign | pub+sign |
-|  **stand-by KSK**  |          |   pub    |   pub    |   pub    | pub | pub | pub | pub |
+|           |  slot 1  |  slot 2  |  slot 3  |  slot 4  |  slot 5  |  slot 6  |  slot 7  |
+|-----------|----------|----------|----------|----------|----------|----------|----------|
+| **old KSK** | pub+sign | pub+sign | pub+sign | pub+sign | pub | Revoke+sign |     |
+|  **new KSK**  |        | pub+sign | pub+sign |  pub+sign | pub+sign | pub+sign | pub+sign |
+|  **stand-by KSK**  |          |   pub    |   pub    |   pub    | pub | pub | pub |
 
-* Note: slot 1,2,3,4, 7 and 8 are 10 days. slot 5 and slot 6 are 1 day
+* Note: slot 1,2,3,4 and 7  are 10 days. slot 5 and slot 6 are 1 day
 
 Time schedule for case 3:
 
-|           |  slot 1  |  slot 2  |  slot 3  |  slot 4  |  slot 5  |  slot 6  |  slot 7  |
-|-----------|----------|----------|----------|----------|----------|----------|----------|
+|           |  slot 1  |  slot 2  |  slot 3  |  slot 4  |  slot 5  |  slot 6  |
+|-----------|----------|----------|----------|----------|----------|----------|
 | **old KSK** | pub+sign | pub+sign | pub+sign | pub+sign | Revoke+sign | |     | 
-|  **new KSK**  |        | pub+sign | pub+sign |  pub+sign | pub+sign | pub+sign | pub+sign |
-|  **stand-by KSK**  |        | pub | pub |  pub|  pub | pub | pub |
-| **old ZSK** | pub+sign | pub+sign | pub+sign | pub+sign | pub+sign |  |          |
-|  **New ZSK**  |        | pub+sign | pub+sign |  pub+sign |  pub+sign  | pub+sign   | pub+sign  |
+|  **new KSK**  |        | pub+sign | pub+sign |  pub+sign | pub+sign | pub+sign |
+|  **stand-by KSK**  |        | pub | pub |  pub|  pub | pub |
+| **old ZSK** | pub+sign | pub+sign | pub+sign | pub+sign | pub+sign |  |
+|  **New ZSK**  |        | pub+sign | pub+sign |  pub+sign |  pub+sign  | pub+sign   |
 
-* Note: slot 1,2,3,4,6 and 7 are 10 days. slot 5 is 1 day. 
+* Note: slot 1,2,3,4 and 6 are 10 days. slot 5 is 1 day. 
 
 Time schedule for case 4:
 
-|           |  slot 1  |  slot 2  |  slot 3  |  slot 4  |  slot 5  |  slot 6  |  slot 7  |  slot 8  | slot 9   |
-|-----------|----------|----------|----------|----------|----------|----------|----------|----------|----------|
-| **old KSK** | pub+sign | pub+sign | pub+sign | pub+sign | pub+sign | Revoke+sign |   |     |          |
-|  **new KSK**  |        |      | pub+sign |  pub+sign |  pub+sign| pub+sign | pub+sign | pub+sign | pub+sign |
-|  **stand-by KSK**  |        |      | pub |  pub |  pub | pub |  pub | pub | pub |
-| **old ZSK** | pub+sign | pub+sign | pub+sign | pub+sign | pub+sign | pub+sign |  sign |     |          |
-|  **New ZSK**  |        | sign | pub+sign |  pub+sign | pub+sign| pub+sign | pub+sign  |  pub+sign | pub+sign  |
+|           |  slot 1  |  slot 2  |  slot 3  |  slot 4  |  slot 5  |  slot 6  |  slot 7  |  slot 8  |
+|-----------|----------|----------|----------|----------|----------|----------|----------|----------|
+| **old KSK** | pub+sign | pub+sign | pub+sign | pub+sign | pub+sign | Revoke+sign |   |     |
+|  **new KSK**  |        |      | pub+sign |  pub+sign |  pub+sign| pub+sign | pub+sign | pub+sign |
+|  **stand-by KSK**  |        |      | pub |  pub |  pub | pub |  pub | pub |
+| **old ZSK** | pub+sign | pub+sign | pub+sign | pub+sign | pub+sign | pub+sign |  sign |     |
+|  **New ZSK**  |        | sign | pub+sign |  pub+sign | pub+sign| pub+sign | pub+sign  |  pub+sign |
 
-* Note: slot 1,3,4,5,8 and 9 are 10 days and slot 2, 6 and 7 are 1 day. It means new/old zsk sign action and the old KSK revoke+sign action only last 1 day. 
+* Note: slot 1,3,4,5 and 8 are 10 days and slot 2, 6 and 7 are 1 day. It means new/old zsk sign action and the old KSK revoke+sign action only last 1 day. 
 
 ## Rollback consideration
 
