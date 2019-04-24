@@ -49,7 +49,7 @@ Time schedule for case 1:
 |  **new KSK**  |          |   pub    |   pub    |   pub    | pub+sign | pub+sign | pub+sign | pub+sign |
 |  **stand-by KSK**  |          |   pub    |   pub    |   pub    | pub | pub | pub | pub |
 
-* Note: slot 1,2,3,4, 7 and 8 are 10 days. slot 5 and slot 6 are 1 days
+* Note: slot 1,2,3,4, 7 and 8 are 10 days. slot 5 and slot 6 are 1 day
 
 Time schedule for case 2:
 
