@@ -7,7 +7,7 @@
 
 Recent years as the rise of concerns on DNS privacy [RFC7626](https://tools.ietf.org/html/rfc7626), Internet governance and High availability of DNS, thoughts of decentralizing DNS Authority are getting popular. The idea of sharing control over the root was firstly discussed and proposed in ICANN Identifier Technology Innovation Report for ICANN's strategic planning in 2014 [[ITI2014]](https://www.icann.org/en/system/files/files/iti-report-15may14-en.pdf). There were some discussion of a "masterless" approach toward a solution.  [RFC8324](https://tools.ietf.org/html/rfc8324) suggests it should be possible to remove the technical requirement for a central authority over the root for next-generation DNS. It gives us motivation to revisit the current technical attention from the community and upgrade Yeti Root to "higher" level by introducing the properties of decentralization and fault-tolerance in next phase.
 
-## Goal of Yeti DNS Project in Phase-2
+## The Goals of Yeti DNS Project in Phase-2
 
 The goals of the Yeti DNS Project in Phase-2 are:
 
