@@ -17,7 +17,7 @@ The goals of the Yeti DNS Project in Phase-2 are:
 * Develop guidelines for the operation of Yeti Testbed and services and for the administration of Yeti root zone. 
 * Provide a good platform of communication and coordination from different stockholders in th scope of DNS and Root
 
-It worthwhile to confirm again that Yeti is a live testbed but not for production network. And Yeti is NEVER providing alternate name space.
+It worthwhile to confirm again that Yeti is a live testbed not for production network. And Yeti is NEVER providing alternate name space.
 
 ## Research Challenges
 
