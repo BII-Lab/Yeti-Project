@@ -12,7 +12,7 @@ Recent years as the rise of concerns on DNS privacy [RFC7626](https://tools.ietf
 The goals of the Yeti DNS Project in Phase-2 are:
 
 * Continue to serve the role as a live research testbed project to allow new experiments and proposals on DNS root.
-* Solicit input from Yeti community to identify both political and technical issues of centralized DNS, determine solutions or workarounds to those issues.
+* Solicit input from Yeti community to identify technical issues and concerns of centralized DNS root, determine solutions or workarounds to those issues.
 * Solicit discussions and documentation of the issue and opportunities in Yeti Root operation in IPv6-only network, and of the resulting innovations.
 * Develop guidelines for the operation of Yeti Testbed and services and for the administration of Yeti root zone. 
 * Provide a good platform of communication and coordination from different stockholders in th scope of DNS and Root
@@ -23,8 +23,9 @@ It worthwhile to confirm again that Yeti is a live testbed but not for productio
 
 Although there are currently intensive research in literatures and development taking place around decentralized applications, the problem and challenge of decentralized infrastructure for DNS root is receiving relatively less attention. Some of these challenges include: 
 
-* Scalability problem preventing decentralized infrastructure of DNS root services from achieving global scale.
-* Dirty slate and Clean slate approach to achieve a decentralized infrastructure for Yeti root.
+* Scalability problem preventing decentralized infrastructure of DNS root services from achieving global scale
+* Dirty slate or clean slate approaches to achieve a decentralized infrastructure for Yeti root
+* Interaction and interoperability with existing DNS authoritative and recursive servers in DNSSEC context 
 * Signing scheme among a group of signers in decentralized communication settings
 * Consensus algorithms for specific scenarios of Yeti root
 * Design and implementation of one or more proposal for Yeti Root systems
