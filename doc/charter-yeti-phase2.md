@@ -1,5 +1,5 @@
 
-# Charter for Yeti DNS Project Phase-
+# Charter for Yeti DNS Project Phase-2
 
 ## Background and Motivation
 
