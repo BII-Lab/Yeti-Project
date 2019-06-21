@@ -1,13 +1,13 @@
 
-# Charter for Yeti DNS Project Phase-2
+# Charter for Yeti DNS Project
 
 “One World, One Internet, One Namespace” is the essence for the success of today’s Internet. The top level of the unique identifier system, the DNS root system, has been operational for nearly 30 years. It is pivot to make the current Internet useful. So it is considered somewhat ossified for stability reasons. It is hard to test and implement new ideas evolving to a more advanced level to counter challenges. To benefit the Internet development as a whole, Yeti Project is founded to build a parallel experimental live IPv6 DNS root system to discover the limits of DNS root name service and deliver useful technical output. Note that Yeti is not providing alternative name space.
 
 Recent years as the rise of concerns on DNS privacy [RFC7626](https://tools.ietf.org/html/rfc7626), Internet governance and High availability of DNS, thoughts of decentralizing DNS Authority are getting popular. The idea of sharing control over the root was firstly discussed and proposed in ICANN Identifier Technology Innovation Report for ICANN's strategic planning in 2014 [[ITI2014]](https://www.icann.org/en/system/files/files/iti-report-15may14-en.pdf). There were some discussion of a "masterless" approach toward a solution.  [RFC8324](https://tools.ietf.org/html/rfc8324) suggests it should be possible to remove the technical requirement for a central authority over the root for next-generation DNS. It gives us motivation to revisit the current technical attention from the community and upgrade Yeti Root to "higher" level by introducing the properties of decentralization and fault-tolerance in next phase.
 
-## Goal of Yeti DNS Project Phase-2
+## Goal of Yeti DNS Project
 
-The goals of the Yeti DNS Project in Phase-2 are:
+The goals of the Yeti DNS Project are:
 
 * Continue to serve the role as a live research testbed project to allow new experiments and proposals on DNS root.
 * Solicit input from Yeti community to identify technical issues and concerns of centralized DNS root, determine solutions or workarounds to those issues.
