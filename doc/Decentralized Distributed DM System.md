@@ -58,7 +58,13 @@ www.yeti-dns.org
 
    ​        https://yeti-dns.org/yeti/blog/2018/08/13/fault-tolerant-distribution-master-architecture.html 
 
-![image-20200630133005277](https://github.com/itachiliu/Yeti-Project/blob/master/DM_pic/image-20200630133005277.png)
+<img src="https://github.com/itachiliu/Yeti-Project/blob/master/DM_pic/image-20200630133005277.png" alt="image-20200630133005277" style="zoom:33%;" />
+
+
+
+
+
+
 
 #### **1.2 Project Overview**
 
@@ -74,8 +80,9 @@ www.yeti-dns.org
 
 -   **Introduced DM Management Committee (DMMC), responsible for transaction management**
 
+  
 
-![image-20200630133746237](https://github.com/itachiliu/Yeti-Project/blob/master/DM_pic/image-20200630133746237.png)
+<img src="https://github.com/itachiliu/Yeti-Project/blob/master/DM_pic/image-20200630133746237.png" alt="image-20200630133746237" style="zoom:33%;" />
 
 #### **1.3 DMMC Introduction**
 
