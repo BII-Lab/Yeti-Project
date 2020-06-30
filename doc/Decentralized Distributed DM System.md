@@ -37,8 +37,40 @@ www.yeti-dns.org
 | PoWE      | Proof-of-Work-Efficiency                 |
 
 ## **CONTENTS**
-
-[TOC]
+* [Decentralized Distributed DM System](#decentralized-distributed-dm-system)
+  * [<strong>Term</strong>](#term)
+  * [<strong>CONTENTS</strong>](#contents)
+    * [<strong>1\. Project Overview</strong>](#1-project-overview)
+      * [<strong>1\.1 Background</strong>](#11-background)
+      * [<strong>1\.2 Project Overview</strong>](#12-project-overview)
+      * [<strong>1\.3 DMMC Introduction</strong>](#13-dmmc-introduction)
+      * [<strong>1\.4 Network Topology and Algorithm</strong>](#14-network-topology-and-algorithm)
+      * [<strong>1\.5</strong> <strong>Architecture</strong>](#15-architecture)
+      * [<strong>1\.6</strong> <strong>Running</strong> <strong>Procedure</strong> <strong>Example</strong>](#16-running-procedure-example)
+    * [<strong>2 DM Network</strong>](#2-dm-network)
+      * [<strong>2\.1 Network Initialization</strong>](#21-network-initialization)
+      * [<strong>2\.2 Election Part</strong>](#22-election-part)
+      * [<strong>2\.3</strong> <strong>Reward and Punishment</strong>](#23-reward-and-punishment)
+      * [<strong>2\.4 Heartbeat</strong>](#24-heartbeat)
+      * [<strong>2\.5 DM</strong> <strong>Joining Process</strong>](#25-dm-joining-process)
+      * [<strong>2\.6 DM</strong> <strong>Withdraw Process</strong>](#26-dm-withdraw-process)
+      * [<strong>2\.7 DM Kick\-out Process</strong>](#27-dm-kick-out-process)
+      * [<strong>2\.8 DM</strong> <strong>Update Process</strong>](#28-dm-update-process)
+    * [<strong>3\. Zone File Generation</strong>](#3-zone-file-generation)
+      * [<strong>3\.1</strong> <strong>Acquisition of Zone File</strong>](#31-acquisition-of-zone-file)
+      * [<strong>3\.2 Zone File Generation Specification</strong>](#32-zone-file-generation-specification)
+      * [<strong>3\.3 Consensus on Zone File</strong>](#33-consensus-on-zone-file)
+      * [<strong>3\.4 File Synchronization</strong>](#34-file-synchronization)
+    * [<strong>4\. Threshold Signature</strong>](#4-threshold-signature)
+      * [<strong>4\.1 HSM</strong>](#41-hsm)
+      * [<strong>4\.2</strong> <strong>Threshold Signature</strong>](#42-threshold-signature)
+      * [<strong>4\.3 Key Management</strong>](#43-key-management)
+    * [<strong>5\. Signed Root Zone File Synchronization</strong>](#5-signed-root-zone-file-synchronization)
+      * [<strong>5\.1 Signed File Synchronization</strong>](#51-signed-file-synchronization)
+    * [<strong>6\. DM and Root Server Synchronization</strong>](#6-dm-and-root-server-synchronization)
+      * [<strong>6\.1 Root Server and DM Synchronization Scheme</strong>](#61-root-server-and-dm-synchronization-scheme)
+    * [<strong>7\. DM Security Design</strong>](#7-dm-security-design)
+      * [<strong>7\.1 Security Considerations</strong>](#71-security-considerations)
 
 ### **1. Project Overview** 
 
