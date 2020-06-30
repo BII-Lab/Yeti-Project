@@ -262,7 +262,7 @@ e. More than half of the votes, the election was successful
 
 #### **3.1** **Acquisition of Zone File**
 
-<img src="https://github.com/itachiliu/Yeti-Project/blob/master/DM_pic/image-20200630144116410.png" height="50%" width="50%" /></div>
+<div align=center><img src="https://github.com/itachiliu/Yeti-Project/blob/master/DM_pic/image-20200630144116410.png" height="50%" width="50%" /></div>
 
    To ensure that all DM zone file versions are identical and to obtain zone files at the same time, a file fetch timer is required; to ensure that the DM can disconnect from IANA and prevent the connection from taking too long, a file transfer timeout timer is required.
 
