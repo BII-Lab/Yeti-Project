@@ -146,7 +146,7 @@ The system design has the following characteristics:
 
   **4. Introduced DM Management Committee (DMMC), responsible for transaction management**
 
-![image-20200630133746237](C:\Users\10028\AppData\Roaming\Typora\typora-user-images\image-20200630133746237.png)
+![image-20200630133746237](https://github.com/itachiliu/Yeti-Project/blob/master/DM_pic/image-20200630133746237.png)
 
 #### 1.3 DMMC Introduction
 
@@ -164,7 +164,7 @@ DMMC's responsibilities include but are not limited to the following:
 
 5. HSM management
 
-![image-20200630134314020](C:\Users\10028\AppData\Roaming\Typora\typora-user-images\image-20200630134314020.png)
+![image-20200630134314020](https://github.com/itachiliu/Yeti-Project/blob/master/DM_pic/image-20200630134314020.png)
 
 #### **1.4 Network Topology and Algorithm**
 
@@ -176,15 +176,15 @@ DMMC's responsibilities include but are not limited to the following:
 
 ​        Threshold signature effectively reduces the number of DNSKEY.
 
-![image-20200630134539138](C:\Users\10028\AppData\Roaming\Typora\typora-user-images\image-20200630134539138.png)
+![image-20200630134539138](https://github.com/itachiliu/Yeti-Project/blob/master/DM_pic/image-20200630134539138.png)
 
 #### **1.5** **Architecture**
 
-![image-20200630134725600](C:\Users\10028\AppData\Roaming\Typora\typora-user-images\image-20200630134725600.png)
+![image-20200630134725600](https://github.com/itachiliu/Yeti-Project/blob/master/DM_pic/image-20200630134725600.png)
 
 #### **1.6** **Running** **Procedure** **Example**
 
-![image-20200630135548363](C:\Users\10028\AppData\Roaming\Typora\typora-user-images\image-20200630135548363.png)
+![image-20200630135548363](https://github.com/itachiliu/Yeti-Project/blob/master/DM_pic/image-20200630135548363.png)
 
 ### **2 DM Network**
 
@@ -201,7 +201,7 @@ The configuration file format is as follows ：
 | **A**    | 1111::1111  | 100       |            |
 | **B**    | 2222::2222  | 100       |            |
 
-![image-20200630135904178](C:\Users\10028\AppData\Roaming\Typora\typora-user-images\image-20200630135904178.png)
+![image-20200630135904178](https://github.com/itachiliu/Yeti-Project/blob/master/DM_pic/image-20200630135904178.png)
 
 #### **2.2 Election Part** 
 
@@ -211,23 +211,23 @@ The configuration file format is as follows ：
 
 1. Each DM starts a random election timeout timer, time is random
 
-   ![image-20200630140143518](C:\Users\10028\AppData\Roaming\Typora\typora-user-images\image-20200630140143518.png)
+   ![image-20200630140143518](https://github.com/itachiliu/Yeti-Project/blob/master/DM_pic/image-20200630140143518.png)
 
 2. The first node to trigger the timer becomes a candidate
 
-![image-20200630140425599](C:\Users\10028\AppData\Roaming\Typora\typora-user-images\image-20200630140425599.png)
+![image-20200630140425599](https://github.com/itachiliu/Yeti-Project/blob/master/DM_pic/image-20200630140425599.png)
 
 3. Candidate vote for himself and initiate votes against other candidates
 
-![image-20200630142551444](C:\Users\10028\AppData\Roaming\Typora\typora-user-images\image-20200630142551444.png)
+![image-20200630142551444](https://github.com/itachiliu/Yeti-Project/blob/master/DM_pic/image-20200630142551444.png)
 
 4. Follower vote according to FCFS principles
 
-![image-20200630142831576](C:\Users\10028\AppData\Roaming\Typora\typora-user-images\image-20200630142831576.png)
+![image-20200630142831576](https://github.com/itachiliu/Yeti-Project/blob/master/DM_pic/image-20200630142920539.png)
 
 5. More than half of the votes, the election was successful
 
-   ![image-20200630142920539](C:\Users\10028\AppData\Roaming\Typora\typora-user-images\image-20200630142920539.png)
+   ![image-20200630142920539](https://github.com/itachiliu/Yeti-Project/blob/master/DM_pic/image-20200630142920539.png)
 
 #### **2.3** **Reward and Punishment**
 
@@ -239,11 +239,11 @@ The configuration file format is as follows ：
 
    The candidate node depend on the reward and punishment mechanism, and the point value serves as the basic basis of the node ordering principle. The Primary node is selected in the subset with a high point value. The non-subset nodes no longer participate in the election of the master node, but still have the voting power. After the master selection is completed, the node point value is initialized.
 
-![image-20200630143146631](C:\Users\10028\AppData\Roaming\Typora\typora-user-images\image-20200630143146631.png)
+![image-20200630143146631](https://github.com/itachiliu/Yeti-Project/blob/master/DM_pic/image-20200630143146631.png)
 
 #### **2.4 Heartbeat**
 
-![image-20200630143351200](C:\Users\10028\AppData\Roaming\Typora\typora-user-images\image-20200630143351200.png)
+![image-20200630143351200](https://github.com/itachiliu/Yeti-Project/blob/master/DM_pic/image-20200630143351200.png)
 
    The working state of each node is maintained by the heartbeat detection mechanism. If the non-Primary node fails, the heartbeat detection mechanism continues to operate, and the ordinary node does not respond. If the Primary node fails, one of its supporters continues to vote as a candidate to become a Primary node.
 
@@ -259,7 +259,7 @@ The configuration file format is as follows ：
 
    The new node queries the Primary node and publishes its own address information through the Primary node. The other nodes update the IP information list. The new node obtains the Primary node's IP information list to complete the synchronization. The specific steps are shown in the figure.
 
-![image-20200630143550883](C:\Users\10028\AppData\Roaming\Typora\typora-user-images\image-20200630143550883.png)
+![image-20200630143550883](https://github.com/itachiliu/Yeti-Project/blob/master/DM_pic/image-20200630143550883.png)
 
 #### **2.6 DM** **Withdraw Process**
 
@@ -267,7 +267,7 @@ The configuration file format is as follows ：
 
    According to the characteristics of the Raft algorithm, QDM knows the Primary node and sends an exit message to the Primary node. The Primary node distributes the deletion point information message to each node. After each node deletes the information, the Primary node sends a delete all node information message to QDM. The specific process is shown in the figure. 
 
-![image-20200630143735950](C:\Users\10028\AppData\Roaming\Typora\typora-user-images\image-20200630143735950.png)
+![image-20200630143735950](https://github.com/itachiliu/Yeti-Project/blob/master/DM_pic/image-20200630143735950.png)
 
 #### **2.7 DM Kick-out Process**
 
@@ -277,7 +277,7 @@ The configuration file format is as follows ：
 
    The Primary node informs each node of the address of failures, each node initiates a heartbeat to the failed node, records the response, gives a processing strategy, then the Primary node statistical results, and agrees to kick out more than 50% of the votes.
 
-![image-20200630143840682](C:\Users\10028\AppData\Roaming\Typora\typora-user-images\image-20200630143840682.png)
+![image-20200630143840682](https://github.com/itachiliu/Yeti-Project/blob/master/DM_pic/image-20200630143840682.png)
 
 #### **2.8 DM** **Update Process**
 
@@ -285,13 +285,13 @@ The configuration file format is as follows ：
 
 ​     The DM is updated using the 3PC protocol, and each DM will generate a copy of the old version after the update for backup. First, the Primary node asks each node whether it can update the transaction. After receiving a positive response, it enters the preparation stage. The node copies the IP information and waits for the update. The Primary receives the positive answer from each node and notifies each node to update. Among them, if any process fails, the transaction is rolled back. 
 
-![image-20200630143946997](C:\Users\10028\Desktop\DM_pic\image-20200630143946997.png)
+![image-20200630143946997](https://github.com/itachiliu/Yeti-Project/blob/master/DM_pic/image-20200630143946997.png)
 
 ### **3. Zone File Generation**
 
 #### **3.1** **Acquisition of Zone File**
 
-![image-20200630144116410](C:\Users\10028\Desktop\DM_pic\image-20200630144116410.png)
+![image-20200630144116410](https://github.com/itachiliu/Yeti-Project/blob/master/DM_pic/image-20200630144116410.png)
 
    To ensure that all DM zone file versions are identical and to obtain zone files at the same time, a file fetch timer is required; to ensure that the DM can disconnect from IANA and prevent the connection from taking too long, a file transfer timeout timer is required.
 
@@ -331,7 +331,7 @@ Note: The root zone meta information and security certificate are stored in each
 
 Consensus reaching method is consistent with IP information list method
 
-![image-20200630144255931](C:\Users\10028\Desktop\DM_pic\image-20200630144255931.png)
+![image-20200630144255931](https://github.com/itachiliu/Yeti-Project/blob/master/DM_pic/image-20200630144255931.png)
 
 #### **3.3 Consensus on Zone File**
 
@@ -339,7 +339,7 @@ Consensus reaching method is consistent with IP information list method
 
 ​     Each node adopts the hash algorithm to generate a summary for the zone file, define the message, send it to the Primary node, and compare the summary.
 
-![image-20200630144349172](C:\Users\10028\Desktop\DM_pic\image-20200630144349172.png)
+![image-20200630144349172](https://github.com/itachiliu/Yeti-Project/blob/master/DM_pic/image-20200630144349172.png)
 
 #### **3.4 File Synchronization**
 
@@ -351,7 +351,7 @@ Consensus reaching method is consistent with IP information list method
 
 **False** : Primary node gives up operation and sends an acquisition message to all nodes
 
-![image-20200630144443811](C:\Users\10028\Desktop\DM_pic\image-20200630144443811.png)
+![image-20200630144443811](https://github.com/itachiliu/Yeti-Project/blob/master/DM_pic/image-20200630144443811.png)
 
 ### **4. Threshold Signature**
 
@@ -363,25 +363,25 @@ Consensus reaching method is consistent with IP information list method
 
 ​     HSM provides tamper proof and tamper evidence functions. It is used in threshold signatures and is responsible for generating and storing keys used to sign DNS zone files. The management of HSM is carried out by DMMC, and two HSMs are set up to achieve high availability for the system.
 
-![image-20200630144627623](C:\Users\10028\Desktop\DM_pic\image-20200630144627623.png)
+![image-20200630144627623](https://github.com/itachiliu/Yeti-Project/blob/master/DM_pic/image-20200630144627623.png)
 
 #### **4.2** **Threshold Signature**
 
    The Primary node uses the (t, n) threshold signature method to generate n private key shares ski through HSM and distribute to each node
 
-![image-20200630144741848](C:\Users\10028\Desktop\DM_pic\image-20200630144741848.png)
+![image-20200630144741848](https://github.com/itachiliu/Yeti-Project/blob/master/DM_pic/image-20200630144741848.png)
 
 Each node receives the private key share ski and replies with the confirmation message
 
-![image-20200630144822620](C:\Users\10028\Desktop\DM_pic\image-20200630144822620.png)
+![image-20200630144822620](https://github.com/itachiliu/Yeti-Project/blob/master/DM_pic/image-20200630144822620.png)
 
    The Primary node uses the hash digest algorithm to generate a summary for the RR, and distributes the summary to each node
 
-![image-20200630144900456](C:\Users\10028\Desktop\DM_pic\image-20200630144900456.png)
+![image-20200630144900456](https://github.com/itachiliu/Yeti-Project/blob/master/DM_pic/image-20200630144900456.png)
 
    Each node uses the private key share signature, returns the signed summary to the HSM, forms a complete signature, and stores the signed file to the Primary node
 
-![image-20200630144930479](C:\Users\10028\Desktop\DM_pic\image-20200630144930479.png)
+![image-20200630144930479](https://github.com/itachiliu/Yeti-Project/blob/master/DM_pic/image-20200630144930479.png)
 
 #### **4.3 Key Management**
 
@@ -391,7 +391,7 @@ Each node receives the private key share ski and replies with the confirmation m
 
 ​    DNSSEC uses the short-term key ZSK to periodically calculate the signatures of DNS records, while using the long-term key KSK to calculate the signature on ZSK. Therefore, KSK is saved to HSM for a period of three years.
 
-![image-20200630145008945](C:\Users\10028\Desktop\DM_pic\image-20200630145008945.png)
+![image-20200630145008945](https://github.com/itachiliu/Yeti-Project/blob/master/DM_pic/image-20200630145008945.png)
 
 ### **5. Signed Root Zone File Synchronization**
 
@@ -413,7 +413,7 @@ Each node receives the private key share ski and replies with the confirmation m
 
 Note: All nodes of the signed file will be distributed, regardless of whether the previous node correctly obtained the file
 
-![image-20200630145150478](C:\Users\10028\Desktop\DM_pic\image-20200630145150478.png)
+![image-20200630145150478](https://github.com/itachiliu/Yeti-Project/blob/master/DM_pic/image-20200630145150478.png)
 
 ### **6. DM and Root Server Synchronization**
 
@@ -427,7 +427,7 @@ Note: All nodes of the signed file will be distributed, regardless of whether th
 
 ​    DM and root server are merged to replace root server. The root server and the DM system are different processes. The zone transfer between the root server and the DM only occurs on the local machine, which greatly improves the transmission efficiency and success rate, and also reduces the synchronization time. However, as the DM expands, the root server expands accordingly, leading to an increase in packet length.
 
-![image-20200630145305507](C:\Users\10028\Desktop\DM_pic\image-20200630145305507.png)
+![image-20200630145305507](https://github.com/itachiliu/Yeti-Project/blob/master/DM_pic/image-20200630145305507.png)
 
 ### **7. DM Security Design**
 
@@ -441,4 +441,4 @@ Note: All nodes of the signed file will be distributed, regardless of whether th
 
    Taking the Primary node as an example, the control message is signed with the Primary node's private key. Each DM has a public key corresponding to the Primary node. When the message signed by the Primary node's private key is sent to the DM, the DM uses the Primary node's public key for identity verification that the update messages have been sent are sent by the Primary node.
 
-![image-20200630145442562](C:\Users\10028\Desktop\DM_pic\image-20200630145442562.png)
+![image-20200630145442562](https://github.com/itachiliu/Yeti-Project/blob/master/DM_pic/image-20200630145442562.png)
