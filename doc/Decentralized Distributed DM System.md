@@ -90,7 +90,7 @@ www.yeti-dns.org
 
    ​        https://yeti-dns.org/yeti/blog/2018/08/13/fault-tolerant-distribution-master-architecture.html 
 
-<img src="https://github.com/itachiliu/Yeti-Project/blob/master/DM_pic/image-20200630133005277.png" alt="image-20200630133005277" height="50%" width="50%"  />
+<div align=center><img src="https://github.com/itachiliu/Yeti-Project/blob/master/DM_pic/image-20200630133005277.png" alt="image-20200630133005277" height="50%" width="50%"  />
 
 
 
@@ -340,19 +340,19 @@ Consensus reaching method is consistent with IP information list method
 
    The Primary node uses the (t, n) threshold signature method to generate n private key shares ski through HSM and distribute to each node
 
-<img src="https://github.com/itachiliu/Yeti-Project/blob/master/DM_pic/image-20200630144741848.png"  height="10%" width="10%" />
+<img src="https://github.com/itachiliu/Yeti-Project/blob/master/DM_pic/image-20200630144741848.png"  height="20%" width="20%" />
 
 Each node receives the private key share ski and replies with the confirmation message
 
-<img src="https://github.com/itachiliu/Yeti-Project/blob/master/DM_pic/image-20200630144822620.png"  height="10%" width="10%" />
+<img src="https://github.com/itachiliu/Yeti-Project/blob/master/DM_pic/image-20200630144822620.png"  height="20%" width="20%" />
 
    The Primary node uses the hash digest algorithm to generate a summary for the RR, and distributes the summary to each node
 
-<img src="https://github.com/itachiliu/Yeti-Project/blob/master/DM_pic/image-20200630144900456.png"  height="10%" width="10%" />
+<img src="https://github.com/itachiliu/Yeti-Project/blob/master/DM_pic/image-20200630144900456.png"  height="20%" width="20%" />
 
    Each node uses the private key share signature, returns the signed summary to the HSM, forms a complete signature, and stores the signed file to the Primary node
 
-<img src="https://github.com/itachiliu/Yeti-Project/blob/master/DM_pic/image-20200630144930479.png" height="10%" width="10%" />
+<img src="https://github.com/itachiliu/Yeti-Project/blob/master/DM_pic/image-20200630144930479.png" height="20%" width="20%" />
 
 #### **4.3 Key Management**
 
