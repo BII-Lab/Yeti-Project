@@ -114,7 +114,7 @@ www.yeti-dns.org
 
   
 
-<img src="https://github.com/itachiliu/Yeti-Project/blob/master/DM_pic/image-20200630133746237.png" alt="image-20200630133746237" style="zoom:33%;" />
+<img src="https://github.com/itachiliu/Yeti-Project/blob/master/DM_pic/image-20200630133746237.png" alt="image-20200630133746237" height="33%" width="33%" />
 
 #### **1.3 DMMC Introduction**
 
@@ -132,7 +132,7 @@ www.yeti-dns.org
 
 - HSM management
 
-![image-20200630134314020](https://github.com/itachiliu/Yeti-Project/blob/master/DM_pic/image-20200630134314020.png)
+<img src="https://github.com/itachiliu/Yeti-Project/blob/master/DM_pic/image-20200630134314020.png" alt = "image-20200630134314020.png" height="33%" width="33%" />
 
 #### **1.4 Network Topology and Algorithm**
 
@@ -144,15 +144,15 @@ www.yeti-dns.org
 
 ​    Threshold signature effectively reduces the number of DNSKEY.
 
-![image-20200630134539138](https://github.com/itachiliu/Yeti-Project/blob/master/DM_pic/image-20200630134539138.png)
+<img src="https://github.com/itachiliu/Yeti-Project/blob/master/DM_pic/image-20200630134539138.png" alt="image-20200630134539138.png" height="33%" width="33%" />
 
 #### **1.5** **Architecture**
 
-![image-20200630134725600](https://github.com/itachiliu/Yeti-Project/blob/master/DM_pic/image-20200630134725600.png)
+<img src="https://github.com/itachiliu/Yeti-Project/blob/master/DM_pic/image-20200630134725600.png" alt="image-20200630134725600.png" height="33%" width="33%" />
 
 #### **1.6** **Running** **Procedure** **Example**
 
-![image-20200630135548363](https://github.com/itachiliu/Yeti-Project/blob/master/DM_pic/image-20200630135548363.png)
+<img src="https://github.com/itachiliu/Yeti-Project/blob/master/DM_pic/image-20200630135548363.png" alt="image-20200630135548363.png" height="33%" width="33%" />
 
 ### **2 DM Network**
 
@@ -169,7 +169,7 @@ The configuration file format is as follows ：
 | **A**    | 1111::1111  | 100       |            |
 | **B**    | 2222::2222  | 100       |            |
 
-![image-20200630135904178](https://github.com/itachiliu/Yeti-Project/blob/master/DM_pic/image-20200630135904178.png)
+<img src="https://github.com/itachiliu/Yeti-Project/blob/master/DM_pic/image-20200630135904178.png" alt="image-20200630135904178.png" height="33%" width="33%" />
 
 #### **2.2 Election Part** 
 
@@ -179,23 +179,24 @@ The configuration file format is as follows ：
 
 a. Each DM starts a random election timeout timer, time is random
 
-![image-20200630140143518](https://github.com/itachiliu/Yeti-Project/blob/master/DM_pic/image-20200630140143518.png)
+<img src="https://github.com/itachiliu/Yeti-Project/blob/master/DM_pic/image-20200630140143518.png" alt="image-20200630140143518.png" height="33%" width="33%" />
 
 b. The first node to trigger the timer becomes a candidate
 
-![image-20200630140425599](https://github.com/itachiliu/Yeti-Project/blob/master/DM_pic/image-20200630140425599.png)
+<img src="https://github.com/itachiliu/Yeti-Project/blob/master/DM_pic/image-20200630140425599.png" height="33%" width="33%" />
 
 c. Candidate vote for himself and initiate votes against other candidates
 
-![image-20200630142551444](https://github.com/itachiliu/Yeti-Project/blob/master/DM_pic/image-20200630142551444.png)
+<img src="https://github.com/itachiliu/Yeti-Project/blob/master/DM_pic/image-20200630142551444.png" height="33%" width="33%" />
+
 
 d. Follower vote according to FCFS principles
 
-![image-20200630142831576](https://github.com/itachiliu/Yeti-Project/blob/master/DM_pic/image-20200630142920539.png)
+<img src="https://github.com/itachiliu/Yeti-Project/blob/master/DM_pic/image-20200630142920539.png" height="33%" width="33%" />
 
 e. More than half of the votes, the election was successful
 
-![image-20200630142920539](https://github.com/itachiliu/Yeti-Project/blob/master/DM_pic/image-20200630142920539.png)
+<img src="https://github.com/itachiliu/Yeti-Project/blob/master/DM_pic/image-20200630142920539.png" height="33%" width="33%" />
 
 **Reference** ：[http://thesecretlivesofdata.com/raft/#overview](http://thesecretlivesofdata.com/raft/)
 
@@ -209,11 +210,11 @@ e. More than half of the votes, the election was successful
 
    The candidate node depend on the reward and punishment mechanism, and the point value serves as the basic basis of the node ordering principle. The Primary node is selected in the subset with a high point value. The non-subset nodes no longer participate in the election of the master node, but still have the voting power. After the master selection is completed, the node point value is initialized.
 
-![image-20200630143146631](https://github.com/itachiliu/Yeti-Project/blob/master/DM_pic/image-20200630143146631.png)
+<img src="https://github.com/itachiliu/Yeti-Project/blob/master/DM_pic/image-20200630143146631.png" height="33%" width="33%" />
 
 #### **2.4 Heartbeat**
 
-![image-20200630143351200](https://github.com/itachiliu/Yeti-Project/blob/master/DM_pic/image-20200630143351200.png)
+<img src="https://github.com/itachiliu/Yeti-Project/blob/master/DM_pic/image-20200630143351200.png" height="33%" width="33%" />
 
    The working state of each node is maintained by the heartbeat detection mechanism. If the non-Primary node fails, the heartbeat detection mechanism continues to operate, and the ordinary node does not respond. If the Primary node fails, one of its supporters continues to vote as a candidate to become a Primary node.
 
@@ -229,7 +230,7 @@ e. More than half of the votes, the election was successful
 
    The new node queries the Primary node and publishes its own address information through the Primary node. The other nodes update the IP information list. The new node obtains the Primary node's IP information list to complete the synchronization. The specific steps are shown in the figure.
 
-![image-20200630143550883](https://github.com/itachiliu/Yeti-Project/blob/master/DM_pic/image-20200630143550883.png)
+<img src="https://github.com/itachiliu/Yeti-Project/blob/master/DM_pic/image-20200630143550883.png" height="33%" width="33%" />
 
 #### **2.6 DM** **Withdraw Process**
 
@@ -237,7 +238,7 @@ e. More than half of the votes, the election was successful
 
    According to the characteristics of the Raft algorithm, QDM knows the Primary node and sends an exit message to the Primary node. The Primary node distributes the deletion point information message to each node. After each node deletes the information, the Primary node sends a delete all node information message to QDM. The specific process is shown in the figure. 
 
-![image-20200630143735950](https://github.com/itachiliu/Yeti-Project/blob/master/DM_pic/image-20200630143735950.png)
+<img src="https://github.com/itachiliu/Yeti-Project/blob/master/DM_pic/image-20200630143735950.png" height="33%" width="33%" />
 
 #### **2.7 DM Kick-out Process**
 
@@ -247,7 +248,7 @@ e. More than half of the votes, the election was successful
 
    The Primary node informs each node of the address of failures, each node initiates a heartbeat to the failed node, records the response, gives a processing strategy, then the Primary node statistical results, and agrees to kick out more than 50% of the votes.
 
-![image-20200630143840682](https://github.com/itachiliu/Yeti-Project/blob/master/DM_pic/image-20200630143840682.png)
+<img src="https://github.com/itachiliu/Yeti-Project/blob/master/DM_pic/image-20200630143840682.png" height="33%" width="33%" />
 
 #### **2.8 DM** **Update Process**
 
@@ -255,13 +256,13 @@ e. More than half of the votes, the election was successful
 
 ​     The DM is updated using the 3PC protocol, and each DM will generate a copy of the old version after the update for backup. First, the Primary node asks each node whether it can update the transaction. After receiving a positive response, it enters the preparation stage. The node copies the IP information and waits for the update. The Primary receives the positive answer from each node and notifies each node to update. Among them, if any process fails, the transaction is rolled back. 
 
-![image-20200630143946997](https://github.com/itachiliu/Yeti-Project/blob/master/DM_pic/image-20200630143946997.png)
+<img src="https://github.com/itachiliu/Yeti-Project/blob/master/DM_pic/image-20200630143946997.png" height="33%" width="33%" />
 
 ### **3. Zone File Generation**
 
 #### **3.1** **Acquisition of Zone File**
 
-![image-20200630144116410](https://github.com/itachiliu/Yeti-Project/blob/master/DM_pic/image-20200630144116410.png)
+<img src="https://github.com/itachiliu/Yeti-Project/blob/master/DM_pic/image-20200630144116410.png" height="33%" width="33%" />
 
    To ensure that all DM zone file versions are identical and to obtain zone files at the same time, a file fetch timer is required; to ensure that the DM can disconnect from IANA and prevent the connection from taking too long, a file transfer timeout timer is required.
 
@@ -301,7 +302,7 @@ Note: The root zone meta information and security certificate are stored in each
 
 Consensus reaching method is consistent with IP information list method
 
-![image-20200630144255931](https://github.com/itachiliu/Yeti-Project/blob/master/DM_pic/image-20200630144255931.png)
+<img src="https://github.com/itachiliu/Yeti-Project/blob/master/DM_pic/image-20200630144255931.png" height="33%" width="33%" />
 
 #### **3.3 Consensus on Zone File**
 
@@ -309,7 +310,7 @@ Consensus reaching method is consistent with IP information list method
 
 ​     Each node adopts the hash algorithm to generate a summary for the zone file, define the message, send it to the Primary node, and compare the summary.
 
-![image-20200630144349172](https://github.com/itachiliu/Yeti-Project/blob/master/DM_pic/image-20200630144349172.png)
+<img src="https://github.com/itachiliu/Yeti-Project/blob/master/DM_pic/image-20200630144349172.png" height="33%" width="33%" />
 
 #### **3.4 File Synchronization**
 
@@ -321,7 +322,7 @@ Consensus reaching method is consistent with IP information list method
 
 **False** : Primary node gives up operation and sends an acquisition message to all nodes
 
-![image-20200630144443811](https://github.com/itachiliu/Yeti-Project/blob/master/DM_pic/image-20200630144443811.png)
+<img src="https://github.com/itachiliu/Yeti-Project/blob/master/DM_pic/image-20200630144443811.png" height="33%" width="33%" />
 
 ### **4. Threshold Signature**
 
@@ -333,25 +334,25 @@ Consensus reaching method is consistent with IP information list method
 
 ​     HSM provides tamper proof and tamper evidence functions. It is used in threshold signatures and is responsible for generating and storing keys used to sign DNS zone files. The management of HSM is carried out by DMMC, and two HSMs are set up to achieve high availability for the system.
 
-![image-20200630144627623](https://github.com/itachiliu/Yeti-Project/blob/master/DM_pic/image-20200630144627623.png)
+<img src="https://github.com/itachiliu/Yeti-Project/blob/master/DM_pic/image-20200630144627623.png" height="33%" width="33%" />
 
 #### **4.2** **Threshold Signature**
 
    The Primary node uses the (t, n) threshold signature method to generate n private key shares ski through HSM and distribute to each node
 
-![image-20200630144741848](https://github.com/itachiliu/Yeti-Project/blob/master/DM_pic/image-20200630144741848.png)
+<img src="https://github.com/itachiliu/Yeti-Project/blob/master/DM_pic/image-20200630144741848.png"  height="33%" width="33%" />
 
 Each node receives the private key share ski and replies with the confirmation message
 
-![image-20200630144822620](https://github.com/itachiliu/Yeti-Project/blob/master/DM_pic/image-20200630144822620.png)
+<img src="https://github.com/itachiliu/Yeti-Project/blob/master/DM_pic/image-20200630144822620.png"  height="33%" width="33%" />
 
    The Primary node uses the hash digest algorithm to generate a summary for the RR, and distributes the summary to each node
 
-![image-20200630144900456](https://github.com/itachiliu/Yeti-Project/blob/master/DM_pic/image-20200630144900456.png)
+<img src="https://github.com/itachiliu/Yeti-Project/blob/master/DM_pic/image-20200630144900456.png"  height="33%" width="33%" />
 
    Each node uses the private key share signature, returns the signed summary to the HSM, forms a complete signature, and stores the signed file to the Primary node
 
-![image-20200630144930479](https://github.com/itachiliu/Yeti-Project/blob/master/DM_pic/image-20200630144930479.png)
+<img src="https://github.com/itachiliu/Yeti-Project/blob/master/DM_pic/image-20200630144930479.png" height="33%" width="33%" />
 
 #### **4.3 Key Management**
 
@@ -361,7 +362,7 @@ Each node receives the private key share ski and replies with the confirmation m
 
 ​    DNSSEC uses the short-term key ZSK to periodically calculate the signatures of DNS records, while using the long-term key KSK to calculate the signature on ZSK. Therefore, KSK is saved to HSM for a period of three years.
 
-![image-20200630145008945](https://github.com/itachiliu/Yeti-Project/blob/master/DM_pic/image-20200630145008945.png)
+<img src="https://github.com/itachiliu/Yeti-Project/blob/master/DM_pic/image-20200630145008945.png" height="33%" width="33%" />
 
 ### **5. Signed Root Zone File Synchronization**
 
@@ -383,7 +384,7 @@ e. Each node backs up the old version and loads the new version
 
 Note: All nodes of the signed file will be distributed, regardless of whether the previous node correctly obtained the file
 
-![image-20200630145150478](https://github.com/itachiliu/Yeti-Project/blob/master/DM_pic/image-20200630145150478.png)
+<img src="https://github.com/itachiliu/Yeti-Project/blob/master/DM_pic/image-20200630145150478.png" height="33%" width="33%" />
 
 ### **6. DM and Root Server Synchronization**
 
@@ -397,7 +398,7 @@ Note: All nodes of the signed file will be distributed, regardless of whether th
 
 ​    DM and root server are merged to replace root server. The root server and the DM system are different processes. The zone transfer between the root server and the DM only occurs on the local machine, which greatly improves the transmission efficiency and success rate, and also reduces the synchronization time. However, as the DM expands, the root server expands accordingly, leading to an increase in packet length.
 
-![image-20200630145305507](https://github.com/itachiliu/Yeti-Project/blob/master/DM_pic/image-20200630145305507.png)
+<img src="https://github.com/itachiliu/Yeti-Project/blob/master/DM_pic/image-20200630145305507.png" height="33%" width="33%" />
 
 ### **7. DM Security Design**
 
@@ -411,4 +412,4 @@ Note: All nodes of the signed file will be distributed, regardless of whether th
 
    Taking the Primary node as an example, the control message is signed with the Primary node's private key. Each DM has a public key corresponding to the Primary node. When the message signed by the Primary node's private key is sent to the DM, the DM uses the Primary node's public key for identity verification that the update messages have been sent are sent by the Primary node.
 
-![image-20200630145442562](https://github.com/itachiliu/Yeti-Project/blob/master/DM_pic/image-20200630145442562.png)
+<img src="https://github.com/itachiliu/Yeti-Project/blob/master/DM_pic/image-20200630145442562.png" height="33%" width="33%" />
