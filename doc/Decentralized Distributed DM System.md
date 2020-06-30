@@ -38,79 +38,7 @@ www.yeti-dns.org
 
 ## **CONTENTS**
 
-### **1. Project Overview** 
-
-     • 1.1 Background 
-     
-     • 1.2 Project Overview 
-     
-     • 1.3 DMMC Introduction 
-     
-     • 1.4 Network Topology and Algorithms 
-     
-     • 1.5 Architecture 
-     
-     • 1.6 Running ProcedureExample 
-
-### **2. DM Network**
-
-     • 2.1 Network Initialization 
-     
-     • 2.2 Election 
-     
-     • 2.3 Reward and Punishment 
-     
-     • 2.4 Heartbeat 
-     
-     • 2.5 DM Joining Process  
-     
-     • 2.6 DM Withdraw Process  
-     
-     • 2.7 DM Kick-out Process 
-     
-     • 2.8 DM Update Process
-
-### **3. Zone File Generation**
-
-```
- • 3.1 Acquisition of Zone File 
-
- • 3.2 Zone File Generation Specification 
-
- • 3.3 Consensus on Zone File 
-
- • 3.4 File Synchronization 
-```
-
-### **4. Threshold Signature**
-
-```
- • 4.1 HSM 
-
- • 4.2 Threshold Signature 
- 
- • 4.3 Key Management 
-```
-
-### **5. Signed Root Zone File Synchronization**
-
-```
- • 5.1 SignedRoot Zone File Synchronization 
-```
-
-### **6. DM and Root Server Synchronization** 
-
-```
- • 6.1 Root Server and DM Synchronization Scheme
-```
-
-### **7. DM Security Design**
-
-```
-• 7.1 Security Consideration
-```
-
-
+[TOC]
 
 ### **1. Project Overview** 
 
@@ -118,11 +46,11 @@ www.yeti-dns.org
 
 ​        Yeti Project Phase-1 adopts 3DM scheme to enhance system redundancy and DM management mechanism, but there is still room for optimization： 
 
-1. Decentralization: 3 DM management rights are relatively independent, and decentralization is not complete enough 
+- Decentralization: 3 DM management rights are relatively independent, and decentralization is not complete enough 
 
-2. Message is too long: 3 DM uses multiple DNSKEY, DNSKEY redundancy to increase the length of the response message
+- Message is too long: 3 DM uses multiple DNSKEY, DNSKEY redundancy to increase the length of the response message
 
-3. Others ：3 DM may cause zone file to fork
+- Others ：3 DM may cause zone file to fork
 
    **Project details** ：
 
@@ -134,47 +62,48 @@ www.yeti-dns.org
 
 #### **1.2 Project Overview**
 
-​        The Yeti Project Phase-2 is based on a P2P network and designs a new decentralized distributed DM system.
+   The Yeti Project Phase-2 is based on a P2P network and designs a new decentralized distributed DM system.
 
-The system design has the following characteristics:
+   The system design has the following characteristics:
 
-  **1. Decentralized, no central node, each node needs to reach a consensus when performing operations, the Primary node is the executor, and has no special authority**
+-   **Decentralized, no central node, each node needs to reach a consensus when performing operations, the Primary node is the executor, and has no special authority**
 
-  **2. Scalable，Increase system redundancy**
+-   **Scalable，Increase system redundancy**
 
-  **3. Using threshold signature (TS) technology to reduce the number of DNSKEY**
+-   **Using threshold signature (TS) technology to reduce the number of DNSKEY**
 
-  **4. Introduced DM Management Committee (DMMC), responsible for transaction management**
+-   **Introduced DM Management Committee (DMMC), responsible for transaction management**
+
 
 ![image-20200630133746237](https://github.com/itachiliu/Yeti-Project/blob/master/DM_pic/image-20200630133746237.png)
 
-#### 1.3 DMMC Introduction
+#### **1.3 DMMC Introduction**
 
-​        DMMC is an organization that manages DM function and is composed of organizations who run DM. In the committee, all members participate in decision-making and planning. All the committee’s decisions are discussed collectively to avoid sovereign of power.
+   DMMC is an organization that manages DM function and is composed of organizations who run DM. In the committee, all members participate in decision-making and planning. All the committee’s decisions are discussed collectively to avoid sovereign of power.
 
-DMMC's responsibilities include but are not limited to the following:
+   DMMC's responsibilities include but are not limited to the following:
 
-1. pprove the joining of new nodes
+- pprove the joining of new nodes
 
-2. Approve the exit of the node
+- Approve the exit of the node
 
-3. Approve the update of node information
+- Approve the update of node information
 
-4. Formulate KSK's rotation cycle
+- Formulate KSK's rotation cycle
 
-5. HSM management
+- HSM management
 
 ![image-20200630134314020](https://github.com/itachiliu/Yeti-Project/blob/master/DM_pic/image-20200630134314020.png)
 
 #### **1.4 Network Topology and Algorithm**
 
-​        Yeti Project phase-2 system design draws on semi-distributed P2P network topology and blockchain consortium technology principles. The proposed Raft-like election algorithm and threshold signature algorithm are used to implement a decentralized multi-party trust distributed DM solution.   
+   Yeti Project phase-2 system design draws on semi-distributed P2P network topology and blockchain consortium technology principles. The proposed Raft-like election algorithm and threshold signature algorithm are used to implement a decentralized multi-party trust distributed DM solution.   
 
-​        The semi-distributed network topology employs the advantages of a centralized P2P topology and a fully distributed P2P unstructured topology. It has good performance and scalability, and can be easily managed, but it is highly dependent on the Primary node，and the Raft algorithm solves the problem. The primary node dependency problem ensures that in the event of a failure of the Primary node, a new Primary node is elected to make the system function normally. 
+   The semi-distributed network topology employs the advantages of a centralized P2P topology and a fully distributed P2P unstructured topology. It has good performance and scalability, and can be easily managed, but it is highly dependent on the Primary node，and the Raft algorithm solves the problem. The primary node dependency problem ensures that in the event of a failure of the Primary node, a new Primary node is elected to make the system function normally. 
 
-​        The system uses the admission mechanism and consensus mechanism of the blockchain consortium chain. The consortium chain refers to the blockchain whose consensus process is controlled by pre-selected nodes. Access is determined by the institutions in the alliance chain. The resolution is determined by collective voting and the practical Byzantine algorithm determines whether the resolution works.
+​    The system uses the admission mechanism and consensus mechanism of the blockchain consortium chain. The consortium chain refers to the blockchain whose consensus process is controlled by pre-selected nodes. Access is determined by the institutions in the alliance chain. The resolution is determined by collective voting and the practical Byzantine algorithm determines whether the resolution works.
 
-​        Threshold signature effectively reduces the number of DNSKEY.
+​    Threshold signature effectively reduces the number of DNSKEY.
 
 ![image-20200630134539138](https://github.com/itachiliu/Yeti-Project/blob/master/DM_pic/image-20200630134539138.png)
 
@@ -190,9 +119,9 @@ DMMC's responsibilities include but are not limited to the following:
 
 #### **2.1 Network Initialization**
 
-1.DM loads the initial configuration file, which is a persistent list
+a. DM loads the initial configuration file, which is a persistent list
 
-2.File timer initialization
+b. File timer initialization
 
 The configuration file format is as follows ：
 
@@ -209,25 +138,27 @@ The configuration file format is as follows ：
 
 ​    The system intends to use Raft's election and heartbeat mechanism. A new election rollover mechanism is added. The term of office is set to a fixed value. If the term is exceeded, the election is re-elected.
 
-1. Each DM starts a random election timeout timer, time is random
+a. Each DM starts a random election timeout timer, time is random
 
-   ![image-20200630140143518](https://github.com/itachiliu/Yeti-Project/blob/master/DM_pic/image-20200630140143518.png)
+![image-20200630140143518](https://github.com/itachiliu/Yeti-Project/blob/master/DM_pic/image-20200630140143518.png)
 
-2. The first node to trigger the timer becomes a candidate
+b. The first node to trigger the timer becomes a candidate
 
 ![image-20200630140425599](https://github.com/itachiliu/Yeti-Project/blob/master/DM_pic/image-20200630140425599.png)
 
-3. Candidate vote for himself and initiate votes against other candidates
+c. Candidate vote for himself and initiate votes against other candidates
 
 ![image-20200630142551444](https://github.com/itachiliu/Yeti-Project/blob/master/DM_pic/image-20200630142551444.png)
 
-4. Follower vote according to FCFS principles
+d. Follower vote according to FCFS principles
 
 ![image-20200630142831576](https://github.com/itachiliu/Yeti-Project/blob/master/DM_pic/image-20200630142920539.png)
 
-5. More than half of the votes, the election was successful
+e. More than half of the votes, the election was successful
 
-   ![image-20200630142920539](https://github.com/itachiliu/Yeti-Project/blob/master/DM_pic/image-20200630142920539.png)
+![image-20200630142920539](https://github.com/itachiliu/Yeti-Project/blob/master/DM_pic/image-20200630142920539.png)
+
+**Reference** ：[http://thesecretlivesofdata.com/raft/#overview](http://thesecretlivesofdata.com/raft/)
 
 #### **2.3** **Reward and Punishment**
 
@@ -303,15 +234,15 @@ The configuration file format is as follows ：
 
 Each node processes meta information
 
-•Eliminate IANA meta information
+• Eliminate IANA meta information
 
 ​     DNSSEC (NSEC, RRSIG, DNSKEY) 
 
 ​     SOA, NS recording
 
-•Keep top-level domain information
+• Keep top-level domain information
 
-•Add Yeti meta information
+• Add Yeti meta information
 
 ​    Yeti SOA recording
 
@@ -401,15 +332,15 @@ Each node receives the private key share ski and replies with the confirmation m
 
 ​    To prevent the zone file from bifurcation, after the Primary node generates the correct signature file, then it will be synchronized to each node to ensure that the version of each node is unified and effective.
 
-1. Primary node initiates heartbeat detection mechanism
+a. Primary node initiates heartbeat detection mechanism
 
-2. Regular node response
+b. Regular node response
 
-3. The Primary node determines the working status of each node and distributes signature files to all nodes
+c. The Primary node determines the working status of each node and distributes signature files to all nodes
 
-4. Each node completes the file transfer and replies with a confirmation message
+d. Each node completes the file transfer and replies with a confirmation message
 
-5. Each node backs up the old version and loads the new version
+e. Each node backs up the old version and loads the new version
 
 Note: All nodes of the signed file will be distributed, regardless of whether the previous node correctly obtained the file
 
