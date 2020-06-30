@@ -90,7 +90,7 @@ www.yeti-dns.org
 
    ​        https://yeti-dns.org/yeti/blog/2018/08/13/fault-tolerant-distribution-master-architecture.html 
 
-<img src="https://github.com/itachiliu/Yeti-Project/blob/master/DM_pic/image-20200630133005277.png" width="400" height="400" style="zoom:33%;"  />
+<img src="https://github.com/itachiliu/Yeti-Project/blob/master/DM_pic/image-20200630133005277.png" height="50%" width="50%"  />
 
 
 
