@@ -114,7 +114,7 @@ www.yeti-dns.org
 
   
 
-<div align=center><img src="https://github.com/itachiliu/Yeti-Project/blob/master/DM_pic/image-20200630133746237.png" alt="image-20200630133746237" height="33%" width="33%" />
+<div align=center<img src="https://github.com/itachiliu/Yeti-Project/blob/master/DM_pic/image-20200630133746237.png" alt="image-20200630133746237" height="33%" width="33%" />>
 
 #### **1.3 DMMC Introduction**
 
