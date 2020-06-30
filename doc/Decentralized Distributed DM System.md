@@ -130,7 +130,7 @@ www.yeti-dns.org
 
    ​        https://yeti-dns.org/yeti/blog/2018/08/13/fault-tolerant-distribution-master-architecture.html 
 
-![image-20200630133005277](C:\Users\10028\AppData\Roaming\Typora\typora-user-images\image-20200630133005277.png)
+![image-20200630133005277](https://github.com/itachiliu/Yeti-Project/blob/master/DM_pic/image-20200630133005277.png)
 
 #### **1.2 Project Overview**
 
