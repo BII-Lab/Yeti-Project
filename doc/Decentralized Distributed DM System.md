@@ -148,11 +148,11 @@ www.yeti-dns.org
 
 #### **1.5** **Architecture**
 
-<img src="https://github.com/itachiliu/Yeti-Project/blob/master/DM_pic/image-20200630134725600.png" alt="image-20200630134725600.png" height="33%" width="33%" />
+<img src="https://github.com/itachiliu/Yeti-Project/blob/master/DM_pic/image-20200630134725600.png" alt="image-20200630134725600.png" height="70%" width="70%" />
 
 #### **1.6** **Running** **Procedure** **Example**
 
-<img src="https://github.com/itachiliu/Yeti-Project/blob/master/DM_pic/image-20200630135548363.png" alt="image-20200630135548363.png" height="33%" width="33%" />
+<img src="https://github.com/itachiliu/Yeti-Project/blob/master/DM_pic/image-20200630135548363.png" alt="image-20200630135548363.png" height="70%" width="70%" />
 
 ### **2 DM Network**
 
@@ -179,24 +179,24 @@ The configuration file format is as follows ：
 
 a. Each DM starts a random election timeout timer, time is random
 
-<img src="https://github.com/itachiliu/Yeti-Project/blob/master/DM_pic/image-20200630140143518.png" alt="image-20200630140143518.png" height="33%" width="33%" />
+<img src="https://github.com/itachiliu/Yeti-Project/blob/master/DM_pic/image-20200630140143518.png" alt="image-20200630140143518.png" height="10%" width="10%" />
 
 b. The first node to trigger the timer becomes a candidate
 
-<img src="https://github.com/itachiliu/Yeti-Project/blob/master/DM_pic/image-20200630140425599.png" height="33%" width="33%" />
+<img src="https://github.com/itachiliu/Yeti-Project/blob/master/DM_pic/image-20200630140425599.png" height="10%" width="10%" />
 
 c. Candidate vote for himself and initiate votes against other candidates
 
-<img src="https://github.com/itachiliu/Yeti-Project/blob/master/DM_pic/image-20200630142551444.png" height="33%" width="33%" />
+<img src="https://github.com/itachiliu/Yeti-Project/blob/master/DM_pic/image-20200630142551444.png" height="10%" width="10%" />
 
 
 d. Follower vote according to FCFS principles
 
-<img src="https://github.com/itachiliu/Yeti-Project/blob/master/DM_pic/image-20200630142920539.png" height="33%" width="33%" />
+<img src="https://github.com/itachiliu/Yeti-Project/blob/master/DM_pic/image-20200630142920539.png" height="10%" width="10%" />
 
 e. More than half of the votes, the election was successful
 
-<img src="https://github.com/itachiliu/Yeti-Project/blob/master/DM_pic/image-20200630142920539.png" height="33%" width="33%" />
+<img src="https://github.com/itachiliu/Yeti-Project/blob/master/DM_pic/image-20200630142920539.png" height="10%" width="10%" />
 
 **Reference** ：[http://thesecretlivesofdata.com/raft/#overview](http://thesecretlivesofdata.com/raft/)
 
@@ -214,7 +214,7 @@ e. More than half of the votes, the election was successful
 
 #### **2.4 Heartbeat**
 
-<img src="https://github.com/itachiliu/Yeti-Project/blob/master/DM_pic/image-20200630143351200.png" height="33%" width="33%" />
+<img src="https://github.com/itachiliu/Yeti-Project/blob/master/DM_pic/image-20200630143351200.png" height="70%" width="70%" />
 
    The working state of each node is maintained by the heartbeat detection mechanism. If the non-Primary node fails, the heartbeat detection mechanism continues to operate, and the ordinary node does not respond. If the Primary node fails, one of its supporters continues to vote as a candidate to become a Primary node.
 
@@ -262,7 +262,7 @@ e. More than half of the votes, the election was successful
 
 #### **3.1** **Acquisition of Zone File**
 
-<img src="https://github.com/itachiliu/Yeti-Project/blob/master/DM_pic/image-20200630144116410.png" height="33%" width="33%" />
+<img src="https://github.com/itachiliu/Yeti-Project/blob/master/DM_pic/image-20200630144116410.png" height="50%" width="50%" />
 
    To ensure that all DM zone file versions are identical and to obtain zone files at the same time, a file fetch timer is required; to ensure that the DM can disconnect from IANA and prevent the connection from taking too long, a file transfer timeout timer is required.
 
@@ -340,19 +340,19 @@ Consensus reaching method is consistent with IP information list method
 
    The Primary node uses the (t, n) threshold signature method to generate n private key shares ski through HSM and distribute to each node
 
-<img src="https://github.com/itachiliu/Yeti-Project/blob/master/DM_pic/image-20200630144741848.png"  height="33%" width="33%" />
+<img src="https://github.com/itachiliu/Yeti-Project/blob/master/DM_pic/image-20200630144741848.png"  height="10%" width="10%" />
 
 Each node receives the private key share ski and replies with the confirmation message
 
-<img src="https://github.com/itachiliu/Yeti-Project/blob/master/DM_pic/image-20200630144822620.png"  height="33%" width="33%" />
+<img src="https://github.com/itachiliu/Yeti-Project/blob/master/DM_pic/image-20200630144822620.png"  height="10%" width="10%" />
 
    The Primary node uses the hash digest algorithm to generate a summary for the RR, and distributes the summary to each node
 
-<img src="https://github.com/itachiliu/Yeti-Project/blob/master/DM_pic/image-20200630144900456.png"  height="33%" width="33%" />
+<img src="https://github.com/itachiliu/Yeti-Project/blob/master/DM_pic/image-20200630144900456.png"  height="10%" width="10%" />
 
    Each node uses the private key share signature, returns the signed summary to the HSM, forms a complete signature, and stores the signed file to the Primary node
 
-<img src="https://github.com/itachiliu/Yeti-Project/blob/master/DM_pic/image-20200630144930479.png" height="33%" width="33%" />
+<img src="https://github.com/itachiliu/Yeti-Project/blob/master/DM_pic/image-20200630144930479.png" height="10%" width="10%" />
 
 #### **4.3 Key Management**
 
