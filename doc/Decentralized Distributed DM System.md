@@ -338,7 +338,7 @@ Consensus reaching method is consistent with IP information list method
 
    Each node uses the private key share signature, returns the signed summary to the HSM, forms a complete signature, and stores the signed file to the Primary node
 
-<div align=center><img src="https://github.com/itachiliu/Yeti-Project/blob/master/DM_pic/image-20200701102809032.png" height="70%" width="70%" /></div>
+<div align=center><img src="https://github.com/itachiliu/Yeti-Project/blob/master/DM_pic/image-20200701102809032.png" height="100%" width="100%" /></div>
 
 #### **4.3 Key Management**
 
