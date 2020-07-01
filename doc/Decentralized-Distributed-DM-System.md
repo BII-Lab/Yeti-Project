@@ -82,9 +82,9 @@ Yeti Project Phase-1 adopts 3DM scheme to enhance system redundancy and DM manag
 
 - Message is too long: 3 DM uses multiple DNSKEY, DNSKEY redundancy to increase the length of the response message
 
-- Others ：3 DM may cause zone file to fork
+- Others: 3 DM may cause zone file to fork
 
-   **Project details** ：
+   **Project details**：
 
    ​        https://github.com/BII-Lab/yeti-Project/blob/master/doc/yeti-DM-Sync-MZSK.md                               
 
@@ -122,7 +122,7 @@ DMMC is an organization that manages DM function and is composed of organization
 
 DMMC's responsibilities include but are not limited to the following:
 
-- pprove the joining of new nodes
+- Approve the joining of new nodes
 
 - Approve the exit of the node
 
@@ -162,7 +162,7 @@ a. DM loads the initial configuration file, which is a persistent list
 
 b. File timer initialization
 
-The configuration file format is as follows ：
+The configuration file format is as follows：
 
 | **name** | **address** | **point** | **option** |
 | -------- | ----------- | --------- | ---------- |
@@ -266,35 +266,38 @@ The file fetch timer starts after the system starts, the file transfer timer sta
 
 Each node processes meta information
 
-• Eliminate IANA meta information
+- Eliminate IANA meta information
 
-​     DNSSEC (NSEC, RRSIG, DNSKEY) 
 
-​     SOA, NS recording
+​       DNSSEC (NSEC, RRSIG, DNSKEY) 
 
-• Keep top-level domain information
+​       SOA, NS recording
 
-• Add Yeti meta information
+- Keep top-level domain information
 
-​    Yeti SOA recording
+- Add Yeti meta information
 
-​    Yeti NS、RRset recording 
+
+​       Yeti SOA recording
+
+​       Yeti NS、RRset recording 
 
 When adding Yeti meta information, under the premise of ensuring the same rules for generating zone files, there are two following schemes:
 
-Generate zone files for each node, then compare (recommended)
+- Generate zone files for each node, then compare (recommended)
 
-Primary node generates zone files and distributes
+- Primary node generates zone files and distributes
 
-After the meta information processing is completed, a complete zone file is generated
+
+After the meta information processing is completed, a complete zone file is generated.
+
+<div align=center><img src="https://github.com/itachiliu/Yeti-Project/blob/master/DM_pic/image-20200630144255931.png" height="33%" width="33%" /></div>
 
 Note: The root zone meta information and security certificate are stored in each node to ensure that the file of each node is consistent, and the update uses a delay mechanism, which is the same as the 3DM scheme mechanism.
 
 **Detail** ：https://yeti-dns.org/alg-roll-test.html
 
-Consensus reaching method is consistent with IP information list method
-
-<div align=center><img src="https://github.com/itachiliu/Yeti-Project/blob/master/DM_pic/image-20200630144255931.png" height="33%" width="33%" /></div>
+Consensus reaching method is consistent with IP information list method.
 
 #### **3.3 Consensus on Zone File**
 
@@ -330,13 +333,13 @@ HSM provides tamper proof and tamper evidence functions. It is used in threshold
 
 #### **4.2** **Threshold Signature**
 
-The Primary node uses the (t, n) threshold signature method to generate n private key shares ski through HSM and distribute to each node
+a. The Primary node uses the (t, n) threshold signature method to generate n private key shares ski through HSM and distribute to each node
 
-Each node receives the private key share ski and replies with the confirmation message
+b. Each node receives the private key share ski and replies with the confirmation message
 
-The Primary node uses the hash digest algorithm to generate a summary for the RR, and distributes the summary to each node
+c. The Primary node uses the hash digest algorithm to generate a summary for the RR, and distributes the summary to each node
 
-Each node uses the private key share signature, returns the signed summary to the HSM, forms a complete signature, and stores the signed file to the Primary node
+d. Each node uses the private key share signature, returns the signed summary to the HSM, forms a complete signature, and stores the signed file to the Primary node
 
 <div align=center><img src="https://github.com/itachiliu/Yeti-Project/blob/master/DM_pic/image-20200701102809032.png" height="100%" width="100%" /></div>
 
@@ -368,9 +371,9 @@ d. Each node completes the file transfer and replies with a confirmation message
 
 e. Each node backs up the old version and loads the new version
 
-Note: All nodes of the signed file will be distributed, regardless of whether the previous node correctly obtained the file
-
 <div align=center><img src="https://github.com/itachiliu/Yeti-Project/blob/master/DM_pic/image-20200630145150478.png" height="33%" width="33%" /></div>
+
+Note: All nodes of the signed file will be distributed, regardless of whether the previous node correctly obtained the file
 
 ### **6. DM and Root Server Synchronization**
 
