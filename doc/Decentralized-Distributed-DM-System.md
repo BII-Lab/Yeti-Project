@@ -309,7 +309,7 @@ Each node adopts the hash algorithm to generate a summary for the zone file, def
 
 The decision-making mechanism draws on the practical Byzantine algorithm (PBFT). The core theory of the PBFT algorithm is n >= 3f + 1, n represents the number of nodes, f represents the number of inconsistent hash digests, and determines whether the expression is true:
 
-**Ture**：Primary node distributes the correct zone file to each node
+**Ture**: Primary node distributes the correct zone file to each node
 
 **False**: Primary node gives up operation and sends an acquisition message to all nodes
 
