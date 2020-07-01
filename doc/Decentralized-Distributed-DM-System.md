@@ -104,7 +104,7 @@ The system design has the following characteristics:
 
 -   **Decentralized, no central node, each node needs to reach a consensus when performing operations, the Primary node is the executor, and has no special authority**
 
--   **Scalable,increase system redundancy**
+-   **Scalable, increase system redundancy**
 
 -   **Using threshold signature (TS) technology to reduce the number of DNSKEY**
 
