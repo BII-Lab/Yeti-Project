@@ -171,7 +171,7 @@ The configuration file format is as follows ：
 
 <div align=center><img src="https://github.com/itachiliu/Yeti-Project/blob/master/DM_pic/image-20200630135904178.png" alt="image-20200630135904178.png" height="33%" width="33%" /></div>
 
-#### **2.2 Election Part** 
+#### **2.2 Election **
 
 **Primary election**
 
@@ -179,24 +179,16 @@ The configuration file format is as follows ：
 
 a. Each DM starts a random election timeout timer, time is random
 
-<div align=center><img src="https://github.com/itachiliu/Yeti-Project/blob/master/DM_pic/image-20200630140143518.png" alt="image-20200630140143518.png" height="10%" width="10%" /></div>
-
 b. The first node to trigger the timer becomes a candidate
 
-<div align=center><img src="https://github.com/itachiliu/Yeti-Project/blob/master/DM_pic/image-20200630140425599.png" height="10%" width="10%" /></div>
-
 c. Candidate vote for himself and initiate votes against other candidates
-
-<div align=center><img src="https://github.com/itachiliu/Yeti-Project/blob/master/DM_pic/image-20200630142551444.png" height="10%" width="10%" /></div>
 
 
 d. Follower vote according to FCFS principles
 
-<div align=center><img src="https://github.com/itachiliu/Yeti-Project/blob/master/DM_pic/image-20200630142920539.png" height="10%" width="10%" /></div>
-
 e. More than half of the votes, the election was successful
 
-<div align=center><img src="https://github.com/itachiliu/Yeti-Project/blob/master/DM_pic/image-20200630142920539.png" height="10%" width="10%" /></div>
+<div align=center><img src="https://github.com/itachiliu/Yeti-Project/blob/master/DM_pic/image-20200701101856411.png" height="10%" width="10%" /></div>
 
 **Reference** ：[http://thesecretlivesofdata.com/raft/#overview](http://thesecretlivesofdata.com/raft/)
 
@@ -340,19 +332,13 @@ Consensus reaching method is consistent with IP information list method
 
    The Primary node uses the (t, n) threshold signature method to generate n private key shares ski through HSM and distribute to each node
 
-<div align=center><img src="https://github.com/itachiliu/Yeti-Project/blob/master/DM_pic/image-20200630144741848.png"  height="20%" width="20%" /></div>
-
-Each node receives the private key share ski and replies with the confirmation message
-
-<div align=center><img src="https://github.com/itachiliu/Yeti-Project/blob/master/DM_pic/image-20200630144822620.png"  height="20%" width="20%" /></div>
+   Each node receives the private key share ski and replies with the confirmation message
 
    The Primary node uses the hash digest algorithm to generate a summary for the RR, and distributes the summary to each node
 
-<div align=center><img src="https://github.com/itachiliu/Yeti-Project/blob/master/DM_pic/image-20200630144900456.png"  height="20%" width="20%" /></div>
-
    Each node uses the private key share signature, returns the signed summary to the HSM, forms a complete signature, and stores the signed file to the Primary node
 
-<div align=center><img src="https://github.com/itachiliu/Yeti-Project/blob/master/DM_pic/image-20200630144930479.png" height="20%" width="20%" /></div>
+<div align=center><img src="https://github.com/itachiliu/Yeti-Project/blob/master/DM_pic/image-20200701102809032.png" height="20%" width="20%" /></div>
 
 #### **4.3 Key Management**
 
