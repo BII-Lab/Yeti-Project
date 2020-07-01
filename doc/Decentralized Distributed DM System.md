@@ -171,7 +171,7 @@ The configuration file format is as follows ：
 
 <div align=center><img src="https://github.com/itachiliu/Yeti-Project/blob/master/DM_pic/image-20200630135904178.png" alt="image-20200630135904178.png" height="33%" width="33%" /></div>
 
-#### **2.2 Election **
+#### 2.2 Election 
 
 **Primary election**
 
@@ -188,7 +188,7 @@ d. Follower vote according to FCFS principles
 
 e. More than half of the votes, the election was successful
 
-<div align=center><img src="https://github.com/itachiliu/Yeti-Project/blob/master/DM_pic/image-20200701101856411.png" height="50%" width="50%" /></div>
+<div align=center><img src="https://github.com/itachiliu/Yeti-Project/blob/master/DM_pic/image-20200701101856411.png" height="100%" width="100%" /></div>
 
 **Reference** ：[http://thesecretlivesofdata.com/raft/#overview](http://thesecretlivesofdata.com/raft/)
 
@@ -338,7 +338,7 @@ Consensus reaching method is consistent with IP information list method
 
    Each node uses the private key share signature, returns the signed summary to the HSM, forms a complete signature, and stores the signed file to the Primary node
 
-<div align=center><img src="https://github.com/itachiliu/Yeti-Project/blob/master/DM_pic/image-20200701102809032.png" height="50%" width="50%" /></div>
+<div align=center><img src="https://github.com/itachiliu/Yeti-Project/blob/master/DM_pic/image-20200701102809032.png" height="70%" width="70%" /></div>
 
 #### **4.3 Key Management**
 
