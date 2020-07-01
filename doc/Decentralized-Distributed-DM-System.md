@@ -79,16 +79,14 @@ www.yeti-dns.org
 Yeti Project Phase-1 adopts 3DM scheme to enhance system redundancy and DM management mechanism, but there is still room for optimization： 
 
 - Decentralization: 3 DM management rights are relatively independent, and decentralization is not complete enough 
-
 - Message is too long: 3 DM uses multiple DNSKEY, DNSKEY redundancy to increase the length of the response message
-
 - Others: 3 DM may cause zone file to fork
 
-   **Project details**：
+**Project details**：
 
-   ​        https://github.com/BII-Lab/yeti-Project/blob/master/doc/yeti-DM-Sync-MZSK.md                               
+​        https://github.com/BII-Lab/yeti-Project/blob/master/doc/yeti-DM-Sync-MZSK.md                               
 
-   ​        https://yeti-dns.org/yeti/blog/2018/08/13/fault-tolerant-distribution-master-architecture.html 
+​        https://yeti-dns.org/yeti/blog/2018/08/13/fault-tolerant-distribution-master-architecture.html 
 
 <div align=center><img src="https://github.com/itachiliu/Yeti-Project/blob/master/DM_pic/image-20200630133005277.png" alt="image-20200630133005277" height="50%" width="50%"  /></div>
 
@@ -268,19 +266,17 @@ Each node processes meta information
 
 - Eliminate IANA meta information
 
+  ​       DNSSEC (NSEC, RRSIG, DNSKEY) 
 
-​       DNSSEC (NSEC, RRSIG, DNSKEY) 
-
-​       SOA, NS recording
+  ​       SOA, NS recording
 
 - Keep top-level domain information
 
 - Add Yeti meta information
 
+  ​       Yeti SOA recording
 
-​       Yeti SOA recording
-
-​       Yeti NS、RRset recording 
+  ​       Yeti NS、RRset recording 
 
 When adding Yeti meta information, under the premise of ensuring the same rules for generating zone files, there are two following schemes:
 
