@@ -104,7 +104,7 @@ The system design has the following characteristics:
 
 -   **Decentralized, no central node, each node needs to reach a consensus when performing operations, the Primary node is the executor, and has no special authority**
 
--   **Scalable，Increase system redundancy**
+-   **Scalable,Increase system redundancy**
 
 -   **Using threshold signature (TS) technology to reduce the number of DNSKEY**
 
@@ -188,7 +188,7 @@ e. More than half of the votes, the election was successful
 
 <div align=center><img src="https://github.com/itachiliu/Yeti-Project/blob/master/DM_pic/image-20200701101856411.png" height="100%" width="100%" /></div>
 
-**Reference** ：[http://thesecretlivesofdata.com/raft/#overview](http://thesecretlivesofdata.com/raft/)
+**Reference**：[http://thesecretlivesofdata.com/raft/#overview](http://thesecretlivesofdata.com/raft/)
 
 #### **2.3** **Reward and Punishment**
 
@@ -291,7 +291,7 @@ After the meta information processing is completed, a complete zone file is gene
 
 Note: The root zone meta information and security certificate are stored in each node to ensure that the file of each node is consistent, and the update uses a delay mechanism, which is the same as the 3DM scheme mechanism.
 
-**Detail** ：https://yeti-dns.org/alg-roll-test.html
+**Detail**：https://yeti-dns.org/alg-roll-test.html
 
 Consensus reaching method is consistent with IP information list method.
 
@@ -311,7 +311,7 @@ The decision-making mechanism draws on the practical Byzantine algorithm (PBFT).
 
 **Ture**：Primary node distributes the correct zone file to each node
 
-**False** : Primary node gives up operation and sends an acquisition message to all nodes
+**False**: Primary node gives up operation and sends an acquisition message to all nodes
 
 <div align=center><img src="https://github.com/itachiliu/Yeti-Project/blob/master/DM_pic/image-20200630144443811.png" height="33%" width="33%" /></div>
 
