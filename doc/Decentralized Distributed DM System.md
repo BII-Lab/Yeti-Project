@@ -188,7 +188,7 @@ d. Follower vote according to FCFS principles
 
 e. More than half of the votes, the election was successful
 
-<div align=center><img src="https://github.com/itachiliu/Yeti-Project/blob/master/DM_pic/image-20200701101856411.png" height="10%" width="10%" /></div>
+<div align=center><img src="https://github.com/itachiliu/Yeti-Project/blob/master/DM_pic/image-20200701101856411.png" height="50%" width="50%" /></div>
 
 **Reference** ：[http://thesecretlivesofdata.com/raft/#overview](http://thesecretlivesofdata.com/raft/)
 
@@ -338,7 +338,7 @@ Consensus reaching method is consistent with IP information list method
 
    Each node uses the private key share signature, returns the signed summary to the HSM, forms a complete signature, and stores the signed file to the Primary node
 
-<div align=center><img src="https://github.com/itachiliu/Yeti-Project/blob/master/DM_pic/image-20200701102809032.png" height="20%" width="20%" /></div>
+<div align=center><img src="https://github.com/itachiliu/Yeti-Project/blob/master/DM_pic/image-20200701102809032.png" height="50%" width="50%" /></div>
 
 #### **4.3 Key Management**
 
