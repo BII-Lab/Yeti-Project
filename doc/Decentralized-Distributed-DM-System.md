@@ -369,7 +369,7 @@ e. Each node backs up the old version and loads the new version
 
 <div align=center><img src="https://github.com/itachiliu/Yeti-Project/blob/master/DM_pic/image-20200630145150478.png" height="33%" width="33%" /></div>
 
-Note: All nodes of the signed file will be distributed, regardless of whether the previous node correctly obtained the file
+Note: All nodes of the signed file will be distributed, regardless of whether the previous node correctly obtained the file.
 
 ### **6. DM and Root Server Synchronization**
 
