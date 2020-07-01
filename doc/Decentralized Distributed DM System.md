@@ -76,7 +76,7 @@ www.yeti-dns.org
 
 #### **1.1 Background**
 
-​        Yeti Project Phase-1 adopts 3DM scheme to enhance system redundancy and DM management mechanism, but there is still room for optimization： 
+Yeti Project Phase-1 adopts 3DM scheme to enhance system redundancy and DM management mechanism, but there is still room for optimization： 
 
 - Decentralization: 3 DM management rights are relatively independent, and decentralization is not complete enough 
 
@@ -100,9 +100,9 @@ www.yeti-dns.org
 
 #### **1.2 Project Overview**
 
-   The Yeti Project Phase-2 is based on a P2P network and designs a new decentralized distributed DM system.
+The Yeti Project Phase-2 is based on a P2P network and designs a new decentralized distributed DM system.
 
-   The system design has the following characteristics:
+The system design has the following characteristics:
 
 -   **Decentralized, no central node, each node needs to reach a consensus when performing operations, the Primary node is the executor, and has no special authority**
 
@@ -118,9 +118,9 @@ www.yeti-dns.org
 
 #### **1.3 DMMC Introduction**
 
-   DMMC is an organization that manages DM function and is composed of organizations who run DM. In the committee, all members participate in decision-making and planning. All the committee’s decisions are discussed collectively to avoid sovereign of power.
+DMMC is an organization that manages DM function and is composed of organizations who run DM. In the committee, all members participate in decision-making and planning. All the committee’s decisions are discussed collectively to avoid sovereign of power.
 
-   DMMC's responsibilities include but are not limited to the following:
+DMMC's responsibilities include but are not limited to the following:
 
 - pprove the joining of new nodes
 
@@ -136,13 +136,13 @@ www.yeti-dns.org
 
 #### **1.4 Network Topology and Algorithm**
 
-   Yeti Project phase-2 system design draws on semi-distributed P2P network topology and blockchain consortium technology principles. The proposed Raft-like election algorithm and threshold signature algorithm are used to implement a decentralized multi-party trust distributed DM solution.   
+Yeti Project phase-2 system design draws on semi-distributed P2P network topology and blockchain consortium technology principles. The proposed Raft-like election algorithm and threshold signature algorithm are used to implement a decentralized multi-party trust distributed DM solution.   
 
-   The semi-distributed network topology employs the advantages of a centralized P2P topology and a fully distributed P2P unstructured topology. It has good performance and scalability, and can be easily managed, but it is highly dependent on the Primary node，and the Raft algorithm solves the problem. The primary node dependency problem ensures that in the event of a failure of the Primary node, a new Primary node is elected to make the system function normally. 
+The semi-distributed network topology employs the advantages of a centralized P2P topology and a fully distributed P2P unstructured topology. It has good performance and scalability, and can be easily managed, but it is highly dependent on the Primary node，and the Raft algorithm solves the problem. The primary node dependency problem ensures that in the event of a failure of the Primary node, a new Primary node is elected to make the system function normally. 
 
-​    The system uses the admission mechanism and consensus mechanism of the blockchain consortium chain. The consortium chain refers to the blockchain whose consensus process is controlled by pre-selected nodes. Access is determined by the institutions in the alliance chain. The resolution is determined by collective voting and the practical Byzantine algorithm determines whether the resolution works.
+The system uses the admission mechanism and consensus mechanism of the blockchain consortium chain. The consortium chain refers to the blockchain whose consensus process is controlled by pre-selected nodes. Access is determined by the institutions in the alliance chain. The resolution is determined by collective voting and the practical Byzantine algorithm determines whether the resolution works.
 
-​    Threshold signature effectively reduces the number of DNSKEY.
+Threshold signature effectively reduces the number of DNSKEY.
 
 <div align=center><img src="https://github.com/itachiliu/Yeti-Project/blob/master/DM_pic/image-20200630134539138.png" alt="image-20200630134539138.png" height="33%" width="33%" /></div>
 
@@ -175,7 +175,7 @@ The configuration file format is as follows ：
 
 **Primary election**
 
-​    The system intends to use Raft's election and heartbeat mechanism. A new election rollover mechanism is added. The term of office is set to a fixed value. If the term is exceeded, the election is re-elected.
+The system intends to use Raft's election and heartbeat mechanism. A new election rollover mechanism is added. The term of office is set to a fixed value. If the term is exceeded, the election is re-elected.
 
 a. Each DM starts a random election timeout timer, time is random
 
@@ -196,11 +196,11 @@ e. More than half of the votes, the election was successful
 
 **Reward and punishment mechanism**
 
-   The primary node initiates sorting, and sorting depends on the principle of proof-of-work-efficiency. When node has high efficiency, then implements a plus point strategy, and if it has low efficiency, then implements a minus point strategy.
+The primary node initiates sorting, and sorting depends on the principle of proof-of-work-efficiency. When node has high efficiency, then implements a plus point strategy, and if it has low efficiency, then implements a minus point strategy.
 
 **Election principle**
 
-   The candidate node depend on the reward and punishment mechanism, and the point value serves as the basic basis of the node ordering principle. The Primary node is selected in the subset with a high point value. The non-subset nodes no longer participate in the election of the master node, but still have the voting power. After the master selection is completed, the node point value is initialized.
+The candidate node depend on the reward and punishment mechanism, and the point value serves as the basic basis of the node ordering principle. The Primary node is selected in the subset with a high point value. The non-subset nodes no longer participate in the election of the master node, but still have the voting power. After the master selection is completed, the node point value is initialized.
 
 <div align=center><img src="https://github.com/itachiliu/Yeti-Project/blob/master/DM_pic/image-20200630143146631.png" height="33%" width="33%" /></div>
 
@@ -208,45 +208,45 @@ e. More than half of the votes, the election was successful
 
 <div align=center><img src="https://github.com/itachiliu/Yeti-Project/blob/master/DM_pic/image-20200630143351200.png" height="70%" width="70%" /></div>
 
-   The working state of each node is maintained by the heartbeat detection mechanism. If the non-Primary node fails, the heartbeat detection mechanism continues to operate, and the ordinary node does not respond. If the Primary node fails, one of its supporters continues to vote as a candidate to become a Primary node.
+The working state of each node is maintained by the heartbeat detection mechanism. If the non-Primary node fails, the heartbeat detection mechanism continues to operate, and the ordinary node does not respond. If the Primary node fails, one of its supporters continues to vote as a candidate to become a Primary node.
 
 #### **2.5 DM** **Joining Process**
 
 **Node discovering**
 
-   When a new node is started, in order to participate in collaborative work, it must have the function of discovering other nodes in the DM network. Since the DM network topology is not based on the geographic location between nodes, the geographic information of each node is completely irrelevant. When a new node is connected, the DM node existing in the network can be randomly selected to connect to it.
+When a new node is started, in order to participate in collaborative work, it must have the function of discovering other nodes in the DM network. Since the DM network topology is not based on the geographic location between nodes, the geographic information of each node is completely irrelevant. When a new node is connected, the DM node existing in the network can be randomly selected to connect to it.
 
-   The DM network supports identity authentication. After the DMCC authentication approves, the corresponding digital certificate is issued to the new node, and the digital certificate is used to confirm the identity.
+The DM network supports identity authentication. After the DMCC authentication approves, the corresponding digital certificate is issued to the new node, and the digital certificate is used to confirm the identity.
 
-   The new node itself has a list of IP addresses of the running DM. At the beginning of the connection, the new node randomly extracts some addresses as a subset and connects in turn until the connection is successful.
+The new node itself has a list of IP addresses of the running DM. At the beginning of the connection, the new node randomly extracts some addresses as a subset and connects in turn until the connection is successful.
 
-   The new node queries the Primary node and publishes its own address information through the Primary node. The other nodes update the IP information list. The new node obtains the Primary node's IP information list to complete the synchronization. The specific steps are shown in the figure.
+The new node queries the Primary node and publishes its own address information through the Primary node. The other nodes update the IP information list. The new node obtains the Primary node's IP information list to complete the synchronization. The specific steps are shown in the figure.
 
 <div align=center><img src="https://github.com/itachiliu/Yeti-Project/blob/master/DM_pic/image-20200630143550883.png" height="33%" width="33%" /></div>
 
 #### **2.6 DM** **Withdraw Process**
 
-   DM needs to have the function of exiting the DM network. QDM needs to delete all information related to itself in the DM network before withdrawing. Including addr information and security certificates retained in other nodes, its own IP address information list, and security certificates of other nodes.
+DM needs to have the function of exiting the DM network. QDM needs to delete all information related to itself in the DM network before withdrawing. Including addr information and security certificates retained in other nodes, its own IP address information list, and security certificates of other nodes.
 
-   According to the characteristics of the Raft algorithm, QDM knows the Primary node and sends an exit message to the Primary node. The Primary node distributes the deletion point information message to each node. After each node deletes the information, the Primary node sends a delete all node information message to QDM. The specific process is shown in the figure. 
+According to the characteristics of the Raft algorithm, QDM knows the Primary node and sends an exit message to the Primary node. The Primary node distributes the deletion point information message to each node. After each node deletes the information, the Primary node sends a delete all node information message to QDM. The specific process is shown in the figure. 
 
 <div align=center><img src="https://github.com/itachiliu/Yeti-Project/blob/master/DM_pic/image-20200630143735950.png" height="33%" width="33%" /></div>
 
 #### **2.7 DM Kick-out Process**
 
-   The kick-out mechanism is based on the heartbeat detection mechanism. A node receives the detection of the Primary node. If the node does not respond, the point proportion is lowered. When it fails to response for five times, an automatic kick-out process is initiated.
+The kick-out mechanism is based on the heartbeat detection mechanism. A node receives the detection of the Primary node. If the node does not respond, the point proportion is lowered. When it fails to response for five times, an automatic kick-out process is initiated.
 
-​    The automatic kick-out mechanism is different from the DM's withdraw process. After the automatic kick-out, the node no longer participates in this round of transactions, but does not affect subsequent rounds. The kick-out of a node depends on the network conditions of the DM and its own performance.   
+The automatic kick-out mechanism is different from the DM's withdraw process. After the automatic kick-out, the node no longer participates in this round of transactions, but does not affect subsequent rounds. The kick-out of a node depends on the network conditions of the DM and its own performance.   
 
-   The Primary node informs each node of the address of failures, each node initiates a heartbeat to the failed node, records the response, gives a processing strategy, then the Primary node statistical results, and agrees to kick out more than 50% of the votes.
+The Primary node informs each node of the address of failures, each node initiates a heartbeat to the failed node, records the response, gives a processing strategy, then the Primary node statistical results, and agrees to kick out more than 50% of the votes.
 
 <div align=center><img src="https://github.com/itachiliu/Yeti-Project/blob/master/DM_pic/image-20200630143840682.png" height="33%" width="33%" /></div>
 
 #### **2.8 DM** **Update Process**
 
-​    When DM nodes operate, the DM's own information may change. Therefore, it is required to be capable of updating. Due to the characteristics of the DM network, each node must ensure that the update happens only when the process can be conducted simultaneously. 
+When DM nodes operate, the DM's own information may change. Therefore, it is required to be capable of updating. Due to the characteristics of the DM network, each node must ensure that the update happens only when the process can be conducted simultaneously. 
 
-​     The DM is updated using the 3PC protocol, and each DM will generate a copy of the old version after the update for backup. First, the Primary node asks each node whether it can update the transaction. After receiving a positive response, it enters the preparation stage. The node copies the IP information and waits for the update. The Primary receives the positive answer from each node and notifies each node to update. Among them, if any process fails, the transaction is rolled back. 
+The DM is updated using the 3PC protocol, and each DM will generate a copy of the old version after the update for backup. First, the Primary node asks each node whether it can update the transaction. After receiving a positive response, it enters the preparation stage. The node copies the IP information and waits for the update. The Primary receives the positive answer from each node and notifies each node to update. Among them, if any process fails, the transaction is rolled back. 
 
 <div align=center><img src="https://github.com/itachiliu/Yeti-Project/blob/master/DM_pic/image-20200630143946997.png" height="33%" width="33%" /></div>
 
@@ -256,9 +256,9 @@ e. More than half of the votes, the election was successful
 
 <div align=center><img src="https://github.com/itachiliu/Yeti-Project/blob/master/DM_pic/image-20200630144116410.png" height="50%" width="50%" /></div>
 
-   To ensure that all DM zone file versions are identical and to obtain zone files at the same time, a file fetch timer is required; to ensure that the DM can disconnect from IANA and prevent the connection from taking too long, a file transfer timeout timer is required.
+To ensure that all DM zone file versions are identical and to obtain zone files at the same time, a file fetch timer is required; to ensure that the DM can disconnect from IANA and prevent the connection from taking too long, a file transfer timeout timer is required.
 
-​    The file fetch timer starts after the system starts, the file transfer timer starts when the zone file transfer starts, and the Primary node receives the transfer completion message after the transfer is complete.
+The file fetch timer starts after the system starts, the file transfer timer starts when the zone file transfer starts, and the Primary node receives the transfer completion message after the transfer is complete.
 
 #### **3.2 Zone File Generation Specification**
 
@@ -280,13 +280,13 @@ Each node processes meta information
 
 ​    Yeti NS、RRset recording 
 
-   When adding Yeti meta information, under the premise of ensuring the same rules for generating zone files, there are two following schemes:
+When adding Yeti meta information, under the premise of ensuring the same rules for generating zone files, there are two following schemes:
 
-uGenerate zone files for each node, then compare (recommended)
+Generate zone files for each node, then compare (recommended)
 
-uPrimary node generates zone files and distributes
+Primary node generates zone files and distributes
 
-​    After the meta information processing is completed, a complete zone file is generated
+After the meta information processing is completed, a complete zone file is generated
 
 Note: The root zone meta information and security certificate are stored in each node to ensure that the file of each node is consistent, and the update uses a delay mechanism, which is the same as the 3DM scheme mechanism.
 
@@ -300,7 +300,7 @@ Consensus reaching method is consistent with IP information list method
 
 **Verification**
 
-​     Each node adopts the hash algorithm to generate a summary for the zone file, define the message, send it to the Primary node, and compare the summary.
+Each node adopts the hash algorithm to generate a summary for the zone file, define the message, send it to the Primary node, and compare the summary.
 
 <div align=center><img src="https://github.com/itachiliu/Yeti-Project/blob/master/DM_pic/image-20200630144349172.png" height="33%" width="33%" /></div>
 
@@ -308,7 +308,7 @@ Consensus reaching method is consistent with IP information list method
 
 **Decision and synchronization**
 
-   The decision-making mechanism draws on the practical Byzantine algorithm (PBFT). The core theory of the PBFT algorithm is n >= 3f + 1, n represents the number of nodes, f represents the number of inconsistent hash digests, and determines whether the expression is true:
+The decision-making mechanism draws on the practical Byzantine algorithm (PBFT). The core theory of the PBFT algorithm is n >= 3f + 1, n represents the number of nodes, f represents the number of inconsistent hash digests, and determines whether the expression is true:
 
 **Ture**：Primary node distributes the correct zone file to each node
 
@@ -320,23 +320,23 @@ Consensus reaching method is consistent with IP information list method
 
 #### **4.1 HSM** 
 
-​    HSM is a system that provides a low-cost and highly secure solution for the key storage.
+HSM is a system that provides a low-cost and highly secure solution for the key storage.
 
-​     For sensitive information such as keys, HSM provides protection at the logical and physical levels to prevent unauthorized access and intrusion.
+For sensitive information such as keys, HSM provides protection at the logical and physical levels to prevent unauthorized access and intrusion.
 
-​     HSM provides tamper proof and tamper evidence functions. It is used in threshold signatures and is responsible for generating and storing keys used to sign DNS zone files. The management of HSM is carried out by DMMC, and two HSMs are set up to achieve high availability for the system.
+HSM provides tamper proof and tamper evidence functions. It is used in threshold signatures and is responsible for generating and storing keys used to sign DNS zone files. The management of HSM is carried out by DMMC, and two HSMs are set up to achieve high availability for the system.
 
 <div align=center><img src="https://github.com/itachiliu/Yeti-Project/blob/master/DM_pic/image-20200630144627623.png" height="33%" width="33%" /></div>
 
 #### **4.2** **Threshold Signature**
 
-   The Primary node uses the (t, n) threshold signature method to generate n private key shares ski through HSM and distribute to each node
+The Primary node uses the (t, n) threshold signature method to generate n private key shares ski through HSM and distribute to each node
 
-   Each node receives the private key share ski and replies with the confirmation message
+Each node receives the private key share ski and replies with the confirmation message
 
-   The Primary node uses the hash digest algorithm to generate a summary for the RR, and distributes the summary to each node
+The Primary node uses the hash digest algorithm to generate a summary for the RR, and distributes the summary to each node
 
-   Each node uses the private key share signature, returns the signed summary to the HSM, forms a complete signature, and stores the signed file to the Primary node
+Each node uses the private key share signature, returns the signed summary to the HSM, forms a complete signature, and stores the signed file to the Primary node
 
 <div align=center><img src="https://github.com/itachiliu/Yeti-Project/blob/master/DM_pic/image-20200701102809032.png" height="100%" width="100%" /></div>
 
@@ -344,9 +344,9 @@ Consensus reaching method is consistent with IP information list method
 
 **Key rollover**
 
-​    Threshold key generation, constructing a distributed key generation protocol (DKG) based on security parameters, the protocol runs to output a common public key pk and private key shares ski belonging to different parties, and gather together to meet the threshold number The private key share can construct a real private key sk, and the public key as an important proof of identity verification needs to ensure its security.
+Threshold key generation, constructing a distributed key generation protocol (DKG) based on security parameters, the protocol runs to output a common public key pk and private key shares ski belonging to different parties, and gather together to meet the threshold number The private key share can construct a real private key sk, and the public key as an important proof of identity verification needs to ensure its security.
 
-​    DNSSEC uses the short-term key ZSK to periodically calculate the signatures of DNS records, while using the long-term key KSK to calculate the signature on ZSK. Therefore, KSK is saved to HSM for a period of three years.
+DNSSEC uses the short-term key ZSK to periodically calculate the signatures of DNS records, while using the long-term key KSK to calculate the signature on ZSK. Therefore, KSK is saved to HSM for a period of three years.
 
 <div align=center><img src="https://github.com/itachiliu/Yeti-Project/blob/master/DM_pic/image-20200630145008945.png" height="33%" width="33%" /></div>
 
@@ -356,7 +356,7 @@ Consensus reaching method is consistent with IP information list method
 
 **Synchronization**
 
-​    To prevent the zone file from bifurcation, after the Primary node generates the correct signature file, then it will be synchronized to each node to ensure that the version of each node is unified and effective.
+To prevent the zone file from bifurcation, after the Primary node generates the correct signature file, then it will be synchronized to each node to ensure that the version of each node is unified and effective.
 
 a. Primary node initiates heartbeat detection mechanism
 
@@ -378,11 +378,11 @@ Note: All nodes of the signed file will be distributed, regardless of whether th
 
 **Solution 1: Separate synchronization between root server and DM**
 
-   The synchronization between the root server and the DM uses the original synchronization scheme, that is, the RS randomly sends an SOA request to some of the DMs configured by itself. The DM responds with the current root zone file serial number, and decides whether to perform zone transfer based on the serial number.
+The synchronization between the root server and the DM uses the original synchronization scheme, that is, the RS randomly sends an SOA request to some of the DMs configured by itself. The DM responds with the current root zone file serial number, and decides whether to perform zone transfer based on the serial number.
 
 **Solution 2: Root server and DM convergence synchronization (recommended)**
 
-​    DM and root server are merged to replace root server. The root server and the DM system are different processes. The zone transfer between the root server and the DM only occurs on the local machine, which greatly improves the transmission efficiency and success rate, and also reduces the synchronization time. However, as the DM expands, the root server expands accordingly, leading to an increase in packet length.
+DM and root server are merged to replace root server. The root server and the DM system are different processes. The zone transfer between the root server and the DM only occurs on the local machine, which greatly improves the transmission efficiency and success rate, and also reduces the synchronization time. However, as the DM expands, the root server expands accordingly, leading to an increase in packet length.
 
 <div align=center><img src="https://github.com/itachiliu/Yeti-Project/blob/master/DM_pic/image-20200630145305507.png" height="33%" width="33%" /></div>
 
@@ -392,10 +392,11 @@ Note: All nodes of the signed file will be distributed, regardless of whether th
 
 **Encryption**
 
-​     TLS certificates are applied between DMs to ensure communication security. When the network is initialized, each initial node contains a corresponding public key certificate, and when a new node is added, the corresponding DM certificate needs to be authorized to ensure that the nodes trust each other.
+TLS certificates are applied between DMs to ensure communication security. When the network is initialized, each initial node contains a corresponding public key certificate, and when a new node is added, the corresponding DM certificate needs to be authorized to ensure that the nodes trust each other.
 
 **Authentication**
 
-   Taking the Primary node as an example, the control message is signed with the Primary node's private key. Each DM has a public key corresponding to the Primary node. When the message signed by the Primary node's private key is sent to the DM, the DM uses the Primary node's public key for identity verification that the update messages have been sent are sent by the Primary node.
+Taking the Primary node as an example, the control message is signed with the Primary node's private key. Each DM has a public key corresponding to the Primary node. When the message signed by the Primary node's private key is sent to the DM, the DM uses the Primary node's public key for identity verification that the update messages have been sent are sent by the Primary node.
 
-<div align=center><img src="https://github.com/itachiliu/Yeti-Project/blob/master/DM_pic/image-20200630145442562.png" height="33%" width="33%" /></div>
+<div align=center><img src="https://github.com/itachiliu/Yeti-Project/blob/master/DM_pic/image-20200701105141420.png" height="33%" width="33%" /></div>
+
