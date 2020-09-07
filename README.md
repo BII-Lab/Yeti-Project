@@ -181,7 +181,7 @@ Below are details about the different ways of joining the effort.
           ['ns4.root-yeti.net.'] = '2803:80:8002:813d:8000::',
           ['ns5.root-yeti.net.'] = '2001:19f0:4400:7fff::6',
           ['ns6.root-yeti.net.'] = '2001:470:1:703::3',
-          ['ns1.yeti.akiradns.com.'] = '2a01:4f8:231:3f69::42',
+          ['ns1.yeti.akira.org.'] = '2a01:4f8:241:768:2::2',
     })
     
     trust_anchors.config('yeti-root.key')
