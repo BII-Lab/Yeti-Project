@@ -14,8 +14,6 @@ yeti.ipv6.ernet.in             3600000    IN   AAAA     2001:e30:1c1e:1::333
 yeti1.ipv6.ernet.in            3600000    IN   AAAA     2001:e30:187d::333                      
 .                              3600000    IN   NS       yeti.aquaray.com                        
 yeti.aquaray.com               3600000    IN   AAAA     2a02:ec0:200::1                         
-.                              3600000    IN   NS       yeti-ns.switch.ch                       
-yeti-ns.switch.ch              3600000    IN   AAAA     2001:620:0:ff::29                       
 .                              3600000    IN   NS       yeti-ns.lab.nic.cl                      
 yeti-ns.lab.nic.cl             3600000    IN   AAAA     2001:1398:1:21::8001                    
 .                              3600000    IN   NS       yeti-ns1.dns-lab.net                    
@@ -25,7 +23,7 @@ yeti-ns3.dns-lab.net           3600000    IN   AAAA     240e:97c:38:201::44
 .                              3600000    IN   NS       ca978112ca1bbdcafac231b39a23dc.yeti-dns.net
 ca978112ca1bbdcafac231b39a23dc.yeti-dns.net 3600000    IN   AAAA     2c0f:f530::6                            
 .                              3600000    IN   NS       3f79bb7b435b05321651daefd374cd.yeti-dns.net
-3f79bb7b435b05321651daefd374cd.yeti-dns.net 3600000    IN   AAAA     2401:c900:1401:3b:c::6                  
+3f79bb7b435b05321651daefd374cd.yeti-dns.net 3600000    IN   AAAA     2401:c080:1800:4de9::6                  
 .                              3600000    IN   NS       xn--r2bi1c.xn--h2bv6c0a.xn--h2brj9c     
 xn--r2bi1c.xn--h2bv6c0a.xn--h2brj9c 3600000    IN   AAAA     2001:e30:1c1e:10::333                   
 .                              3600000    IN   NS       yeti-ns.datev.net                       
@@ -37,10 +35,16 @@ ns3.root-yeti.net              3600000    IN   AAAA     2400:6180:100:d0::8df:40
 .                              3600000    IN   NS       yeti-ns.ipv6forummalaysia.com           
 yeti-ns.ipv6forummalaysia.com  3600000    IN   AAAA     2401:340:aaaa:100::8b31:256e            
 .                              3600000    IN   NS       ns4.root-yeti.net                       
-ns4.root-yeti.net              3600000    IN   AAAA     2803:80:8002:813d:8000::                
+ns4.root-yeti.net              3600000    IN   AAAA     2803:80:8001:228::6                     
 .                              3600000    IN   NS       ns5.root-yeti.net                       
 ns5.root-yeti.net              3600000    IN   AAAA     2001:19f0:4400:7fff::6                  
 .                              3600000    IN   NS       ns6.root-yeti.net                       
 ns6.root-yeti.net              3600000    IN   AAAA     2001:470:1:703::3                       
-.                              3600000    IN   NS       ns1.yeti.akiradns.com                   
-ns1.yeti.akiradns.com          3600000    IN   AAAA     2a01:4f8:231:3f69::42                   
+.                              3600000    IN   NS       ns1.yeti.akira.org                      
+ns1.yeti.akira.org             3600000    IN   AAAA     2a01:4f8:241:150e:2::2                  
+.                              3600000    IN   NS       yeti-ns7.root-yeti.net                  
+yeti-ns7.root-yeti.net         3600000    IN   AAAA     2a0d:5600:21::485e:8017                 
+.                              3600000    IN   NS       yeti-ns8.root-yeti.net                  
+yeti-ns8.root-yeti.net         3600000    IN   AAAA     2a05:f480:1400:8b::6                    
+.                              3600000    IN   NS       yeti-ns9.root-yeti.net                  
+yeti-ns9.root-yeti.net         3600000    IN   AAAA     2001:19f0:5:4054::6                     
