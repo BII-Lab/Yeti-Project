@@ -165,7 +165,7 @@ Below are details about the different ways of joining the effort.
           ['yeti.ipv6.ernet.in.'] = '2001:e30:1c1e:1::333',
           ['yeti1.ipv6.ernet.in.'] = '2001:e30:187d::333',
           ['yeti.aquaray.com.'] = '2a02:ec0:200::1',
-          ['yeti-ns7.root-yeti.net.'] = '2a0d:5600:21::485e:8017',
+          ['yeti-ns7.root-yeti.net.'] = '2a0c:8a41:3100::485e:8017',
           ['yeti-ns8.root-yeti.net.'] = '2a05:f480:1400:8b::6',
           ['yeti-ns9.root-yeti.net.'] = '2001:19f0:5:4054::6',
           ['yeti-ns.lab.nic.cl.'] = '2001:1398:1:21::8001',
