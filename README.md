@@ -180,7 +180,7 @@ Below are details about the different ways of joining the effort.
           ['ns3.root-yeti.net.'] = '2400:6180:100:d0::8df:4001',
           ['ns4.root-yeti.net.'] = '2803:80:8001:228::6',
           ['ns5.root-yeti.net.'] = '2001:19f0:4400:7fff::6',
-          ['ns6.root-yeti.net.'] = '2001:470:1:703::3',
+          ['ns6.root-yeti.net.'] = '2001:19f0:7402:bf:5400:ff:fe44:a0a6',
           ['ns1.yeti.akira.org.'] = '2a01:4f8:252:2ade:2::2',
     })
     
