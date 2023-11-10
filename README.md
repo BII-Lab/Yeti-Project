@@ -164,7 +164,6 @@ Below are details about the different ways of joining the effort.
           ['yeti.bofh.priv.at.'] = '2a01:4f8:161:6106:1::10',
           ['yeti.ipv6.ernet.in.'] = '2001:e30:1c1e:1::333',
           ['yeti1.ipv6.ernet.in.'] = '2001:e30:187d::333',
-          ['yeti.aquaray.com.'] = '2a02:ec0:200::1',
           ['yeti-ns7.root-yeti.net.'] = '2a0c:8a41:3100::485e:8017',
           ['yeti-ns8.root-yeti.net.'] = '2a05:f480:1400:8b::6',
           ['yeti-ns9.root-yeti.net.'] = '2001:19f0:5:4054::6',
@@ -182,6 +181,7 @@ Below are details about the different ways of joining the effort.
           ['ns5.root-yeti.net.'] = '2001:19f0:4400:7fff::6',
           ['ns6.root-yeti.net.'] = '2001:19f0:7402:bf:5400:ff:fe44:a0a6',
           ['ns1.yeti.akira.org.'] = '2a01:4f8:252:2ade:2::2',
+          ['yeti-ns.must.edu.mo.'] = '2401:20E0:A112:1::11',
     })
     
     trust_anchors.config('yeti-root.key')
