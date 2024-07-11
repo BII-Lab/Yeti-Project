@@ -157,7 +157,7 @@ Below are details about the different ways of joining the effort.
        'hints' -- Add other modules, if necessary
     }
     hints.root({                                   
-          ['bii.dns-lab.net.'] = '240c:f:1:22::6',
+          ['bii.dns-lab.net.'] = '240e:604:10c:448:7::6',
           ['yeti-ns.wide.ad.jp.'] = '2001:200:1d9::35',
           ['yeti-ns.as59715.net.'] = '2a02:cdc5:9715:0:185:5:203:53',
           ['yeti-ns.ix.ru.'] = '2001:6d0:6d06::53',
@@ -175,12 +175,12 @@ Below are details about the different ways of joining the effort.
           ['ca978112ca1bbdcafac231b39a23dc.yeti-dns.net.'] = '2c0f:f530::6',
           ['xn--r2bi1c.xn--h2bv6c0a.xn--h2brj9c.'] = '2001:e30:1c1e:10::333',
           ['yeti-ns.datev.net.'] = '2a00:e50:f15c:1000::1:53',
-          ['yeti-ns.ipv6forummalaysia.com.'] = '2401:340:aaaa:100::8b31:256e',
+          ['yeti-ns.ipv6forummalaysia.my.'] = '2401:340:aaaa:100::c4ab:30e3e',
           ['ns3.root-yeti.net.'] = '2400:6180:100:d0::8df:4001',
           ['ns4.root-yeti.net.'] = '2803:80:8001:228::6',
           ['ns5.root-yeti.net.'] = '2001:19f0:4400:7fff::6',
           ['ns6.root-yeti.net.'] = '2001:19f0:7402:bf:5400:ff:fe44:a0a6',
-          ['ns1.yeti.akira.org.'] = '2a01:4f8:252:2ade:2::2',
+          ['ns1.yeti.banu.com.'] = '2a01:4f8:252:2ade:2::2',
           ['yeti-ns.must.edu.mo.'] = '2401:20E0:A112:1::11',
     })
     
